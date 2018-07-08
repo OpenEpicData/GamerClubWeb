@@ -54,12 +54,12 @@
 
             </v-card>
           </v-flex>
-          <v-flex xs6>
+          <v-flex xs6 class="mb-5">
             <div class="text-xs-left" v-if="page !== 1">
               <v-btn large round outline v-on:click="fetchPage(page - 1)"> 上一页 {{ page - 1 }}</v-btn>
             </div>
           </v-flex>
-          <v-flex xs6>
+          <v-flex xs6 class="mb-5">
             <div class="text-xs-right" v-if="page !== list.total">
               <v-btn large round outline v-on:click="fetchPage(page + 1)"> 下一页 {{ page + 1 }}</v-btn>
             </div>
