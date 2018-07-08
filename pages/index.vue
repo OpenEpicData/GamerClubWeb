@@ -65,8 +65,8 @@
             </div>
           </v-flex>
         </v-layout>
-        <v-dialog v-model="dialogPrice">
-          <div v-if="isPrice === 1">
+        <v-dialog v-model="dialogPrice" hide-overlay v-if="isPrice === 1">
+          <div>
             <v-stepper v-model="step" vertical non-linear v-for="(price, index) in price" :key="index">
               <v-stepper-step :step="index" complete editable>
                 时间: {{ price.created_at }}
@@ -80,10 +80,27 @@
 
             </v-stepper>
           </div>
-          <div v-if="isPrice === 0" class="text-xs-center white">
-            无数据或者是免费游戏
-            <v-progress-linear indeterminate color="primary" class="mb-0"></v-progress-linear>
-          </div>
+        </v-dialog>
+        <v-dialog
+          v-model="dialogPrice"
+          hide-overlay
+          width="300"
+          v-if="isPrice === 0"
+        >
+          <v-card
+            color="primary"
+            dark
+          >
+            <v-card-text>
+              暂无数据或是免费游戏
+              <v-progress-linear
+                indeterminate
+                color="white"
+                class="mb-0"
+                height="1"
+              ></v-progress-linear>
+            </v-card-text>
+          </v-card>
         </v-dialog>
       </v-container>
     </div>
@@ -107,6 +124,7 @@
     data: () => ({
       dialog2: false,
       dialogPrice: false,
+      dialogPriceClose: false,
       price: '',
       step: '0',
       isPrice: ''
