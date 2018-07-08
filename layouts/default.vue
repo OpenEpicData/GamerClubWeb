@@ -80,7 +80,8 @@
   export default {
     data: () => ({
       dialog: false,
-      bottomNav: 1
+      bottomNav: 1,
+      search: ''
     }),
     props: {
       source: String
