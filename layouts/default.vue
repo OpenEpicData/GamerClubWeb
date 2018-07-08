@@ -11,6 +11,7 @@
         solo-inverted
         label="搜索 游戏名称,ID"
         append-icon="search"
+        v-model="search"
       ></v-text-field>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
