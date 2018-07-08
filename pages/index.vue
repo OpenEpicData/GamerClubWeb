@@ -80,7 +80,7 @@
 
             </v-stepper>
           </div>
-          <div v-if="isPrice === 0" class="text-xs-center">
+          <div v-if="isPrice === 0" class="text-xs-center white">
             无数据或者是免费游戏
             <v-progress-linear indeterminate color="primary" class="mb-0"></v-progress-linear>
           </div>
