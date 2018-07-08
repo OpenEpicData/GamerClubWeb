@@ -7,9 +7,9 @@
         <v-btn flat>趋势</v-btn>
       </v-toolbar-items>
       <v-text-field
-        class="mt-2 ml-1"
+        class="mt-2 ml-1 hidden-sm-and-down"
         solo-inverted
-        label="搜索暂不可用"
+        label="搜索 游戏名称,ID"
         append-icon="search"
       ></v-text-field>
       <v-spacer></v-spacer>
@@ -45,13 +45,41 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-bottom-nav
+      class="hidden-md-and-up"
+      :active.sync="bottomNav"
+      color="white"
+      :value="true"
+      fixed
+      shift
+    >
+      <v-btn>
+        <span>搜索</span>
+        <v-icon>search</v-icon>
+      </v-btn>
+
+      <v-btn>
+        <span>浏览</span>
+        <v-icon>list</v-icon>
+      </v-btn>
+
+      <v-btn 
+      :disabled="dialog"
+      @click.stop="dialog = true"
+      >
+        <span>加入社区</span>
+        <v-icon>add_circle_outline</v-icon>
+      </v-btn>
+
+    </v-bottom-nav>
   </v-app>
 </template>
 
 <script>
   export default {
     data: () => ({
-      dialog: false
+      dialog: false,
+      bottomNav: 1
     }),
     props: {
       source: String
