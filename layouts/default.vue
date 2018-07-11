@@ -1,33 +1,72 @@
 <template>
   <v-app id="inspire">
-    <v-toolbar app fixed clipped-left class="white">
-      <span class="title ml-3 mr-5">SteamHub</span>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat to="/">浏览</v-btn>
-        <v-btn flat to="/apps">游戏</v-btn>
-        <v-btn flat to="/subs">集合包</v-btn>
-        <v-btn flat to="/prices">价格</v-btn>
-        <v-btn flat to="/tools">工具</v-btn>
-        <v-btn flat to="/skins">皮肤</v-btn>
-      </v-toolbar-items>
-      <v-text-field
-        class="mt-2 ml-1 hidden-sm-and-down"
-        solo-inverted
-        label="搜索 游戏名称,ID"
-        append-icon="search"
-        v-model="search"
-      ></v-text-field>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn 
-        flat
-        :disabled="dialog"
-        @click.stop="dialog = true"
+    <div class="hidden-sm-and-down">
+      <v-toolbar app fixed clipped-left class="white">
+        <span class="title ml-3 mr-5">SteamHub</span>
+        <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn flat to="/">浏览</v-btn>
+          <v-btn flat to="/apps/pages/">游戏</v-btn>
+          <v-btn flat to="/subs">集合包</v-btn>
+          <v-btn flat to="/prices">价格</v-btn>
+          <v-btn flat to="/tools">工具</v-btn>
+          <v-btn flat to="/skins">皮肤</v-btn>
+        </v-toolbar-items>
+        <v-text-field
+          class="mt-2 ml-1 hidden-sm-and-down"
+          solo-inverted
+          label="搜索 游戏名称,ID"
+          append-icon="search"
+          v-model="search"
+        ></v-text-field>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn 
+          flat
+          :disabled="dialog"
+          @click.stop="dialog = true"
+          >
+            加入社区 <v-icon right>add_circle_outline</v-icon></v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+    </div>
+    <div class="hidden-md-and-up">
+      <v-toolbar app tabs fixed clipped-left class="white">
+        <span class="title ml-3 mr-5">SteamHub</span>
+        <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn flat to="/">浏览</v-btn>
+          <v-btn flat to="/apps/pages/">游戏</v-btn>
+          <v-btn flat to="/subs">集合包</v-btn>
+          <v-btn flat to="/prices">价格</v-btn>
+          <v-btn flat to="/tools">工具</v-btn>
+          <v-btn flat to="/skins">皮肤</v-btn>
+        </v-toolbar-items>
+        <v-tabs
+          slot="extension"
+          centered
+          slider-color="black"
         >
-          加入社区 <v-icon right>add_circle_outline</v-icon></v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-    <v-content class="grey lighten-4">
+          <v-tab to="/">
+            浏览
+          </v-tab>
+          <v-tab to="/apps/pages/">
+            游戏
+          </v-tab>
+          <v-tab to="/subs">
+            集合包
+          </v-tab>
+          <v-tab to="/prices">
+            价格
+          </v-tab>
+          <v-tab to="/tools">
+            工具
+          </v-tab>
+          <v-tab to="/skins">
+            皮肤
+          </v-tab>
+        </v-tabs>
+      </v-toolbar>
+    </div>
+    <v-content  class="white">
       <nuxt />
     </v-content>
     <v-dialog
