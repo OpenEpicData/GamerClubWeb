@@ -7,7 +7,7 @@ module.exports = {
     title: '全球 Steam 数据统计分析 -- SteamHub',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: 'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询 ' }
     ],
     link: [
@@ -33,7 +33,8 @@ module.exports = {
   build: {
     vendor: [
       '~/plugins/vuetify.js',
-      'axios'
+      'axios',
+      'dayjs'
     ],
     extractCSS: true,
     /*
