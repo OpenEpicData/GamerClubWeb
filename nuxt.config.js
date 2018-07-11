@@ -15,9 +15,13 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
-  plugins: ['~/plugins/vuetify.js'],
+  plugins: [
+    '~/plugins/vuetify.js',
+    '@/plugins/element-ui'
+  ],
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/style/app.styl',
+    'element-ui/lib/theme-chalk/index.css'
   ],
   /*
   ** Customize the progress bar color

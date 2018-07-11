@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "element-ui": "^2.4.3",
     "nuxt": "^1.0.0",
     "vuetify": "^1.0.0"
   },
