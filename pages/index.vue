@@ -135,7 +135,7 @@
   
   export default {
     async asyncData () {
-      return axios.get(`http://localhost:3333/api/v1/steam/apps?page=1`, {
+      return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?page=1`, {
         headers: {
           'Access-Control-Allow-Origin': '*'
         }
@@ -162,7 +162,7 @@
       const Today = new Date()
       this.month = Today.getMonth() + 1
       this.day = Today.getDate()
-      axios.get(`http://localhost:3333/api/v1/steam/app/store/update/queues`, {
+      axios.get(`https://api.steamhub.cn/api/v1/steam/app/store/update/queues`, {
         headers: {
           'Access-Control-Allow-Origin': '*'
         }
@@ -170,7 +170,7 @@
         .then(response => {
           this.queue = response.data.total
         })
-      axios.get(`http://localhost:3333/api/v1/steam/game/features`, {
+      axios.get(`https://api.steamhub.cn/api/v1/steam/game/features`, {
         headers: {
           'Access-Control-Allow-Origin': '*'
         }

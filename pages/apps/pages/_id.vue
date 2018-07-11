@@ -90,7 +90,7 @@
 
   export default {
     async asyncData ({ params }) {
-      return axios.get(`http://localhost:3333/api/v1/steam/apps?list=` + params.id, {
+      return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?list=` + params.id, {
         headers: {
           'Access-Control-Allow-Origin': '*'
         }
@@ -113,7 +113,7 @@
       page: function (newPage, oldPage) {
         this.$vuetify.goTo('#GameList', 'easyInQuad')
         this.$router.push({path: '/apps/pages/' + newPage})
-        return axios.get(`http://localhost:3333/api/v1/steam/apps?list=` + newPage, {
+        return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?list=` + newPage, {
           headers: {
             'Access-Control-Allow-Origin': '*'
           }
