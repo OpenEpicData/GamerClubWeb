@@ -2,6 +2,7 @@
   <v-app id="inspire">
     <div class="hidden-sm-and-down">
       <v-toolbar app fixed clipped-left class="white">
+        <img src="/logo_64x64.png" alt="SteamHub Logo">
         <span class="title ml-3 mr-5">SteamHub</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
@@ -29,6 +30,7 @@
     </div>
     <div class="hidden-md-and-up">
       <v-toolbar app tabs fixed clipped-left class="white">
+        <img src="/logo_20x20_white.png" alt="SteamHub Logo">
         <span class="title ml-3 mr-5">SteamHub</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
@@ -62,7 +64,7 @@
         </v-tabs>
       </v-toolbar>
     </div>
-    <v-content  class="white">
+    <v-content class="white">
       <nuxt />
     </v-content>
     <v-dialog
@@ -143,5 +145,11 @@
   }
   .text {
     font-weight: 400;
+  }
+  @media (min-width: 1264px) {
+    .index-main-container {
+      width: 1700px;
+      max-width: 90%;
+    }
   }
 </style>
