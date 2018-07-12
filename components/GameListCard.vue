@@ -1,43 +1,48 @@
 <template>
-  <v-layout row wrap class="mt-3" id="GameList">
-    <v-flex xs12 sm6 md6 lg4 xl3 v-for="(item,i) in list.data" :key="i" class="game-list-card">
-      <v-card v-if="item.AppType">
-        <v-card-media :to="'/apps/' + item.AppID"  :src="'https://steamcdn-a.opskins.media/steam/apps/' + item.AppID + '/header.jpg'" height="200px">
-          <v-container fill-height fluid pa-2>
-            <v-layout align-start justify-start row fill-height>
-              <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppsTypes">
-                <v-btn dark small color="grey" class="card-right-icon">
-                  <v-icon left class="mt-1">
-                    {{ item.AppsTypes.DisplayName | typeIcon }}
-                  </v-icon> 
-                  {{ item.AppsTypes.DisplayName | typeName }} 
-                </v-btn>
-                <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
-                  <v-icon left class="mt-1">
-                    add
-                  </v-icon> 
-                  关注
-                </v-btn>
+  <v-flex d-flex xs12 lg9>
+    <v-layout row wrap>
+      <v-flex d-flex xs12 sm6 md6 lg4 v-for="(item,i) in list.data" :key="i" class="game-list-card px-3">
+        <v-card v-if="item.AppType" flat class="grey lighten-4">
+          <v-card-media :src="'https://steamcdn-a.opskins.media/steam/apps/' + item.AppID + '/header.jpg'" height="200px">
+            <v-container fill-height fluid pa-2>
+              <v-layout align-start justify-start row fill-height>
+                <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppsTypes">
+                  <v-btn dark small color="grey" class="card-right-icon">
+                    <v-icon left class="mt-1">
+                      {{ item.AppsTypes.DisplayName | typeIcon }}
+                    </v-icon>
+                    {{ item.AppsTypes.DisplayName | typeName }}
+                  </v-btn>
+                  <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
+                    <v-icon left class="mt-1">
+                      add
+                    </v-icon>
+                    关注
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card-media>
+          <v-card-title primary-title class="grey lighten-4">
+            <v-layout row>
+              <v-flex xs9>
+                <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
+                <h3 class="mb-0">
+                  {{ item.Name.slice(0, 20) }}...
+                </h3>
+              </v-flex>
+              <v-flex xs3 class="text-xs-right" v-if="item.AppsTypes">
+                <v-chip label class="text-xs-right">
+                  {{ item.AppID }}
+                </v-chip>
               </v-flex>
             </v-layout>
-          </v-container>
-        </v-card-media>
-        <v-card-title primary-title>
-          <div>
-            <span class="grey--text ml-3">更新于: {{ item.LastUpdated | time }}</span>
-            <h3 class="mb-0">
-              <v-chip>
-                {{ item.AppID }}
-              </v-chip>
-              {{ item.Name.slice(0, 20) }}
-            </h3>
-          </div>
-        </v-card-title>
-  
-      </v-card>
-      <v-card v-else>
-        <v-card-media :src="'/unknow.jpg'" height="200px">
-          <v-container fill-height fluid pa-2>
+          </v-card-title>
+        </v-card>
+
+        <v-card v-else flat class="grey lighten-4">
+          <v-card-media :src="'/unknow.jpg'" height="200px">
+            <v-container fill-height fluid pa-2>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox class="text-xs-right">
                   <v-btn dark small color="grey">
@@ -45,29 +50,34 @@
                 </v-flex>
               </v-layout>
             </v-container>
-        </v-card-media>
-        <v-card-title primary-title>
-          <div>
-            <span class="grey--text ml-3">更新于: {{ item.LastUpdated | time }}</span>
-            <h3 class="mb-0">
-              <v-chip>
-                {{ item.AppID }}
-              </v-chip>
-              未知应用
-            </h3>
-          </div>
-        </v-card-title>
-      </v-card>
-    </v-flex>
-    <v-dialog v-model="dialogAttention" hide-overlay persistent width="300">
-        <v-card color="primary" dark>
-          <v-card-text>
-            功能开发中
-            <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-          </v-card-text>
+          </v-card-media>
+          <v-card-title primary-title class="grey lighten-4">
+            <v-layout row>
+              <v-flex xs9>
+                <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
+                <h3 class="mb-0">
+                  未知应用...
+                </h3>
+              </v-flex>
+              <v-flex xs3 class="text-xs-right">
+                <v-chip label class="text-xs-right">
+                  {{ item.AppID }}
+                </v-chip>
+              </v-flex>
+            </v-layout>
+          </v-card-title>
         </v-card>
+      </v-flex>
+    </v-layout>
+    <v-dialog v-model="dialogAttention" hide-overlay persistent width="300">
+      <v-card color="primary" dark>
+        <v-card-text>
+          功能开发中
+          <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+        </v-card-text>
+      </v-card>
     </v-dialog>
-  </v-layout>
+  </v-flex>
 </template>
 
 <style>

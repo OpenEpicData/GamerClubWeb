@@ -32,6 +32,7 @@
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="hidden-sm-and-down">
           <v-progress-linear indeterminate color="blue" class="mb-0" :height="carouselLoading"></v-progress-linear>
+          {{ feature.error }}
           <el-carousel :interval="4000" type="card">
             <el-carousel-item v-for="item in feature" :key="item.id" class="text-xs-center">
               <img :src="item.large_capsule_image" alt="" v-on:click="carouselTo(item.id)">
@@ -55,8 +56,42 @@
           </v-flex>
         </v-layout>
 
-        <GameListCard :list.sync="list"></GameListCard>
+        <v-layout row wrap class="mt-3" id="GameList">
+          <GameListCard :list.sync="list"></GameListCard>
+          <v-flex d-flex lg3>
+            <v-layout row wrap hidden-md-and-down>
+              <v-flex d-flex>
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <v-card color="deep-purple lighten-1 mb-5" flat dark>
+                      <v-card-title primary-title>
+                        <div>
+                          <h4 class="headline mb-0"><v-icon left>edit</v-icon> 加入创作挑战</h4>
+                        </div>
+                      </v-card-title>
+                      <v-card-text>
+                        <span>是时候投票选出你最喜欢的文章了</span>
+                      </v-card-text>
+                      <v-card-actions class="ml-1 pb-3">
+                        <v-btn color="white" class="black--text">
+                          立即开始
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
 
+                    <v-card color="grey lighten-5" flat>
+                      <v-card-title primary-title>
+                        <div>
+                          <h4 class="headline mb-0"><v-icon left>attach_money</v-icon> 成为赞助商 <v-icon right>chevron_right</v-icon></h4>
+                        </div>
+                      </v-card-title>
+                    </v-card>
+                  </v-flex>
+                </v-layout>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
       </v-container>
     </div>
   </div>
@@ -129,6 +164,9 @@
         .then(response => {
           this.feature = response.data.specials.items
           this.carouselLoading = 0
+        })
+        .catch(e => {
+          this.feature.error = '加载出错'
         })
     },
     watch: {
