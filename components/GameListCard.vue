@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap class="mt-3">
+  <v-layout row wrap class="mt-3" id="GameList">
     <v-flex xs12 sm6 md6 lg4 xl3 v-for="(item,i) in list.data" :key="i" class="game-list-card">
       <v-card v-if="item.AppType">
         <v-card-media :to="'/apps/' + item.AppID"  :src="'https://steamcdn-a.opskins.media/steam/apps/' + item.AppID + '/header.jpg'" height="200px">
@@ -95,14 +95,14 @@
     props: ['list'],
     data () {
       return {
-        dialogAttention: false
+        dialogAttention: false,
+        page: this.page
       }
     },
+    created: function () {
+      this.page = parseInt(this.list.page)
+    },
     watch: {
-      tempAddress (newVal) {
-        // 必须是这个update:address
-        this.$emit('update:address', newVal)
-      },
       dialogAttention (val) {
         if (!val) return
         setTimeout(() => (this.dialogAttention = false), 1000)
