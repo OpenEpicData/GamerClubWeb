@@ -49,12 +49,6 @@
           <v-tab to="/apps/pages/">
             游戏
           </v-tab>
-          <v-tab to="/subs">
-            集合包
-          </v-tab>
-          <v-tab to="/prices">
-            价格
-          </v-tab>
           <v-tab to="/tools">
             工具
           </v-tab>
