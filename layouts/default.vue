@@ -2,7 +2,6 @@
   <v-app id="inspire">
     <div class="hidden-sm-and-down">
       <v-toolbar app fixed clipped-left class="white">
-        <img src="/logo_64x64.png" alt="">
         <span class="title ml-3 mr-5">SteamHub</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
@@ -34,8 +33,6 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
-          <v-btn flat to="/subs">集合包</v-btn>
-          <v-btn flat to="/prices">价格</v-btn>
           <v-btn flat to="/tools">工具</v-btn>
           <v-btn flat to="/skins">皮肤</v-btn>
         </v-toolbar-items>
