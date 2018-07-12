@@ -37,7 +37,9 @@ module.exports = {
     vendor: [
       '~/plugins/vuetify.js',
       'axios',
-      'dayjs'
+      'dayjs',
+      '~/components/GameListCard',
+      'dayjs/plugin/relativeTime'
     ],
     extractCSS: true,
     /*
