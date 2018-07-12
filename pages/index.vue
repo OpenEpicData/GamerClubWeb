@@ -13,11 +13,11 @@
           </v-flex>
           <v-flex xs2>
             <div class="text-xs-right">
-              <v-btn large color="primary" round dark :loading="dialog2" @click.stop="dialog2 = true">
+              <v-btn large color="primary" round dark :loading="dialogSign" @click.stop="dialogSign = true">
                 立即加入</v-btn>
             </div>
           </v-flex>
-          <v-dialog v-model="dialog2" hide-overlay persistent width="300">
+          <v-dialog v-model="dialogSign" hide-overlay persistent width="300">
             <v-card color="primary" dark>
               <v-card-text>
                 功能开发中
@@ -54,61 +54,8 @@
             </div>
           </v-flex>
         </v-layout>
-        <v-layout row wrap class="mt-3">
-          <v-flex xs12 sm6 md6 lg4 xl3 v-for="(item,i) in list.data" :key="i">
-            <v-card :to="'/apps/' + item.AppID" v-if="item.AppType">
-              <v-card-media :src="'https://steamcdn-a.opskins.media/steam/apps/' + item.AppID + '/header.jpg'" height="200px">
-                <v-container fill-height fluid pa-2>
-                  <v-layout fill-height>
-                    <v-flex xs12 align-end flexbox class="text-xs-right" v-if="item.AppsTypes">
-                      <v-btn dark color="deep-purple lighten-1">
-                        <v-icon left class="mt-1">{{ item.AppsTypes.DisplayName | typeIcon }}</v-icon> {{ item.AppsTypes.DisplayName | typeName }} </v-btn>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card-media>
-              <v-card-title primary-title>
-                <div>
-                  <h3 class="headline mb-0">
-                    <v-chip>
-                      {{ item.AppID }}
-                    </v-chip>
-                    <v-btn>
-                      {{ item.Name.slice(0, 20) }}
-                    </v-btn>
-                  </h3>
-                  <h5 class="ml-3">更新于: {{ item.LastUpdated | time }}</h5>
-                </div>
-              </v-card-title>
 
-            </v-card>
-            <v-card v-else>
-              <v-card-media :src="'/unknow.jpg'" height="200px">
-                <v-container fill-height fluid pa-2>
-                    <v-layout fill-height>
-                      <v-flex xs12 align-end flexbox class="text-xs-right">
-                        <v-btn dark color="red">
-                          <v-icon left class="mt-1">device_unknown</v-icon> 未知 </v-btn>
-                      </v-flex>
-                    </v-layout>
-                  </v-container>
-              </v-card-media>
-              <v-card-title primary-title>
-                <div>
-                  <h3 class="headline mb-0">
-                    <v-chip>
-                      {{ item.AppID }}
-                    </v-chip>
-                    <v-btn>
-                      未知应用
-                    </v-btn>
-                  </h3>
-                  <h5 class="ml-3">更新于: {{ item.LastUpdated | time }}</h5>
-                </div>
-              </v-card-title>
-            </v-card>
-          </v-flex>
-        </v-layout>
+        <GameListCard :list.sync="list"></GameListCard>
 
       </v-container>
     </div>
@@ -117,15 +64,16 @@
 
 <style>
   .el-carousel__item:nth-child(2n) {
-    background-color: transparent
+    background-color: transparent;
   }
   
   .el-carousel__item:nth-child(2n+1) {
-    background-color: transparent
+    background-color: transparent;
   }
 </style>
 
 <script>
+  import GameListCard from '~/components/GameListCard'
   import axios from 'axios'
   import relativeTime from 'dayjs/plugin/relativeTime'
   import dayjs from 'dayjs'
@@ -134,6 +82,9 @@
   dayjs.extend(relativeTime)
   
   export default {
+    components: {
+      GameListCard
+    },
     async asyncData () {
       return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?page=1`, {
         headers: {
@@ -145,7 +96,7 @@
         })
     },
     data: () => ({
-      dialog2: false,
+      dialogSign: false,
       price: '',
       step: '0',
       isPrice: '',
@@ -181,54 +132,9 @@
         })
     },
     watch: {
-      dialog2 (val) {
+      dialogSign (val) {
         if (!val) return
-        setTimeout(() => (this.dialog2 = false), 1000)
-      }
-    },
-    filters: {
-      time: function (value) {
-        return dayjs().locale('zh-cn').from(dayjs(value))
-      },
-      typeName: function (value) {
-        switch (value) {
-          case 'Game':
-            return '游戏'
-          case 'Tool':
-            return '工具'
-          case 'Video':
-            return '影音'
-          case 'Application':
-            return '应用'
-          case 'Demo':
-            return '试玩版'
-          case 'DLC':
-            return '扩充包'
-          case 'Hardware':
-            return '硬件'
-          default:
-            return '未知'
-        }
-      },
-      typeIcon: function (value) {
-        switch (value) {
-          case 'Game':
-            return 'games'
-          case 'Tool':
-            return 'build'
-          case 'Video':
-            return 'videocam'
-          case 'Application':
-            return 'apps'
-          case 'Demo':
-            return 'play_circle_outline'
-          case 'DLC':
-            return 'playlist_add'
-          case 'Hardware':
-            return 'computer'
-          default:
-            return 'device_unknown'
-        }
+        setTimeout(() => (this.dialogSign = false), 1000)
       }
     }
   }
