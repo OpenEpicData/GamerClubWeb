@@ -15,7 +15,7 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/*', href: '/logo_64x64.png' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
+      { rel: 'stylesheet', href: 'https://fonts.lug.ustc.edu.cn/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
   plugins: [
