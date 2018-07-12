@@ -195,6 +195,14 @@
             return 'device_unknown'
         }
       }
+    },
+    head () {
+      return {
+        title: ' Steam 应用列表 -- SteamHub',
+        meta: [
+          { hid: 'description', name: 'description', content: 'SteamHub 为开发者提供第一手 Steam 应用数据' }
+        ]
+      }
     }
   }
 </script>
