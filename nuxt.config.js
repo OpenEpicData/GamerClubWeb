@@ -20,7 +20,8 @@ module.exports = {
   },
   plugins: [
     '~/plugins/vuetify.js',
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    '~/plugins/vue-analytics.js'
   ],
   css: [
     '~/assets/style/app.styl',
@@ -36,10 +37,12 @@ module.exports = {
   build: {
     vendor: [
       '~/plugins/vuetify.js',
+      '@/plugins/element-ui',
       'axios',
       'dayjs',
       '~/components/GameListCard',
-      'dayjs/plugin/relativeTime'
+      'dayjs/plugin/relativeTime',
+      '~/plugins/vue-analytics.js'
     ],
     extractCSS: true,
     /*
