@@ -1,6 +1,6 @@
 <template>
   <div id="GameList">
-    <v-container grid-list-sm>
+    <v-container fluid grid-list-sm class="index-main-container">
       <v-layout row wrap>
         <v-flex xs8>
           <v-btn color="deep-purple lighten-1" dark>
