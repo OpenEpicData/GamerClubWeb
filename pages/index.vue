@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <v-container hidden-sm-and-down>
+      <v-container fluid hidden-sm-and-down class="index-main-container">
         <v-layout row wrap class="pb-5">
           <v-flex xs10>
             <div class="text-xs-left">
@@ -29,7 +29,7 @@
       </v-container>
     </div>
     <div class="grey lighten-4">
-      <v-container grid-list-sm>
+      <v-container fluid grid-list-sm class="index-main-container">
         <div class="hidden-sm-and-down">
           <v-progress-linear indeterminate color="blue" class="mb-0" :height="carouselLoading"></v-progress-linear>
           <el-carousel :interval="4000" type="card">
