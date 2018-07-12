@@ -1,5 +1,34 @@
 <template>
-  <div id="GameList">
+  <div>
+    <div>
+      <v-container fluid hidden-sm-and-down class="index-main-container">
+        <v-layout row wrap class="pb-5">
+          <v-flex xs10>
+            <div class="text-xs-left">
+              <h1 class="display-2 font-weight-bold">实时更新的 Steam 应用数据</h1>
+              <h3 class="mt-3 font-weight-regular grey--text">
+                SteamHub 为开发者提供第一手 Steam 应用数据,数据更新速度取决于我们的更新队列情况
+              </h3>
+            </div>
+          </v-flex>
+          <v-flex xs2>
+            <div class="text-xs-right">
+              <v-btn large color="primary" round dark :loading="dialogAPI" @click.stop="dialogAPI = true">
+                使用 API</v-btn>
+            </div>
+          </v-flex>
+          <v-dialog v-model="dialogAPI" hide-overlay persistent width="300">
+            <v-card color="primary" dark>
+              <v-card-text>
+                功能开发中
+                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+        </v-layout>
+      </v-container>
+    </div>
+  <div id="GameList" class="grey lighten-4">
     <v-container fluid grid-list-sm class="index-main-container">
       <v-layout row wrap>
         <v-flex xs8>
@@ -58,6 +87,15 @@
         ></v-pagination>
       </v-layout>
     </v-container>
+          <v-dialog v-model="dialogAPI" hide-overlay persistent width="300">
+            <v-card color="primary" dark>
+              <v-card-text>
+                功能开发中
+                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
+  </div>
   </div>
 </template>
 
@@ -89,6 +127,7 @@
         })
     },
     data: () => ({
+      dialogAPI: false,
       page: 1
     }),
     methods: {
@@ -106,6 +145,10 @@
           .then(response => {
             this.list = response.data
           })
+      },
+      dialogAPI (val) {
+        if (!val) return
+        setTimeout(() => (this.dialogAPI = false), 1000)
       }
     },
     filters: {
