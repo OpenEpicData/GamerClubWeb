@@ -31,18 +31,14 @@
     <div class="hidden-md-and-up">
       <v-toolbar app tabs fixed clipped-left class="white">
         <img src="/logo_20x20_white.png" alt="SteamHub Logo">
-        <span class="title ml-3 mr-5">SteamHub</span>
+        <span class="title ml-3 mr-5 mt-2">SteamHub</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
           <v-btn flat to="/tools">工具</v-btn>
           <v-btn flat to="/skins">皮肤</v-btn>
         </v-toolbar-items>
-        <v-tabs
-          slot="extension"
-          centered
-          slider-color="black"
-        >
+        <v-tabs slot="extension" centered slider-color="black">
           <v-tab to="/">
             浏览
           </v-tab>
@@ -144,6 +140,16 @@
     .index-main-container {
       width: 1700px;
       max-width: 90%;
+    }
+  }
+  @media (max-width: 960px) {
+    .page-main {
+      margin: 122px 0 40px 0
+    }
+  }
+  @media (max-width: 600px) {
+    .v-toolbar__content {
+      height: 0 !important;
     }
   }
 </style>

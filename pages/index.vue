@@ -12,59 +12,62 @@
             </el-carousel-item>
           </el-carousel>
         </div>
-        <v-layout row wrap id="today">
-          <v-flex xs8>
-            <v-btn color="deep-purple lighten-1" dark>
-              <v-icon left class="mt-1">blur_on</v-icon>趋势
-            </v-btn>
-            <h2 class="mt-3">今日
-              <v-chip>{{ month }}月{{ day }}日</v-chip>
-            </h2>
-            <h4 class="mt-2">记录在案的游戏: {{ list.total }}, 数据采集中...</h4>
-          </v-flex>
-          <v-flex xs4>
-            <div class="text-xs-right mt-3">
-              <h3>更新队列中的项目: {{ queue }} 个</h3>
-            </div>
-          </v-flex>
-        </v-layout>
 
-        <v-layout row wrap class="mt-3" id="GameList">
-          <GameListCard :list.sync="list"></GameListCard>
-          <v-flex d-flex lg3>
-            <v-layout row wrap hidden-md-and-down>
-              <v-flex d-flex>
-                <v-layout row wrap>
-                  <v-flex xs12>
-                    <v-card color="deep-purple lighten-1 mb-5" flat dark>
-                      <v-card-title primary-title>
-                        <div>
-                          <h4 class="headline mb-0"><v-icon left>edit</v-icon> 加入创作挑战</h4>
-                        </div>
-                      </v-card-title>
-                      <v-card-text>
-                        <span>是时候投票选出你最喜欢的文章了</span>
-                      </v-card-text>
-                      <v-card-actions class="ml-1 pb-3">
-                        <v-btn color="white" class="black--text">
-                          立即开始
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
+        <div class="page-main">
+          <v-layout row wrap id="today">
+            <v-flex xs8>
+              <v-btn color="deep-purple lighten-1" dark>
+                <v-icon left class="mt-1">blur_on</v-icon>趋势
+              </v-btn>
+              <h2 class="mt-3">今日
+                <v-chip>{{ month }}月{{ day }}日</v-chip>
+              </h2>
+              <h4 class="mt-2">记录在案的游戏: {{ list.total }}, 数据采集中...</h4>
+            </v-flex>
+            <v-flex xs4>
+              <div class="text-xs-right mt-3">
+                <h3>更新队列中的项目: {{ queue }} 个</h3>
+              </div>
+            </v-flex>
+          </v-layout>
 
-                    <v-card color="grey lighten-5" flat>
-                      <v-card-title primary-title>
-                        <div>
-                          <h4 class="headline mb-0"><v-icon left>attach_money</v-icon> 成为赞助商 <v-icon right>chevron_right</v-icon></h4>
-                        </div>
-                      </v-card-title>
-                    </v-card>
-                  </v-flex>
-                </v-layout>
-              </v-flex>
-            </v-layout>
-          </v-flex>
-        </v-layout>
+          <v-layout row wrap class="mt-3" id="GameList">
+            <GameListCard :list.sync="list"></GameListCard>
+            <v-flex d-flex lg3>
+              <v-layout row wrap hidden-md-and-down>
+                <v-flex d-flex>
+                  <v-layout row wrap>
+                    <v-flex xs12>
+                      <v-card color="deep-purple lighten-1 mb-5" flat dark>
+                        <v-card-title primary-title>
+                          <div>
+                            <h4 class="headline mb-0"><v-icon left>edit</v-icon> 加入创作挑战</h4>
+                          </div>
+                        </v-card-title>
+                        <v-card-text>
+                          <span>是时候投票选出你最喜欢的文章了</span>
+                        </v-card-text>
+                        <v-card-actions class="ml-1 pb-3">
+                          <v-btn color="white" class="black--text">
+                            立即开始
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+
+                      <v-card color="grey lighten-5" flat>
+                        <v-card-title primary-title>
+                          <div>
+                            <h4 class="headline mb-0"><v-icon left>attach_money</v-icon> 成为赞助商 <v-icon right>chevron_right</v-icon></h4>
+                          </div>
+                        </v-card-title>
+                      </v-card>
+                    </v-flex>
+                  </v-layout>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+          </v-layout>
+        </div>
       </v-container>
     </div>
   </div>
