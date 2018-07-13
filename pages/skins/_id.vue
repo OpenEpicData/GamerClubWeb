@@ -1,12 +1,29 @@
 <template>
   <div>
     <v-container grid-list-sm>
-      <v-card color="primary" dark>
+      <v-card color='primary' dark>
         <v-card-text>
           功能开发中
-          <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+          <v-progress-linear indeterminate color='white' class='mb-0'></v-progress-linear>
         </v-card-text>
       </v-card>
     </v-container>
   </div>
 </template>
+
+<script>
+export default {
+  head () {
+    return {
+      title: 'Steam 客户端皮肤 -- SteamHub',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'SteamHub 收录全世界各种各样的精品 Steam 皮肤,为玩家提供最好的 Steam 客户端体验'
+        }
+      ]
+    }
+  }
+}
+</script>
