@@ -144,7 +144,7 @@
   }
   @media (max-width: 960px) {
     .page-main {
-      margin: 122px 0 40px 0
+      margin: 66px 0 40px 0
     }
   }
   @media (max-width: 600px) {
