@@ -9,9 +9,8 @@ module.exports = {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
       { hid: 'description', name: 'description', content: 'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询 ' },
-      { 'http-equiv': 'pragma', content: 'no-cache' },
-      { 'http-equiv': 'cache-control', content: 'no-cache' },
-      { 'http-equiv': 'expires', content: '0' }
+      { 'http-equiv': 'cache-control', content: 'max-age=300' },
+      { 'http-equiv': 'expires', content: '300' }
     ],
     link: [
       { rel: 'icon', type: 'image/*', href: '/logo_64x64.png' },
