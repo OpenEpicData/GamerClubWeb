@@ -58,9 +58,9 @@
         </v-tabs>
       </v-toolbar>
     </div>
-    <v-content class="white">
+    <div class="white">
       <nuxt />
-    </v-content>
+    </div>
     <v-dialog
       v-model="dialog"
       hide-overlay
