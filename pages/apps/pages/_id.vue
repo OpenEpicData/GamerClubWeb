@@ -1,33 +1,6 @@
 <template>
   <div>
-    <div>
-      <v-container fluid hidden-sm-and-down class="index-main-container">
-        <v-layout row wrap class="pb-5">
-          <v-flex xs10>
-            <div class="text-xs-left">
-              <h1 class="display-2 font-weight-bold">实时更新的 Steam 应用数据</h1>
-              <h3 class="mt-3 font-weight-regular grey--text">
-                SteamHub 为开发者提供第一手 Steam 应用数据,数据更新速度取决于我们的更新队列情况
-              </h3>
-            </div>
-          </v-flex>
-          <v-flex xs2>
-            <div class="text-xs-right">
-              <v-btn large color="primary" round dark :loading="dialogAPI" @click.stop="dialogAPI = true">
-                使用 API</v-btn>
-            </div>
-          </v-flex>
-          <v-dialog v-model="dialogAPI" hide-overlay persistent width="300">
-            <v-card color="primary" dark>
-              <v-card-text>
-                功能开发中
-                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
-        </v-layout>
-      </v-container>
-    </div>
+    <PageHeader :headerText.sync="headerText"></PageHeader>
     <div id="GameList" class="grey lighten-4">
       <v-container fluid grid-list-sm class="index-main-container">
         <v-layout row wrap>
@@ -102,6 +75,7 @@
 
 <script>
   import GameListCard from '~/components/GameListCard'
+  import PageHeader from '~/components/PageHeader'
   import axios from 'axios'
   import relativeTime from 'dayjs/plugin/relativeTime'
   import dayjs from 'dayjs'
@@ -111,7 +85,8 @@
 
   export default {
     components: {
-      GameListCard
+      GameListCard,
+      PageHeader
     },
     async asyncData ({ params }) {
       return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?list=` + params.id, {
@@ -129,7 +104,18 @@
     },
     data: () => ({
       dialogAPI: false,
-      page: 1
+      page: 1,
+      headerText: {
+        title: `实时更新的 Steam 应用数据`,
+        descript: `SteamHub 为开发者提供第一手 Steam 应用数据,数据更新速度取决于我们的更新队列情况`,
+        button: `使用 API`,
+        dialog: {
+          text: `功能开发中`,
+          progressBar: {
+            height: `6`
+          }
+        }
+      }
     }),
     methods: {
 

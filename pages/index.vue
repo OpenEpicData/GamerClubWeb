@@ -1,33 +1,6 @@
 <template>
   <div>
-    <div>
-      <v-container fluid hidden-sm-and-down class="index-main-container">
-        <v-layout row wrap class="pb-5">
-          <v-flex xs10>
-            <div class="text-xs-left">
-              <h1 class="display-2 font-weight-bold">全球 Steam 数据统计分析 By SteamHub</h1>
-              <h3 class="mt-3 font-weight-regular grey--text">
-                SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询
-              </h3>
-            </div>
-          </v-flex>
-          <v-flex xs2>
-            <div class="text-xs-right">
-              <v-btn large color="primary" round dark :loading="dialogSign" @click.stop="dialogSign = true">
-                立即加入</v-btn>
-            </div>
-          </v-flex>
-          <v-dialog v-model="dialogSign" hide-overlay persistent width="300">
-            <v-card color="primary" dark>
-              <v-card-text>
-                功能开发中
-                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-              </v-card-text>
-            </v-card>
-          </v-dialog>
-        </v-layout>
-      </v-container>
-    </div>
+    <PageHeader :headerText.sync="headerText"></PageHeader>
     <div class="grey lighten-4">
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="hidden-sm-and-down">
@@ -109,6 +82,7 @@
 
 <script>
   import GameListCard from '~/components/GameListCard'
+  import PageHeader from '~/components/PageHeader'
   import axios from 'axios'
   import relativeTime from 'dayjs/plugin/relativeTime'
   import dayjs from 'dayjs'
@@ -118,7 +92,8 @@
   
   export default {
     components: {
-      GameListCard
+      GameListCard,
+      PageHeader
     },
     async asyncData () {
       return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?page=1`, {
@@ -131,13 +106,23 @@
         })
     },
     data: () => ({
-      dialogSign: false,
       price: '',
       step: '0',
       isPrice: '',
       queue: '',
       feature: '',
-      carouselLoading: 6
+      carouselLoading: 6,
+      headerText: {
+        title: `全球 Steam 数据统计分析 By SteamHub`,
+        descript: `SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询 `,
+        button: `立即加入`,
+        dialog: {
+          text: `功能开发中`,
+          progressBar: {
+            height: `6`
+          }
+        }
+      }
     }),
     methods: {
       carouselTo: function (id) {
@@ -168,12 +153,6 @@
         .catch(e => {
           this.feature.error = '加载出错'
         })
-    },
-    watch: {
-      dialogSign (val) {
-        if (!val) return
-        setTimeout(() => (this.dialogSign = false), 1000)
-      }
     }
   }
 </script>

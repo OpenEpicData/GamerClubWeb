@@ -40,6 +40,7 @@ module.exports = {
       'axios',
       'dayjs',
       '~/components/GameListCard',
+      '~/components/PageHeader',
       'dayjs/plugin/relativeTime',
       '~/plugins/vue-analytics.js'
     ],
