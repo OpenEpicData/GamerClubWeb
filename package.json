@@ -13,10 +13,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dayjs": "^1.7.4",
-    "element-ui": "^2.4.3",
+    "element-ui": "^2.4.4",
     "nuxt": "^1.0.0",
     "vue-analytics": "^5.12.2",
-    "vuetify": "^1.0.0"
+    "vuetify": "^1.1.4"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
