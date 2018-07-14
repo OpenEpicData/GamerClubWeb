@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex d-flex xs12 sm6 md6 lg4 v-for="(item,i) in list.data" :key="i" class="game-list-card px-3">
         <v-card v-if="item.AppType" flat class="grey lighten-4">
-          <v-card-media :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" height="200px">
+          <v-card-media style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
             <v-container fill-height fluid pa-2>
               <v-layout align-start justify-start row fill-height>
                 <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppsTypes">
@@ -26,10 +26,12 @@
           <v-card-title primary-title class="grey lighten-4">
             <v-layout row>
               <v-flex xs9>
-                <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
-                <h3 class="mb-0">
-                  {{ item.Name.slice(0, 20) }}...
-                </h3>
+                <nuxt-link :to="'/apps/'+ item.AppID" style="text-decoration: none;color: #000">
+                  <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
+                  <h3 class="mb-0">
+                    {{ item.Name.slice(0, 20) }}...
+                  </h3>
+                </nuxt-link>
               </v-flex>
               <v-flex xs3 class="text-xs-right" v-if="item.AppsTypes">
                 <v-chip label class="text-xs-right">
@@ -92,6 +94,14 @@
   .game-list-card :hover .card-right-attention-icon {
     display: inline;
   }
+  @media (max-width: 960px) {
+    .card-right-attention-icon {
+      display: inline;
+    }
+    .card-right-icon {
+      display: none;
+    }
+  }
 </style>
 
 <script>
@@ -107,6 +117,11 @@
       return {
         dialogAttention: false,
         page: this.page
+      }
+    },
+    methods: {
+      cardTo: function (id) {
+        this.$router.push({path: '/apps/' + id})
       }
     },
     created: function () {
