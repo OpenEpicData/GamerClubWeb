@@ -160,6 +160,10 @@
             return '扩充包'
           case 'Hardware':
             return '硬件'
+          case 'Config':
+            return '配置'
+          case 'media':
+            return '媒体'
           default:
             return '未知'
         }
@@ -180,6 +184,10 @@
             return 'playlist_add'
           case 'Hardware':
             return 'computer'
+          case 'Config':
+            return 'file_copy'
+          case 'media':
+            return 'perm_media'
           default:
             return 'device_unknown'
         }
