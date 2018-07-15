@@ -11,6 +11,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "axios": "^0.18.0",
     "dayjs": "^1.7.4",
     "element-ui": "^2.4.4",

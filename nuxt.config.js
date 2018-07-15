@@ -17,6 +17,12 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.lug.ustc.edu.cn/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
+  modules: [
+    // Simple usage
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-122218785-1'
+    }]
+  ],
   plugins: [
     '~/plugins/vuetify.js',
     '@/plugins/element-ui'
