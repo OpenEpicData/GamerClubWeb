@@ -19,8 +19,7 @@ module.exports = {
   },
   plugins: [
     '~/plugins/vuetify.js',
-    '@/plugins/element-ui',
-    '~/plugins/vue-analytics.js'
+    '@/plugins/element-ui'
   ],
   css: [
     '~/assets/style/app.styl',
@@ -41,8 +40,7 @@ module.exports = {
       'dayjs',
       '~/components/GameListCard',
       '~/components/PageHeader',
-      'dayjs/plugin/relativeTime',
-      '~/plugins/vue-analytics.js'
+      'dayjs/plugin/relativeTime'
     ],
     extractCSS: true,
     /*
