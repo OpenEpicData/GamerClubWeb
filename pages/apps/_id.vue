@@ -233,6 +233,14 @@
             return value
         }
       }
+    },
+    head () {
+      return {
+        title: 'AppID:' + this.appid + ' -- ' + this.headerText.title + ' 应用的数据信息  -- SteamHub',
+        meta: [
+          { hid: 'description', name: 'description', content: '在 SteamHub 中查询使用 ' + 'AppID: ' + this.appid + this.headerText.title + ' 的数据' }
+        ]
+      }
     }
   }
 </script>
