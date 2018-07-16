@@ -103,6 +103,7 @@
       ]
     }),
     created: function () {
+      this.headerText.title = this.title
       axios.get(`https://api.steamhub.cn/api/v1/steam/app/appdetails/` + this.appid, {
         headers: {
           'Access-Control-Allow-Origin': '*'
@@ -111,7 +112,6 @@
         .then(response => {
           this.appdetails = response.data
           this.carouselLoading = 0
-          this.headerText.title = this.title
         })
     },
     filters: {
