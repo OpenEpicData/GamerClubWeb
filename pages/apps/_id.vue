@@ -109,10 +109,8 @@
         .then(response => {
           this.appdetails = response.data
           this.carouselLoading = 0
-          this.apps.forEach(element => {
-            this.headerText.title = element.Name
-            this.LastUpdated = element.LastUpdated
-          })
+          this.headerText.title = this.apps[0]['Name']
+          this.LastUpdated = this.apps[0]['LastUpdated']
         })
     },
     filters: {
