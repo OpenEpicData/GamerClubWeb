@@ -74,7 +74,9 @@
       return {
         apps: apps.data,
         appInfos: appInfos.data,
-        appid: params.id
+        appid: params.id,
+        title: apps.data[0]['Name'],
+        LastUpdated: apps.data[0]['LastUpdated']
       }
     },
     components: {
@@ -109,8 +111,7 @@
         .then(response => {
           this.appdetails = response.data
           this.carouselLoading = 0
-          this.headerText.title = this.apps[0]['Name']
-          this.LastUpdated = this.apps[0]['LastUpdated']
+          this.headerText = this.apps.data[0]['Name']
         })
     },
     filters: {
@@ -234,7 +235,7 @@
     },
     head () {
       return {
-        title: 'AppID:' + this.appid + ' -- ' + this.headerText.title + ' 应用的数据信息  -- SteamHub',
+        title: 'AppID:' + this.appid + ' -- ' + this.title + ' 应用的数据信息  -- SteamHub',
         meta: [
           { hid: 'description', name: 'description', content: '在 SteamHub 中查询使用 ' + 'AppID: ' + this.appid + this.headerText.title + ' 的数据' }
         ]
