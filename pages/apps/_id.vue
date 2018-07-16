@@ -111,7 +111,7 @@
         .then(response => {
           this.appdetails = response.data
           this.carouselLoading = 0
-          this.headerText = this.apps.data[0]['Name']
+          this.headerText.title = this.title
         })
     },
     filters: {
