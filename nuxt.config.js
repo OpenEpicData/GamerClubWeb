@@ -25,7 +25,8 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/vuetify.js',
-    '@/plugins/element-ui'
+    '@/plugins/element-ui',
+    { src: '~/plugins/v-charts.js', ssr: false }
   ],
   css: [
     '~/assets/style/app.styl',
@@ -47,7 +48,7 @@ module.exports = {
       '~/components/GameListCard',
       '~/components/PageHeader',
       'dayjs/plugin/relativeTime',
-      'v-charts/lib/line.common'
+      '~/plugins/v-charts.js'
     ],
     extractCSS: true,
     /*

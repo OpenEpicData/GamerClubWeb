@@ -33,7 +33,6 @@
 <script>
   import PageHeader from '~/components/PageHeader'
   import GameHeader from '~/components/GameHeader'
-  import VeLine from 'v-charts/lib/line.common'
   import axios from 'axios'
 
   export default {
@@ -56,8 +55,7 @@
     },
     components: {
       PageHeader,
-      GameHeader,
-      've-line': VeLine
+      GameHeader
     },
     data: () => ({
       appid: '',
