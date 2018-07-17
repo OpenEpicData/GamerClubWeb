@@ -153,7 +153,7 @@
           case 'header_image':
             return '头部图片'
           case 'exfgls':
-            return '免费游戏'
+            return '是否支持家庭共享'
           case 'store_tags':
             return '商店标签'
           case 'developer':
