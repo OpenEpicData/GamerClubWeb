@@ -14,8 +14,10 @@
     "@nuxtjs/google-analytics": "^2.0.2",
     "axios": "^0.18.0",
     "dayjs": "^1.7.4",
+    "echarts": "^4.1.0",
     "element-ui": "^2.4.4",
     "nuxt": "^1.0.0",
+    "v-charts": "^1.17.8",
     "vuetify": "^1.1.4"
   },
   "devDependencies": {
