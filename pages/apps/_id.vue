@@ -13,33 +13,7 @@
         </div>
       </div>
       <div class="page-main">
-        <v-layout row wrap id="today">
-          <v-flex xs8>
-            <v-btn color="deep-purple lighten-1" dark>
-              <v-icon left class="mt-1">info</v-icon>信息
-            </v-btn>
-            <v-btn disabled color="deep-purple lighten-1" outline>
-              <v-icon left class="mt-1">attach_money</v-icon>价格
-            </v-btn>
-            <v-btn disabled color="deep-purple lighten-1" outline>
-              <v-icon left class="mt-1">subject</v-icon>软件包
-            </v-btn>
-            <v-btn disabled color="deep-purple lighten-1" outline>
-              <v-icon left class="mt-1">playlist_add</v-icon>扩充包
-            </v-btn>
-            <v-btn disabled color="deep-purple lighten-1" outline>
-              <v-icon left class="mt-1">home</v-icon>仓库
-            </v-btn>
-            <v-btn disabled color="deep-purple lighten-1" outline>
-              <v-icon left class="mt-1">history</v-icon>更新历史
-            </v-btn>
-          </v-flex>
-          <v-flex xs4>
-            <div class="text-xs-right mt-3">
-              <h3>上次更新: {{ LastUpdated | time }}</h3>
-            </div>
-          </v-flex>
-        </v-layout>
+        <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated"></GameHeader>
         <div class="mt-3">
           <v-data-table :headers="tableHeaders" :items="appInfos" class="elevation-1" align="center" :rows-per-page-items="[20, 30]" disable-initial-sort>
             <template slot="items" slot-scope="props">
@@ -58,12 +32,8 @@
 
 <script>
   import PageHeader from '~/components/PageHeader'
+  import GameHeader from '~/components/GameHeader'
   import axios from 'axios'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  import dayjs from 'dayjs'
-
-  import 'dayjs/locale/zh-cn'
-  dayjs.extend(relativeTime)
 
   export default {
     async asyncData ({ query, params }) {
@@ -76,16 +46,18 @@
         appInfos: appInfos.data,
         appid: params.id,
         title: apps.data[0]['Name'],
-        LastUpdated: apps.data[0]['LastUpdated']
+        lastUpdated: apps.data[0]['LastUpdated']
       }
     },
     components: {
-      PageHeader
+      PageHeader,
+      GameHeader
     },
     data: () => ({
+      appid: '',
       appdetails: '',
       carouselLoading: 6,
-      LastUpdated: '',
+      lastUpdated: '',
       headerText: {
         title: '',
         descript: '',
@@ -104,6 +76,14 @@
     }),
     created: function () {
       this.headerText.title = this.title
+      this.gameHeader = [
+        { icon: 'info', text: '信息', dark: true, link: '/apps/' + this.appid },
+        { icon: 'attach_money', text: '价格', outline: true, link: '/apps/prices/' + this.appid },
+        { icon: 'subject', text: '软件包', outline: true, disable: true },
+        { icon: 'playlist_add', text: '扩充包', outline: true, disable: true },
+        { icon: 'home', text: '仓库', outline: true, disable: true },
+        { icon: 'history', text: '更新历史', outline: true, disable: true }
+      ]
       axios.get(`https://api.steamhub.cn/api/v1/steam/app/appdetails/` + this.appid, {
         headers: {
           'Access-Control-Allow-Origin': '*'
@@ -115,9 +95,6 @@
         })
     },
     filters: {
-      time: function (value) {
-        return dayjs().locale('zh-cn').from(dayjs(value))
-      },
       appInfoDisplayName: function (value) {
         switch (value) {
           case 'changenumber':
