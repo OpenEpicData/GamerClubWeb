@@ -57,7 +57,7 @@
     components: {
       PageHeader,
       GameHeader,
-      VeLine
+      've-line': VeLine
     },
     data: () => ({
       appid: '',

@@ -1,6 +1,5 @@
 
 module.exports = {
-  debug: true,
   /*
   ** Headers of the page
   */
