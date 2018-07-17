@@ -1,5 +1,6 @@
 
 module.exports = {
+  debug: true,
   /*
   ** Headers of the page
   */
@@ -46,7 +47,8 @@ module.exports = {
       'dayjs',
       '~/components/GameListCard',
       '~/components/PageHeader',
-      'dayjs/plugin/relativeTime'
+      'dayjs/plugin/relativeTime',
+      'v-charts/lib/line.common'
     ],
     extractCSS: true,
     /*
