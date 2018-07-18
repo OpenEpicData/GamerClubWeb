@@ -14,16 +14,20 @@
       </div>
       <div class="page-main">
         <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated"></GameHeader>
-        <div class="text-xs-right">
-          <h4>游戏价格每小时更新,属于独立更新程序,不计入更新队列中</h4>
-        </div>
-        <div class="text-xs-center">
-          <h5>
-            <span class="mx-3">PriceInitial / 100: 原价</span>
-            <span class="mx-3">PriceFinal / 100: 折后价</span>
-            <span class="mx-3">PriceDiscount: 折扣力度</span>
-          </h5>
-        </div>
+          <div class="text-xs-right">
+            <h4>游戏价格每小时更新,属于独立更新程序,不计入更新队列中</h4>
+          </div>
+          <v-layout row wrap id="today">
+            <v-flex xs12>
+              <h2 class="mt-3" v-if="isDiscount">正在打折中
+                <v-chip> {{ discountPrice }} 元 </v-chip>
+              </h2>
+              <h2 class="mt-3" v-else>
+                暂无折扣, 历史最低价格:
+                <v-chip> {{ minPriceFinal }} 元 </v-chip>
+              </h2>
+            </v-flex>
+          </v-layout>
         <ve-line :data="chartData"></ve-line>
       </div>
     </v-container>
@@ -41,6 +45,17 @@
         axios.get(`https://api.steamhub.cn/api/v1/steam/apps/` + params.id),
         axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id)
       ])
+      let i
+      for (i = 0; i < appPrices.data.length; i++) {
+        appPrices.data[i].现价 = appPrices.data[i]['PriceFinal'] / 100
+        appPrices.data[i].原价 = appPrices.data[i]['PriceInitial'] / 100
+        appPrices.data[i].折扣力度 = appPrices.data[i]['PriceDiscount']
+        appPrices.data[i].更新时间 = appPrices.data[i]['LastUpdated']
+        delete appPrices.data[i].PriceFinal
+        delete appPrices.data[i].PriceInitial
+        delete appPrices.data[i].PriceDiscount
+        delete appPrices.data[i].LastUpdated
+      }
       return {
         apps: apps.data,
         appPrices: appPrices.data,
@@ -48,7 +63,7 @@
         title: apps.data[0]['Name'],
         lastUpdated: apps.data[0]['LastUpdated'],
         chartData: {
-          columns: ['LastUpdated', 'PriceInitial', 'PriceFinal', 'PriceDiscount'],
+          columns: ['更新时间', '原价', '现价', '折扣力度'],
           rows: appPrices.data
         }
       }
@@ -72,10 +87,21 @@
             height: `6`
           }
         }
-      }
+      },
+      chartData: {
+        columns: '',
+        rows: ''
+      },
+      isDiscount: '',
+      gameHeader: '',
+      minPriceFinal: ''
     }),
     created: function () {
       this.headerText.title = this.title
+      if (this.appPrices[this.appPrices.length - 1].折扣力度 !== 0) {
+        this.isDiscount = true
+        this.discountPrice = this.appPrices[this.appPrices.length - 1].现价
+      }
       this.gameHeader = [
         { icon: 'info', text: '信息', outline: true, link: '/apps/' + this.appid },
         { icon: 'attach_money', text: '价格', dark: true, link: '/apps/prices/' + this.appid },
@@ -84,6 +110,11 @@
         { icon: 'home', text: '仓库', outline: true, disable: true },
         { icon: 'history', text: '更新历史', outline: true, disable: true }
       ]
+      let newArrPriceFinal = []
+      for (let i = 0; i < this.appPrices.length; i++) {
+        newArrPriceFinal = newArrPriceFinal.concat(this.appPrices[i].现价)
+      }
+      this.minPriceFinal = Math.min.apply(Math, newArrPriceFinal)
       axios.get(`https://api.steamhub.cn/api/v1/steam/app/appdetails/` + this.appid, {
         headers: {
           'Access-Control-Allow-Origin': '*'
