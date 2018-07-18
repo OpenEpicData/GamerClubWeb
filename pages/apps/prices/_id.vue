@@ -19,13 +19,22 @@
           </div>
           <v-layout row wrap id="today">
             <v-flex xs12>
-              <h2 class="mt-3" v-if="isDiscount">正在打折中
-                <v-chip> {{ discountPrice }} 元 </v-chip>
-              </h2>
-              <h2 class="mt-3" v-else>
-                暂无折扣, 历史最低价格:
-                <v-chip> {{ minPriceFinal }} 元 </v-chip>
-              </h2>
+              <div v-if="isDiscount">
+                <h2 class="mt-3">
+                  <span>正在打折中</span>
+                  <v-chip><span v-if="discountPrice === minPriceFinal" class="mx-1">史低</span> {{ discountPrice }} 元 </v-chip>
+                </h2>
+                <h2 class="mt-3" v-if="discountPrice !== minPriceFinal">
+                  历史最低价格:
+                  <v-chip> {{ minPriceFinal }} 元 </v-chip>
+                </h2>
+              </div>
+              <div v-else>
+                <h2 class="mt-3">
+                  暂无折扣, 历史最低价格:
+                  <v-chip> {{ minPriceFinal }} 元 </v-chip>
+                </h2>
+              </div>
             </v-flex>
           </v-layout>
         <ve-line :data="chartData"></ve-line>
