@@ -3,7 +3,7 @@
     <div class="hidden-sm-and-down">
       <v-toolbar app fixed clipped-left class="white">
         <img src="/logo_64x64.png" alt="SteamHub Logo">
-        <span class="title ml-3 mr-5">SteamHub</span>
+        <span class="title ml-3 mr-5">SteamHub -- Search</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
@@ -32,7 +32,7 @@
     <div class="hidden-md-and-up">
       <v-toolbar app tabs fixed clipped-left class="white">
         <img src="/logo_20x20_white.png" alt="SteamHub Logo">
-        <span class="title ml-3 mr-5 mt-2">SteamHub</span>
+        <span class="title ml-3 mr-5 mt-2">SteamHub -- Search</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
@@ -56,7 +56,24 @@
       </v-toolbar>
     </div>
     <div class="grey lighten-4">
-      <nuxt />
+      <PageHeader :headerText.sync="headerText"></PageHeader>
+      <v-container fluid grid-list-sm class="index-main-container">
+        <div class="page-main">
+          <v-layout row wrap>
+            <v-flex xs12>
+              <v-text-field
+                class="mt-2 ml-1"
+                solo-inverted
+                label="搜索 游戏名称,ID"
+                append-icon="search"
+                v-model="search"
+                @click="searchButton"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <nuxt />
+        </div>
+      </v-container>
     </div>
     <v-dialog
       v-model="dialog"
@@ -109,11 +126,27 @@
 </template>
 
 <script>
+  import PageHeader from '~/components/PageHeader'
+
   export default {
+    components: {
+      PageHeader
+    },
     data: () => ({
       dialog: false,
       bottomNav: 1,
-      search: ''
+      search: '',
+      headerText: {
+        title: `强大快速的搜索功能`,
+        descript: `SteamHub 提供丰富的搜索选项以供全世界范围内的开发者及用户进行深度挖掘`,
+        button: `使用 API`,
+        dialog: {
+          text: `功能开发中`,
+          progressBar: {
+            height: `6`
+          }
+        }
+      }
     }),
     props: {
       source: String
