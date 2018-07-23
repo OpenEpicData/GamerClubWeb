@@ -52,7 +52,7 @@
     async asyncData ({ query, params }) {
       let [apps, appPrices] = await Promise.all([
         axios.get(`https://api.steamhub.cn/api/v1/steam/apps/` + params.id),
-        axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id)
+        axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id + `?country=China`)
       ])
       let i
       for (i = 0; i < appPrices.data.length; i++) {
