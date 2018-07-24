@@ -5,9 +5,9 @@
         <v-layout align-center>
           <v-flex xs12 sm12 md12>
             <div v-for="(item, i) in appdetails" :key="i">
-              <h3 class="display-1 mb-3">{{ item.data.name }} 的数据分析,价格走势</h3>
+              <h3 class="title mb-3">{{ item.data.name }} 的数据分析,价格走势</h3>
 
-              <span class="subheading">{{ item.data.short_description }}</span>
+              <span class="">{{ item.data.short_description }}</span>
             </div>
             <v-divider class="my-2"></v-divider>
 
@@ -19,7 +19,7 @@
                 :href="'//SteamHub.cn/apps/' + id"
                 target="_black"
               >
-                前往查看
+                在 SteamHub 上查看
               </v-btn>
             </div>
             <div class="text-xs-center">
