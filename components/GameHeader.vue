@@ -11,7 +11,7 @@
       </div>
     </v-flex>
     <v-tooltip top>
-      <v-btn fixed dark fab bottom right color="orange" slot="activator" :href="'https://store.steampowered.com/app/' + appID" target="_balck">
+      <v-btn class="mb-5" fixed dark fab bottom right color="orange" slot="activator" :href="'https://store.steampowered.com/app/' + appID" target="_balck">
         <v-icon>shop</v-icon>
       </v-btn>
       <span>前往 Steam 商店购买</span>
