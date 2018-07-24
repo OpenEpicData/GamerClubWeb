@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="page-main">
-        <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated"></GameHeader>
+        <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated" :appID.sync="appid"></GameHeader>
           <div class="text-xs-right">
             <h4>游戏价格每小时更新,属于独立更新程序,不计入更新队列中</h4>
           </div>

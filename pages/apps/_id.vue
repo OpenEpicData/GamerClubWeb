@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="page-main">
-        <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated"></GameHeader>
+        <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated" :appID.sync="appid"></GameHeader>
         <div class="mt-3">
           <v-data-table :headers="tableHeaders" :items="appInfos" class="elevation-1" align="center" :rows-per-page-items="[20, 30]" disable-initial-sort>
             <template slot="items" slot-scope="props">
