@@ -35,7 +35,6 @@
           </v-container>
         </div>
       </v-container>
-    {{list}}
   </div>
 </template>
 
