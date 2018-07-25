@@ -83,6 +83,7 @@
 <style>
  .content .ql-video {
    width: 100%;
+   overflow: hidden
  }
  .content img {
    max-width: 200px
