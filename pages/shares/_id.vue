@@ -12,7 +12,7 @@
 
               <v-flex xs12 sm4 md6>
                 <div class="text-xs-right">
-                  <v-btn class="mx-0" dark large :href="'//SteamHub.cn/apps/' + id" target="_black">
+                  <v-btn class="mx-0 white--text" color="black" large :href="'//SteamHub.cn/apps/' + id" target="_black">
                     在 SteamHub 上查看
                   </v-btn>
                 </div>
