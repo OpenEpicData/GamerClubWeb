@@ -7,6 +7,7 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
+          <v-btn flat to="/infos">资讯</v-btn>
           <v-btn flat to="/tools">工具</v-btn>
           <v-btn flat to="/skins">皮肤</v-btn>
         </v-toolbar-items>
@@ -36,6 +37,7 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
+          <v-btn flat to="/infos">资讯</v-btn>
           <v-btn flat to="/tools">工具</v-btn>
           <v-btn flat to="/skins">皮肤</v-btn>
         </v-toolbar-items>
@@ -45,6 +47,9 @@
           </v-tab>
           <v-tab to="/apps/pages/">
             游戏
+          </v-tab>
+          <v-tab to="/infos">
+            资讯
           </v-tab>
           <v-tab to="/tools">
             工具
@@ -86,12 +91,12 @@
       fixed
       shift
     >
-      <v-btn>
+      <v-btn to="/search">
         <span>搜索</span>
         <v-icon>search</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn to="/">
         <span>浏览</span>
         <v-icon>list</v-icon>
       </v-btn>
