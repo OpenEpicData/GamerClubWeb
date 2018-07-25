@@ -7,8 +7,7 @@
             <v-layout row wrap>
 
               <v-flex xs12 sm8 md6>
-                <h3 class="title mb-3">{{ item.data.name }} 的数据分析,价格走势</h3>
-                <span class="" v-html=item.data.short_description></span>
+                <h3 class="title mt-3">{{ item.data.name }}</h3>
               </v-flex>
 
               <v-flex xs12 sm4 md6>
@@ -16,16 +15,6 @@
                   <v-btn class="mx-0" dark large :href="'//SteamHub.cn/apps/' + id" target="_black">
                     在 SteamHub 上查看
                   </v-btn>
-                </div>
-              </v-flex>
-
-              <v-flex xs12>
-
-                <v-divider class="my-2"></v-divider>
-
-                <div class="text-xs-center">
-                  Build on
-                  <a href="//SteamHub.cn" target="_black">SteamHub.cn</a>
                 </div>
               </v-flex>
             </v-layout>
