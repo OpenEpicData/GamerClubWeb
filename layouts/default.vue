@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire" class="grey lighten-4">
     <div class="hidden-sm-and-down">
-      <v-toolbar app fixed class="white">
+      <v-toolbar app fixed clipped-left class="white">
         <img src="/logo_64x64.png" alt="SteamHub Logo">
         <span class="title ml-3 mr-5">SteamHub</span>
         <v-toolbar-items class="hidden-sm-and-down">
