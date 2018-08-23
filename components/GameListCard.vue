@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex d-flex xs12 sm6 md6 lg4 v-for="(item,i) in list.data" :key="i" class="game-list-card px-3">
         <v-card v-if="item.AppType" flat class="grey lighten-4">
-          <v-card-media style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
+          <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
             <v-container fill-height fluid pa-2>
               <v-layout align-start justify-start row fill-height>
                 <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppsTypes">
@@ -22,7 +22,7 @@
                 </v-flex>
               </v-layout>
             </v-container>
-          </v-card-media>
+          </v-img>
           <v-card-title primary-title class="grey lighten-4">
             <v-layout row>
               <v-flex xs9>
@@ -43,7 +43,7 @@
         </v-card>
 
         <v-card v-else flat class="grey lighten-4">
-          <v-card-media :lazy-src="'/unknow.jpg'" height="200px">
+          <v-img :lazy-src="'/unknow.jpg'" height="200px">
             <v-container fill-height fluid pa-2>
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox class="text-xs-right">
@@ -52,7 +52,7 @@
                 </v-flex>
               </v-layout>
             </v-container>
-          </v-card-media>
+          </v-img>
           <v-card-title primary-title class="grey lighten-4">
             <v-layout row>
               <v-flex xs9>
@@ -180,3 +180,9 @@
     }
   }
 </script>
+
+<style>
+  .v-image__image--preload {
+    filter: blur(0)
+  }
+</style>
