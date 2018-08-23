@@ -1,11 +1,11 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs8>
+    <v-flex xs12 md8>
       <v-btn color="deep-purple lighten-1" :dark="item.dark" :to="item.link" :outline="item.outline" :disabled="item.disable" v-for="(item,i) in gameHeader" :key="i">
         <v-icon left>{{ item.icon }}</v-icon>{{ item.text }}
       </v-btn>
     </v-flex>
-    <v-flex xs4>
+    <v-flex xs12 md4>
       <div class="text-xs-right mt-3">
         <h3>上次更新: {{ lastUpdated | time }}</h3>
       </div>
