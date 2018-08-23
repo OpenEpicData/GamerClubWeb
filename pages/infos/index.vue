@@ -6,7 +6,7 @@
           <v-layout row wrap>
             <v-flex xs8>
               <v-btn color="deep-purple lighten-1" dark>
-                <v-icon left class="mt-1">apps</v-icon>资讯
+                <v-icon left>apps</v-icon>资讯
               </v-btn>
             </v-flex>
             <v-flex xs4>

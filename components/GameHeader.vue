@@ -2,7 +2,7 @@
   <v-layout row wrap>
     <v-flex xs8>
       <v-btn color="deep-purple lighten-1" :dark="item.dark" :to="item.link" :outline="item.outline" :disabled="item.disable" v-for="(item,i) in gameHeader" :key="i">
-        <v-icon left class="mt-1">{{ item.icon }}</v-icon>{{ item.text }}
+        <v-icon left>{{ item.icon }}</v-icon>{{ item.text }}
       </v-btn>
     </v-flex>
     <v-flex xs4>

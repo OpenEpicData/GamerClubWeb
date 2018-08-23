@@ -8,7 +8,7 @@
               <v-layout align-start justify-start row fill-height>
                 <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppsTypes">
                   <v-btn dark small color="grey" class="card-right-icon">
-                    <v-icon left class="mt-1">
+                    <v-icon left>
                       {{ item.AppsTypes.DisplayName | typeIcon }}
                     </v-icon>
                     {{ item.AppsTypes.DisplayName | typeName }}
@@ -48,7 +48,7 @@
               <v-layout fill-height>
                 <v-flex xs12 align-end flexbox class="text-xs-right">
                   <v-btn dark small color="grey">
-                    <v-icon left class="mt-1">device_unknown</v-icon> 未知 </v-btn>
+                    <v-icon left>device_unknown</v-icon> 未知 </v-btn>
                 </v-flex>
               </v-layout>
             </v-container>

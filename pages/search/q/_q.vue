@@ -9,7 +9,7 @@
     <v-layout row wrap>
       <v-flex xs8>
         <v-btn color="deep-purple lighten-1" dark>
-          <v-icon left class="mt-1">search</v-icon>搜索
+          <v-icon left>search</v-icon>搜索
         </v-btn>
         <h2 class="mt-3">搜索 {{ q }} 的结果:
           <span v-if="isData">共查询到: {{ resultLength }} 条结果</span>
@@ -32,7 +32,7 @@
                   <v-layout align-start justify-start row fill-height>
                     <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppType">
                       <v-btn dark small color="grey" class="card-right-icon">
-                        <v-icon left class="mt-1">
+                        <v-icon left>
                           {{ item.AppType | typeIcon }}
                         </v-icon>
                         {{ item.AppType | typeName }}
@@ -72,7 +72,7 @@
                   <v-layout fill-height>
                     <v-flex xs12 align-end flexbox class="text-xs-right">
                       <v-btn dark small color="grey">
-                        <v-icon left class="mt-1">device_unknown</v-icon> 未知 </v-btn>
+                        <v-icon left>device_unknown</v-icon> 未知 </v-btn>
                     </v-flex>
                   </v-layout>
                 </v-container>

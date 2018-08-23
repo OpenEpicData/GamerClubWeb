@@ -17,7 +17,7 @@
           <v-layout row wrap id="today">
             <v-flex xs8>
               <v-btn color="deep-purple lighten-1" dark>
-                <v-icon left class="mt-1">blur_on</v-icon>趋势
+                <v-icon left>blur_on</v-icon>趋势
               </v-btn>
               <h2 class="mt-3">今日
                 <v-chip>{{ month }}月{{ day }}日</v-chip>

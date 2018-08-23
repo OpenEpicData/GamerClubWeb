@@ -7,7 +7,7 @@
           <v-layout row wrap>
             <v-flex xs8>
               <v-btn color="deep-purple lighten-1" dark>
-                <v-icon left class="mt-1">apps</v-icon>游戏
+                <v-icon left>apps</v-icon>游戏
               </v-btn>
               <h4 class="mt-2">记录在案的游戏: {{ list.total }}, 数据采集中...</h4>
             </v-flex>
