@@ -7,9 +7,6 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
-          <v-btn flat to="/infos">资讯</v-btn>
-          <v-btn flat to="/tools">工具</v-btn>
-          <v-btn flat to="/skins">皮肤</v-btn>
         </v-toolbar-items>
         <v-text-field
           class="mt-2 ml-1 hidden-sm-and-down"
@@ -37,25 +34,13 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
-          <v-btn flat to="/infos">资讯</v-btn>
-          <v-btn flat to="/tools">工具</v-btn>
-          <v-btn flat to="/skins">皮肤</v-btn>
         </v-toolbar-items>
         <v-tabs slot="extension" centered slider-color="black">
           <v-tab to="/">
             浏览
           </v-tab>
-          <v-tab to="/apps/pages/">
-            资讯
-          </v-tab>
           <v-tab to="/infos">
             游戏
-          </v-tab>
-          <v-tab to="/tools">
-            工具
-          </v-tab>
-          <v-tab to="/skins">
-            皮肤
           </v-tab>
         </v-tabs>
       </v-toolbar>
