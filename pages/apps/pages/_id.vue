@@ -58,9 +58,11 @@
               </v-layout>
             </v-flex>
           </v-layout>
-          <v-layout>
-            <v-pagination v-model="page" :length=list.lastPage></v-pagination>
-          </v-layout>
+            <v-layout align-center justify-center row>
+              <v-flex>
+                <v-pagination v-model="page" :length=list.lastPage></v-pagination>
+              </v-flex>
+            </v-layout>
         </div>
       </v-container>
       <v-dialog v-model="dialogAPI" hide-overlay persistent width="300">
