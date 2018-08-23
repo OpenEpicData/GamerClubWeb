@@ -38,7 +38,7 @@
                         {{ item.AppType | typeName }}
                       </v-btn>
                       <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
-                        <v-icon left class="mt-1">
+                        <v-icon left>
                           add
                         </v-icon>
                         关注
