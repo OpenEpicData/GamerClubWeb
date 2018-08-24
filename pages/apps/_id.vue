@@ -2,20 +2,175 @@
   <div>
     <PageHeader :headerText.sync="headerText"></PageHeader>
     <v-container fluid grid-list-sm class="index-main-container">
-      <div class="hidden-sm-and-down">
-        <div class="hidden-sm-and-down" v-for="(item,i) in appdetails" :key="i">
-          <v-progress-linear indeterminate color="blue" class="mb-0" :height="carouselLoading"></v-progress-linear>
-          <el-carousel :interval="4000" type="card">
-            <el-carousel-item v-for="(img,k) in item.data.screenshots" :key="k" class="text-xs-center">
-              <img :src="img.path_thumbnail" alt="">
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-      </div>
       <div class="page-main">
         <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated" :appID.sync="appid"></GameHeader>
-        <div class="mt-3">
-          <v-data-table :headers="tableHeaders" :items="appInfos" class="elevation-1" align="center" :rows-per-page-items="[20, 30]" disable-initial-sort>
+        <div class="mt-1">
+          <v-container fluid>
+            <v-layout align-start justify-space-between fill-height>
+              <div class="mt-2">
+                <h1>{{ title }}</h1>
+                <div>
+                  <div class="my-1">
+                    <span v-for="(item,k) in appInfos" :key="k">
+                      <span v-if="item.Key === 154"> {{ item.Value }} · </span> 
+                      <span v-if="item.Key === 155"> {{ apps[0].AppsTypes.DisplayName }} </span>
+                    </span>
+                  </div>
+                  <v-layout v-layout align-start justify-start fill-height>
+                    <div class="mt-1">
+                      ({{ rating }})
+                    </div>
+                    <div>
+                      <v-rating v-model="rating" small hover class="mx-0"></v-rating>
+                    </div>
+                  </v-layout>
+                </div>
+                <div class="my-2">
+                  <v-layout row warp>
+                    <v-flex xs12 md8 hidden-sm-and-down>
+                      <span v-for="(item,k) in appdetails" :key="k">
+                        <span v-html="item.data.short_description"></span>
+                      </span>
+                      <div>
+                        <v-dialog
+                          v-model="dialogReadMore"
+                          width="800"
+                        >
+                          <a
+                            slot="activator"
+                          >
+                            更多
+                          </a>
+
+                          <v-card>
+                            <v-card-title
+                              class="headline grey lighten-2"
+                              primary-title
+                            >
+                              {{ title }}
+                            </v-card-title>
+
+                            <v-card-text>
+                              <span v-for="(item,k) in appdetails" :key="k">
+                                <span v-html="item.data.detailed_description"></span>
+                              </span>
+                            </v-card-text>
+
+                            <v-divider></v-divider>
+
+                            <v-card-actions>
+                              <v-spacer></v-spacer>
+                              <v-btn
+                                color="primary"
+                                flat
+                                @click="dialogReadMore = false"
+                              >
+                                关闭
+                              </v-btn>
+                            </v-card-actions>
+                          </v-card>
+                        </v-dialog>
+                      </div>
+                    </v-flex>
+                  </v-layout>
+                </div>
+              </div>
+              <div></div>
+              <div>
+                <v-layout wrap row>
+                  <v-flex xs12>
+                    <v-btn dark large block  :href="'https://store.steampowered.com/app/' + appid" target="_balck" class="mx-0">购买</v-btn>
+                    <div>
+                      <v-btn class="mx-0" block flat small ><v-icon left small class="my-0">fas fa-exclamation-triangle</v-icon>查看系统需求</v-btn>
+                    </div>
+                  </v-flex>
+                </v-layout>
+              </div>
+            </v-layout>
+            <div>
+              <v-tabs centered color="grey lighten-4">
+                <v-tabs-slider color="black"></v-tabs-slider>
+
+                <v-layout align-center justify-center row fill-height>
+                  <v-tab href="#tab-1">
+                    浏览
+                  </v-tab>
+                  <v-tab href="#tab-2">
+                    系统要求
+                  </v-tab>
+                  <v-tab href="#tab-3">
+                    用户评价
+                  </v-tab>
+                  <v-tab href="#tab-4">
+                    相似应用
+                  </v-tab>
+                </v-layout>
+                
+                <v-tab-item id="tab-1" class="mt-5">
+                  <v-layout align-start justify-start row fill-height>
+                    <div class="mr-5">
+                      <div class="mb-3">
+                        <h2>可用于</h2>
+                      </div>
+                      <v-chip class="elevation-1">
+                        <v-avatar>
+                          <v-icon small>fas fa-desktop</v-icon>
+                        </v-avatar>
+                      PC</v-chip>
+                    </div>
+                    <div>
+                      <div class="mb-3">
+                        <h2>功能</h2>
+                      </div>
+                      <v-chip class="elevation-1">
+                        <v-avatar>
+                          <v-icon small>fas fa-trophy</v-icon>
+                        </v-avatar>
+                      Steam 成就</v-chip>
+                    </div>
+                  </v-layout>
+                  <div class="mt-5">
+                    <h2>游戏介绍</h2>
+                    <p class="mt-3">
+                      <span v-for="(item,k) in appdetails" :key="k">
+                        <span v-html="item.data.detailed_description.slice(0, 600)"></span>...
+                      </span>
+                    </p>
+                    <p>
+                      <a @click="dialogReadMore = true">更多</a>
+                    </p>
+                  </div>
+                  <div class="mt-5">
+                    <h2>游戏相册</h2>
+                    <div class="hidden-sm-and-down" v-for="(item,i) in appdetails" :key="i">
+                      <v-progress-linear indeterminate color="blue" class="mb-0" :height="carouselLoading"></v-progress-linear>
+                      <el-carousel :interval="4000" type="card">
+                        <el-carousel-item v-for="(img,k) in item.data.screenshots" :key="k" class="text-xs-center">
+                          <img :src="img.path_thumbnail" alt="">
+                        </el-carousel-item>
+                      </el-carousel>
+                    </div>
+                    <div class="hidden-md-and-up">
+                      <v-layout row wrap v-if="appdetails[appid]">
+                          <v-flex xs12 sm6 md4 lg3  v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
+                            <v-img :aspect-ratio="16/9" :src="item.path_thumbnail" v-if="i <= 1"></v-img>
+                          </v-flex>
+                      </v-layout>
+                    </div>
+                  </div>
+                  <div class="mt-5">
+                    <h2>宣传片</h2>
+                    <v-layout row wrap v-if="appdetails[appid]" class="mt-3">
+                        <v-flex xs12 sm6 md4 lg3  v-for="(item,i) in appdetails[appid].data.movies" :key="i">
+                          <img :src="item.thumbnail" v-if="i <= 3">
+                        </v-flex>
+                    </v-layout>
+                  </div>
+                </v-tab-item>
+              </v-tabs>
+            </div>
+          </v-container>
+          <v-data-table :headers="tableHeaders" :items="appInfos" class="elevation-1" align="center" :rows-per-page-items="[20, 30]" disable-initial-sort style="display:none">
             <template slot="items" slot-scope="props">
               <td class="text-xs-center" v-if="props.item.KeyNames"> {{ props.item.KeyNames[0].DisplayName | appInfoDisplayName }} </td>
               <td class="text-xs-left">{{ props.item.Value }}</td>
@@ -69,10 +224,12 @@
           }
         }
       },
+      rating: 0,
       tableHeaders: [
         { text: '名称', value: 'name' },
         { text: '值', value: 'value' }
-      ]
+      ],
+      dialogReadMore: false
     }),
     created: function () {
       this.headerText.title = this.title
