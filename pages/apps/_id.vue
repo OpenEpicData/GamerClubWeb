@@ -146,14 +146,14 @@
                       <v-progress-linear indeterminate color="blue" class="mb-0" :height="carouselLoading"></v-progress-linear>
                       <el-carousel :interval="4000" type="card">
                         <el-carousel-item v-for="(img,k) in item.data.screenshots" :key="k" class="text-xs-center">
-                          <img :src="img.path_thumbnail" alt="">
+                          <v-img :src="img.path_thumbnail" :lazy-src="'/unknow.jpg'"></v-img>
                         </el-carousel-item>
                       </el-carousel>
                     </div>
                     <div class="hidden-md-and-up">
                       <v-layout row wrap v-if="appdetails[appid]">
                           <v-flex xs12 sm6 md4 lg3  v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
-                            <v-img :aspect-ratio="16/9" :src="item.path_thumbnail" v-if="i <= 1"></v-img>
+                            <v-img :aspect-ratio="16/9" :src="item.path_thumbnail" v-if="i <= 1" :lazy-src="'/unknow.jpg'"></v-img>
                           </v-flex>
                       </v-layout>
                     </div>
@@ -162,7 +162,7 @@
                     <h2>宣传片</h2>
                     <v-layout row wrap v-if="appdetails[appid]" class="mt-3">
                         <v-flex xs12 sm6 md4 lg3  v-for="(item,i) in appdetails[appid].data.movies" :key="i">
-                          <img :src="item.thumbnail" v-if="i <= 3">
+                          <v-img :aspect-ratio="16/9" :src="item.thumbnail" v-if="i <= 3" :lazy-src="'/unknow.jpg'"></v-img>
                         </v-flex>
                     </v-layout>
                   </div>
