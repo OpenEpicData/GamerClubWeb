@@ -22,6 +22,7 @@
     "vuetify": "^1.2.0-Beta"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
     "babel-eslint": "^7.2.3",
     "eslint": "^4.3.0",
     "eslint-config-standard": "^10.2.1",
