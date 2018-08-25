@@ -495,10 +495,10 @@
     color: #fff;
     line-height: 338px;
   }
-  .video .v-tabs__wrapper--show-arrows {
+  .screenshot .v-tabs__wrapper--show-arrows {
     margin: 0;
   }
-  .video .v-tabs__item {
+  .screenshot .v-tabs__item {
     padding-left: 0
   }
 
