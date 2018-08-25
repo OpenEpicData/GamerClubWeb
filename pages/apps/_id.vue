@@ -420,6 +420,7 @@
     font-size: 32px;
     z-index: 99;
     color: #fff;
+    line-height: 338px;
   }
   .screenshot .v-tabs__wrapper--show-arrows {
     margin: 0;
