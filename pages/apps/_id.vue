@@ -154,7 +154,7 @@
                   <div class="mt-5">
                     <h2>宣传片</h2>
                     <div class="mt-3">
-                      <v-tabs grow v-if="appdetails[appid]" height="164" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
+                      <v-tabs grow v-if="appdetails[appid]" height="164" hide-slider class="grey lighten-4 video" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
                         <v-tab v-for="(item,i) in appdetails[appid].data.movies" :key="i">
                           <v-img @click="dialogOpenVideo(item.webm.max)" style="cursor:pointer" :aspect-ratio="16/9" :src="item.thumbnail" v-if="i <= 3" :lazy-src="'/unknow.jpg'" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
                             <v-layout align-center justify-center row fill-height class="lightbox">
@@ -495,10 +495,35 @@
     color: #fff;
     line-height: 338px;
   }
-  .screenshot .v-tabs__wrapper--show-arrows {
+  .video .v-tabs__wrapper--show-arrows {
     margin: 0;
   }
-  .screenshot .v-tabs__item {
+  .video .v-tabs__item {
+    padding-left: 0
+  }
+
+  .video .v-responsive__content {
+    width: 400px;
+  }
+  .video .v-tabs__bar {
+    background-color: transparent;
+  }
+  .video .v-tabs__icon--prev {
+    left: 30px;
+  }
+  .video .v-tabs__icon--next {
+    right: 30px;
+  }
+  .video .v-tabs__icon--next, .video .v-tabs__icon--prev {
+    font-size: 32px;
+    z-index: 99;
+    color: #fff;
+    line-height: 164px;
+  }
+  .video .v-tabs__wrapper--show-arrows {
+    margin: 0;
+  }
+  .video .v-tabs__item {
     padding-left: 0
   }
 </style>
