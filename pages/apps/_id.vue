@@ -3,7 +3,6 @@
     <PageHeader :headerText.sync="headerText"></PageHeader>
     <v-container fluid grid-list-sm class="index-main-container">
       <div class="page-main">
-        <GameHeader :gameHeader.sync="gameHeader" :lastUpdated.sync="lastUpdated" :appID.sync="appid"></GameHeader>
         <div class="mt-1">
           <v-container fluid>
             <v-layout align-start justify-space-between fill-height>
@@ -14,6 +13,7 @@
                     <span v-for="(item,k) in appInfos" :key="k">
                       <span v-if="item.Key === 154"> {{ item.Value }} · </span> 
                       <span v-if="item.Key === 155"> {{ apps[0].AppsTypes.DisplayName }} </span>
+                      <span v-if="item.Value === 'prerelease'">游戏尚未发售</span>
                     </span>
                   </div>
                   <v-layout v-layout align-start justify-start fill-height>
@@ -29,7 +29,7 @@
                   <v-layout row warp>
                     <v-flex xs12 md8 hidden-sm-and-down>
                       <span v-for="(item,k) in appdetails" :key="k">
-                        <span v-html="item.data.short_description"></span>
+                        <span v-html="item.data.short_description" v-if="item.data.short_description"></span>
                       </span>
                       <div>
                         <v-dialog
@@ -52,7 +52,7 @@
 
                             <v-card-text>
                               <span v-for="(item,k) in appdetails" :key="k">
-                                <span v-html="item.data.detailed_description"></span>
+                                <span v-if="item.data.detailed_description" v-html="item.data.detailed_description"></span>
                               </span>
                             </v-card-text>
 
@@ -133,7 +133,7 @@
                     <h2>游戏介绍</h2>
                     <p class="mt-3">
                       <span v-for="(item,k) in appdetails" :key="k">
-                        <span v-html="item.data.detailed_description.slice(0, 600)"></span>...
+                        <span v-if="item.data.detailed_description" v-html="item.data.detailed_description.slice(0, 600)"></span>...
                       </span>
                     </p>
                     <p>
@@ -142,7 +142,7 @@
                   </div>
                   <div class="mt-5">
                     <h2>游戏相册</h2>
-
+                  
                     <div class="mt-3">
                       <v-tabs grow v-if="appdetails[appid]" height="338" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
                         <v-tab v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
@@ -169,7 +169,49 @@
                     </div>
                   </div>
                 </v-tab-item>
+
+                <v-tab-item id="tab-2" class="mt-5">
+                  
+                </v-tab-item>
               </v-tabs>
+            </div>
+          </v-container>
+          <v-container fluid dark>
+            <div>
+              <div class="my-5" id="gamePrice">
+                <h2>游戏价格 - Beta</h2>
+                <v-layout row wrap id="today">
+                  <v-flex xs12>
+                    <div v-for="(item,k) in appInfos" :key="k">
+                      <div v-if="item.Value === 'released'">
+                        <div v-if="isDiscount">
+                          <h4 class="mt-3">
+                            <span>正在打折中</span>
+                            <v-chip><span v-if="discountPrice === minPriceFinal" class="mx-1">史低</span> {{ discountPrice }} 元 </v-chip>
+                          </h4>
+                          <h4 class="mt-3" v-if="discountPrice !== minPriceFinal">
+                            历史最低价格:
+                            <v-chip> {{ minPriceFinal }} 元 </v-chip>
+                          </h4>
+                        </div>
+                        <div v-else>
+                          <h4 class="mt-3">
+                            暂无折扣, 历史最低价格:
+                            <v-chip> {{ minPriceFinal }} 元 </v-chip>
+                          </h4>
+                        </div>
+                      </div>
+                      <div v-if="item.Value === 'prerelease'">
+                        游戏尚未发售
+                      </div>
+                    </div>
+
+                  </v-flex>
+                </v-layout>
+                <div class="mt-3">
+                  <ve-line :data="chartData"></ve-line>
+                </div>
+              </div>
             </div>
           </v-container>
           <v-data-table :headers="tableHeaders" :items="appInfos" class="elevation-1" align="center" :rows-per-page-items="[20, 30]" disable-initial-sort style="display:none">
@@ -194,16 +236,32 @@
 
   export default {
     async asyncData ({ query, params }) {
-      let [apps, appInfos] = await Promise.all([
+      let [apps, appInfos, appPrices] = await Promise.all([
         axios.get(`https://api.steamhub.cn/api/v1/steam/apps/` + params.id),
-        axios.get(`https://api.steamhub.cn/api/v1/steam/app/infos/` + params.id)
+        axios.get(`https://api.steamhub.cn/api/v1/steam/app/infos/` + params.id),
+        axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id + `?country=China`)
       ])
+      for (let i = 0; i < appPrices.data.length; i++) {
+        appPrices.data[i].现价 = appPrices.data[i]['PriceFinal'] / 100
+        appPrices.data[i].原价 = appPrices.data[i]['PriceInitial'] / 100
+        appPrices.data[i].折扣力度 = appPrices.data[i]['PriceDiscount']
+        appPrices.data[i].更新时间 = appPrices.data[i]['LastUpdated']
+        delete appPrices.data[i].PriceFinal
+        delete appPrices.data[i].PriceInitial
+        delete appPrices.data[i].PriceDiscount
+        delete appPrices.data[i].LastUpdated
+      }
       return {
         apps: apps.data,
         appInfos: appInfos.data,
         appid: params.id,
         title: apps.data[0]['Name'],
-        lastUpdated: apps.data[0]['LastUpdated']
+        lastUpdated: apps.data[0]['LastUpdated'],
+        appPrices: appPrices.data,
+        chartData: {
+          columns: ['更新时间', '原价', '现价', '折扣力度'],
+          rows: appPrices.data
+        }
       }
     },
     components: {
@@ -235,10 +293,25 @@
       dialogVideo: false,
       videoUrl: '',
       playVideo: '',
-      videoElement: ''
+      videoElement: '',
+      chartData: {
+        columns: '',
+        rows: ''
+      },
+      discountPrice: '',
+      minPriceFinal: ''
     }),
     created: function () {
       this.headerText.title = this.title
+      if (this.appPrices[this.appPrices.length - 1].折扣力度 !== 0) {
+        this.isDiscount = true
+        this.discountPrice = this.appPrices[this.appPrices.length - 1].现价
+      }
+      let newArrPriceFinal = []
+      for (let i = 0; i < this.appPrices.length; i++) {
+        newArrPriceFinal = newArrPriceFinal.concat(this.appPrices[i].现价)
+      }
+      this.minPriceFinal = Math.min.apply(Math, newArrPriceFinal)
       this.gameHeader = [
         { icon: 'info', text: '信息', dark: true, link: '/apps/' + this.appid },
         { icon: 'attach_money', text: '价格', outline: true, link: '/apps/prices/' + this.appid },
