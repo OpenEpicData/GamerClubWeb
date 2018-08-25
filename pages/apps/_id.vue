@@ -142,29 +142,31 @@
                   </div>
                   <div class="mt-5">
                     <h2>游戏相册</h2>
-                    <div class="hidden-sm-and-down" v-for="(item,i) in appdetails" :key="i">
-                      <v-progress-linear indeterminate color="blue" class="mb-0" :height="carouselLoading"></v-progress-linear>
-                      <el-carousel :interval="4000" type="card">
-                        <el-carousel-item v-for="(img,k) in item.data.screenshots" :key="k" class="text-xs-center">
-                          <v-img :src="img.path_thumbnail" :lazy-src="'/unknow.jpg'"></v-img>
-                        </el-carousel-item>
-                      </el-carousel>
-                    </div>
-                    <div class="hidden-md-and-up">
-                      <v-layout row wrap v-if="appdetails[appid]">
-                          <v-flex xs12 sm6 md4 lg3  v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
-                            <v-img :aspect-ratio="16/9" :src="item.path_thumbnail" v-if="i <= 1" :lazy-src="'/unknow.jpg'"></v-img>
-                          </v-flex>
-                      </v-layout>
+
+                    <div class="mt-3">
+                      <v-tabs grow v-if="appdetails[appid]" height="338" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
+                        <v-tab v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
+                          <v-img :aspect-ratio="16/9" height="338" :src="item.path_thumbnail" :lazy-src="'/unknow.jpg'"></v-img>
+                        </v-tab>
+                      </v-tabs>
                     </div>
                   </div>
                   <div class="mt-5">
                     <h2>宣传片</h2>
-                    <v-layout row wrap v-if="appdetails[appid]" class="mt-3">
-                        <v-flex xs12 sm6 md4 lg3  v-for="(item,i) in appdetails[appid].data.movies" :key="i">
-                          <v-img :aspect-ratio="16/9" :src="item.thumbnail" v-if="i <= 3" :lazy-src="'/unknow.jpg'"></v-img>
-                        </v-flex>
-                    </v-layout>
+                    <div class="mt-3">
+                      <v-tabs grow v-if="appdetails[appid]" height="338" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
+                        <v-tab v-for="(item,i) in appdetails[appid].data.movies" :key="i">
+                          <v-img @click="dialogOpenVideo(item.webm.max)" style="cursor:pointer" :aspect-ratio="16/9" :src="item.thumbnail" v-if="i <= 3" :lazy-src="'/unknow.jpg'" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
+                            <v-layout align-center justify-center row fill-height class="lightbox">
+                              <v-icon center large class="white--text">fas fa-play-circle</v-icon>
+                            </v-layout>
+                          </v-img>
+                        </v-tab>
+                        <v-dialog v-model="dialogVideo" width="1024px">
+                          <video id="videoElement" :src="videoUrl" autoplay controls="controls" width="100%" height="100%" :aspect-ratio="16/9"></video>
+                        </v-dialog>
+                      </v-tabs>
+                    </div>
                   </div>
                 </v-tab-item>
               </v-tabs>
@@ -229,7 +231,11 @@
         { text: '名称', value: 'name' },
         { text: '值', value: 'value' }
       ],
-      dialogReadMore: false
+      dialogReadMore: false,
+      dialogVideo: false,
+      videoUrl: '',
+      playVideo: '',
+      videoElement: ''
     }),
     created: function () {
       this.headerText.title = this.title
@@ -250,6 +256,12 @@
           this.appdetails = response.data
           this.carouselLoading = 0
         })
+    },
+    methods: {
+      dialogOpenVideo: function (value) {
+        this.videoUrl = value
+        this.dialogVideo = true
+      }
     },
     filters: {
       appInfoDisplayName: function (value) {
@@ -367,6 +379,16 @@
         }
       }
     },
+    watch: {
+      dialogVideo: function (value) {
+        this.videoElement = document.getElementById('videoElement')
+        if (value === false) {
+          this.videoElement.pause()
+        } else {
+          this.videoElement.play()
+        }
+      }
+    },
     head () {
       return {
         title: 'AppID:' + this.appid + ' -- ' + this.title + ' 应用的数据信息  -- SteamHub',
@@ -381,5 +403,28 @@
 <style>
   .v-datatable th {
     text-align: center !important;
+  }
+  .screenshot .v-responsive__content {
+    width: 400px;
+  }
+  .screenshot .v-tabs__bar {
+    background-color: transparent;
+  }
+  .screenshot .v-tabs__icon--prev {
+    left: 30px;
+  }
+  .screenshot .v-tabs__icon--next {
+    right: 30px;
+  }
+  .screenshot .v-tabs__icon--next, .screenshot .v-tabs__icon--prev {
+    font-size: 32px;
+    z-index: 99;
+    color: #fff;
+  }
+  .screenshot .v-tabs__wrapper--show-arrows {
+    margin: 0;
+  }
+  .screenshot .v-tabs__item {
+    padding-left: 0
   }
 </style>
