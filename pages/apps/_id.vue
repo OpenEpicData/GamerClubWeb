@@ -81,14 +81,14 @@
                   <v-flex xs12>
                     <v-btn dark large block  :href="'https://store.steampowered.com/app/' + appid" target="_balck" class="mx-0">购买</v-btn>
                     <div>
-                      <v-btn class="mx-0" block flat small ><v-icon left small class="my-0">fas fa-exclamation-triangle</v-icon>查看系统需求</v-btn>
+                      <v-btn class="mx-0" block flat small @click="tabActice = 'tab-2'"><v-icon left small class="my-0">fas fa-exclamation-triangle</v-icon>查看系统需求</v-btn>
                     </div>
                   </v-flex>
                 </v-layout>
               </div>
             </v-layout>
             <div>
-              <v-tabs centered color="grey lighten-4">
+              <v-tabs centered color="grey lighten-4" v-model="tabActice">
                 <v-tabs-slider color="black"></v-tabs-slider>
 
                 <v-layout align-center justify-center row fill-height>
@@ -351,7 +351,8 @@
         linux: '',
         macos: ''
       },
-      starPL: 0
+      starPL: 0,
+      tabActice: 'tab-1'
     }),
     created: function () {
       this.headerText.title = this.title
