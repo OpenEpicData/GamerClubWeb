@@ -106,27 +106,31 @@
                   </v-tab>
                 </v-layout>
                 
-                <v-tab-item id="tab-1" class="mt-5">
+                <v-tab-item id="tab-1" class="mt-5 ml-1">
                   <v-layout align-start justify-start row fill-height>
                     <div class="mr-5">
                       <div class="mb-3">
                         <h2>可用于</h2>
                       </div>
-                      <v-chip class="elevation-1">
+                      <v-chip class="elevation-1" v-for="(item, i) in appSystem" :key="i">
                         <v-avatar>
-                          <v-icon small>fas fa-desktop</v-icon>
+                          <v-icon small v-if="item === 'windows'">fab fa-microsoft</v-icon>
+                          <v-icon small v-else-if="item === 'macos'">fab fa-apple</v-icon>
+                          <v-icon small v-else>fab fa-linux</v-icon>
                         </v-avatar>
-                      PC</v-chip>
+                      {{ item }}</v-chip>
                     </div>
                     <div>
                       <div class="mb-3">
                         <h2>功能</h2>
                       </div>
-                      <v-chip class="elevation-1">
-                        <v-avatar>
-                          <v-icon small>fas fa-trophy</v-icon>
-                        </v-avatar>
-                      Steam 成就</v-chip>
+                      <span v-if="appdetails[appid]" v-for="(item, i) in appdetails" :key="i">
+                        <v-chip class="elevation-1" v-for="(data, i) in item.data.categories" :key="i">
+                          <span>
+                            {{ data.description }}
+                          </span>
+                        </v-chip>
+                      </span>
                     </div>
                   </v-layout>
                   <div class="mt-5">
@@ -170,8 +174,48 @@
                   </div>
                 </v-tab-item>
 
-                <v-tab-item id="tab-2" class="mt-5">
-                  
+                <v-tab-item id="tab-2" class="mt-5 ml-1">
+                  <v-layout align-start justify-start column fill-height v-if="appdetails[appid]">
+                    <div v-if="appdetails[appid].data.pc_requirements">
+                      <h2>Windows: </h2>
+                      <div class="mt-2">
+                        <p v-html="appdetails[appid].data.pc_requirements.minimum"></p>
+                      </div>
+                    </div>
+                    <div class="mt-5" v-if="appdetails[appid].data.mac_requirements">
+                      <h2>Mac: </h2>
+                      <div class="mt-2">
+                        <p v-html="appdetails[appid].data.mac_requirements.minimum"></p>
+                      </div>
+                    </div>
+                    <div class="mt-5" v-if="appdetails[appid].data.linux_requirements">
+                      <h2>Linux: </h2>
+                      <div class="mt-2">
+                        <p v-html="appdetails[appid].data.linux_requirements.minimum"></p>
+                      </div>
+                    </div>
+                  </v-layout>
+                </v-tab-item>
+
+                <v-tab-item id="tab-3" class="mt-5 ml-1">
+                  <v-layout align-start justify-start column fill-height>
+                    <div>
+                      <h2>评分及评价</h2>
+                      <v-layout align-space-around justify-start row fill-height>
+                        <div>
+                          <h2 class="display-4">0.0</h2>
+                          <v-rating v-model="rating" readonly small color="pink" class="mx-0"></v-rating>
+                        </div>
+                      </v-layout>
+                    </div>
+                    <div class="mt-5">
+                      <v-divider light color="black"></v-divider>
+                      <div class="mt-3">
+                        <h3>所有用户评价</h3>
+                        <h4>功能开发中</h4>
+                      </div>
+                    </div>
+                  </v-layout>
                 </v-tab-item>
               </v-tabs>
             </div>
@@ -259,7 +303,7 @@
         lastUpdated: apps.data[0]['LastUpdated'],
         appPrices: appPrices.data,
         chartData: {
-          columns: ['更新时间', '原价', '现价', '折扣力度'],
+          columns: ['更新时间', '原价', '现价'],
           rows: appPrices.data
         }
       }
@@ -299,7 +343,15 @@
         rows: ''
       },
       discountPrice: '',
-      minPriceFinal: ''
+      minPriceFinal: '',
+      isDiscount: '',
+      appSystem: '',
+      systemRequire: {
+        windows: '',
+        linux: '',
+        macos: ''
+      },
+      starPL: 0
     }),
     created: function () {
       this.headerText.title = this.title
@@ -329,6 +381,15 @@
           this.appdetails = response.data
           this.carouselLoading = 0
         })
+    },
+    mounted: function () {
+      let appSystem = ''
+      this.appInfos.forEach(element => {
+        if (element.Key === 117) {
+          appSystem = element.Value
+        }
+      })
+      this.appSystem = appSystem.split(',')
     },
     methods: {
       dialogOpenVideo: function (value) {
@@ -525,5 +586,9 @@
   }
   .video .v-tabs__item {
     padding-left: 0
+  }
+  .accent--text {
+    color: #000 !important;
+    caret-color: #000 !important;
   }
 </style>
