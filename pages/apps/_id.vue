@@ -148,7 +148,7 @@
                     <h2>游戏相册</h2>
                   
                     <div class="mt-3">
-                      <v-tabs grow v-if="appdetails[appid]" height="338" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
+                      <v-tabs grow v-if="appdetails[appid]" mobile-break-point="0" height="338" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
                         <v-tab v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
                           <v-img :aspect-ratio="16/9" height="338" :src="item.path_thumbnail" :lazy-src="'/unknow.jpg'"></v-img>
                         </v-tab>
@@ -158,7 +158,7 @@
                   <div class="mt-5">
                     <h2>宣传片</h2>
                     <div class="mt-3">
-                      <v-tabs grow v-if="appdetails[appid]" height="164" hide-slider class="grey lighten-4 video" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
+                      <v-tabs grow v-if="appdetails[appid]" height="164" mobile-break-point="0" hide-slider class="grey lighten-4 video" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
                         <v-tab v-for="(item,i) in appdetails[appid].data.movies" :key="i">
                           <v-img @click="dialogOpenVideo(item.webm.max)" style="cursor:pointer" :aspect-ratio="16/9" :src="item.thumbnail" v-if="i <= 3" :lazy-src="'/unknow.jpg'" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
                             <v-layout align-center justify-center row fill-height class="lightbox">
