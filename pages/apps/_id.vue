@@ -107,7 +107,7 @@
                 </v-layout>
                 
                 <v-tab-item id="tab-1" class="mt-5 ml-1">
-                  <v-layout align-start justify-start row fill-height>
+                  <v-layout align-start justify-start column fill-height>
                     <div class="mr-5">
                       <div class="mb-3">
                         <h2>可用于</h2>
@@ -121,7 +121,7 @@
                       {{ item }}</v-chip>
                     </div>
                     <div>
-                      <div class="mb-3">
+                      <div class="mb-3 mt-5">
                         <h2>功能</h2>
                       </div>
                       <span v-if="appdetails[appid]" v-for="(item, i) in appdetails" :key="i">
