@@ -217,6 +217,15 @@
                     </div>
                   </v-layout>
                 </v-tab-item>
+
+                <v-tab-item id="tab-4" class="mt-5 ml-1">
+                  <v-layout align-start justify-start column fill-height>
+                    <div>
+                      <h2>人们同样喜欢</h2>
+                      {{ appTags.data }}
+                    </div>
+                  </v-layout>
+                </v-tab-item>
               </v-tabs>
             </div>
           </v-container>
@@ -280,10 +289,11 @@
 
   export default {
     async asyncData ({ query, params }) {
-      let [apps, appInfos, appPrices] = await Promise.all([
+      let [apps, appInfos, appPrices, appTags] = await Promise.all([
         axios.get(`https://api.steamhub.cn/api/v1/steam/apps/` + params.id),
         axios.get(`https://api.steamhub.cn/api/v1/steam/app/infos/` + params.id),
-        axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id + `?country=China`)
+        axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id + `?country=China`),
+        axios.get(`https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1`)
       ])
       for (let i = 0; i < appPrices.data.length; i++) {
         appPrices.data[i].现价 = appPrices.data[i]['PriceFinal'] / 100
@@ -298,6 +308,7 @@
       return {
         apps: apps.data,
         appInfos: appInfos.data,
+        appTags: appTags.data,
         appid: params.id,
         title: apps.data[0]['Name'],
         lastUpdated: apps.data[0]['LastUpdated'],

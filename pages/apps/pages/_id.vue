@@ -60,7 +60,7 @@
           </v-layout>
             <v-layout align-center justify-center row>
               <v-flex>
-                <v-pagination v-model="page" :length=list.lastPage></v-pagination>
+                <v-pagination v-model="page" :length=list.last_page></v-pagination>
               </v-flex>
             </v-layout>
         </div>
@@ -93,13 +93,9 @@
       PageHeader
     },
     async asyncData ({ params }) {
-      return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?list=` + params.id, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
+      return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/30?page=` + params.id)
         .then(function (response) {
-          let page = parseInt(response.data.page)
+          let page = response.data.current_page
           if (params.id === undefined) {
             page = 1
           }

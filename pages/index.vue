@@ -99,13 +99,9 @@
       PageHeader
     },
     async asyncData () {
-      return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?page=1`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
+      return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/12`)
         .then(function (response) {
-          return { list: response.data, page: response.data.page }
+          return { list: response.data }
         })
     },
     data: () => ({

@@ -6,12 +6,12 @@
           <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
             <v-container fill-height fluid pa-2>
               <v-layout align-start justify-start row fill-height>
-                <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppsTypes">
+                <v-flex xs12 flexbox class="text-xs-right" v-if="item.app_type">
                   <v-btn dark small color="grey" class="card-right-icon">
                     <v-icon left>
-                      {{ item.AppsTypes.DisplayName | typeIcon }}
+                      {{ item.app_type.DisplayName | typeIcon }}
                     </v-icon>
-                    {{ item.AppsTypes.DisplayName | typeName }}
+                    {{ item.app_type.DisplayName | typeName }}
                   </v-btn>
                   <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
                     <v-icon left>
@@ -33,7 +33,7 @@
                   </h3>
                 </nuxt-link>
               </v-flex>
-              <v-flex xs3 class="text-xs-right" v-if="item.AppsTypes">
+              <v-flex xs3 class="text-xs-right" v-if="item.app_type">
                 <v-chip label class="text-xs-right">
                   {{ item.AppID }}
                 </v-chip>
