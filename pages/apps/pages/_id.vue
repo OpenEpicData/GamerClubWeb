@@ -124,11 +124,7 @@
       page: function (newPage, oldPage) {
         this.$vuetify.goTo('#GameList', 'easyInQuad')
         this.$router.push({ path: '/apps/pages/' + newPage })
-        return axios.get(`https://api.steamhub.cn/api/v1/steam/apps?list=` + newPage, {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
+        return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/30?page=` + newPage)
           .then(response => {
             this.list = response.data
           })
