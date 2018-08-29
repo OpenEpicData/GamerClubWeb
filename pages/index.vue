@@ -132,13 +132,9 @@
       const Today = new Date()
       this.month = Today.getMonth() + 1
       this.day = Today.getDate()
-      axios.get(`https://api.steamhub.cn/api/v1/steam/app/store/update/queues`, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
+      axios.get(`https://rest.steamhub.cn/api/game/search/app/update_queue/count`)
         .then(response => {
-          this.queue = response.data.total
+          this.queue = response.data
         })
       axios.get(`https://api.steamhub.cn/api/v1/steam/game/features`, {
         headers: {
