@@ -19,7 +19,7 @@
     "lodash": "^4.17.10",
     "nuxt": "^1.0.0",
     "v-charts": "^1.17.8",
-    "vuetify": "^1.2.0"
+    "vuetify": "^1.2.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
