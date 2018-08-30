@@ -112,7 +112,7 @@
   import dayjs from 'dayjs'
 
   import 'dayjs/locale/zh-cn'
-  let _ = require('lodash')
+  import _ from 'lodash'
 
   dayjs.extend(relativeTime)
 

@@ -48,7 +48,8 @@ module.exports = {
       '~/components/GameListCard',
       '~/components/PageHeader',
       'dayjs/plugin/relativeTime',
-      '~/plugins/v-charts.js'
+      '~/plugins/v-charts.js',
+      'lodash'
     ],
     extractCSS: true,
     /*
