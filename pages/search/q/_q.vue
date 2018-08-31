@@ -1,12 +1,6 @@
 <template>
   <div>
     <v-layout row wrap>
-      <v-flex xs12 sm4>
-        <v-overflow-btn :items="dropdown_font" label="类型 暂不可用"></v-overflow-btn>
-      </v-flex>
-
-    </v-layout>
-    <v-layout row wrap>
       <v-flex xs8>
         <v-btn color="deep-purple lighten-1" dark>
           <v-icon left class="mt-1">search</v-icon>搜索
@@ -25,74 +19,47 @@
       <v-flex d-flex xs12 lg12>
         <v-layout row wrap>
           <v-flex d-flex xs12 sm6 md6 lg4 v-for="(item,i) in result.data" :key="i" class="game-list-card px-3">
-            <v-card v-if="item.AppType" flat class="grey lighten-4">
-              <v-card-media style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'"
-                height="200px" v-on:click="cardTo(item.AppID)">
-                <v-container fill-height fluid pa-2>
-                  <v-layout align-start justify-start row fill-height>
-                    <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppType">
-                      <v-btn dark small color="grey" class="card-right-icon">
-                        <v-icon left class="mt-1">
-                          {{ item.AppType | typeIcon }}
-                        </v-icon>
-                        {{ item.AppType | typeName }}
-                      </v-btn>
-                      <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
-                        <v-icon left>
-                          add
-                        </v-icon>
-                        关注
-                      </v-btn>
+            <v-hover>
+              <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" v-if="item.AppType" flat class="grey lighten-4">
+                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
+                  <v-container fill-height fluid pa-2>
+                    <v-layout align-start justify-start row fill-height>
+                      <v-flex xs12 flexbox class="text-xs-right" v-if="item.AppType">
+                        <v-btn dark small color="grey" class="card-right-icon">
+                          <v-icon left>
+                            {{ item.AppType | typeIcon }}
+                          </v-icon>
+                          {{ item.AppType | typeName }}
+                        </v-btn>
+                        <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
+                          <v-icon left>
+                            add
+                          </v-icon>
+                          关注
+                        </v-btn>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-img>
+                <v-card-title primary-title class="grey lighten-4">
+                  <v-layout row>
+                    <v-flex xs9>
+                      <nuxt-link :to="'/apps/'+ item.AppID" style="text-decoration: none;color: #000">
+                        <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
+                        <h3 class="mb-0">
+                          {{ item.Name.slice(0, 20) }}...
+                        </h3>
+                      </nuxt-link>
+                    </v-flex>
+                    <v-flex xs3 class="text-xs-right" v-if="item.AppType">
+                      <v-chip label class="text-xs-right">
+                        {{ item.AppID }}
+                      </v-chip>
                     </v-flex>
                   </v-layout>
-                </v-container>
-              </v-card-media>
-              <v-card-title primary-title class="grey lighten-4">
-                <v-layout row>
-                  <v-flex xs9>
-                    <nuxt-link :to="'/apps/'+ item.AppID" style="text-decoration: none;color: #000">
-                      <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
-                      <h3 class="mb-0">
-                        {{ item.Name.slice(0, 20) }}...
-                      </h3>
-                    </nuxt-link>
-                  </v-flex>
-                  <v-flex xs3 class="text-xs-right" v-if="item.AppType">
-                    <v-chip label class="text-xs-right">
-                      {{ item.AppID }}
-                    </v-chip>
-                  </v-flex>
-                </v-layout>
-              </v-card-title>
-            </v-card>
-
-            <v-card v-else flat class="grey lighten-4">
-              <v-card-media :src="'/unknow.jpg'" height="200px">
-                <v-container fill-height fluid pa-2>
-                  <v-layout fill-height>
-                    <v-flex xs12 align-end flexbox class="text-xs-right">
-                      <v-btn dark small color="grey">
-                        <v-icon left class="mt-1">device_unknown</v-icon> 未知 </v-btn>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card-media>
-              <v-card-title primary-title class="grey lighten-4">
-                <v-layout row>
-                  <v-flex xs9>
-                    <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
-                    <h3 class="mb-0">
-                      未知应用...
-                    </h3>
-                  </v-flex>
-                  <v-flex xs3 class="text-xs-right">
-                    <v-chip label class="text-xs-right">
-                      {{ item.AppID }}
-                    </v-chip>
-                  </v-flex>
-                </v-layout>
-              </v-card-title>
-            </v-card>
+                </v-card-title>
+              </v-card>
+            </v-hover>
           </v-flex>
         </v-layout>
         <v-dialog v-model="dialogAttention" hide-overlay persistent width="300">
@@ -141,7 +108,8 @@
       result: '',
       resultLength: '',
       search: '',
-      dropdown_font: ['游戏', '工具', '影音', '应用', '试玩版', '扩充包', '硬件']
+      dropdown_font: ['全部', '游戏', '工具', '影音', '应用', '试玩版', '扩充包', '硬件'],
+      list: ''
     }),
     methods: {
       cardTo: function (id) {
@@ -173,6 +141,7 @@
           } else {
             this.resultLength = response.data.length
             this.result = response
+            this.list = response
           }
         })
     },
@@ -256,6 +225,9 @@
 
   .game-list-card :hover .card-right-attention-icon {
     display: inline;
+  }
+  .v-image__image--preload {
+    filter: blur(0)
   }
 
   @media (max-width: 960px) {

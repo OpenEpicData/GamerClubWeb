@@ -15,6 +15,7 @@
           append-icon="search"
           v-model="search"
           @click="searchButton"
+          autofocus
         ></v-text-field>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
@@ -51,14 +52,6 @@
         <div class="page-main">
           <v-layout row wrap>
             <v-flex xs12>
-              <v-text-field
-                class="mt-2 ml-1"
-                solo-inverted
-                label="搜索 游戏名称,ID"
-                append-icon="search"
-                v-model="search"
-                @click="searchButton"
-              ></v-text-field>
             </v-flex>
           </v-layout>
           <nuxt />

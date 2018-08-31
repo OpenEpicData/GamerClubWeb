@@ -7,17 +7,8 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
+          <v-btn flat to="/search">搜索</v-btn>
         </v-toolbar-items>
-        <v-text-field
-          class="hidden-sm-and-down"
-          solo-inverted
-          hide-details
-          label="搜索 游戏名称,ID"
-          append-icon="search"
-          v-model="search"
-          @click="searchButton"
-          clearable
-        ></v-text-field>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn 
