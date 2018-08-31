@@ -13,8 +13,8 @@
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn 
           flat
-          :disabled="dialog"
-          @click.stop="dialog = true"
+          :disabled="dialogJoin"
+          @click.stop="dialogJoin = true"
           >
             加入社区 <v-icon right>add_circle_outline</v-icon></v-btn>
         </v-toolbar-items>
@@ -42,23 +42,35 @@
       <nuxt />
     </div>
     <v-dialog
-      v-model="dialog"
-      hide-overlay
-      persistent
+      v-model="dialogJoin"
       width="300"
     >
       <v-card
         color="primary"
         dark
       >
-        <v-card-text>
-          功能开发中
-          <v-progress-linear
-            indeterminate
-            color="white"
-            class="mb-0"
-          ></v-progress-linear>
-        </v-card-text>
+        <div>
+          <v-container class="text-xs-center" style="padding-bottom: 0">
+            <h2 class="headline">加入社区</h2>
+            <h6 class="body-1">SteamHub 是针对游戏和创意社区的数据交流平台</h6>
+            <div class="mt-5">
+              <v-btn disabled><v-icon left>fas fa-gamepad</v-icon>登录方式：InBuff</v-btn> <br>
+              <span class="body-1 font-weight-bold">没有账户？<a href="#!" class="white--text">创建一个账户</a></span>
+            </div>
+            <v-divider class="mt-5" color="grey"></v-divider>
+            <div>
+              <v-btn flat disabled><v-icon left>fas fa-caret-down</v-icon>其他登录方式</v-btn>
+            </div>
+          </v-container>
+          <v-layout row wrap>
+            <v-flex xs6>
+              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none ">服务条款</v-btn>
+            </v-flex>
+            <v-flex xs6>
+              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none">隐私政策</v-btn>
+            </v-flex>
+          </v-layout>
+        </div>
       </v-card>
     </v-dialog>
     <v-bottom-nav
@@ -80,8 +92,8 @@
       </v-btn>
 
       <v-btn 
-      :disabled="dialog"
-      @click.stop="dialog = true"
+      :disabled="dialogJoin"
+      @click.stop="dialogJoin = true"
       >
         <span>加入社区</span>
         <v-icon>add_circle_outline</v-icon>
@@ -94,7 +106,7 @@
 <script>
   export default {
     data: () => ({
-      dialog: false,
+      dialogJoin: false,
       bottomNav: 1,
       search: ''
     }),
@@ -116,9 +128,7 @@
       }
     },
     watch: {
-      dialog (val) {
-        if (!val) return
-        setTimeout(() => (this.dialog = false), 1000)
+      dialogJoin (val) {
       },
       search (value) {
         if (value === 'undefined' || value === '') {
@@ -140,6 +150,12 @@
   }
   .text {
     font-weight: 400;
+  }
+  .v-overlay--active:before {
+    opacity: 1;
+  }
+  .v-overlay:before {
+    background-color: #fff;
   }
   @media (min-width: 1264px) {
     .index-main-container {

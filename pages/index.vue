@@ -114,7 +114,7 @@
       headerText: {
         title: `全球 Steam 数据统计分析 By SteamHub`,
         descript: `SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询 `,
-        button: `立即加入`,
+        button: `使用 API`,
         dialog: {
           text: `功能开发中`,
           progressBar: {
