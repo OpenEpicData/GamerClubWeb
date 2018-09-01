@@ -1,150 +1,48 @@
 <template>
   <v-app id="inspire" class="grey lighten-4">
-    <div class="hidden-sm-and-down">
-      <v-toolbar app fixed clipped-left class="white">
-        <img src="/logo_64x64.png" alt="SteamHub Logo">
-        <span class="title ml-3 mr-5">SteamHub</span>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn flat to="/">浏览</v-btn>
-          <v-btn flat to="/apps/pages/">游戏</v-btn>
-          <v-btn flat to="/search">搜索</v-btn>
-        </v-toolbar-items>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn 
-          flat
-          :disabled="dialogJoin"
-          @click.stop="dialogJoin = true"
-          >
-            加入社区 <v-icon right>add_circle_outline</v-icon></v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-    </div>
-    <div class="hidden-md-and-up">
-      <v-toolbar app tabs fixed clipped-left class="white">
-        <img src="/logo_20x20_white.png" alt="SteamHub Logo">
-        <span class="title ml-3 mr-5 mt-2">SteamHub</span>
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn flat to="/">浏览</v-btn>
-          <v-btn flat to="/apps/pages/">游戏</v-btn>
-        </v-toolbar-items>
-        <v-tabs slot="extension" centered slider-color="black">
-          <v-tab to="/">
-            浏览
-          </v-tab>
-          <v-tab to="/apps/pages/">
-            游戏
-          </v-tab>
-        </v-tabs>
-      </v-toolbar>
-    </div>
+    <ToolBar :ToolBar.sync="ToolBar"></ToolBar>
     <div class="grey lighten-4">
       <nuxt />
     </div>
-    <v-dialog
-      v-model="dialogJoin"
-      width="300"
-    >
-      <v-card
-        color="primary"
-        dark
-      >
-        <div>
-          <v-container class="text-xs-center" style="padding-bottom: 0">
-            <h2 class="headline">加入社区</h2>
-            <h6 class="body-1">SteamHub 是针对游戏和创意社区的数据交流平台</h6>
-            <div class="mt-5">
-              <v-btn disabled><v-icon left>fas fa-gamepad</v-icon>登录方式：InBuff</v-btn> <br>
-              <span class="body-1 font-weight-bold">没有账户？<a href="#!" class="white--text">创建一个账户</a></span>
-            </div>
-            <v-divider class="mt-5" color="grey"></v-divider>
-            <div>
-              <v-btn flat disabled><v-icon left>fas fa-caret-down</v-icon>其他登录方式</v-btn>
-            </div>
-          </v-container>
-          <v-layout row wrap>
-            <v-flex xs6>
-              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none ">服务条款</v-btn>
-            </v-flex>
-            <v-flex xs6>
-              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none">隐私政策</v-btn>
-            </v-flex>
-          </v-layout>
-        </div>
-      </v-card>
-    </v-dialog>
-    <v-bottom-nav
-      class="hidden-md-and-up"
-      :active.sync="bottomNav"
-      color="white"
-      :value="true"
-      fixed
-      shift
-    >
-      <v-btn to="/search">
-        <span>搜索</span>
-        <v-icon>search</v-icon>
-      </v-btn>
-
-      <v-btn to="/">
-        <span>浏览</span>
-        <v-icon>list</v-icon>
-      </v-btn>
-
-      <v-btn 
-      :disabled="dialogJoin"
-      @click.stop="dialogJoin = true"
-      >
-        <span>加入社区</span>
-        <v-icon>add_circle_outline</v-icon>
-      </v-btn>
-
-    </v-bottom-nav>
+    <BottomNav :BottomNav.sync="BottomNav"></BottomNav>
   </v-app>
 </template>
 
 <script>
+  import ToolBar from '~/components/ToolBar/Default'
+  import BottomNav from '~/components/BottomNav/Default'
+
   export default {
+    components: {
+      ToolBar,
+      BottomNav
+    },
     data: () => ({
-      dialogJoin: false,
-      bottomNav: 1,
-      search: ''
+      ToolBar: {
+        title: 'SteamHub',
+        items: {
+          left: [
+            { value: '浏览', link: '/' },
+            { value: '游戏', link: '/apps/pages/' },
+            { value: '搜索', link: '/search', key: 0 }
+          ]
+        }
+      },
+      BottomNav: {
+        items: [
+          { value: '搜索', icon: 'search', link: '/search', key: 0 },
+          { value: '浏览', icon: 'list', link: '/' },
+          { value: '加入社区', icon: 'add_circle_outline', click: true }
+        ]
+      }
     }),
     props: {
       source: String
-    },
-    methods: {
-      searchButton: function () {
-        if (this.search === 'undefined' || this.search === '') {
-          this.$router.push({path: '/search/'})
-        } else {
-          this.$router.push({path: '/search/q/' + this.search})
-        }
-      }
-    },
-    created: function () {
-      if (this.$route.name === 'search-q-q') {
-        this.search = this.$route.params.q
-      }
-    },
-    watch: {
-      dialogJoin (val) {
-      },
-      search (value) {
-        if (value === 'undefined' || value === '') {
-          this.$router.push({path: '/search/'})
-        } else {
-          this.$router.push({path: '/search/q/' + value})
-        }
-      }
     }
   }
 </script>
 
 <style>
-  #keep main .container {
-    height: 660px;
-  }
   .v-navigation-drawer__border {
     display: none;
   }
@@ -155,7 +53,7 @@
     opacity: 1;
   }
   .v-overlay:before {
-    background-color: #fff;
+    background-color: #f5f5f5;
   }
   @media (min-width: 1264px) {
     .index-main-container {
