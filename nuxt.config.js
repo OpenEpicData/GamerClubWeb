@@ -25,12 +25,10 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/vuetify.js',
-    '@/plugins/element-ui',
     { src: '~/plugins/v-charts.js', ssr: false }
   ],
   css: [
-    '~/assets/style/app.styl',
-    'element-ui/lib/theme-chalk/index.css'
+    '~/assets/style/app.styl'
   ],
   /*
   ** Customize the progress bar color
@@ -42,12 +40,8 @@ module.exports = {
   build: {
     vendor: [
       '~/plugins/vuetify.js',
-      '@/plugins/element-ui',
       'axios',
       'dayjs',
-      '~/components/GameListCard',
-      '~/components/PageHeader',
-      'dayjs/plugin/relativeTime',
       '~/plugins/v-charts.js',
       'lodash'
     ],
