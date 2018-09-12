@@ -290,10 +290,10 @@
   export default {
     async asyncData ({ query, params }) {
       let [apps, appInfos, appPrices, appTags] = await Promise.all([
-        axios.get(`https://api.steamhub.cn/api/v1/steam/apps/` + params.id),
-        axios.get(`https://api.steamhub.cn/api/v1/steam/app/infos/` + params.id),
-        axios.get(`https://api.steamhub.cn/api/v1/steam/game/prices/` + params.id + `?country=China`),
-        axios.get(`https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1`)
+        axios.get('https://api.steamhub.cn/api/v1/steam/apps/' + params.id),
+        axios.get('https://api.steamhub.cn/api/v1/steam/app/infos/' + params.id),
+        axios.get('https://api.steamhub.cn/api/v1/steam/game/prices/' + params.id + '?country=China'),
+        axios.get('https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1')
       ])
       for (let i = 0; i < appPrices.data.length; i++) {
         appPrices.data[i].现价 = appPrices.data[i]['PriceFinal'] / 100
@@ -331,11 +331,11 @@
       headerText: {
         title: '',
         descript: '',
-        button: `使用 API`,
+        button: '使用 API',
         dialog: {
-          text: `功能开发中`,
+          text: '功能开发中',
           progressBar: {
-            height: `6`
+            height: '6'
           }
         }
       },
@@ -384,7 +384,7 @@
         { icon: 'home', text: '仓库', outline: true, disable: true },
         { icon: 'history', text: '更新历史', outline: true, disable: true }
       ]
-      axios.get(`https://api.steamhub.cn/api/v1/steam/app/appdetails/` + this.appid, {
+      axios.get('https://api.steamhub.cn/api/v1/steam/app/appdetails/' + this.appid, {
         headers: {
           'Access-Control-Allow-Origin': '*'
         }
