@@ -26,7 +26,7 @@
             </v-img>
             <v-card-title primary-title class="grey lighten-4">
               <v-layout row>
-                <v-flex xs9>
+                <v-flex xs8>
                   <nuxt-link :to="'/apps/'+ item.AppID" style="text-decoration: none;color: #000">
                     <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
                     <h3 v-if="item.AppType === 0">
@@ -37,34 +37,34 @@
                     </h3>
                   </nuxt-link>
                 </v-flex>
-                <v-flex xs3 class="text-xs-right">
-                  <v-chip label class="text-xs-right">
+                <v-flex xs4 class="text-xs-right">
+                  <v-chip label>
                     <span v-if="item.app_price[0]">
                       <span v-if="item.app_price[0].PriceFinal">
                         {{ item.app_price | minAppPrice }} 元
                       </span>
                       <span v-else-if="item.app_info[0]">
                         <span v-if="item.app_info[0].Value === 'prerelease'">
-                          未发售
+                          还未发售
                         </span>
                         <span v-else>
-                          NaN
+                          暂无价格
                         </span>
                       </span>
                       <span v-else>
-                        NaN
+                        暂无价格
                       </span>
                     </span>
                     <span v-else-if="item.app_info[0]">
                       <span v-if="item.app_info[0].Value === 'prerelease'">
-                        未发售
+                        还未发售
                       </span>
                       <span v-else>
-                        NaN
+                        暂无价格
                       </span>
                     </span>
                     <span v-else>
-                      NaN
+                      暂无价格
                     </span>
                   </v-chip>
                 </v-flex>
