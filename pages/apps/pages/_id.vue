@@ -4,9 +4,9 @@
     <div id="GameList" class="grey lighten-4">
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main">
-          <v-layout row wrap>
+          <v-layout row wrap class="pl-3">
             <v-flex xs8>
-              <v-btn color="deep-purple lighten-1" dark>
+              <v-btn color="deep-purple lighten-1 mx-0" dark>
                 <v-icon left>apps</v-icon>游戏
               </v-btn>
               <h4 class="mt-2">记录在案的游戏: {{ list.total }}, 数据采集中...</h4>
@@ -19,7 +19,10 @@
           </v-layout>
 
           <v-layout row wrap class="mt-3" id="GameList">
-            <GameListCard :list.sync="list"></GameListCard>
+            <v-flex lg9>
+              <GameListCard :list.sync="list"></GameListCard>
+              <v-pagination v-model="page" :length=list.last_page></v-pagination>
+            </v-flex>
             <v-flex d-flex lg3>
               <v-layout row wrap hidden-md-and-down>
                 <v-flex d-flex>
@@ -58,11 +61,6 @@
               </v-layout>
             </v-flex>
           </v-layout>
-            <v-layout align-center justify-center row>
-              <v-flex>
-                <v-pagination v-model="page" :length=list.last_page></v-pagination>
-              </v-flex>
-            </v-layout>
         </div>
       </v-container>
       <v-dialog v-model="dialogAPI" hide-overlay persistent width="300">
@@ -93,7 +91,7 @@
       PageHeader
     },
     async asyncData ({ params }) {
-      return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/30?page=` + params.id)
+      return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/36?page=` + params.id)
         .then(function (response) {
           let page = response.data.current_page
           if (params.id === undefined) {
@@ -124,7 +122,7 @@
       page: function (newPage, oldPage) {
         this.$vuetify.goTo('#GameList', 'easyInQuad')
         this.$router.push({ path: '/apps/pages/' + newPage })
-        return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/30?page=` + newPage)
+        return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/36?page=` + newPage)
           .then(response => {
             this.list = response.data
           })

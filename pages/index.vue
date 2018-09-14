@@ -46,6 +46,7 @@
 
         <div class="page-main mt-5">
           <v-layout
+            class="pl-3"
             row
             wrap
             id="today"
@@ -54,6 +55,7 @@
               <v-btn
                 color="deep-purple lighten-1"
                 dark
+                class="mx-0"
               >
                 <v-icon left>blur_on</v-icon>趋势
               </v-btn>
@@ -75,7 +77,9 @@
             class="mt-3"
             id="GameList"
           >
-            <GameListCard :list.sync="list"></GameListCard>
+            <v-flex lg9>
+              <GameListCard :list.sync="list"></GameListCard>
+            </v-flex>
             <v-flex
               d-flex
               lg3
