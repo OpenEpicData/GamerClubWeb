@@ -1,79 +1,138 @@
 <template>
   <div class="mt-5">
-    <v-card flat v-if="appdetails[appid]">
+    <v-card
+      flat
+      v-if="appdetails[appid]"
+    >
       <div
         flat
         class="header_video"
       >
-        <video :src="appdetails[appid].data.movies[0].webm.max" height="100%" width="100%" autoplay="autoplay" loop style="object-fit:fill" muted></video>
+        <video
+          :src="appdetails[appid].data.movies[0].webm.max"
+          height="100%"
+          width="100%"
+          autoplay="autoplay"
+          loop
+          style="object-fit:fill"
+          muted
+        ></video>
       </div>
 
-      <v-layout align-start justify-center row fill-height class="grey lighten-4">
+      <v-layout
+        align-start
+        justify-center
+        row
+        fill-height
+        class="grey lighten-4"
+      >
         <v-flex xs12>
-          <v-container fluid class="index-main-container">
+          <v-container
+            fluid
+            class="index-main-container"
+          >
             <v-card class="card--flex-toolbar grey lighten-4">
-              <v-layout align-start justify-space-between fill-height class="mx-5 py-5">
+              <v-layout
+                align-start
+                justify-space-between
+                fill-height
+                class="mx-5 py-5"
+              >
                 <div class="mt-2">
                   <h1 class="display-2 font-weight-black">{{ title }}</h1>
                   <div>
                     <div class="my-1">
-                      <span v-for="(item,k) in appInfos" :key="k">
-                        <span v-if="item.Key === 154"> {{ item.Value }} · </span> 
+                      <span
+                        v-for="(item,k) in appInfos"
+                        :key="k"
+                      >
+                        <span v-if="item.Key === 154"> {{ item.Value }} · </span>
                         <span v-if="item.Key === 155"> {{ apps[0].AppsTypes.DisplayName }} </span>
                         <span v-if="item.Value === 'prerelease'">游戏尚未发售</span>
                       </span>
                     </div>
-                    <v-layout v-layout align-start justify-start fill-height>
+                    <v-layout
+                      v-layout
+                      align-start
+                      justify-start
+                      fill-height
+                    >
                       <div class="mt-1">
                         ({{ rating }})
                       </div>
                       <div>
-                        <v-rating v-model="rating" small hover class="mx-0"></v-rating>
+                        <v-rating
+                          v-model="rating"
+                          small
+                          hover
+                          class="mx-0"
+                        ></v-rating>
                       </div>
                     </v-layout>
                   </div>
                   <div class="my-2">
-                    <v-layout row warp>
-                      <v-flex xs12 md8>
-                        <span v-for="(item,k) in appdetails" :key="k" v-if="item.data.short_description">
+                    <v-layout
+                      row
+                      warp
+                    >
+                      <v-flex
+                        xs12
+                        md8
+                      >
+                        <span
+                          v-for="(item,k) in appdetails"
+                          :key="k"
+                          v-if="item.data.short_description"
+                        >
                           <span v-html="item.data.short_description"></span>
                         </span>
                         <div>
                           <v-dialog
                             v-model="dialogReadMore"
-                            width="800"
+                            width="1000"
                           >
-                            <a
-                              slot="activator"
-                            >
+                            <a slot="activator">
                               更多
                             </a>
 
                             <v-card>
-                              <v-card-title
-                                class="headline grey lighten-2"
-                                primary-title
+                              <v-toolbar
+                                class="grey lighten-2 mt-5"
+                                fixed
                               >
-                                {{ title }}
-                              </v-card-title>
+                                <v-layout
+                                  align-center
+                                  justify-center
+                                  row
+                                  fill-height
+                                >
+                                  <div class="headline text-xs-center">{{ title }}</div>
+                                </v-layout>
+                              </v-toolbar>
 
-                              <v-card-text>
-                                <span v-for="(item,k) in appdetails" :key="k">
-                                  <span v-if="item.data.detailed_description" v-html="item.data.detailed_description"></span>
+                              <v-card-text class="my-5">
+                                <span
+                                  v-for="(item,k) in appdetails"
+                                  :key="k"
+                                >
+                                  <span
+                                    v-if="item.data.detailed_description"
+                                    v-html="item.data.detailed_description"
+                                  ></span>
                                 </span>
                               </v-card-text>
 
                               <v-divider></v-divider>
 
-                              <v-card-actions>
-                                <v-spacer></v-spacer>
-                                <v-btn
-                                  color="primary"
-                                  flat
-                                  @click="dialogReadMore = false"
-                                >
-                                  关闭
-                                </v-btn>
+                              <v-card-actions style="position:fixed;bottom:45px;margin:0 auto;left:0;right:0;" class="grey lighten-2">
+                                  <div style="margin:0 auto;left:0;right:0;">
+                                    <v-btn
+                                      color="primary"
+                                      @click="dialogReadMore = false"
+                                    >
+                                      关闭
+                                    </v-btn>
+                                  </div>
                               </v-card-actions>
                             </v-card>
                           </v-dialog>
@@ -84,11 +143,33 @@
                 </div>
                 <div class="hidden-sm-and-down"></div>
                 <div class="hidden-sm-and-down">
-                  <v-layout wrap row>
+                  <v-layout
+                    wrap
+                    row
+                  >
                     <v-flex xs12>
-                      <v-btn dark large block  :href="'https://store.steampowered.com/app/' + appid" target="_balck" class="mx-0">购买</v-btn>
+                      <v-btn
+                        dark
+                        large
+                        block
+                        :href="'https://store.steampowered.com/app/' + appid"
+                        target="_balck"
+                        class="mx-0"
+                      >购买</v-btn>
                       <div>
-                        <v-btn class="mx-0" block flat small @click="tabActice = 'tab-2'"><v-icon left small class="my-0">fas fa-exclamation-triangle</v-icon>查看系统需求</v-btn>
+                        <v-btn
+                          class="mx-0"
+                          block
+                          flat
+                          small
+                          @click="tabActice = 'tab-2'"
+                        >
+                          <v-icon
+                            left
+                            small
+                            class="my-0"
+                          >fas fa-exclamation-triangle</v-icon>查看系统需求
+                        </v-btn>
                       </div>
                     </v-flex>
                   </v-layout>
@@ -99,15 +180,28 @@
         </v-flex>
       </v-layout>
     </v-card>
-    <v-container fluid grid-list-sm class="index-main-container">
+    <v-container
+      fluid
+      grid-list-sm
+      class="index-main-container"
+    >
       <div class="page-main">
         <div>
           <v-container fluid>
             <div>
-              <v-tabs centered color="grey lighten-4" v-model="tabActice">
+              <v-tabs
+                centered
+                color="grey lighten-4"
+                v-model="tabActice"
+              >
                 <v-tabs-slider color="black"></v-tabs-slider>
 
-                <v-layout align-center justify-center row fill-height>
+                <v-layout
+                  align-center
+                  justify-center
+                  row
+                  fill-height
+                >
                   <v-tab href="#tab-1">
                     浏览
                   </v-tab>
@@ -121,27 +215,57 @@
                     相似应用
                   </v-tab>
                 </v-layout>
-                
-                <v-tab-item id="tab-1" class="mt-5 ml-1">
-                  <v-layout align-start justify-start column fill-height>
+
+                <v-tab-item
+                  id="tab-1"
+                  class="mt-5 ml-1"
+                >
+                  <v-layout
+                    align-start
+                    justify-start
+                    column
+                    fill-height
+                  >
                     <div class="mr-5">
                       <div class="mb-3">
                         <h2>可用于</h2>
                       </div>
-                      <v-chip class="elevation-1" v-for="(item, i) in appSystem" :key="i">
+                      <v-chip
+                        class="elevation-1"
+                        v-for="(item, i) in appSystem"
+                        :key="i"
+                      >
                         <v-avatar>
-                          <v-icon small v-if="item === 'windows'">fab fa-microsoft</v-icon>
-                          <v-icon small v-else-if="item === 'macos'">fab fa-apple</v-icon>
-                          <v-icon small v-else>fab fa-linux</v-icon>
+                          <v-icon
+                            small
+                            v-if="item === 'windows'"
+                          >fab fa-microsoft</v-icon>
+                          <v-icon
+                            small
+                            v-else-if="item === 'macos'"
+                          >fab fa-apple</v-icon>
+                          <v-icon
+                            small
+                            v-else
+                          >fab fa-linux</v-icon>
                         </v-avatar>
-                      {{ item }}</v-chip>
+                        {{ item }}
+                      </v-chip>
                     </div>
                     <div>
                       <div class="mb-3 mt-5">
                         <h2>功能</h2>
                       </div>
-                      <span v-if="appdetails[appid]" v-for="(item, i) in appdetails" :key="i">
-                        <v-chip class="elevation-1" v-for="(data, i) in item.data.categories" :key="i">
+                      <span
+                        v-if="appdetails[appid]"
+                        v-for="(item, i) in appdetails"
+                        :key="i"
+                      >
+                        <v-chip
+                          class="elevation-1"
+                          v-for="(data, i) in item.data.categories"
+                          :key="i"
+                        >
                           <span>
                             {{ data.description }}
                           </span>
@@ -152,8 +276,14 @@
                   <div class="mt-5">
                     <h2>游戏介绍</h2>
                     <p class="mt-3">
-                      <span v-for="(item,k) in appdetails" :key="k">
-                        <span v-if="item.data.detailed_description" v-html="item.data.detailed_description.slice(0, 600)"></span>...
+                      <span
+                        v-for="(item,k) in appdetails"
+                        :key="k"
+                      >
+                        <span
+                          v-if="item.data.detailed_description"
+                          v-html="item.data.detailed_description.slice(0, 600)"
+                        ></span>...
                       </span>
                     </p>
                     <p>
@@ -162,11 +292,28 @@
                   </div>
                   <div class="mt-5">
                     <h2>游戏相册</h2>
-                  
+
                     <div class="mt-3">
-                      <v-tabs grow v-if="appdetails[appid]" mobile-break-point="0" height="338" hide-slider class="grey lighten-4 screenshot" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
-                        <v-tab v-for="(item,i) in appdetails[appid].data.screenshots" :key="i">
-                          <v-img :aspect-ratio="16/9" height="338" :src="item.path_thumbnail" :lazy-src="'/unknow.jpg'"></v-img>
+                      <v-tabs
+                        grow
+                        v-if="appdetails[appid]"
+                        mobile-break-point="0"
+                        height="338"
+                        hide-slider
+                        class="grey lighten-4 screenshot"
+                        next-icon="fas fa-arrow-circle-right"
+                        prev-icon="fas fa-arrow-circle-left"
+                      >
+                        <v-tab
+                          v-for="(item,i) in appdetails[appid].data.screenshots"
+                          :key="i"
+                        >
+                          <v-img
+                            :aspect-ratio="16/9"
+                            height="338"
+                            :src="item.path_thumbnail"
+                            :lazy-src="'/unknow.jpg'"
+                          ></v-img>
                         </v-tab>
                       </v-tabs>
                     </div>
@@ -174,37 +321,93 @@
                   <div class="mt-5">
                     <h2>宣传片</h2>
                     <div class="mt-3">
-                      <v-tabs grow v-if="appdetails[appid]" height="164" mobile-break-point="0" hide-slider class="grey lighten-4 video" next-icon="fas fa-arrow-circle-right" prev-icon="fas fa-arrow-circle-left">
-                        <v-tab v-for="(item,i) in appdetails[appid].data.movies" :key="i">
-                          <v-img @click="dialogOpenVideo(item.webm.max)" style="cursor:pointer" :aspect-ratio="16/9" :src="item.thumbnail" v-if="i <= 3" :lazy-src="'/unknow.jpg'" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)">
-                            <v-layout align-center justify-center row fill-height class="lightbox">
-                              <v-icon center large class="white--text">fas fa-play-circle</v-icon>
+                      <v-tabs
+                        grow
+                        v-if="appdetails[appid]"
+                        height="164"
+                        mobile-break-point="0"
+                        hide-slider
+                        class="grey lighten-4 video"
+                        next-icon="fas fa-arrow-circle-right"
+                        prev-icon="fas fa-arrow-circle-left"
+                      >
+                        <v-tab
+                          v-for="(item,i) in appdetails[appid].data.movies"
+                          :key="i"
+                        >
+                          <v-img
+                            @click="dialogOpenVideo(item.webm.max)"
+                            style="cursor:pointer"
+                            :aspect-ratio="16/9"
+                            :src="item.thumbnail"
+                            v-if="i <= 3"
+                            :lazy-src="'/unknow.jpg'"
+                            gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)"
+                          >
+                            <v-layout
+                              align-center
+                              justify-center
+                              row
+                              fill-height
+                              class="lightbox"
+                            >
+                              <v-icon
+                                center
+                                large
+                                class="white--text"
+                              >fas fa-play-circle</v-icon>
                             </v-layout>
                           </v-img>
                         </v-tab>
-                        <v-dialog v-model="dialogVideo" width="1024px">
-                          <video id="videoElement" :src="videoUrl" autoplay controls="controls" width="100%" height="100%" :aspect-ratio="16/9"></video>
+                        <v-dialog
+                          v-model="dialogVideo"
+                          width="1024px"
+                        >
+                          <video
+                            id="videoElement"
+                            :src="videoUrl"
+                            autoplay
+                            controls="controls"
+                            width="100%"
+                            height="100%"
+                            :aspect-ratio="16/9"
+                          ></video>
                         </v-dialog>
                       </v-tabs>
                     </div>
                   </div>
                 </v-tab-item>
 
-                <v-tab-item id="tab-2" class="mt-5 ml-1">
-                  <v-layout align-start justify-start column fill-height v-if="appdetails[appid]">
+                <v-tab-item
+                  id="tab-2"
+                  class="mt-5 ml-1"
+                >
+                  <v-layout
+                    align-start
+                    justify-start
+                    column
+                    fill-height
+                    v-if="appdetails[appid]"
+                  >
                     <div v-if="appdetails[appid].data.pc_requirements">
                       <h2>Windows: </h2>
                       <div class="mt-2">
                         <p v-html="appdetails[appid].data.pc_requirements.minimum"></p>
                       </div>
                     </div>
-                    <div class="mt-5" v-if="appdetails[appid].data.mac_requirements">
+                    <div
+                      class="mt-5"
+                      v-if="appdetails[appid].data.mac_requirements"
+                    >
                       <h2>Mac: </h2>
                       <div class="mt-2">
                         <p v-html="appdetails[appid].data.mac_requirements.minimum"></p>
                       </div>
                     </div>
-                    <div class="mt-5" v-if="appdetails[appid].data.linux_requirements">
+                    <div
+                      class="mt-5"
+                      v-if="appdetails[appid].data.linux_requirements"
+                    >
                       <h2>Linux: </h2>
                       <div class="mt-2">
                         <p v-html="appdetails[appid].data.linux_requirements.minimum"></p>
@@ -213,19 +416,41 @@
                   </v-layout>
                 </v-tab-item>
 
-                <v-tab-item id="tab-3" class="mt-5 ml-1">
-                  <v-layout align-start justify-start column fill-height>
+                <v-tab-item
+                  id="tab-3"
+                  class="mt-5 ml-1"
+                >
+                  <v-layout
+                    align-start
+                    justify-start
+                    column
+                    fill-height
+                  >
                     <div>
                       <h2>评分及评价</h2>
-                      <v-layout align-space-around justify-start row fill-height>
+                      <v-layout
+                        align-space-around
+                        justify-start
+                        row
+                        fill-height
+                      >
                         <div>
                           <h2 class="display-4">0.0</h2>
-                          <v-rating v-model="rating" readonly small color="pink" class="mx-0"></v-rating>
+                          <v-rating
+                            v-model="rating"
+                            readonly
+                            small
+                            color="pink"
+                            class="mx-0"
+                          ></v-rating>
                         </div>
                       </v-layout>
                     </div>
                     <div class="mt-5">
-                      <v-divider light color="black"></v-divider>
+                      <v-divider
+                        light
+                        color="black"
+                      ></v-divider>
                       <div class="mt-3">
                         <h3>所有用户评价</h3>
                         <h4>功能开发中</h4>
@@ -234,8 +459,16 @@
                   </v-layout>
                 </v-tab-item>
 
-                <v-tab-item id="tab-4" class="mt-5 ml-1">
-                  <v-layout align-start justify-start column fill-height>
+                <v-tab-item
+                  id="tab-4"
+                  class="mt-5 ml-1"
+                >
+                  <v-layout
+                    align-start
+                    justify-start
+                    column
+                    fill-height
+                  >
                     <div>
                       <h2>人们同样喜欢</h2>
                       {{ appTags.data }}
@@ -245,20 +478,40 @@
               </v-tabs>
             </div>
           </v-container>
-          <v-container fluid dark v-if="chartData">
+          <v-container
+            fluid
+            dark
+            v-if="chartData"
+          >
             <div>
-              <div class="my-3" id="gamePrice">
+              <div
+                class="my-3"
+                id="gamePrice"
+              >
                 <h2>游戏价格 - Beta</h2>
-                <v-layout row wrap id="today">
+                <v-layout
+                  row
+                  wrap
+                  id="today"
+                >
                   <v-flex xs12>
-                    <div v-for="(item,k) in appInfos" :key="k">
+                    <div
+                      v-for="(item,k) in appInfos"
+                      :key="k"
+                    >
                       <div v-if="item.Value === 'released'">
                         <div v-if="isDiscount">
                           <h4 class="mt-3">
                             <span>正在打折中</span>
-                            <v-chip><span v-if="discountPrice === minPriceFinal" class="mx-1">史低</span> {{ discountPrice }} 元 </v-chip>
+                            <v-chip><span
+                                v-if="discountPrice === minPriceFinal"
+                                class="mx-1"
+                              >史低</span> {{ discountPrice }} 元 </v-chip>
                           </h4>
-                          <h4 class="mt-3" v-if="discountPrice !== minPriceFinal">
+                          <h4
+                            class="mt-3"
+                            v-if="discountPrice !== minPriceFinal"
+                          >
                             历史最低价格:
                             <v-chip> {{ minPriceFinal }} 元 </v-chip>
                           </h4>
@@ -283,12 +536,29 @@
               </div>
             </div>
           </v-container>
-          <v-data-table :headers="tableHeaders" :items="appInfos" class="elevation-1" align="center" :rows-per-page-items="[20, 30]" disable-initial-sort style="display:none">
-            <template slot="items" slot-scope="props">
-              <td class="text-xs-center" v-if="props.item.KeyNames"> {{ props.item.KeyNames[0].DisplayName | appInfoDisplayName }} </td>
+          <v-data-table
+            :headers="tableHeaders"
+            :items="appInfos"
+            class="elevation-1"
+            align="center"
+            :rows-per-page-items="[20, 30]"
+            disable-initial-sort
+            style="display:none"
+          >
+            <template
+              slot="items"
+              slot-scope="props"
+            >
+              <td
+                class="text-xs-center"
+                v-if="props.item.KeyNames"
+              > {{ props.item.KeyNames[0].DisplayName | appInfoDisplayName }} </td>
               <td class="text-xs-left">{{ props.item.Value }}</td>
             </template>
-            <template slot="pageText" slot-scope="props">
+            <template
+              slot="pageText"
+              slot-scope="props"
+            >
               第 {{ props.pageStart }} 项 - {{ props.pageStop }} 项 共 {{ props.itemsLength }} 项
             </template>
           </v-data-table>
@@ -557,27 +827,35 @@
   .v-datatable th {
     text-align: center !important;
   }
+
   .screenshot .v-responsive__content {
     width: 400px;
   }
+
   .screenshot .v-tabs__bar {
     background-color: transparent;
   }
+
   .screenshot .v-tabs__icon--prev {
     left: 30px;
   }
+
   .screenshot .v-tabs__icon--next {
     right: 30px;
   }
-  .screenshot .v-tabs__icon--next, .screenshot .v-tabs__icon--prev {
+
+  .screenshot .v-tabs__icon--next,
+  .screenshot .v-tabs__icon--prev {
     font-size: 32px;
     z-index: 99;
     color: #fff;
     line-height: 338px;
   }
+
   .screenshot .v-tabs__wrapper--show-arrows {
     margin: 0;
   }
+
   .screenshot .v-tabs__item {
     padding-left: 0
   }
@@ -585,31 +863,40 @@
   .video .v-responsive__content {
     width: 400px;
   }
+
   .video .v-tabs__bar {
     background-color: transparent;
   }
+
   .video .v-tabs__icon--prev {
     left: 30px;
   }
+
   .video .v-tabs__icon--next {
     right: 30px;
   }
-  .video .v-tabs__icon--next, .video .v-tabs__icon--prev {
+
+  .video .v-tabs__icon--next,
+  .video .v-tabs__icon--prev {
     font-size: 32px;
     z-index: 99;
     color: #fff;
     line-height: 164px;
   }
+
   .video .v-tabs__wrapper--show-arrows {
     margin: 0;
   }
+
   .video .v-tabs__item {
     padding-left: 0
   }
+
   .accent--text {
     color: #000 !important;
     caret-color: #000 !important;
   }
+
   .card--flex-toolbar {
     margin-top: -20vh;
   }
@@ -617,16 +904,19 @@
   .header_video {
     height: 100vh
   }
+
   @media screen and (max-width: 1264px) {
     .header_video {
       height: 80vh;
     }
   }
+
   @media screen and (max-width: 960px) {
     .header_video {
       height: 75vh;
     }
   }
+
   @media screen and (max-width: 600px) {
     .header_video {
       height: 50vh;
