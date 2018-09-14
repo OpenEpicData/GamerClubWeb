@@ -63,12 +63,12 @@
   }
   @media (max-width: 960px) {
     .page-main {
-      margin: 114px 0 40px 0
+      margin: 20px 0 10px 0
     }
   }
   @media (max-width: 600px) {
     .page-main {
-      margin: 66px 0 40px 0
+      margin: 10px 0 0 0
     }
     .v-toolbar__content {
       height: 0 !important;

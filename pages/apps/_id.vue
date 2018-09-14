@@ -1,92 +1,108 @@
 <template>
-  <div>
-    <PageHeader :headerText.sync="headerText"></PageHeader>
-    <v-container fluid grid-list-sm class="index-main-container">
-      <div class="page-main">
-        <div class="mt-1">
-          <v-container fluid>
-            <v-layout align-start justify-space-between fill-height>
-              <div class="mt-2">
-                <h1>{{ title }}</h1>
-                <div>
-                  <div class="my-1">
-                    <span v-for="(item,k) in appInfos" :key="k">
-                      <span v-if="item.Key === 154"> {{ item.Value }} · </span> 
-                      <span v-if="item.Key === 155"> {{ apps[0].AppsTypes.DisplayName }} </span>
-                      <span v-if="item.Value === 'prerelease'">游戏尚未发售</span>
-                    </span>
-                  </div>
-                  <v-layout v-layout align-start justify-start fill-height>
-                    <div class="mt-1">
-                      ({{ rating }})
-                    </div>
-                    <div>
-                      <v-rating v-model="rating" small hover class="mx-0"></v-rating>
-                    </div>
-                  </v-layout>
-                </div>
-                <div class="my-2">
-                  <v-layout row warp>
-                    <v-flex xs12 md8 hidden-sm-and-down>
-                      <span v-for="(item,k) in appdetails" :key="k">
-                        <span v-html="item.data.short_description" v-if="item.data.short_description"></span>
+  <div class="mt-5">
+    <v-card flat v-if="appdetails[appid]">
+      <div
+        flat
+        class="header_video"
+      >
+        <video :src="appdetails[appid].data.movies[0].webm.max" height="100%" width="100%" autoplay="autoplay" loop style="object-fit:fill" muted></video>
+      </div>
+
+      <v-layout align-start justify-center row fill-height class="grey lighten-4">
+        <v-flex xs12>
+          <v-container fluid class="index-main-container">
+            <v-card class="card--flex-toolbar grey lighten-4">
+              <v-layout align-start justify-space-between fill-height class="mx-5 py-5">
+                <div class="mt-2">
+                  <h1 class="display-2 font-weight-black">{{ title }}</h1>
+                  <div>
+                    <div class="my-1">
+                      <span v-for="(item,k) in appInfos" :key="k">
+                        <span v-if="item.Key === 154"> {{ item.Value }} · </span> 
+                        <span v-if="item.Key === 155"> {{ apps[0].AppsTypes.DisplayName }} </span>
+                        <span v-if="item.Value === 'prerelease'">游戏尚未发售</span>
                       </span>
+                    </div>
+                    <v-layout v-layout align-start justify-start fill-height>
+                      <div class="mt-1">
+                        ({{ rating }})
+                      </div>
                       <div>
-                        <v-dialog
-                          v-model="dialogReadMore"
-                          width="800"
-                        >
-                          <a
-                            slot="activator"
+                        <v-rating v-model="rating" small hover class="mx-0"></v-rating>
+                      </div>
+                    </v-layout>
+                  </div>
+                  <div class="my-2">
+                    <v-layout row warp>
+                      <v-flex xs12 md8>
+                        <span v-for="(item,k) in appdetails" :key="k" v-if="item.data.short_description">
+                          <span v-html="item.data.short_description"></span>
+                        </span>
+                        <div>
+                          <v-dialog
+                            v-model="dialogReadMore"
+                            width="800"
                           >
-                            更多
-                          </a>
-
-                          <v-card>
-                            <v-card-title
-                              class="headline grey lighten-2"
-                              primary-title
+                            <a
+                              slot="activator"
                             >
-                              {{ title }}
-                            </v-card-title>
+                              更多
+                            </a>
 
-                            <v-card-text>
-                              <span v-for="(item,k) in appdetails" :key="k">
-                                <span v-if="item.data.detailed_description" v-html="item.data.detailed_description"></span>
-                              </span>
-                            </v-card-text>
-
-                            <v-divider></v-divider>
-
-                            <v-card-actions>
-                              <v-spacer></v-spacer>
-                              <v-btn
-                                color="primary"
-                                flat
-                                @click="dialogReadMore = false"
+                            <v-card>
+                              <v-card-title
+                                class="headline grey lighten-2"
+                                primary-title
                               >
-                                关闭
-                              </v-btn>
-                            </v-card-actions>
-                          </v-card>
-                        </v-dialog>
+                                {{ title }}
+                              </v-card-title>
+
+                              <v-card-text>
+                                <span v-for="(item,k) in appdetails" :key="k">
+                                  <span v-if="item.data.detailed_description" v-html="item.data.detailed_description"></span>
+                                </span>
+                              </v-card-text>
+
+                              <v-divider></v-divider>
+
+                              <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  color="primary"
+                                  flat
+                                  @click="dialogReadMore = false"
+                                >
+                                  关闭
+                                </v-btn>
+                              </v-card-actions>
+                            </v-card>
+                          </v-dialog>
+                        </div>
+                      </v-flex>
+                    </v-layout>
+                  </div>
+                </div>
+                <div class="hidden-sm-and-down"></div>
+                <div class="hidden-sm-and-down">
+                  <v-layout wrap row>
+                    <v-flex xs12>
+                      <v-btn dark large block  :href="'https://store.steampowered.com/app/' + appid" target="_balck" class="mx-0">购买</v-btn>
+                      <div>
+                        <v-btn class="mx-0" block flat small @click="tabActice = 'tab-2'"><v-icon left small class="my-0">fas fa-exclamation-triangle</v-icon>查看系统需求</v-btn>
                       </div>
                     </v-flex>
                   </v-layout>
                 </div>
-              </div>
-              <div></div>
-              <div>
-                <v-layout wrap row>
-                  <v-flex xs12>
-                    <v-btn dark large block  :href="'https://store.steampowered.com/app/' + appid" target="_balck" class="mx-0">购买</v-btn>
-                    <div>
-                      <v-btn class="mx-0" block flat small @click="tabActice = 'tab-2'"><v-icon left small class="my-0">fas fa-exclamation-triangle</v-icon>查看系统需求</v-btn>
-                    </div>
-                  </v-flex>
-                </v-layout>
-              </div>
-            </v-layout>
+              </v-layout>
+            </v-card>
+          </v-container>
+        </v-flex>
+      </v-layout>
+    </v-card>
+    <v-container fluid grid-list-sm class="index-main-container">
+      <div class="page-main">
+        <div>
+          <v-container fluid>
             <div>
               <v-tabs centered color="grey lighten-4" v-model="tabActice">
                 <v-tabs-slider color="black"></v-tabs-slider>
@@ -229,7 +245,7 @@
               </v-tabs>
             </div>
           </v-container>
-          <v-container fluid dark>
+          <v-container fluid dark v-if="chartData">
             <div>
               <div class="my-3" id="gamePrice">
                 <h2>游戏价格 - Beta</h2>
@@ -283,7 +299,6 @@
 </template>
 
 <script>
-  import PageHeader from '~/components/PageHeader'
   import GameHeader from '~/components/GameHeader'
   import axios from 'axios'
 
@@ -298,11 +313,9 @@
       for (let i = 0; i < appPrices.data.length; i++) {
         appPrices.data[i].现价 = appPrices.data[i]['PriceFinal'] / 100
         appPrices.data[i].原价 = appPrices.data[i]['PriceInitial'] / 100
-        appPrices.data[i].折扣力度 = appPrices.data[i]['PriceDiscount']
         appPrices.data[i].更新时间 = appPrices.data[i]['LastUpdated']
         delete appPrices.data[i].PriceFinal
         delete appPrices.data[i].PriceInitial
-        delete appPrices.data[i].PriceDiscount
         delete appPrices.data[i].LastUpdated
       }
       return {
@@ -320,7 +333,6 @@
       }
     },
     components: {
-      PageHeader,
       GameHeader
     },
     data: () => ({
@@ -367,15 +379,6 @@
     }),
     created: function () {
       this.headerText.title = this.title
-      if (this.appPrices[this.appPrices.length - 1].折扣力度 !== 0) {
-        this.isDiscount = true
-        this.discountPrice = this.appPrices[this.appPrices.length - 1].现价
-      }
-      let newArrPriceFinal = []
-      for (let i = 0; i < this.appPrices.length; i++) {
-        newArrPriceFinal = newArrPriceFinal.concat(this.appPrices[i].现价)
-      }
-      this.minPriceFinal = Math.min.apply(Math, newArrPriceFinal)
       this.gameHeader = [
         { icon: 'info', text: '信息', dark: true, link: '/apps/' + this.appid },
         { icon: 'attach_money', text: '价格', outline: true, link: '/apps/prices/' + this.appid },
@@ -392,6 +395,10 @@
         .then(response => {
           this.appdetails = response.data
           this.carouselLoading = 0
+        })
+      axios.get('https://rest.steamhub.cn/api/game/search/app/list/view/' + this.appid + '/price?country=cn&math=min')
+        .then(response => {
+          this.minPriceFinal = response.data / 100
         })
     },
     mounted: function () {
@@ -602,5 +609,27 @@
   .accent--text {
     color: #000 !important;
     caret-color: #000 !important;
+  }
+  .card--flex-toolbar {
+    margin-top: -20vh;
+  }
+
+  .header_video {
+    height: 100vh
+  }
+  @media screen and (max-width: 1264px) {
+    .header_video {
+      height: 80vh;
+    }
+  }
+  @media screen and (max-width: 960px) {
+    .header_video {
+      height: 75vh;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .header_video {
+      height: 50vh;
+    }
   }
 </style>
