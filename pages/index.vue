@@ -152,7 +152,6 @@
 
 <script>
 import GameListCard from '~/components/GameListCard'
-import PageHeader from '~/components/PageHeader'
 import axios from 'axios'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import dayjs from 'dayjs'
@@ -162,8 +161,7 @@ dayjs.extend(relativeTime)
 
 export default {
   components: {
-    GameListCard,
-    PageHeader
+    GameListCard
   },
   async asyncData () {
     return axios
@@ -251,6 +249,11 @@ export default {
       })
       .catch(e => {
         this.feature.error = '加载出错'
+      })
+    axios
+      .get('https://rest.steamhub.cn/api/game/search/app/list/all/12')
+      .then(function (response) {
+        return { list: response.data }
       })
   }
 }
