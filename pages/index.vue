@@ -53,7 +53,7 @@
           >
             <v-flex xs8>
               <v-btn
-                color="deep-purple lighten-1"
+                color="blue"
                 dark
                 class="mx-0"
               >
@@ -96,7 +96,7 @@
                   >
                     <v-flex xs12>
                       <v-card
-                        color="deep-purple lighten-1 mb-5"
+                        color="blue mb-5"
                         flat
                         dark
                       >

@@ -28,7 +28,7 @@
                 <v-flex d-flex>
                   <v-layout row wrap>
                     <v-flex xs12>
-                      <v-card color="deep-purple lighten-1 mb-5" flat dark>
+                      <v-card color="blue mb-5" flat dark>
                         <v-card-title primary-title>
                           <div>
                             <h4 class="headline mb-0">
