@@ -48,7 +48,6 @@
                       >
                         <span v-if="item.Key === 154"> {{ item.Value }} · </span>
                         <span v-if="item.Key === 155"> {{ apps[0].app_type.DisplayName }} </span>
-                        <span v-if="item.Value === 'prerelease'">游戏尚未发售</span>
                       </span>
                     </div>
                     <v-layout
@@ -148,6 +147,37 @@
                     row
                   >
                     <v-flex xs12>
+                      <h4 class="display-1 font-weight-bold">￥{{ appPrices[0].现价 }}</h4>
+                      <span v-for="(item,k) in appInfos" :key="k">
+                        <div v-if="item.Value === 'prerelease'">
+                          游戏尚未发售
+                        </div>
+                      </span>
+                      <div v-if="details">
+                        <v-menu full-width top offset-y>
+                          <v-btn
+                            slot="activator"
+                            block
+                            large
+                            outline
+                          >
+                            {{ title }}
+                            <v-icon right>
+                              fas fa-chevron-down
+                            </v-icon>
+                          </v-btn>
+                          <v-list>
+                            <v-list-tile
+                              v-for="(item, index) in packages"
+                              :key="index"
+                              :href="item.packageid"
+                              :nuxt="true"
+                            >
+                              <v-list-tile-title>{{ item.option_text }}</v-list-tile-title>
+                            </v-list-tile>
+                          </v-list>
+                        </v-menu>
+                      </div>
                       <v-btn
                         dark
                         large
@@ -156,21 +186,6 @@
                         target="_balck"
                         class="mx-0"
                       >购买</v-btn>
-                      <div>
-                        <v-btn
-                          class="mx-0"
-                          block
-                          flat
-                          small
-                          @click="tabActice = 'tab-2'"
-                        >
-                          <v-icon
-                            left
-                            small
-                            class="my-0"
-                          >fas fa-exclamation-triangle</v-icon>查看系统需求
-                        </v-btn>
-                      </div>
                     </v-flex>
                   </v-layout>
                 </div>
@@ -586,8 +601,9 @@
           现价: o.PriceFinal / 100,
           原价: o.PriceInitial / 100,
           更新时间: o.LastUpdated
-        }, _.omit(o, 'id', 'name'))
+        })
       })
+      console.log(apps.data[0])
       return {
         apps: apps.data,
         appInfos: appInfos.data,
@@ -595,7 +611,7 @@
         appid: params.id,
         title: apps.data[0]['Name'],
         lastUpdated: apps.data[0]['LastUpdated'],
-        appPrices: appPrices.data,
+        appPrices: result,
         chartData: {
           columns: ['更新时间', '原价', '现价'],
           rows: _.orderBy(result, ['更新时间'], ['asc'])
@@ -659,6 +675,11 @@
       ]
       axios.get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid)
         .then(response => {
+          if (response.data[this.appid].data.package_groups[0].subs) {
+            const getDetails = response.data[this.appid].data.package_groups[0].subs
+            this.packages = getDetails
+            this.details = true
+          }
           this.appdetails = response.data
           this.carouselLoading = 0
         })
