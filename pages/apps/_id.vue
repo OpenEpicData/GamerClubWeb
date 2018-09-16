@@ -571,6 +571,7 @@
 <script>
   import GameHeader from '~/components/GameHeader'
   import axios from 'axios'
+  import _ from 'lodash'
 
   export default {
     async asyncData ({ query, params }) {
@@ -580,14 +581,13 @@
         axios.get('https://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China'),
         axios.get('https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1')
       ])
-      for (let i = 0; i < appPrices.data.length; i++) {
-        appPrices.data[i].现价 = appPrices.data[i]['PriceFinal'] / 100
-        appPrices.data[i].原价 = appPrices.data[i]['PriceInitial'] / 100
-        appPrices.data[i].更新时间 = appPrices.data[i]['LastUpdated']
-        delete appPrices.data[i].PriceFinal
-        delete appPrices.data[i].PriceInitial
-        delete appPrices.data[i].LastUpdated
-      }
+      let result = appPrices.data.map(function (o) {
+        return Object.assign({
+          现价: o.PriceFinal / 100,
+          原价: o.PriceInitial / 100,
+          更新时间: o.LastUpdated
+        }, _.omit(o, 'id', 'name'))
+      })
       return {
         apps: apps.data,
         appInfos: appInfos.data,
@@ -598,7 +598,7 @@
         appPrices: appPrices.data,
         chartData: {
           columns: ['更新时间', '原价', '现价'],
-          rows: appPrices.data
+          rows: _.orderBy(result, ['更新时间'], ['asc'])
         }
       }
     },
