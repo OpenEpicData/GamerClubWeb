@@ -47,7 +47,7 @@
                         :key="k"
                       >
                         <span v-if="item.Key === 154"> {{ item.Value }} · </span>
-                        <span v-if="item.Key === 155"> {{ apps[0].AppsTypes.DisplayName }} </span>
+                        <span v-if="item.Key === 155"> {{ apps[0].app_type.DisplayName }} </span>
                         <span v-if="item.Value === 'prerelease'">游戏尚未发售</span>
                       </span>
                     </div>
@@ -575,9 +575,9 @@
   export default {
     async asyncData ({ query, params }) {
       let [apps, appInfos, appPrices, appTags] = await Promise.all([
-        axios.get('https://api.steamhub.cn/api/v1/steam/apps/' + params.id),
-        axios.get('https://api.steamhub.cn/api/v1/steam/app/infos/' + params.id),
-        axios.get('https://api.steamhub.cn/api/v1/steam/game/prices/' + params.id + '?country=China'),
+        axios.get('https://rest.steamhub.cn/api/v2/apps/lists/' + params.id),
+        axios.get('https://rest.steamhub.cn/api/v2/apps/infos/' + params.id),
+        axios.get('http://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China'),
         axios.get('https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1')
       ])
       for (let i = 0; i < appPrices.data.length; i++) {
@@ -657,11 +657,7 @@
         { icon: 'home', text: '仓库', outline: true, disable: true },
         { icon: 'history', text: '更新历史', outline: true, disable: true }
       ]
-      axios.get('https://api.steamhub.cn/api/v1/steam/app/appdetails/' + this.appid, {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
+      axios.get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid)
         .then(response => {
           this.appdetails = response.data
           this.carouselLoading = 0

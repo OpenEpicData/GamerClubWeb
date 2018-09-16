@@ -91,7 +91,7 @@
       PageHeader
     },
     async asyncData ({ params }) {
-      return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/36?page=` + params.id)
+      return axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + params.id)
         .then(function (response) {
           let page = response.data.current_page
           if (params.id === undefined) {
@@ -104,13 +104,13 @@
       dialogAPI: false,
       page: 1,
       headerText: {
-        title: `实时更新的 Steam 应用数据`,
-        descript: `SteamHub 为开发者提供第一手 Steam 应用数据,数据更新速度取决于我们的更新队列情况`,
-        button: `使用 API`,
+        title: '实时更新的 Steam 应用数据',
+        descript: 'SteamHub 为开发者提供第一手 Steam 应用数据,数据更新速度取决于我们的更新队列情况',
+        button: '使用 API',
         dialog: {
-          text: `功能开发中`,
+          text: '功能开发中',
           progressBar: {
-            height: `6`
+            height: '6'
           }
         }
       }
@@ -122,7 +122,7 @@
       page: function (newPage, oldPage) {
         this.$vuetify.goTo('#GameList', 'easyInQuad')
         this.$router.push({ path: '/apps/pages/' + newPage })
-        return axios.get(`https://rest.steamhub.cn/api/game/search/app/list/all/36?page=` + newPage)
+        return axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + newPage)
           .then(response => {
             this.list = response.data
           })

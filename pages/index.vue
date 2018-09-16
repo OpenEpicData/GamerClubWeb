@@ -169,7 +169,7 @@ export default {
   },
   async asyncData () {
     return axios
-      .get('https://rest.steamhub.cn/api/game/search/app/list/all/12')
+      .get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=12')
       .then(function (response) {
         return { list: response.data }
       })
