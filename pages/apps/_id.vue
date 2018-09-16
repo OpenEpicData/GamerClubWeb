@@ -577,7 +577,7 @@
       let [apps, appInfos, appPrices, appTags] = await Promise.all([
         axios.get('https://rest.steamhub.cn/api/v2/apps/lists/' + params.id),
         axios.get('https://rest.steamhub.cn/api/v2/apps/infos/' + params.id),
-        axios.get('http://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China'),
+        axios.get('https://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China'),
         axios.get('https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1')
       ])
       for (let i = 0; i < appPrices.data.length; i++) {
