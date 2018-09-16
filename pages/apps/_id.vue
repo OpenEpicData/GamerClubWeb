@@ -170,8 +170,8 @@
                             <v-list-tile
                               v-for="(item, index) in packages"
                               :key="index"
-                              :href="item.packageid"
-                              :nuxt="true"
+                              :href="'https://store.steampowered.com/sub/' + item.packageid"
+                              target="_black"
                             >
                               <v-list-tile-title>{{ item.option_text }}</v-list-tile-title>
                             </v-list-tile>
