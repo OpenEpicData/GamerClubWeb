@@ -1,7 +1,7 @@
 <template>
   <v-flex d-flex xs12>
     <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 md4 lg3 v-for="(item,i) in list.data" :key="i" class="game-list-card px-3">
+      <v-flex d-flex xs12 sm6 md4 lg4 xl3 v-for="(item,i) in list.data" :key="i" class="game-list-card px-3">
         <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4">
             <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
@@ -14,7 +14,7 @@
                       </v-icon>
                       {{ item.app_type.DisplayName | typeName }}
                     </v-btn>
-                    <v-btn class="card-right-attention-icon" small color="primary" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
+                    <v-btn class="card-right-attention-icon" small color="g-blue-hydrogen" dark :loading="dialogAttention" @click.stop="dialogAttention = true">
                       <v-icon left>
                         add
                       </v-icon>
@@ -24,7 +24,7 @@
                 </v-layout>
               </v-container>
             </v-img>
-            <v-card-title primary-title class="grey lighten-4">
+            <v-card-title g-blue-hydrogen-title class="grey lighten-4">
               <v-layout row>
                 <v-flex xs8>
                   <nuxt-link :to="'/apps/'+ item.AppID" style="text-decoration: none;color: #000">
@@ -33,7 +33,7 @@
                       未知应用
                     </h3>
                     <h3 v-else>
-                      {{ item.Name.slice(0, 20) }}...
+                      {{ item.Name.slice(0, 15) }}...
                     </h3>
                   </nuxt-link>
                 </v-flex>
@@ -75,7 +75,7 @@
       </v-flex>
     </v-layout>
     <v-dialog v-model="dialogAttention" hide-overlay persistent width="300">
-      <v-card color="primary" dark>
+      <v-card color="g-blue-hydrogen" dark>
         <v-card-text>
           功能开发中
           <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
@@ -89,7 +89,6 @@
   .card-right-attention-icon {
     display: none;
   }
-
   .game-list-card :hover .card-right-icon {
     display: none;
   }
@@ -106,6 +105,8 @@
     }
   }
 </style>
+
+
 
 <script>
   import relativeTime from 'dayjs/plugin/relativeTime'
