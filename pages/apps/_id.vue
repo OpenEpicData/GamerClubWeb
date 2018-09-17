@@ -173,7 +173,7 @@
                               :href="'https://store.steampowered.com/sub/' + item.packageid"
                               target="_black"
                             >
-                              <v-list-tile-title>{{ item.option_text }}</v-list-tile-title>
+                              <v-list-tile-title v-html="item.option_text"></v-list-tile-title>
                             </v-list-tile>
                           </v-list>
                         </v-menu>
@@ -919,6 +919,10 @@
 
   .header_video {
     height: 100vh
+  }
+
+  .discount_original_price {
+    text-decoration:line-through
   }
 
   @media screen and (max-width: 1264px) {
