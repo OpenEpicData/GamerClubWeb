@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <PageHeader :headerText.sync="headerText"></PageHeader>
+  <div class="mt-5">
     <div id="GameList" class="grey lighten-4">
       <v-container fluid grid-list-sm class="index-main-container">
-        <div class="page-main">
+        <div class="page-main mt-5">
           <v-layout row wrap class="pl-3">
             <v-flex xs8>
-              <v-btn color="deep-purple lighten-1 mx-0" dark>
+              <v-btn color="g-purple-purplin mx-0" dark>
                 <v-icon left>apps</v-icon>游戏
               </v-btn>
               <h4 class="mt-2">记录在案的游戏: {{ list.total }}, 数据采集中...</h4>
@@ -28,7 +27,7 @@
                 <v-flex d-flex>
                   <v-layout row wrap>
                     <v-flex xs12>
-                      <v-card color="blue mb-5" flat dark>
+                      <v-card color="g-blue-hydrogen mb-5" flat dark>
                         <v-card-title primary-title>
                           <div>
                             <h4 class="headline mb-0">
@@ -64,7 +63,7 @@
         </div>
       </v-container>
       <v-dialog v-model="dialogAPI" hide-overlay persistent width="300">
-        <v-card color="primary" dark>
+        <v-card color="g-blue-hydrogen" dark>
           <v-card-text>
             功能开发中
             <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
