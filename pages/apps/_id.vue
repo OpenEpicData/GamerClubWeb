@@ -9,7 +9,7 @@
         class="header_video"
       >
         <video
-          :src="appdetails[appid].data.movies[0].webm.max"
+          :src="appdetails[appid].data.movies[0].webm.max | moviePath"
           height="100%"
           width="100%"
           autoplay="autoplay"
@@ -703,6 +703,9 @@
       }
     },
     filters: {
+      moviePath: function (value) {
+        return value.replace(/http/, 'https')
+      },
       appInfoDisplayName: function (value) {
         switch (value) {
           case 'changenumber':
