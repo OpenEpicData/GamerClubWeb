@@ -154,7 +154,7 @@
                         </div>
                       </span>
                       <div v-if="details">
-                        <v-menu full-width top offset-y>
+                        <v-menu full-width top left offset-y>
                           <v-btn
                             slot="activator"
                             block
