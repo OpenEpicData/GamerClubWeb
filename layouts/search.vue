@@ -11,11 +11,11 @@
         <v-text-field
           class="mt-2 ml-1 hidden-sm-and-down"
           solo-inverted
-          label="搜索 游戏名称,ID"
+          label="搜索功能重做中..."
           append-icon="search"
           v-model="search"
           @click="searchButton"
-          autofocus
+          disabled
         ></v-text-field>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
