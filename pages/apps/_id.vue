@@ -603,7 +603,6 @@
           更新时间: o.LastUpdated
         })
       })
-      console.log(apps.data[0])
       return {
         apps: apps.data,
         appInfos: appInfos.data,
