@@ -3,20 +3,11 @@
     <div class="hidden-sm-and-down">
       <v-toolbar app fixed clipped-left class="white">
         <img src="/logo_64x64.png" alt="SteamHub Logo">
-        <span class="title ml-3 mr-5">SteamHub --Search</span>
+        <span class="title ml-3 mr-5">SteamHub -- Search</span>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn flat to="/">浏览</v-btn>
           <v-btn flat to="/apps/pages/">游戏</v-btn>
         </v-toolbar-items>
-        <v-text-field
-          class="mt-2 ml-1 hidden-sm-and-down"
-          solo-inverted
-          label="搜索功能重做中..."
-          append-icon="search"
-          v-model="search"
-          @click="searchButton"
-          disabled
-        ></v-text-field>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
           <v-btn 
@@ -46,12 +37,8 @@
         </v-tabs>
       </v-toolbar>
     </div>
-    <div class="grey lighten-4">
-      <v-container fluid grid-list-sm class="index-main-container">
-        <div class="page-main">
-          <nuxt />
-        </div>
-      </v-container>
+    <div>
+      <nuxt />
     </div>
     <v-dialog
       v-model="dialogJoin"
@@ -199,4 +186,10 @@
       height: 0 !important;
     }
   }
+</style>
+
+<style>
+.v-text-field--box.v-text-field--single-line input, .v-text-field--outline.v-text-field--single-line input {
+  margin: 0
+}
 </style>
