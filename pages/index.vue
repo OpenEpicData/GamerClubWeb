@@ -31,12 +31,12 @@
                 <v-layout align-center justify-space-around row fill-height>
                   <v-flex xs3 v-if="item.right">
                   </v-flex>
-                  <v-flex xs5 sm5 md4 class="mx-3">
-                    <h2 class="display-1">{{ item.title }}</h2>
-                    <h4 class="subheading my-2">{{ item.description }}</h4>
-                    <v-btn :dark="item.dark" :light="item.light" large class="mx-0" :to="item.to">{{ item.btn_title }}</v-btn>
+                  <v-flex xs5 sm5 md8 class="mx-3">
+                    <h1 class="display-1" id="header_description">{{ item.description }}</h1>
+                    <h4 class="subheading my-3">IGN 评分: {{ item.ign }}</h4>
+                    <v-btn :dark="item.dark" outline flat :light="item.light" large class="mx-0" :to="item.to">{{ item.btn_title }}</v-btn>
                   </v-flex>
-                  <v-flex xs3 v-if="item.left">
+                  <v-flex xs1 v-if="item.left">
                   </v-flex>
                 </v-layout>
               </v-img>
@@ -195,35 +195,40 @@ export default {
     },
     carousel: [
       {
+        src: 'https://images4.alphacoders.com/629/629243.jpg',
+        left: true,
+        title: '神界：原罪 2',
+        description: '这是一部备受期待获奖众多的角色扮演游戏的续作。召集你的团队，探讨战术，左右战局。你最多可以和其他三名玩家合作。',
+        btn_title: '了解更多',
+        color: 'white--text',
+        dark: true,
+        ign: '9.6/10 凭借着令人惊艳的多种重要选择，《神界：原罪2》将成为最伟大的RPG之一。',
+        to: '/apps/513710',
+        gradient: 'to right, rgba(20,30,48,.5), rgba(36,59,85,.5)'
+      },
+      {
         src: 'https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE26uIj',
         left: true,
         title: '古墓丽影：暗影',
         description: '劳拉 · 克劳馥一路狂奔，拯救世界免遭玛雅预言中的天灾摧毁，她终将迎接命运，成长为命中注定的古墓侠盗。',
         btn_title: '了解更多',
+        ign: '9/10 《古墓丽影 暗影》为劳拉·克劳馥的起源三部曲献上了强有力的终章。',
         color: 'white--text',
-        light: true,
-        to: '/apps/750920'
-      },
-      {
-        src: 'https://cdn.steamstatic.com.8686c.com/steam/apps/513710/ss_a204af58b6de92e3151df4546c1428f9071dda7c.jpg?t=1535642765',
-        left: true,
-        title: '人渣',
-        description: '娱乐巨头 TEC1 公司推出的惊世大作《SCUM》第二季，点燃了全球观众心中嗜血的欲望。',
-        btn_title: '了解更多',
-        color: 'white--text',
-        light: true,
-        to: '/apps/513710'
+        dark: true,
+        to: '/apps/750920',
+        gradient: 'to right, rgba(20,30,48,.5), rgba(36,59,85,.5)'
       },
       {
         src: 'https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTc02EDIiHVva.zlM4YNLDcbGls0XD.tKgCL2Ya_T4MPFLnEDq6KaWYYyOFR_Utg.AEM5Fd8np3bVqJ3x2PGJ7hcUyjRi9JtQTpP.I5.e2A57ztX.Mvzlt7w7pUzJ.M7C5dhiJX.4PrQt7zvKcOrGSNXVKxugEGtiFuf0GElxRuGtk-&h=1080&w=1920&format=jpg',
-        right: true,
+        left: true,
         title: '城市：天际线',
-        description: '《城市：天际线》是对经典城市模拟类游戏的现代演绎。该游戏引入了全新的游戏玩法元素，让玩家切身体会到创造和维持一座真正城市的兴奋和艰辛，同时扩展了城市建设体验中的一些经久不衰的主题。',
+        description: '设计，建造和管理您的梦想之城，从公共服务到公民政策，挑战自我，从简单的城镇发展成繁华的大都市中心。',
         btn_title: '了解更多',
         color: 'white--text',
-        light: true,
+        dark: true,
+        ign: '8.5/10 《城市：天际线》的主题只有一个，那就是建造庞大、喧嚣的城市，而且不需要我们面对各种屠城灾难。',
         to: '/apps/255710',
-        gradient: 'to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)'
+        gradient: 'to right, rgba(20,30,48,.5), rgba(36,59,85,.5)'
       }
     ]
   }),
@@ -278,6 +283,10 @@ export default {
 .v-carousel {
   box-shadow: none;
   -webkit-box-shadow: none;
+}
+
+#header_description {
+  line-height: 6vh !important;
 }
 </style>
 
