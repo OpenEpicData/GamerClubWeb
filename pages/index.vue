@@ -7,41 +7,7 @@
         class="index-main-container"
       >
         <div class="hidden-md-and-down">
-          <v-carousel
-            delimiter-icon="far fa-circle"
-            prev-icon="fas fa-angle-left"
-            next-icon="fas fa-angle-right"
-          >
-            <v-carousel-item
-              transition="fade-transition"
-              v-for="(item, i) in carousel"
-              :key="i"
-              :dark="item.dark"
-              :light="item.light"
-            >
-              <v-img
-                :src="item.src"
-                :lazy-src="'/unknow.jpg'"
-                :aspect-ratio="16/9"
-                v-bind:class="item.color"
-                height="100%"
-                width="100%"
-                :gradient="item.gradient"
-              >
-                <v-layout align-center justify-space-around row fill-height>
-                  <v-flex xs3 v-if="item.right">
-                  </v-flex>
-                  <v-flex xs5 sm5 md8 class="mx-3">
-                    <h1 class="display-1" id="header_description">{{ item.description }}</h1>
-                    <h4 class="subheading my-3">IGN 评分: {{ item.ign }}</h4>
-                    <v-btn :dark="item.dark" outline flat :light="item.light" large class="mx-0" :to="item.to">{{ item.btn_title }}</v-btn>
-                  </v-flex>
-                  <v-flex xs1 v-if="item.left">
-                  </v-flex>
-                </v-layout>
-              </v-img>
-            </v-carousel-item>
-          </v-carousel>
+          <Carousel :carousel.sync="carousel"></Carousel>
         </div>
 
         <div class="page-main mt-5">
@@ -144,18 +110,9 @@
   </div>
 </template>
 
-<style>
-  .el-carousel__item:nth-child(2n) {
-    background-color: transparent;
-  }
-
-  .el-carousel__item:nth-child(2n + 1) {
-    background-color: transparent;
-  }
-</style>
-
 <script>
 import GameListCard from '~/components/GameListCard'
+import Carousel from '~/components/Carousel/Default'
 import axios from 'axios'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import dayjs from 'dayjs'
@@ -165,7 +122,8 @@ dayjs.extend(relativeTime)
 
 export default {
   components: {
-    GameListCard
+    GameListCard,
+    Carousel
   },
   async asyncData () {
     return axios
@@ -202,7 +160,7 @@ export default {
         btn_title: '了解更多',
         color: 'white--text',
         dark: true,
-        ign: '9.6/10 凭借着令人惊艳的多种重要选择，《神界：原罪2》将成为最伟大的RPG之一。',
+        star: 'IGN 评分: 9.6/10 凭借着令人惊艳的多种重要选择，《神界：原罪2》将成为最伟大的RPG之一。',
         to: '/apps/513710',
         gradient: 'to right, rgba(20,30,48,.5), rgba(36,59,85,.5)'
       },
@@ -212,7 +170,7 @@ export default {
         title: '古墓丽影：暗影',
         description: '劳拉 · 克劳馥一路狂奔，拯救世界免遭玛雅预言中的天灾摧毁，她终将迎接命运，成长为命中注定的古墓侠盗。',
         btn_title: '了解更多',
-        ign: '9/10 《古墓丽影 暗影》为劳拉·克劳馥的起源三部曲献上了强有力的终章。',
+        star: 'IGN 评分: 9/10 《古墓丽影 暗影》为劳拉·克劳馥的起源三部曲献上了强有力的终章。',
         color: 'white--text',
         dark: true,
         to: '/apps/750920',
@@ -226,7 +184,7 @@ export default {
         btn_title: '了解更多',
         color: 'white--text',
         dark: true,
-        ign: '8.5/10 《城市：天际线》的主题只有一个，那就是建造庞大、喧嚣的城市，而且不需要我们面对各种屠城灾难。',
+        star: 'IGN 评分: 8.5/10 《城市：天际线》的主题只有一个，那就是建造庞大、喧嚣的城市，而且不需要我们面对各种屠城灾难。',
         to: '/apps/255710',
         gradient: 'to right, rgba(20,30,48,.5), rgba(36,59,85,.5)'
       }
