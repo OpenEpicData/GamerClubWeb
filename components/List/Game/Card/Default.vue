@@ -1,11 +1,25 @@
 <template>
   <v-flex d-flex xs12>
     <v-layout row wrap>
+      <v-flex d-flex xs12 sm6 md3 lg2 v-for="(item,i) in 6" :key="i" class="game-list-card px-2" v-if="!list">
+        <v-hover>
+          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3">
+            <v-img style="cursor:pointer" :src="'/unknow.jpg'" :lazy-src="'/unknow.jpg'">
+            </v-img>
+            <v-card-title primary-title>
+              <v-layout row wrap>
+                <v-flex xs12>
+                  <span class="grey--text"><v-progress-linear :indeterminate="true" background-color="transparent" color="g-purple-purplin" v-for="i in 2" :key="i"></v-progress-linear></span>
+                </v-flex>
+              </v-layout>
+            </v-card-title>
+          </v-card>
+        </v-hover>
+      </v-flex>
       <v-flex d-flex xs12 sm6 md3 lg2 v-for="(item,i) in list" :key="i" class="game-list-card px-2">
         <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="33vh">
-            <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'"
-              :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
+            <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
               <v-container fill-height fluid pa-2>
                 <v-layout align-start justify-start row fill-height>
                   <v-flex xs12 flexbox class="text-xs-right" v-if="item.app_type">
@@ -43,14 +57,6 @@
         </v-hover>
       </v-flex>
     </v-layout>
-    <v-dialog v-model="dialogAttention" hide-overlay persistent width="300">
-      <v-card color="g-blue-hydrogen" dark>
-        <v-card-text>
-          功能开发中
-          <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
   </v-flex>
 </template>
 
