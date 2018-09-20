@@ -1,6 +1,6 @@
 <template>
   <v-carousel delimiter-icon="far fa-circle" prev-icon="fas fa-angle-left" next-icon="fas fa-angle-right">
-    <v-carousel-item transition="fade-transition" v-for="(item, i) in carousel" :key="i" :dark="item.dark" :light="item.light">
+    <v-carousel-item transition="fade-transition" reverse-transition="fade-transition" v-for="(item, i) in carousel" :key="i" :dark="item.dark" :light="item.light">
       <v-img :src="item.src" :lazy-src="'/unknow.jpg'" :aspect-ratio="16/9" v-bind:class="item.color" height="100%"
         width="100%" :gradient="item.gradient">
         <v-layout align-center justify-space-around row fill-height>
