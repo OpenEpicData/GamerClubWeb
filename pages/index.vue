@@ -9,7 +9,6 @@
         <div class="hidden-md-and-down">
           <Carousel :carousel.sync="carousel"></Carousel>
         </div>
-
         <div class="page-main mt-5">
           <v-layout
             class="pl-3"
@@ -28,7 +27,7 @@
               <h2 class="mt-3">今日
                 <v-chip>{{ month }}月{{ day }}日</v-chip>
               </h2>
-              <h4 class="mt-2">记录在案的游戏: {{ list.total }}, 数据采集中...</h4>
+              <h4 class="mt-2">记录在案的游戏: <span v-if="list">{{ list.current_page }}</span> , 数据采集中...</h4>
             </v-flex>
             <v-flex xs4>
               <div class="text-xs-right mt-3">
@@ -44,7 +43,7 @@
             id="GameList"
           >
             <v-flex lg9>
-              <GameListCard :list.sync="list"></GameListCard>
+              <GameListCard :list.sync="list.data"></GameListCard>
             </v-flex>
             <v-flex
               d-flex
@@ -125,32 +124,12 @@ export default {
     GameListCard,
     Carousel
   },
-  async asyncData () {
-    return axios
-      .get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=12')
-      .then(function (response) {
-        return { list: response.data }
-      })
-  },
   data: () => ({
-    price: '',
-    step: '0',
-    isPrice: '',
     queue: '',
     feature: '',
-    carouselLoading: 6,
-    headerText: {
-      title: '全球 Steam 数据统计分析 By SteamHub',
-      descript:
-          'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询 ',
-      button: '使用 API',
-      dialog: {
-        text: '功能开发中',
-        progressBar: {
-          height: '6'
-        }
-      }
-    },
+    month: '',
+    day: '',
+    list: '',
     carousel: [
       {
         src: 'https://images4.alphacoders.com/629/629243.jpg',
@@ -195,33 +174,16 @@ export default {
       this.$router.push({ path: '/apps/' + id })
     }
   },
-  created: function () {
+  mounted: async function () {
     const Today = new Date()
     this.month = Today.getMonth() + 1
     this.day = Today.getDate()
-    axios
-      .get('https://rest.steamhub.cn/api/game/search/app/update_queue/count')
-      .then(response => {
-        this.queue = response.data
-      })
-    axios
-      .get('https://api.steamhub.cn/api/v1/steam/game/features', {
-        headers: {
-          'Access-Control-Allow-Origin': '*'
-        }
-      })
-      .then(response => {
-        this.feature = response.data.specials.items
-        this.carouselLoading = 0
-      })
-      .catch(e => {
-        this.feature.error = '加载出错'
-      })
-    axios
-      .get('https://rest.steamhub.cn/api/game/search/app/list/all/12')
-      .then(function (response) {
-        return { list: response.data }
-      })
+    let [queue, apps] = await Promise.all([
+      axios.get('https://rest.steamhub.cn/api/game/search/app/update_queue/count'),
+      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=12')
+    ])
+    this.queue = queue.data
+    this.list = apps.data
   }
 }
 </script>
