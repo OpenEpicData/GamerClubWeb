@@ -65,7 +65,23 @@
 
 <script>
 export default {
-  props: ['carousel']
+  props: ['carousel'],
+  data: () => ({
+    carousel: [
+      {
+        src: String,
+        left: Boolean,
+        title: String,
+        description: String,
+        btn_title: String,
+        color: String,
+        dark: Boolean,
+        star: String,
+        to: String,
+        gradient: String
+      }
+    ]
+  })
 }
 </script>
 
