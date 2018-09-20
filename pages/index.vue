@@ -27,7 +27,6 @@
               <h2 class="mt-3">今日
                 <v-chip>{{ month }}月{{ day }}日</v-chip>
               </h2>
-              <h4 class="mt-2">记录在案的游戏: <span v-if="list">{{ list.current_page }}</span> , 数据采集中...</h4>
             </v-flex>
             <v-flex xs4>
               <div class="text-xs-right mt-3">
