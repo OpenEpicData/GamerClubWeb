@@ -161,7 +161,7 @@ export default {
         color: 'white--text',
         dark: true,
         star: 'IGN 评分: 9.6/10 凭借着令人惊艳的多种重要选择，《神界：原罪2》将成为最伟大的RPG之一。',
-        to: '/apps/513710',
+        to: '/apps/435150',
         gradient: 'to right, rgba(20,30,48,.5), rgba(36,59,85,.5)'
       },
       {
