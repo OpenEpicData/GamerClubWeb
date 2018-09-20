@@ -1,7 +1,7 @@
 <template>
   <v-flex d-flex xs12>
     <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 md4 lg4 xl3 v-for="(item,i) in list.data" :key="i" class="game-list-card px-3">
+      <v-flex d-flex xs12 sm6 md4 lg4 xl3 v-for="(item,i) in list" :key="i" class="game-list-card px-3">
         <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4">
             <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
@@ -121,17 +121,13 @@
     props: ['list'],
     data () {
       return {
-        dialogAttention: false,
-        page: this.page
+        dialogAttention: false
       }
     },
     methods: {
       cardTo: function (id) {
         this.$router.push({path: '/apps/' + id})
       }
-    },
-    created: function () {
-      this.page = parseInt(this.list.page)
     },
     watch: {
       dialogAttention (val) {
