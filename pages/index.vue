@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5">
+  <div>
     <div class="grey lighten-4">
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="hidden-md-and-down">
@@ -18,7 +18,7 @@
               </h2>
             </v-flex>
             <v-flex xs12 md4>
-              <div class="text-xs-right">
+              <div class="text-xs-right hidden-sm-and-down">
                 <h3>更新队列中的项目: {{ queue }} 个</h3>
               </div>
             </v-flex>

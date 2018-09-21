@@ -11,7 +11,7 @@
           <v-layout class="px-2 mt-3" row wrap id="today">
             <v-flex xs12>
               <h2>
-                记录在案的游戏: <span v-if="list">{{ list.total }}</span>, 数据采集中...
+                记录在案的游戏: <span v-if="list">{{ list[0].total }}</span>, 数据采集中...
               </h2>
             </v-flex>
           </v-layout>

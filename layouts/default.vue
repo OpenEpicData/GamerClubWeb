@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire" class="grey lighten-4">
     <ToolBar :ToolBar.sync="ToolBar"></ToolBar>
-    <div class="grey lighten-4">
+    <div class="grey lighten-4 my-5">
       <nuxt />
     </div>
     <BottomNav :BottomNav.sync="BottomNav"></BottomNav>
