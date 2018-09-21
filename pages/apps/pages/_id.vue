@@ -21,7 +21,7 @@
             </div>
           </div>
         </div>
-        <v-progress-linear :indeterminate="true" background-color="transparent" color="g-purple-purplin" :key="i"></v-progress-linear>
+        <v-progress-linear :indeterminate="true" background-color="transparent" color="g-purple-purplin"></v-progress-linear>
       </v-container>
     </div>
   </div>
