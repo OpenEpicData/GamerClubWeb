@@ -18,7 +18,7 @@
       </v-flex>
       <v-flex d-flex xs12 sm6 md3 lg2 v-for="(item,i) in list" :key="i" class="game-list-card px-2">
         <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="33vh">
+          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="35vh">
             <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="200px" v-on:click="cardTo(item.AppID)">
               <v-container fill-height fluid pa-2>
                 <v-layout align-start justify-start row fill-height>
