@@ -486,7 +486,6 @@
                   >
                     <div>
                       <h2>人们同样喜欢</h2>
-                      {{ appTags.data }}
                     </div>
                   </v-layout>
                 </v-tab-item>
@@ -590,11 +589,10 @@
 
   export default {
     async asyncData ({ query, params }) {
-      let [apps, appInfos, appPrices, appTags] = await Promise.all([
+      let [apps, appInfos, appPrices] = await Promise.all([
         axios.get('https://rest.steamhub.cn/api/v2/apps/lists/' + params.id),
         axios.get('https://rest.steamhub.cn/api/v2/apps/infos/' + params.id),
-        axios.get('https://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China'),
-        axios.get('https://api.steamhub.cn/api/v1/steam/game/searches?q=113&filter=tag&page=1')
+        axios.get('https://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China')
       ])
       let result = appPrices.data.map(function (o) {
         return Object.assign({
@@ -606,7 +604,6 @@
       return {
         apps: apps.data,
         appInfos: appInfos.data,
-        appTags: appTags.data,
         appid: params.id,
         title: apps.data[0]['Name'],
         lastUpdated: apps.data[0]['LastUpdated'],
