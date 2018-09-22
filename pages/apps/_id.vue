@@ -583,7 +583,6 @@
 </template>
 
 <script>
-  import GameHeader from '~/components/GameHeader'
   import axios from 'axios'
   import _ from 'lodash'
 
@@ -613,9 +612,6 @@
           rows: _.orderBy(result, ['更新时间'], ['asc'])
         }
       }
-    },
-    components: {
-      GameHeader
     },
     data: () => ({
       appid: '',
@@ -661,14 +657,6 @@
     }),
     created: function () {
       this.headerText.title = this.title
-      this.gameHeader = [
-        { icon: 'info', text: '信息', dark: true, link: '/apps/' + this.appid },
-        { icon: 'attach_money', text: '价格', outline: true, link: '/apps/prices/' + this.appid },
-        { icon: 'subject', text: '软件包', outline: true, disable: true },
-        { icon: 'playlist_add', text: '扩充包', outline: true, disable: true },
-        { icon: 'home', text: '仓库', outline: true, disable: true },
-        { icon: 'history', text: '更新历史', outline: true, disable: true }
-      ]
       axios.get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid)
         .then(response => {
           if (response.data[this.appid].data.package_groups[0].subs) {
