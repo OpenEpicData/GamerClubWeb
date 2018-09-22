@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5">
+  <div>
     <div id="ListGame" class="grey lighten-4" v-scroll="onScroll">
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main mt-5">
