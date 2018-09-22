@@ -19,6 +19,7 @@
     "lodash": "^4.17.10",
     "nuxt": "^2.0.0",
     "v-charts": "^1.17.8",
+    "vue-i18n": "^8.1.0",
     "vuetify": "^1.2.4"
   },
   "devDependencies": {
