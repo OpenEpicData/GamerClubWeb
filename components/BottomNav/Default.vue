@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-bottom-nav class="hidden-md-and-up" :active.sync="BottomNavIndex" color="white" :value="true" fixed shift>
-      <v-btn v-for="(item, i) in BottomNav.items" :key="i" :to="item.link" @click.stop="LoginDialog = item.click">
-        <span>{{ item.value }}</span>
+      <v-btn v-for="(item, i) in BottomNav.items" :key="i" :to="$i18n.path(item.link)" @click.stop="LoginDialog = item.click">
+        <span>{{ $t(item.value) }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
     </v-bottom-nav>

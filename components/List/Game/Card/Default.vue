@@ -29,7 +29,7 @@
                       <span v-if="item.app_price[0]">
                         <span v-if="item.app_price[0].PriceFinal">
                           <v-btn dark small color="g-purple-purplin" class="card-right-icon">
-                            {{ item.app_price | minAppPrice }} 元
+                            {{ minAppPrice(item.app_price) }} {{ $t('rmb') }}
                           </v-btn>
                         </span>
                       </span>
@@ -38,7 +38,7 @@
                         <v-icon left>
                           add
                         </v-icon>
-                        关注
+                        {{ $t('attention') }}
                       </v-btn>
                     </v-flex>
                   </v-layout>
@@ -47,11 +47,11 @@
               <v-card-title primary-title>
                 <v-layout row wrap>
                   <v-flex xs12>
-                    <nuxt-link :to="'/apps/'+ item.AppID" style="text-decoration: none;color: #000">
+                    <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
                       <h3>
                         {{ item.Name }}
                       </h3>
-                      <span class="grey--text">更新于: {{ item.LastUpdated | time }}</span>
+                      <span class="grey--text">{{ $t('Updated on') }}: {{ time(item.LastUpdated) }}</span>
                     </nuxt-link>
                   </v-flex>
                 </v-layout>
@@ -87,7 +87,7 @@
               >
                 <template slot="items" slot-scope="props" v-if="props.item.PriceInitial">
                   <td>{{ props.item.LastUpdated }}</td>
-                  <td>{{ props.item.PriceFinal  / 100 }} 元</td>
+                  <td>{{ props.item.PriceFinal  / 100 }}  {{ $t('rmb') }}</td>
                 </template>
               </v-data-table>
             </v-card>
@@ -129,11 +129,10 @@
 
 
 <script>
-  import relativeTime from 'dayjs/plugin/relativeTime'
+  import _ from 'lodash'  
   import dayjs from 'dayjs'
   import 'dayjs/locale/zh-cn'
-  import _ from 'lodash'
-
+  import relativeTime from 'dayjs/plugin/relativeTime'
   dayjs.extend(relativeTime)
 
   export default {
@@ -145,7 +144,24 @@
     },
     methods: {
       cardTo: function (id) {
-        this.$router.push({ path: '/apps/' + id })
+        this.$router.push({ path: this.$i18n.path('apps/' + id) })
+      },
+      minAppPrice: function (value) {
+        const price = _.minBy(value, 'PriceFinal')
+        if (price.PriceFinal === value[0].PriceFinal) {
+          if (value[0].PriceDiscount !== 0) {
+            if (value[0].PriceDiscount !== value[1].PriceDiscount) {
+              return this.$t('Lowest historical price') + ' ' + value[0].PriceFinal / 100
+            }
+          }
+        } else if (value[0].PriceFinal < value[1].PriceFinal) {
+          return '折扣中 ' + value[0].PriceFinal / 100
+        }
+        return value[0].PriceFinal / 100
+      },
+      time: function (value) {
+        if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
+        if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
       }
     },
     watch: {
@@ -155,22 +171,6 @@
       }
     },
     filters: {
-      time: function (value) {
-        return dayjs().locale('zh-cn').from(dayjs(value))
-      },
-      minAppPrice: function (value) {
-        const price = _.minBy(value, 'PriceFinal')
-        if (price.PriceFinal === value[0].PriceFinal) {
-          if (value[0].PriceDiscount !== 0) {
-            if (value[0].PriceDiscount !== value[1].PriceDiscount) {
-              return '史低 ' + value[0].PriceFinal / 100
-            }
-          }
-        } else if (value[0].PriceFinal < value[1].PriceFinal) {
-          return '折扣中 ' + value[0].PriceFinal / 100
-        }
-        return value[0].PriceFinal / 100
-      }
     }
   }
 </script>

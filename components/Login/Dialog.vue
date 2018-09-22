@@ -9,23 +9,23 @@
       >
         <div>
           <v-container class="text-xs-center" style="padding-bottom: 0">
-            <h2 class="headline">加入社区</h2>
-            <h6 class="body-1">SteamHub 是针对游戏和创意社区的数据交流平台</h6>
+            <h2 class="headline">{{ $t('Join the community') }}</h2>
+            <h6 class="body-1">{{ $t('SteamHub is a data exchange platform for games and creative communities') }}</h6>
             <div class="mt-5">
-              <v-btn disabled><v-icon left>fas fa-gamepad</v-icon>登录方式：InBuff</v-btn> <br>
-              <span class="body-1 font-weight-bold">没有账户？<a href="#!" class="white--text">创建一个账户</a></span>
+              <v-btn disabled><v-icon left>fas fa-gamepad</v-icon>{{ $t('Login Method') }}：InBuff</v-btn> <br>
+              <span class="body-1 font-weight-bold">{{ $t('No account') }}? <a href="#!" class="white--text">{{ $t('Create an account') }}</a></span>
             </div>
             <v-divider class="mt-5" color="grey"></v-divider>
             <div>
-              <v-btn flat disabled><v-icon left>fas fa-caret-down</v-icon>其他登录方式</v-btn>
+              <v-btn flat disabled><v-icon left>fas fa-caret-down</v-icon>{{ $t('Other login methods') }}</v-btn>
             </div>
           </v-container>
           <v-layout row wrap>
             <v-flex xs6>
-              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none ">服务条款</v-btn>
+              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none ">{{ $t('Terms of Service') }}</v-btn>
             </v-flex>
             <v-flex xs6>
-              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none">隐私政策</v-btn>
+              <v-btn block color="blue" style="margin: 9px 0 0 0;box-shadow: none;-webkit-box-shadow:none">{{ $t('Privacy Policy') }}</v-btn>
             </v-flex>
           </v-layout>
         </div>

@@ -5,13 +5,13 @@
         <div class="page-main mt-5">
           <div class="px-2">
               <v-btn color="g-purple-purplin mx-0" dark>
-                <v-icon left>apps</v-icon>游戏
+                <v-icon left>apps</v-icon>{{ $t('game') }}
               </v-btn>
           </div>
           <v-layout class="px-2 mt-3" row wrap id="today">
             <v-flex xs12>
               <h2>
-                记录在案的游戏: <span v-if="list[0]">{{ list[0].total }}</span>, 数据采集中...
+                {{ $t('Recorded game') }}: <span v-if="list[0]">{{ list[0].total }}</span>
               </h2>
             </v-flex>
           </v-layout>
@@ -33,7 +33,6 @@
   import relativeTime from 'dayjs/plugin/relativeTime'
   import dayjs from 'dayjs'
 
-  import 'dayjs/locale/zh-cn'
   dayjs.extend(relativeTime)
 
   export default {
@@ -76,14 +75,14 @@
     },
     filters: {
       time: function (value) {
-        return dayjs().locale('zh-cn').from(dayjs(value))
+        return dayjs().from(dayjs(value))
       }
     },
     head () {
       return {
-        title: ' Steam 应用列表 -- SteamHub',
+        title: this.$t('global.page.game.title'),
         meta: [
-          { hid: 'description', name: 'description', content: 'SteamHub 为开发者提供第一手 Steam 应用数据' }
+          { hid: 'description', name: 'description', content: this.$t('global.page.game.description') }
         ]
       }
     }

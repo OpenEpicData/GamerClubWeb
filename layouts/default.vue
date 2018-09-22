@@ -22,22 +22,34 @@
         title: 'SteamHub',
         items: {
           left: [
-            { value: '浏览', link: '/' },
-            { value: '游戏', link: '/apps/pages/' },
-            { value: '搜索', link: '/search', key: 0 }
+            { value: 'home', link: '' },
+            { value: 'game', link: 'apps/pages/' },
+            { value: 'search', link: 'search', key: 0 }
           ]
         }
       },
       BottomNav: {
         items: [
-          { value: '搜索', icon: 'search', link: '/search', key: 0 },
-          { value: '浏览', icon: 'list', link: '/' },
-          { value: '加入社区', icon: 'add_circle_outline', click: true }
+          { value: 'search', icon: 'search', link: 'search', key: 0 },
+          { value: 'home', icon: 'list', link: '' },
+          { value: 'Join the community', icon: 'add_circle_outline', click: true }
         ]
-      }
+      },
+      languge: String
     }),
     props: {
       source: String
+    },
+    created () {
+      if (this.$store.state.locale === 'zh-cn') this.languge = 'zh-cmn-Hans'
+      if (this.$store.state.locale === 'en-us') this.languge = 'en-US'
+    },
+    head () {
+      return {
+        htmlAttrs: {
+          lang: this.languge
+        }
+      }
     }
   }
 </script>

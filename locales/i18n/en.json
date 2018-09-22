@@ -1,0 +1,63 @@
+{
+  "global": {
+    "title": "Global Steam data statistic analysis -- steamhub",
+    "description": "SteamHub is a global data statistic community for Steam that provides real-time prices and information for developers and gamers every day.",
+    "page": {
+      "game": {
+        "title": "Steam Apps -- steamhub",
+        "description": "SteamHub provides developers with first-hand Steam app data."
+      },
+      "search": {
+        "title": "SteamHub Search -- SteamHub Search",
+        "description": "SteamHub Search offers a wealth of search options for deep mining by developers and users worldwide.",
+        "q": {
+          "title": "Search for data about {q} apps  -- SteamHub Search",
+          "description": "Search and use app data information about {q} in SteamHub Search"
+        }
+      }
+    }
+  },
+  "home": "home",
+  "game": "game",
+  "search": "search",
+  "Join the community": "Join the community",
+  "learn-more": "Learn more",
+  "carousel": {
+    "item1": {
+      "title": "Divinity: Original Sin 2",
+      "description": "This is a sequel to the much-anticipated award-winning role-playing game. Convene your team, discuss tactics, and fight the battle. You can work with up to three other players.",
+      "star": "IGN Rating: 9.6/10 With a number of amazingly important choices, 'God of the World: Original Sin 2' will be one of the greatest RPGs."
+    },
+    "item2": {
+      "title": "Shadow of the Tomb Raider",
+      "description": "Laura Crawford rushed all the way to save the world from the scourge of the Mayan prophecy. She will finally meet her destiny and grow into a destined tomb.",
+      "star": "IGN Rating: 9/10 The 'Tomb Raider Shadow' provides a powerful final chapter for Laura Crouch's trilogy of origin."
+    },
+    "item3": {
+      "title": "Cities: Skylines",
+      "description": "Design, build and manage your city of dreams, from public service to citizenship policy, challenge yourself, from simple towns to bustling downtown.",
+      "star": "IGN Rating: 8.5/10 There is only one theme for 'City: Skyline', which is to build a huge, awkward city without the need to face various massacre disasters."
+    }
+  },
+  "trend": "Trend",
+  "today": "Today",
+  "Update items in the queue": "Update items in the queue",
+  "rmb": "yuan",
+  "attention": "attention",
+  "Recorded game": "Recorded game",
+  "Updated on": "Updated on",
+  "Lowest historical price": "Lowest",
+  "Search game, id": "Search game, id",
+  "Search now": "Search now",
+  "Total inquiry": "Total inquiry",
+  "No data": "No data",
+  "Query data time": "Query data time",
+  "Supported system": "Supported system",
+  "SteamHub is a data exchange platform for games and creative communities": "SteamHub is a data exchange platform for games and creative communities",
+  "Login Method": "Login Method",
+  "No account": "No account",
+  "Create an account": "Create an account",
+  "Other login methods": "Other login methods",
+  "Terms of Service": "Terms of Service",
+  "Privacy Policy": "Privacy Policy"
+}

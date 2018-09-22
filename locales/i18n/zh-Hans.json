@@ -1,0 +1,63 @@
+{
+  "global": {
+    "title": "全球 Steam 数据统计分析 -- SteamHub",
+    "description": "SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询。",
+    "page": {
+      "game": {
+        "title": "Steam 应用列表 -- SteamHub",
+        "description": "SteamHub 为开发者提供第一手 Steam 应用数据。"
+      },
+      "search": {
+        "title": "SteamHub 搜索 -- SteamHub Search",
+        "description": "SteamHub Search 提供丰富的搜索选项以供全世界范围内的开发者及用户进行深度挖掘。",
+        "q": {
+          "title": "搜索有关 {q} 应用的数据信息  -- SteamHub Search",
+          "description": "在 SteamHub Search 中搜索并使用有关 {q} 的应用数据信息"
+        }
+      }
+    }
+  },
+  "home": "浏览",
+  "Join the community": "加入社区",
+  "game": "游戏",
+  "search": "搜索",
+  "learn-more": "了解更多",
+  "carousel": {
+    "item1": {
+      "title": "Divinity: Original Sin 2",
+      "description": "这是一部备受期待获奖众多的角色扮演游戏的续作。召集你的团队，探讨战术，左右战局。你最多可以和其他三名玩家合作。",
+      "star": "IGN 评分: 9.6/10 凭借着令人惊艳的多种重要选择，《神界：原罪2》将成为最伟大的RPG之一。"
+    },
+    "item2": {
+      "title": "Shadow of the Tomb Raider",
+      "description": "劳拉 · 克劳馥一路狂奔，拯救世界免遭玛雅预言中的天灾摧毁，她终将迎接命运，成长为命中注定的古墓侠盗。",
+      "star": "IGN 评分: 9/10 《古墓丽影 暗影》为劳拉·克劳馥的起源三部曲献上了强有力的终章。"
+    },
+    "item3": {
+      "title": "Cities: Skylines",
+      "description": "设计，建造和管理您的梦想之城，从公共服务到公民政策，挑战自我，从简单的城镇发展成繁华的大都市中心。",
+      "star": "IGN 评分: 8.5/10 《城市：天际线》的主题只有一个，那就是建造庞大、喧嚣的城市，而且不需要我们面对各种屠城灾难。"
+    }
+  },
+  "trend": "趋势",
+  "today": "今日",
+  "Update items in the queue": "更新队列中的项目",
+  "rmb": "元",
+  "attention": "关注",
+  "Recorded game": "记录在案的游戏",
+  "Updated on": "更新于",
+  "Lowest historical price": "史低",
+  "Search game, id": "搜索游戏，ID",
+  "Search now": "立即搜索",
+  "Total inquiry": "共查询到",
+  "No data": "暂无数据",
+  "Query data time": "查询数据用时",
+  "Supported system": "支持的系统",
+  "SteamHub is a data exchange platform for games and creative communities": "SteamHub 是针对游戏和创意社区的数据交流平台",
+  "Login Method": "登录方式",
+  "No account": "没有账户",
+  "Create an account": "创建一个账户",
+  "Other login methods": "其他登录方式",
+  "Terms of Service": "服务条款",
+  "Privacy Policy": "隐私政策"
+}

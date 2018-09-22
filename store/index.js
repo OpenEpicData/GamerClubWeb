@@ -1,9 +1,12 @@
 export const state = () => ({
-  sidebar: false
+  locales: ['zh-cn', 'en-us'],
+  locale: 'zh-cn'
 })
 
 export const mutations = {
-  toggleSidebar (state) {
-    state.sidebar = !state.sidebar
+  SET_LANG(state, locale) {
+    if (state.locales.indexOf(locale) !== -1) {
+      state.locale = locale
+    }
   }
 }

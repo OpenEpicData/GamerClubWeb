@@ -4,7 +4,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: '全球 Steam 数据统计分析 -- SteamHub',
+    title: '%s -- SteamHub',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no' },
@@ -24,6 +24,7 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/vuetify.js',
+    '~/plugins/i18n.js',
     { src: '~/plugins/v-charts.js', ssr: false }
   ],
   css: [
@@ -34,6 +35,9 @@ module.exports = {
   */
   loading: {
     color: '#0082c8'
+  },
+  router: {
+    middleware: 'i18n'
   },
   /*
   ** Build configuration
