@@ -126,109 +126,109 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  import dayjs from 'dayjs'
-  import 'dayjs/locale/zh-cn'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  dayjs.extend(relativeTime)
+import axios from 'axios'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
-  export default {
-    async asyncData ({ params, store }) {
-      return {
-        q: params.q,
-        language: store.state.locale
+export default {
+  async asyncData ({ params, store }) {
+    return {
+      q: params.q,
+      language: store.state.locale
+    }
+  },
+  data: () => ({
+    dialogAttention: false,
+    headerText: {
+      title: '',
+      descript: 'SteamHub Search 提供丰富的搜索选项以供全世界范围内的开发者及用户进行深度挖掘',
+      button: '使用 API',
+      dialog: {
+        text: '功能开发中',
+        progressBar: {
+          height: '6'
+        }
       }
     },
-    data: () => ({
-      dialogAttention: false,
-      headerText: {
-        title: '',
-        descript: 'SteamHub Search 提供丰富的搜索选项以供全世界范围内的开发者及用户进行深度挖掘',
-        button: '使用 API',
-        dialog: {
-          text: '功能开发中',
-          progressBar: {
-            height: '6'
-          }
-        }
-      },
-      fecthSearchTime: '',
-      fecthProgressBarHeight: 6,
-      q: '',
-      isData: true,
-      result: '',
-      resultLength: '',
-      search: '',
-      list: '',
-      chartPrice: '',
-      chartData: Array,
-      page: 1,
-      language: String
-    }),
-    created () {
+    fecthSearchTime: '',
+    fecthProgressBarHeight: 6,
+    q: '',
+    isData: true,
+    result: '',
+    resultLength: '',
+    search: '',
+    list: '',
+    chartPrice: '',
+    chartData: Array,
+    page: 1,
+    language: String
+  }),
+  created () {
+  },
+  methods: {
+    cardTo: function (id) {
+      this.$router.push({ path: '/apps/' + id })
     },
-    methods: {
-      cardTo: function (id) {
-        this.$router.push({ path: '/apps/' + id })
-      },
-      searchButton: function () {
-        if (this.search === 'undefined' || this.search === '') {
-          this.$router.push({ path: '/search/' })
+    searchButton: function () {
+      if (this.search === 'undefined' || this.search === '') {
+        this.$router.push({ path: '/search/' })
+      } else {
+        this.$router.push({ path: '/search/q/' + this.search })
+      }
+    },
+    time: function (value) {
+      if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
+      if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
+    }
+  },
+  mounted: function () {
+    this.search = this.$route.params.q
+    let fecthSearchTimeStart = performance.now()
+    axios.get('https://rest.steamhub.cn/api/v2/apps/search?q=' + this.q + '&page=1')
+      .then(response => {
+        let fecthSearchTimeEnd = performance.now()
+        this.fecthSearchTime = fecthSearchTimeEnd - fecthSearchTimeStart
+        this.fecthProgressBarHeight = 0
+        this.page = response.data.current_page
+        if (response.data.length === 0) {
+          this.isData = false
         } else {
-          this.$router.push({ path: '/search/q/' + this.search })
+          this.resultLength = response.data.total
+          this.result = response.data
         }
-      },
-      time: function (value) {
-        if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
-        if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
+      })
+  },
+  watch: {
+    dialogAttention (val) {
+      if (!val) return
+      setTimeout(() => (this.dialogAttention = false), 1000)
+    },
+    search (value) {
+      if (value === 'undefined' || value === '') {
+      } else {
       }
     },
-    mounted: function () {
-      this.search = this.$route.params.q
-      let fecthSearchTimeStart = performance.now()
-      axios.get('https://rest.steamhub.cn/api/v2/apps/search?q=' + this.q + '&page=1')
+    page: function (newPage, oldPage) {
+      this.$vuetify.goTo('#SearchList', 'easyInQuad')
+      axios.get('https://rest.steamhub.cn/api/v2/apps/search?q=' + this.q + '&page=' + newPage)
         .then(response => {
-          let fecthSearchTimeEnd = performance.now()
-          this.fecthSearchTime = fecthSearchTimeEnd - fecthSearchTimeStart
-          this.fecthProgressBarHeight = 0
-          this.page = response.data.current_page
-          if (response.data.length === 0) {
-            this.isData = false
-          } else {
-            this.resultLength = response.data.total
-            this.result = response.data
-          }
+          this.result = response.data
         })
-    },
-    watch: {
-      dialogAttention (val) {
-        if (!val) return
-        setTimeout(() => (this.dialogAttention = false), 1000)
-      },
-      search (value) {
-        if (value === 'undefined' || value === '') {
-        } else {
-        }
-      },
-      page: function (newPage, oldPage) {
-        this.$vuetify.goTo('#SearchList', 'easyInQuad')
-        axios.get('https://rest.steamhub.cn/api/v2/apps/search?q=' + this.q + '&page=' + newPage)
-          .then(response => {
-            this.result = response.data
-          })
-      }
-    },
-    filters: {
-    },
-    head () {
-      return {
-        title: this.$t('global.page.search.q.title', { q: this.q }),
-        meta: [
-          { hid: 'description', name: 'description', content: this.$t('global.page.search.q.description', { q: this.q }), }
-        ]
-      }
+    }
+  },
+  filters: {
+  },
+  head () {
+    return {
+      title: this.$t('global.page.search.q.title', { q: this.q }),
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('global.page.search.q.description', { q: this.q }), }
+      ]
     }
   }
+}
 </script>
 
 <style>
