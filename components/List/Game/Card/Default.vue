@@ -1,7 +1,7 @@
 <template>
   <v-flex d-flex xs12>
-    <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 md3 lg2 v-for="(item,i) in 6" :key="i" class="game-list-card px-2" v-if="!list">
+    <v-layout row wrap v-if="!list">
+      <v-flex d-flex xs12 sm6 md3 lg2 v-for="(item,i) in 6" :key="i" class="game-list-card px-2">
           <v-card flat class="grey lighten-4 my-3">
             <v-card-title primary-title>
               <v-layout row wrap>
