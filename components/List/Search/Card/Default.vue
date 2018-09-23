@@ -1,10 +1,9 @@
 <template>
   <div>
-    <v-layout wrap row>
+    <v-layout wrap row v-if="result">
       <v-flex xs12 md8 v-for="(item,i) in result.data" :key="i" class="search-list-card">
         <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" v-if="item.AppType" flat class="grey lighten-4"
-            height="18vh">
+          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" v-if="item.AppType" flat class="grey lighten-4" height="18vh">
             <div>
               <v-card-title primary-title class="grey lighten-4">
                 <v-layout align-start justify-start row fill-height>
