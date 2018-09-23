@@ -14,9 +14,10 @@
   border: solid
   border-image: linear-gradient(to right, #1fa2ff, #12d8fa, #a6ffcb) 60 60 !important
 
-.game-list-card .v-card
-  &:hover
-    @extend .g-green-neonLife-border-solid
+.game-list-card ,.search-list-card
+  .v-card
+    &:hover
+      @extend .g-green-neonLife-border-solid
 
 .v-btn--active
   &:before
