@@ -5,7 +5,11 @@
     "page": {
       "game": {
         "title": "Steam 应用列表 -- SteamHub",
-        "description": "SteamHub 为开发者提供第一手 Steam 应用数据。"
+        "description": "SteamHub 为开发者提供第一手 Steam 应用数据。",
+        "info": {
+          "title": "AppID: {AppID} -- {title} -- 应用数据信息 -- SteamHub",
+          "description": "在 SteamHub 上查询并使用 AppID: {AppID} -- {title} 的数据"
+        }
       },
       "search": {
         "title": "SteamHub 搜索 -- SteamHub Search",

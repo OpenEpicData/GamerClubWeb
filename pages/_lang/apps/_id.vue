@@ -427,22 +427,12 @@ export default {
   },
   head () {
     return {
-      title:
-        'AppID:' +
-        this.appid +
-        ' -- ' +
-        this.title +
-        ' 应用的数据信息  -- SteamHub',
+      title: this.$t('global.page.game.info.title', { AppID: this.appid, title: this.title }),
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content:
-            '在 SteamHub 中查询使用 ' +
-            'AppID: ' +
-            this.appid +
-            this.title +
-            ' 的数据'
+          content: this.$t('global.page.game.info.description', { AppID: this.appid, title: this.title })
         }
       ]
     }

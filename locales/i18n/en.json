@@ -5,7 +5,11 @@
     "page": {
       "game": {
         "title": "Steam Apps -- steamhub",
-        "description": "SteamHub provides developers with first-hand Steam app data."
+        "description": "SteamHub provides developers with first-hand Steam app data.",
+        "info": {
+          "title": "AppID: {AppID} -- {title} -- Application data information",
+          "description": "Query data using AppID: {AppID} -- {title} in SteamHub"
+        }
       },
       "search": {
         "title": "SteamHub Search -- SteamHub Search",
