@@ -141,41 +141,25 @@ export default {
   },
   data: () => ({
     dialogAttention: false,
-    headerText: {
-      title: '',
-      descript: 'SteamHub Search 提供丰富的搜索选项以供全世界范围内的开发者及用户进行深度挖掘',
-      button: '使用 API',
-      dialog: {
-        text: '功能开发中',
-        progressBar: {
-          height: '6'
-        }
-      }
-    },
-    fecthSearchTime: '',
+    fecthSearchTime: Number,
     fecthProgressBarHeight: 6,
-    q: '',
-    isData: true,
-    result: '',
-    resultLength: '',
-    search: '',
-    list: '',
-    chartPrice: '',
-    chartData: Array,
+    q: String,
+    isData: Boolean,
+    result: String,
+    resultLength: Number,
+    search: String,
+    list: String,
     page: 1,
     language: String
   }),
   created () {
   },
   methods: {
-    cardTo: function (id) {
-      this.$router.push({ path: '/apps/' + id })
-    },
     searchButton: function () {
       if (this.search === 'undefined' || this.search === '') {
-        this.$router.push({ path: '/search/' })
+        this.$router.push({ path: this.$i18n.path('search/') })
       } else {
-        this.$router.push({ path: '/search/q/' + this.search })
+        this.$router.push({ path: this.$i18n.path('search/q/' + this.search) })
       }
     },
     time: function (value) {
@@ -204,11 +188,6 @@ export default {
     dialogAttention (val) {
       if (!val) return
       setTimeout(() => (this.dialogAttention = false), 1000)
-    },
-    search (value) {
-      if (value === 'undefined' || value === '') {
-      } else {
-      }
     },
     page: function (newPage, oldPage) {
       this.$vuetify.goTo('#SearchList', 'easyInQuad')
