@@ -129,48 +129,48 @@
 
 
 <script>
-  import _ from 'lodash'  
-  import dayjs from 'dayjs'
-  import 'dayjs/locale/zh-cn'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  dayjs.extend(relativeTime)
+import _ from 'lodash'  
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 
-  export default {
-    props: ['list'],
-    data () {
-      return {
-        dialogAttention: false
-      }
-    },
-    methods: {
-      cardTo: function (id) {
-        this.$router.push({ path: this.$i18n.path('apps/' + id) })
-      },
-      minAppPrice: function (value) {
-        const price = _.minBy(value, 'PriceFinal')
-        if (price.PriceFinal === value[0].PriceFinal) {
-          if (value[0].PriceDiscount !== 0) {
-            if (value[0].PriceDiscount !== value[1].PriceDiscount) {
-              return this.$t('Lowest historical price') + ' ' + value[0].PriceFinal / 100
-            }
-          }
-        } else if (value[0].PriceFinal < value[1].PriceFinal) {
-          return '折扣中 ' + value[0].PriceFinal / 100
-        }
-        return value[0].PriceFinal / 100
-      },
-      time: function (value) {
-        if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
-        if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
-      }
-    },
-    watch: {
-      dialogAttention (val) {
-        if (!val) return
-        setTimeout(() => (this.dialogAttention = false), 1000)
-      }
-    },
-    filters: {
+export default {
+  props: ['list'],
+  data () {
+    return {
+      dialogAttention: false
     }
+  },
+  methods: {
+    cardTo: function (id) {
+      this.$router.push({ path: this.$i18n.path('apps/' + id) })
+    },
+    minAppPrice: function (value) {
+      const price = _.minBy(value, 'PriceFinal')
+      if (price.PriceFinal === value[0].PriceFinal) {
+        if (value[0].PriceDiscount !== 0) {
+          if (value[0].PriceDiscount !== value[1].PriceDiscount) {
+            return this.$t('Lowest historical price') + ' ' + value[0].PriceFinal / 100
+          }
+        }
+      } else if (value[0].PriceFinal < value[1].PriceFinal) {
+        return '折扣中 ' + value[0].PriceFinal / 100
+      }
+      return value[0].PriceFinal / 100
+    },
+    time: function (value) {
+      if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
+      if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
+    }
+  },
+  watch: {
+    dialogAttention (val) {
+      if (!val) return
+      setTimeout(() => (this.dialogAttention = false), 1000)
+    }
+  },
+  filters: {
   }
+}
 </script>
