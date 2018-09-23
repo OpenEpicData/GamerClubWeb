@@ -74,7 +74,7 @@
                         >
                           <v-flex>
                             <nuxt-link
-                              :to="'/apps/'+ item.AppID"
+                              :to="$i18n.path('apps/'+ item.AppID)"
                               style="color: #000"
                             >
                               <h3 class="mb-0 display-1">
