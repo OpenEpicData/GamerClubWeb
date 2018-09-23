@@ -1,10 +1,10 @@
 {
   "global": {
-    "title": "Global Steam data statistic analysis -- steamhub",
+    "title": "Global Steam data statistic analysis -- SteamHub",
     "description": "SteamHub is a global data statistic community for Steam that provides real-time prices and information for developers and gamers every day.",
     "page": {
       "game": {
-        "title": "Steam Apps -- steamhub",
+        "title": "Steam Apps -- SteamHub",
         "description": "SteamHub provides developers with first-hand Steam app data.",
         "info": {
           "title": "AppID: {AppID} -- {title} -- Application data information -- SteamHub",
