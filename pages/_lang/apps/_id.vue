@@ -1,9 +1,8 @@
 <template>
   <div>
     <v-card flat v-if="appdetails[appid]">
-      <div flat class="header_video">
-        <video :src="appdetails[appid].data.movies[0].webm.max | moviePath" height="100%" width="100%" autoplay="autoplay"
-          loop style="object-fit:fill" muted></video>
+      <div flat class="header_video" v-if="appdetails[appid].data.movies[0].webm.max">
+        <video :src="appdetails[appid].data.movies[0].webm.max | moviePath" height="100%" width="100%" autoplay="autoplay" loop style="object-fit:fill" muted></video>
       </div>
 
       <v-layout align-start justify-center row fill-height class="grey lighten-4">
@@ -31,9 +30,9 @@
                   </div>
                   <div class="my-2">
                     <v-layout row warp>
-                      <v-flex xs12 md8 v-if="item.data.short_description">
+                      <v-flex xs12 md8>
                         <span v-for="(item,k) in appdetails" :key="k">
-                          <span v-html="item.data.short_description"></span>
+                          <span v-html="item.data.short_description" v-if="item.data.short_description"></span>
                         </span>
                         <div>
                           <v-dialog v-model="dialogReadMore" width="1000">
@@ -145,8 +144,8 @@
                         {{ item }}
                       </v-chip>
                     </div>
-                    <div v-if="appdetails[appid]">
-                      <div class="mb-3 mt-5">
+                    <div>
+                      <div class="mb-3 mt-5" v-if="appdetails[appid]">
                         <h2>功能</h2>
                       </div>
                       <span v-for="(item, i) in appdetails" :key="i">
@@ -311,7 +310,11 @@ export default {
     let [apps, appInfos, appPrices] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/apps/lists/' + params.id),
       axios.get('https://rest.steamhub.cn/api/v2/apps/infos/' + params.id),
-      axios.get('https://rest.steamhub.cn/api/v2/apps/prices/' + params.id + '?country=China')
+      axios.get(
+        'https://rest.steamhub.cn/api/v2/apps/prices/' +
+          params.id +
+          '?country=China'
+      )
     ])
     let result = appPrices.data.map(function (o) {
       return Object.assign({
@@ -377,17 +380,24 @@ export default {
   }),
   created: function () {
     this.headerText.title = this.title
-    axios.get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid)
+    axios
+      .get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid)
       .then(response => {
         if (response.data[this.appid].data.package_groups[0].subs) {
-          const getDetails = response.data[this.appid].data.package_groups[0].subs
+          const getDetails =
+            response.data[this.appid].data.package_groups[0].subs
           this.packages = getDetails
           this.details = true
         }
         this.appdetails = response.data
         this.carouselLoading = 0
       })
-    axios.get('https://rest.steamhub.cn/api/game/search/app/list/view/' + this.appid + '/price?country=cn&math=min')
+    axios
+      .get(
+        'https://rest.steamhub.cn/api/game/search/app/list/view/' +
+          this.appid +
+          '/price?country=cn&math=min'
+      )
       .then(response => {
         this.minPriceFinal = response.data / 100
       })
@@ -410,7 +420,7 @@ export default {
   filters: {
     moviePath: function (value) {
       return value.replace(/http/, 'https')
-    },
+    }
   },
   watch: {
     dialogVideo: function (value) {
@@ -424,9 +434,23 @@ export default {
   },
   head () {
     return {
-      title: 'AppID:' + this.appid + ' -- ' + this.title + ' 应用的数据信息  -- SteamHub',
+      title:
+        'AppID:' +
+        this.appid +
+        ' -- ' +
+        this.title +
+        ' 应用的数据信息  -- SteamHub',
       meta: [
-        { hid: 'description', name: 'description', content: '在 SteamHub 中查询使用 ' + 'AppID: ' + this.appid + this.headerText.title + ' 的数据' }
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            '在 SteamHub 中查询使用 ' +
+            'AppID: ' +
+            this.appid +
+            this.headerText.title +
+            ' 的数据'
+        }
       ]
     }
   }
@@ -434,106 +458,106 @@ export default {
 </script>
 
 <style>
-  .v-datatable th {
-    text-align: center !important;
-  }
+.v-datatable th {
+  text-align: center !important;
+}
 
-  .screenshot .v-responsive__content {
-    width: 400px;
-  }
+.screenshot .v-responsive__content {
+  width: 400px;
+}
 
-  .screenshot .v-tabs__bar {
-    background-color: transparent;
-  }
+.screenshot .v-tabs__bar {
+  background-color: transparent;
+}
 
-  .screenshot .v-tabs__icon--prev {
-    left: 30px;
-  }
+.screenshot .v-tabs__icon--prev {
+  left: 30px;
+}
 
-  .screenshot .v-tabs__icon--next {
-    right: 30px;
-  }
+.screenshot .v-tabs__icon--next {
+  right: 30px;
+}
 
-  .screenshot .v-tabs__icon--next,
-  .screenshot .v-tabs__icon--prev {
-    font-size: 32px;
-    z-index: 99;
-    color: #fff;
-    line-height: 338px;
-  }
+.screenshot .v-tabs__icon--next,
+.screenshot .v-tabs__icon--prev {
+  font-size: 32px;
+  z-index: 99;
+  color: #fff;
+  line-height: 338px;
+}
 
-  .screenshot .v-tabs__wrapper--show-arrows {
-    margin: 0;
-  }
+.screenshot .v-tabs__wrapper--show-arrows {
+  margin: 0;
+}
 
-  .screenshot .v-tabs__item {
-    padding-left: 0
-  }
+.screenshot .v-tabs__item {
+  padding-left: 0;
+}
 
-  .video .v-responsive__content {
-    width: 400px;
-  }
+.video .v-responsive__content {
+  width: 400px;
+}
 
-  .video .v-tabs__bar {
-    background-color: transparent;
-  }
+.video .v-tabs__bar {
+  background-color: transparent;
+}
 
-  .video .v-tabs__icon--prev {
-    left: 30px;
-  }
+.video .v-tabs__icon--prev {
+  left: 30px;
+}
 
-  .video .v-tabs__icon--next {
-    right: 30px;
-  }
+.video .v-tabs__icon--next {
+  right: 30px;
+}
 
-  .video .v-tabs__icon--next,
-  .video .v-tabs__icon--prev {
-    font-size: 32px;
-    z-index: 99;
-    color: #fff;
-    line-height: 164px;
-  }
+.video .v-tabs__icon--next,
+.video .v-tabs__icon--prev {
+  font-size: 32px;
+  z-index: 99;
+  color: #fff;
+  line-height: 164px;
+}
 
-  .video .v-tabs__wrapper--show-arrows {
-    margin: 0;
-  }
+.video .v-tabs__wrapper--show-arrows {
+  margin: 0;
+}
 
-  .video .v-tabs__item {
-    padding-left: 0
-  }
+.video .v-tabs__item {
+  padding-left: 0;
+}
 
-  .accent--text {
-    color: #000 !important;
-    caret-color: #000 !important;
-  }
+.accent--text {
+  color: #000 !important;
+  caret-color: #000 !important;
+}
 
-  .card--flex-toolbar {
-    margin-top: -20vh;
-  }
+.card--flex-toolbar {
+  margin-top: -20vh;
+}
 
+.header_video {
+  height: 100vh;
+}
+
+.discount_original_price {
+  text-decoration: line-through;
+}
+
+@media screen and (max-width: 1264px) {
   .header_video {
-    height: 100vh
+    height: 80vh;
   }
+}
 
-  .discount_original_price {
-    text-decoration: line-through
+@media screen and (max-width: 960px) {
+  .header_video {
+    height: 75vh;
   }
+}
 
-  @media screen and (max-width: 1264px) {
-    .header_video {
-      height: 80vh;
-    }
+@media screen and (max-width: 600px) {
+  .header_video {
+    height: 50vh;
   }
-
-  @media screen and (max-width: 960px) {
-    .header_video {
-      height: 75vh;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    .header_video {
-      height: 50vh;
-    }
-  }
+}
 </style>
