@@ -7,7 +7,7 @@
         "title": "Steam Apps -- steamhub",
         "description": "SteamHub provides developers with first-hand Steam app data.",
         "info": {
-          "title": "AppID: {AppID} -- {title} -- Application data information",
+          "title": "AppID: {AppID} -- {title} -- Application data information -- SteamHub",
           "description": "Query data using AppID: {AppID} -- {title} in SteamHub"
         }
       },
