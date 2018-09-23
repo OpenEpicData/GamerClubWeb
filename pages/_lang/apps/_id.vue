@@ -306,14 +306,18 @@ import axios from 'axios'
 import _ from 'lodash'
 
 export default {
-  async asyncData ({ query, params }) {
+  async asyncData ({ query, params, store }) {
+    let cc = 'cn'
+    if (store.state.locale === 'zh-cn') { cc = 'cn' }
+    if (store.state.locale === 'en-us') { cc = 'us' }
     let [apps, appInfos, appPrices] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/apps/lists/' + params.id),
       axios.get('https://rest.steamhub.cn/api/v2/apps/infos/' + params.id),
       axios.get(
         'https://rest.steamhub.cn/api/v2/apps/prices/' +
           params.id +
-          '?country=China'
+          '?cc=' +
+          cc
       )
     ])
     let result = appPrices.data.map(function (o) {
@@ -323,6 +327,9 @@ export default {
         更新时间: o.LastUpdated
       })
     })
+    let lang = 'schinese'
+    if (cc === 'cn') { lang = 'schinese' }
+    if (cc === 'us') { lang = 'english' }
     return {
       apps: apps.data,
       appInfos: appInfos.data,
@@ -333,30 +340,17 @@ export default {
       chartData: {
         columns: ['更新时间', '原价', '现价'],
         rows: _.orderBy(result, ['更新时间'], ['asc'])
-      }
+      },
+      lang: lang
     }
   },
   data: () => ({
+    lang: '',
     appid: '',
     appdetails: '',
     carouselLoading: 6,
     lastUpdated: '',
-    headerText: {
-      title: '',
-      descript: '',
-      button: '使用 API',
-      dialog: {
-        text: '功能开发中',
-        progressBar: {
-          height: '6'
-        }
-      }
-    },
     rating: 0,
-    tableHeaders: [
-      { text: '名称', value: 'name' },
-      { text: '值', value: 'value' }
-    ],
     dialogReadMore: false,
     dialogVideo: false,
     videoUrl: '',
@@ -379,9 +373,8 @@ export default {
     tabActice: 'tab-1'
   }),
   created: function () {
-    this.headerText.title = this.title
     axios
-      .get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid)
+      .get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid + '?lang=' + this.lang)
       .then(response => {
         if (response.data[this.appid].data.package_groups[0].subs) {
           const getDetails =
@@ -448,7 +441,7 @@ export default {
             '在 SteamHub 中查询使用 ' +
             'AppID: ' +
             this.appid +
-            this.headerText.title +
+            this.title +
             ' 的数据'
         }
       ]

@@ -31,7 +31,7 @@
                       <span v-if="item.app_price[0]">
                         <span v-if="item.app_price[0].PriceFinal">
                           <v-btn dark small color="g-purple-purplin" class="card-right-icon">
-                            {{ minAppPrice(item.app_price) }} {{ $t('rmb') }}
+                            {{ minAppPrice(item.app_price) }}
                           </v-btn>
                         </span>
                       </span>
@@ -89,7 +89,10 @@
               >
                 <template slot="items" slot-scope="props" v-if="props.item.PriceInitial">
                   <td>{{ props.item.LastUpdated }}</td>
-                  <td>{{ props.item.PriceFinal  / 100 }}  {{ $t('rmb') }}</td>
+                  <td>
+                      {{ $t('Symbol of money') }}
+                      {{ props.item.PriceFinal  / 100 }}
+                  </td>
                 </template>
               </v-data-table>
             </v-card>
@@ -153,13 +156,13 @@ export default {
       if (price.PriceFinal === value[0].PriceFinal) {
         if (value[0].PriceDiscount !== 0) {
           if (value[0].PriceDiscount !== value[1].PriceDiscount) {
-            return this.$t('Lowest historical price') + ' ' + value[0].PriceFinal / 100
+            return this.$t('Lowest historical price') + ' ' + this.$t('Symbol of money') + ' ' + value[0].PriceFinal / 100
           }
         }
       } else if (value[0].PriceFinal < value[1].PriceFinal) {
-        return '折扣中 ' + value[0].PriceFinal / 100
+        return this.$t('discounted') + ' ' + value[0].PriceFinal / 100
       }
-      return value[0].PriceFinal / 100
+      return this.$t('Symbol of money') + ' ' + value[0].PriceFinal / 100
     },
     time: function (value) {
       if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))

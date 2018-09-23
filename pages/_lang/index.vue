@@ -92,12 +92,15 @@ export default {
     }
   },
   mounted: async function () {
+    let cc = 'cn'
+    if (this.$store.state.locale === 'zh-cn') { cc = 'cn' }
+    if (this.$store.state.locale === 'en-us') { cc = 'us' }
     const Today = new Date()
     this.month = Today.getMonth() + 1
     this.day = Today.getDate()
     let [queue, apps] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/game/search/app/update_queue/count'),
-      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=24')
+      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=24' + '&cc=' + cc)
     ])
     this.queue = queue.data
     this.list = apps.data
