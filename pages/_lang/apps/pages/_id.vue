@@ -28,64 +28,69 @@
 </template>
 
 <script>
-  import ListGameCard from '~/components/List/Game/Card/Default'
-  import axios from 'axios'
-  import relativeTime from 'dayjs/plugin/relativeTime'
-  import dayjs from 'dayjs'
+import ListGameCard from '~/components/List/Game/Card/Default'
+import axios from 'axios'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import dayjs from 'dayjs'
 
-  dayjs.extend(relativeTime)
+dayjs.extend(relativeTime)
 
-  export default {
-    components: {
-      ListGameCard
-    },
-    data: () => ({
-      dialogAPI: false,
-      page: 1,
-      list: String
-    }),
-    methods: {
-      async onScroll (e) {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop
-        let windowHeight = document.documentElement.clientHeight
-        let scrollHeight = document.documentElement.scrollHeight
-        if (scrollTop + windowHeight === scrollHeight) {
-          let [apps] = await Promise.all([
-            axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + (this.page + 1))
-          ])
-          this.page = apps.data.current_page
-          this.list = this.list.concat(apps.data)
-        }
-      }
-    },
-    mounted: async function () {
-      let [apps] = await Promise.all([
-        axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + this.$route.params.id)
-      ])
-      let list = []
-      let page = apps.data.current_page
-      this.page = page
-      this.list = list.concat(apps.data)
-    },
-    watch: {
-      dialogAPI (val) {
-        if (!val) return
-        setTimeout(() => (this.dialogAPI = false), 1000)
-      }
-    },
-    filters: {
-      time: function (value) {
-        return dayjs().from(dayjs(value))
-      }
-    },
-    head () {
-      return {
-        title: this.$t('global.page.game.title'),
-        meta: [
-          { hid: 'description', name: 'description', content: this.$t('global.page.game.description') }
-        ]
+export default {
+  components: {
+    ListGameCard
+  },
+  data: () => ({
+    dialogAPI: false,
+    page: 1,
+    list: String,
+    cc: String
+  }),
+  methods: {
+    async onScroll (e) {
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      let windowHeight = document.documentElement.clientHeight
+      let scrollHeight = document.documentElement.scrollHeight
+      if (scrollTop + windowHeight === scrollHeight) {
+        let [apps] = await Promise.all([
+          axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + (this.page + 1) + '&cc=' + this.cc)
+        ])
+        this.page = apps.data.current_page
+        this.list = this.list.concat(apps.data)
       }
     }
+  },
+  mounted: async function () {
+    let cc = 'cn'
+    if (this.$store.state.locale === 'zh-cn') { cc = 'cn' }
+    if (this.$store.state.locale === 'en-us') { cc = 'us' }
+    this.cc = cc
+    let [apps] = await Promise.all([
+      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + this.$route.params.id + '&cc=' + cc)
+    ])
+    let list = []
+    let page = apps.data.current_page
+    this.page = page
+    this.list = list.concat(apps.data)
+  },
+  watch: {
+    dialogAPI (val) {
+      if (!val) return
+      setTimeout(() => (this.dialogAPI = false), 1000)
+    }
+  },
+  filters: {
+    time: function (value) {
+      return dayjs().from(dayjs(value))
+    }
+  },
+  head () {
+    return {
+      title: this.$t('global.page.game.title'),
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('global.page.game.description') }
+      ]
+    }
   }
+}
 </script>
 
