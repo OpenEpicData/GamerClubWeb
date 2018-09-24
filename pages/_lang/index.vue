@@ -16,12 +16,23 @@
             <v-flex xs12 md8>
               <h2>
                 {{ $t('today') }}
-                <v-chip>{{ month }} - {{ day }}</v-chip>
+                <v-chip>
+                  <span v-if="$store.state.display.loading">
+                    <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
+                  </span>
+                  {{ month }} - {{ day }}
+                </v-chip>
               </h2>
             </v-flex>
             <v-flex xs12 md4>
               <div class="text-xs-right hidden-sm-and-down">
-                <h3>{{ $t('Update items in the queue') }}: {{ queue }}</h3>
+                <h3>
+                  {{ $t('Update items in the queue') }}:
+                  <span v-if="$store.state.display.loading">
+                    <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
+                  </span>
+                  {{ queue }}
+                </h3>
               </div>
             </v-flex>
           </v-layout>

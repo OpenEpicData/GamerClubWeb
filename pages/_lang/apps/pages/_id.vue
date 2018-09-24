@@ -11,7 +11,11 @@
           <v-layout class="px-2 mt-3" row wrap id="today">
             <v-flex xs12>
               <h2>
-                {{ $t('Recorded game') }}: <span v-if="list[0]">{{ list[0].total }}</span>
+                {{ $t('Recorded game') }}:
+                <span v-if="$store.state.display.loading">
+                  <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
+                </span>
+                <span v-if="list[0]">{{ list[0].total }}</span>
               </h2>
             </v-flex>
           </v-layout>
