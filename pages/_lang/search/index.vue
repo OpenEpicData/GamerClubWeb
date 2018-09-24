@@ -28,43 +28,43 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      dialogAttention: false,
-      q: '',
-      isData: true,
-      result: '',
-      resultLength: '',
-      search: ''
-    }),
-    methods: {
-      searchButton: function () {
-        if (this.search === 'undefined' || this.search === '') {
-          this.$router.push({ path: this.$i18n.path('search/') })
-        } else {
-          this.$router.push({ path: this.$i18n.path('search/q/') + this.search })
-        }
-      }
-    },
-    watch: {
-      search (value) {
-        if (value === 'undefined' || value === '') {
-        } else {
-        }
-      }
-    },
-    head () {
-      return {
-        title: this.$t('global.page.search.title'),
-        meta: [
-          {
-            hid: 'description',
-            name: 'description',
-            content:
-              this.$t('global.page.search.description'),
-          }
-        ]
+export default {
+  data: () => ({
+    dialogAttention: false,
+    q: '',
+    isData: true,
+    result: '',
+    resultLength: '',
+    search: ''
+  }),
+  methods: {
+    searchButton: function () {
+      if (this.search === 'undefined' || this.search === '') {
+        this.$router.push({ path: this.$i18n.path('search/') })
+      } else {
+        this.$router.push({ path: this.$i18n.path('search/q/') + this.search })
       }
     }
+  },
+  watch: {
+    search (value) {
+      if (value === 'undefined' || value === '') {
+      } else {
+      }
+    }
+  },
+  head () {
+    return {
+      title: this.$t('global.page.search.title'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+              this.$t('global.page.search.description'),
+        }
+      ]
+    }
   }
+}
 </script>
