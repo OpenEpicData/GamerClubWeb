@@ -27,6 +27,7 @@
           </v-layout>
 
           <div class="mt-3">
+            <ListGameCardLoading></ListGameCardLoading>
             <ListGameCard :list.sync="list.data"></ListGameCard>
           </div>
         </div>
@@ -37,12 +38,14 @@
 
 <script>
 import ListGameCard from '~/components/List/Game/Card/Default'
+import ListGameCardLoading from '~/components/List/Game/Card/Loading'
 import Carousel from '~/components/Carousel/Default'
 import axios from 'axios'
 
 export default {
   components: {
     ListGameCard,
+    ListGameCardLoading,
     Carousel
   },
   data () {
@@ -101,6 +104,7 @@ export default {
     ])
     this.queue = queue.data
     this.list = apps.data
+    this.$store.commit('DISPLAY_LOADING', false)
   },
   head () {
     return {

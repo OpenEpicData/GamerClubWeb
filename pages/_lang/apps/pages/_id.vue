@@ -20,8 +20,8 @@
               <ListGameCard :list.sync="item.data"></ListGameCard>
             </div>
           </div>
+          <ListGameCardLoading></ListGameCardLoading>
         </div>
-        <v-progress-linear :indeterminate="true" background-color="transparent" color="g-purple-purplin"></v-progress-linear>
       </v-container>
     </div>
   </div>
@@ -29,6 +29,7 @@
 
 <script>
 import ListGameCard from '~/components/List/Game/Card/Default'
+import ListGameCardLoading from '~/components/List/Game/Card/Loading'
 import axios from 'axios'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import dayjs from 'dayjs'
@@ -37,7 +38,8 @@ dayjs.extend(relativeTime)
 
 export default {
   components: {
-    ListGameCard
+    ListGameCard,
+    ListGameCardLoading
   },
   data: () => ({
     dialogAPI: false,
@@ -67,6 +69,7 @@ export default {
     let page = apps.data.current_page
     this.page = page
     this.list = list.concat(apps.data)
+    this.$store.commit('DISPLAY_LOADING', false)
   },
   watch: {
     dialogAPI (val) {

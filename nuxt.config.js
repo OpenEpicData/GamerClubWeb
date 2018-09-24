@@ -37,7 +37,10 @@ module.exports = {
     color: '#0082c8'
   },
   router: {
-    middleware: 'i18n'
+    middleware: [
+      'page',
+      'i18n'
+    ]
   },
   /*
   ** Build configuration

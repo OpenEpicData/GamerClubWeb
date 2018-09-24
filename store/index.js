@@ -3,8 +3,9 @@ export const state = () => ({
   locale: 'zh-cn',
   display: {
     lang: String,
-    country: String
-  }
+    country: String,
+    loading: Boolean
+  },
 })
 
 export const mutations = {
@@ -15,5 +16,10 @@ export const mutations = {
     const display = state.display
     if (locale === 'zh-cn') { display.lang = 'schinese', display.country = 'cn' }
     if (locale === 'en-us') { display.lang = 'english', display.country = 'us'}
+  },
+  DISPLAY_LOADING (state, loading) {
+    const display = state.display
+    if (loading) { display.loading = true }
+    else display.loading = false
   }
 }
