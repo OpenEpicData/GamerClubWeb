@@ -9,6 +9,7 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
   }
   // Set locale
   store.commit('SET_LANG', locale)
+  store.commit('DISPLAY_LANG', locale)
   app.i18n.locale = store.state.locale
   // If route is /<defaultLocale>/... -> redirect to /...
   if (route.path === '/') return redirect('/' + app.i18n.locale)

@@ -307,9 +307,6 @@ import _ from 'lodash'
 
 export default {
   async asyncData ({ query, params, store }) {
-    let cc = 'cn'
-    if (store.state.locale === 'zh-cn') { cc = 'cn' }
-    if (store.state.locale === 'en-us') { cc = 'us' }
     let [apps, appInfos, appPrices] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/apps/lists/' + params.id),
       axios.get('https://rest.steamhub.cn/api/v2/apps/infos/' + params.id),
@@ -317,7 +314,7 @@ export default {
         'https://rest.steamhub.cn/api/v2/apps/prices/' +
           params.id +
           '?cc=' +
-          cc
+          store.state.display.country
       )
     ])
     let result = appPrices.data.map(function (o) {
@@ -327,9 +324,6 @@ export default {
         更新时间: o.LastUpdated
       })
     })
-    let lang = 'schinese'
-    if (cc === 'cn') { lang = 'schinese' }
-    if (cc === 'us') { lang = 'english' }
     return {
       apps: apps.data,
       appInfos: appInfos.data,
@@ -340,8 +334,7 @@ export default {
       chartData: {
         columns: ['更新时间', '原价', '现价'],
         rows: _.orderBy(result, ['更新时间'], ['asc'])
-      },
-      lang: lang
+      }
     }
   },
   data: () => ({
@@ -374,7 +367,7 @@ export default {
   }),
   created: function () {
     axios
-      .get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid + '?lang=' + this.lang)
+      .get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid + '?lang=' + this.$store.state.display.lang)
       .then(response => {
         if (response.data[this.appid].data.package_groups[0].subs) {
           const getDetails =
@@ -389,7 +382,7 @@ export default {
       .get(
         'https://rest.steamhub.cn/api/game/search/app/list/view/' +
           this.appid +
-          '/price?country=cn&math=min'
+          '/price?country=' + this.$store.state.display.country + '&math=min'
       )
       .then(response => {
         this.minPriceFinal = response.data / 100

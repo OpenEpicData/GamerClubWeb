@@ -52,7 +52,7 @@ export default {
       let scrollHeight = document.documentElement.scrollHeight
       if (scrollTop + windowHeight === scrollHeight) {
         let [apps] = await Promise.all([
-          axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + (this.page + 1) + '&cc=' + this.cc)
+          axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + (this.page + 1) + '&cc=' + this.$store.state.display.country)
         ])
         this.page = apps.data.current_page
         this.list = this.list.concat(apps.data)
@@ -60,12 +60,8 @@ export default {
     }
   },
   mounted: async function () {
-    let cc = 'cn'
-    if (this.$store.state.locale === 'zh-cn') { cc = 'cn' }
-    if (this.$store.state.locale === 'en-us') { cc = 'us' }
-    this.cc = cc
     let [apps] = await Promise.all([
-      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + this.$route.params.id + '&cc=' + cc)
+      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + this.$route.params.id + '&cc=' + this.$store.state.display.country)
     ])
     let list = []
     let page = apps.data.current_page
