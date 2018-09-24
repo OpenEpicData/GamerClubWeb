@@ -20,7 +20,7 @@
                   <span v-if="$store.state.display.loading">
                     <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
                   </span>
-                  {{ month }} - {{ day }}
+                  <span v-else>{{ month }} - {{ day }}</span>
                 </v-chip>
               </h2>
             </v-flex>
@@ -31,7 +31,7 @@
                   <span v-if="$store.state.display.loading">
                     <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
                   </span>
-                  {{ queue }}
+                  <span v-else>{{ queue }}</span>
                 </h3>
               </div>
             </v-flex>

@@ -15,7 +15,9 @@
                 <span v-if="$store.state.display.loading">
                   <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
                 </span>
-                <span v-if="list[0]">{{ list[0].total }}</span>
+                <span v-else>
+                  <span v-if="list[0]">{{ list[0].total }}</span>
+                </span>
               </h2>
             </v-flex>
           </v-layout>
