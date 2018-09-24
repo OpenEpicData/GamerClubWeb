@@ -38,8 +38,13 @@
           </v-layout>
 
           <div class="mt-3">
+            <div v-for="(item, i) in list" :key="i">
+              <ListGameCard :list.sync="item.data"></ListGameCard>
+            </div>
             <ListGameCardLoading></ListGameCardLoading>
-            <ListGameCard :list.sync="list.data"></ListGameCard>
+            <v-layout align-start justify-center row fill-height v-if="!$store.state.display.loading">
+              <v-flex xs12 md4><v-btn block outline large @click="loadMore">{{ $t('Load more') }} <v-icon right>fas fa-angle-down</v-icon> </v-btn></v-flex>
+            </v-layout>
           </div>
         </div>
       </v-container>
@@ -105,6 +110,17 @@ export default {
       ]
     }
   },
+  methods: {
+    loadMore: async function () {
+      this.$store.commit('DISPLAY_LOADING', true)
+      let [apps] = await Promise.all([
+        axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + (this.page + 1) + '&cc=' + this.$store.state.display.country)
+      ])
+      this.page = apps.data.current_page
+      this.list = this.list.concat(apps.data)
+      this.$store.commit('DISPLAY_LOADING', false)
+    }
+  },
   mounted: async function () {
     const Today = new Date()
     this.month = Today.getMonth() + 1
@@ -113,8 +129,10 @@ export default {
       axios.get('https://rest.steamhub.cn/api/game/search/app/update_queue/count'),
       axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=24' + '&cc=' + this.$store.state.display.country)
     ])
+    let list = []
+    let page = apps.data.current_page
     this.queue = queue.data
-    this.list = apps.data
+    this.list = list.concat(apps.data)
     this.$store.commit('DISPLAY_LOADING', false)
   },
   head () {
