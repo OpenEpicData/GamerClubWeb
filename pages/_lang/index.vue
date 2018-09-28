@@ -1,31 +1,7 @@
 <template>
   <div>
     <div class="grey lighten-4">
-      <v-parallax dark src="https://images4.alphacoders.com/629/629243.jpg" class="hidden-sm-and-down">
-        <v-container fluid grid-list-sm class="index-main-container">
-          <v-layout align-center justify-start row fill-height>
-            <v-flex xs10 lg6 class="mx-3">
-              <div class="my-3">
-                <h1 class="display-3">
-                  {{ $t('carousel.item1.title') }}
-                </h1>
-                <h4 class="headline font-weight-thin">
-                  "{{ $t('carousel.item1.description') }}"
-                </h4>
-              </div>
-              <v-flex d-flex xs3>
-                <div>
-                  <v-btn dark block large flat outline :to="$i18n.path('apps/435150')">
-                    <span>{{ $t('learn-more') }}</span>
-                  </v-btn>
-                  <v-progress-linear :v-model="12" background-color="g-blue-hydrogen" color="g-purple-purplin"></v-progress-linear>
-                </div>
-              </v-flex>
-              <h2 class="title font-weight-thin">{{ $t('carousel.item1.star') }}</h2>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-parallax>
+      <Parallax></Parallax>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main mt-5">
           <div class="px-2">
@@ -77,12 +53,14 @@
 <script>
 import ListGameCard from '~/components/List/Game/Card/Default'
 import ListGameCardLoading from '~/components/List/Game/Card/Loading'
+import Parallax from '~/components/Parallax/Default'
 import axios from 'axios'
 
 export default {
   components: {
     ListGameCard,
-    ListGameCardLoading
+    ListGameCardLoading,
+    Parallax
   },
   data () {
     return {
