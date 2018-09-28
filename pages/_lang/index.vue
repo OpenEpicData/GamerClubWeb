@@ -1,10 +1,32 @@
 <template>
   <div>
     <div class="grey lighten-4">
+      <v-parallax dark src="https://images4.alphacoders.com/629/629243.jpg" class="hidden-sm-and-down">
+        <v-container fluid grid-list-sm class="index-main-container">
+          <v-layout align-center justify-start row fill-height>
+            <v-flex xs10 lg6 class="mx-3">
+              <div class="my-3">
+                <h1 class="display-3">
+                  {{ $t('carousel.item1.title') }}
+                </h1>
+                <h4 class="headline font-weight-thin">
+                  "{{ $t('carousel.item1.description') }}"
+                </h4>
+              </div>
+              <v-flex d-flex xs3>
+                <div>
+                  <v-btn dark block large flat outline>
+                    <span>立即购买</span>
+                  </v-btn>
+                  <v-progress-linear :v-model="12" background-color="g-blue-hydrogen" color="g-purple-purplin"></v-progress-linear>
+                </div>
+              </v-flex>
+              <h2 class="title font-weight-thin">{{ $t('carousel.item1.star') }}</h2>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-parallax>
       <v-container fluid grid-list-sm class="index-main-container">
-        <div class="hidden-md-and-down">
-          <Carousel :carousel.sync="carousel"></Carousel>
-        </div>
         <div class="page-main mt-5">
           <div class="px-2">
             <v-btn color="g-blue-hydrogen" dark class="mx-0">
@@ -55,14 +77,12 @@
 <script>
 import ListGameCard from '~/components/List/Game/Card/Default'
 import ListGameCardLoading from '~/components/List/Game/Card/Loading'
-import Carousel from '~/components/Carousel/Default'
 import axios from 'axios'
 
 export default {
   components: {
     ListGameCard,
-    ListGameCardLoading,
-    Carousel
+    ListGameCardLoading
   },
   data () {
     return {
