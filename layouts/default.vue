@@ -276,7 +276,7 @@ export default {
       width: 100px;
       height: 100px;
       position: fixed;
-      top: 90%;
+      bottom: 1vh;
       margin:0 auto;
       left:0;
       right:0;
