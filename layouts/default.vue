@@ -55,35 +55,51 @@ export default {
 </script>
 
 <style>
-  .v-navigation-drawer__border {
-    display: none;
+body::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(1, #667db6),
+    color-stop(1, #0082c8),
+    color-stop(1, #0082c8),
+    color-stop(1, #667db6)
+  );
+}
+.v-navigation-drawer__border {
+  display: none;
+}
+.text {
+  font-weight: 400;
+}
+.v-overlay--active:before {
+  opacity: 1;
+}
+.v-overlay:before {
+  background-color: #f5f5f5;
+}
+@media (min-width: 1264px) {
+  .index-main-container {
+    width: 1700px;
+    max-width: 90%;
   }
-  .text {
-    font-weight: 400;
+}
+@media (max-width: 960px) {
+  .page-main {
+    margin: 20px 0 10px 0;
   }
-  .v-overlay--active:before {
-    opacity: 1;
+}
+@media (max-width: 600px) {
+  .page-main {
+    margin: 10px 0 0 0;
   }
-  .v-overlay:before {
-    background-color: #f5f5f5;
+  .v-toolbar__content {
+    height: 0 !important;
   }
-  @media (min-width: 1264px) {
-    .index-main-container {
-      width: 1700px;
-      max-width: 90%;
-    }
-  }
-  @media (max-width: 960px) {
-    .page-main {
-      margin: 20px 0 10px 0
-    }
-  }
-  @media (max-width: 600px) {
-    .page-main {
-      margin: 10px 0 0 0
-    }
-    .v-toolbar__content {
-      height: 0 !important;
-    }
-  }
+}
 </style>
