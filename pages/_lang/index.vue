@@ -16,7 +16,7 @@
               <v-flex d-flex xs3>
                 <div>
                   <v-btn dark block large flat outline>
-                    <span>立即购买</span>
+                    <span>{{ $t('learn-more') }}</span>
                   </v-btn>
                   <v-progress-linear :v-model="12" background-color="g-blue-hydrogen" color="g-purple-purplin"></v-progress-linear>
                 </div>
