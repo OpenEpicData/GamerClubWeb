@@ -55,22 +55,6 @@ export default {
 </script>
 
 <style>
-body::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f5f5f5;
-}
-body::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(1, #667db6),
-    color-stop(1, #0082c8),
-    color-stop(1, #0082c8),
-    color-stop(1, #667db6)
-  );
-}
 .v-navigation-drawer__border {
   display: none;
 }

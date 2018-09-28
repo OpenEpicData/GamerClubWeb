@@ -1,6 +1,22 @@
 // Import Vuetify styling
 @require '~vuetify/src/stylus/main.styl'
 
+body::-webkit-scrollbar
+  width: 10px
+  background-color: #f5f5f5
+
+body::-webkit-scrollbar-thumb
+  border-radius: 10px
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(1, #667db6),
+    color-stop(1, #0082c8),
+    color-stop(1, #0082c8),
+    color-stop(1, #667db6)
+  )
+
 .page
   @extend .fade-transition
 
