@@ -55,18 +55,6 @@ export default {
 </script>
 
 <style>
-.v-navigation-drawer__border {
-  display: none;
-}
-.text {
-  font-weight: 400;
-}
-.v-overlay--active:before {
-  opacity: 1;
-}
-.v-overlay:before {
-  background-color: #f5f5f5;
-}
 @media (min-width: 1264px) {
   .index-main-container {
     width: 1700px;
