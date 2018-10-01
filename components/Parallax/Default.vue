@@ -13,7 +13,7 @@
           </div>
           <v-flex d-flex xs3>
             <div>
-              <v-btn dark block large flat outline :to="$i18n.path('apps/435150')">
+              <v-btn dark block large flat outline :to="$i18n.path('apps/812140')">
                 <span>{{ $t('learn-more') }}</span>
               </v-btn>
               <v-progress-linear :v-model="12" background-color="g-blue-hydrogen" color="g-purple-purplin"></v-progress-linear>
