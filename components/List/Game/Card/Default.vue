@@ -10,7 +10,7 @@
             slot-scope="{ hover }"
             :close-on-content-click="false"
           >
-            <v-card slot="activator" :to="$i18n.path('apps/'+ item.AppID)" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="320px" width="100%">
+            <v-card slot="activator" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="320px" width="100%">
               <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="215px" v-on:click="cardTo(item.AppID)">
                 <v-container fill-height fluid pa-2>
                   <v-layout align-start justify-start row fill-height>
