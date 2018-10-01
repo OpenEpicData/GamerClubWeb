@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-img v-if="appdetails[appid] && appdetails[appid].data" :src="appdetails[appid].data.screenshots[0].path_full" class="hidden-sm-and-down" style="height: 100vh">
+    <v-img v-if="appdetails[appid] && appdetails[appid].data" :src="appdetails[appid].data.screenshots[0].path_full" class="hidden-sm-and-down" style="height: 100vh" :lazy-src="'https://picsum.photos/10/6?image=15'">
       <v-content>
         <v-container fluid grid-list-sm class="index-main-container">
           <v-layout align-center justify-center row fill-height>
