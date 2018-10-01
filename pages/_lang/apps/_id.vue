@@ -1,111 +1,38 @@
 <template>
   <div>
-    <v-card flat v-if="appdetails[appid]">
-      <div flat class="header_video" v-if="appdetails[appid].data.movies[0].webm.max">
-        <video :src="appdetails[appid].data.movies[0].webm.max | moviePath" height="100%" width="100%" autoplay="autoplay" loop style="object-fit:fill" muted></video>
-      </div>
-
-      <v-layout align-start justify-center row fill-height class="grey lighten-4">
-        <v-flex xs12>
-          <v-container fluid class="index-main-container">
-            <v-card class="card--flex-toolbar grey lighten-4">
-              <v-layout align-start justify-space-between fill-height class="mx-5 py-5">
-                <div class="mt-2">
-                  <h1 class="display-2 font-weight-black">{{ title }}</h1>
+    <v-img v-if="appdetails[appid] && appdetails[appid].data" :src="appdetails[appid].data.screenshots[0].path_full" class="hidden-sm-and-down" style="height: 100vh">
+      <v-content>
+        <v-container fluid grid-list-sm class="index-main-container">
+          <v-layout align-center justify-center row fill-height>
+            <div>
+              <v-flex xs10 lg6 class="px-3 py-5" style="background: linear-gradient(to right, rgba(170,75,107,.7), rgba(59,141,153,.7))">
+                <div class="py-3 white--text">
+                  <h1 class="display-3">
+                    {{ title }}
+                  </h1>
+                  <h4 class="headline font-weight-thin">
+                    <span v-for="(item,k) in appdetails" :key="k">
+                      "<span v-html="item.data.short_description" v-if="item.data.short_description"></span>"
+                    </span>
+                  </h4>
+                </div>
+                <v-flex d-flex xs6>
                   <div>
-                    <div class="my-1">
-                      <span v-for="(item,k) in appInfos" :key="k">
-                        <span v-if="item.Key === 154"> {{ item.Value }} · </span>
-                        <span v-if="item.Key === 155"> {{ apps[0].app_type.DisplayName }} </span>
-                      </span>
-                    </div>
-                    <v-layout v-layout align-start justify-start fill-height>
-                      <div class="mt-1">
-                        ({{ rating }})
-                      </div>
-                      <div>
-                        <v-rating v-model="rating" small hover class="mx-0"></v-rating>
-                      </div>
-                    </v-layout>
+                    <v-btn dark large flat outline class="mx-0" :href="'https://store.steampowered.com/app/' + appid" target="_balck">
+                      <span>{{ $t('learn-more') }} ￥{{ appPrices[0].现价 }}</span>
+                    </v-btn>
+                    <v-btn dark large flat class="ml-3" v-if="appdetails[appid].data.movies[0]" @click="dialogOpenVideo(changeMoviePath(appdetails[appid].data.movies[0].webm.max))">
+                      <v-icon left>far fa-play-circle</v-icon> <span>{{ $t('Play video') }}</span>
+                    </v-btn>
                   </div>
-                  <div class="my-2">
-                    <v-layout row warp>
-                      <v-flex xs12 md8>
-                        <span v-for="(item,k) in appdetails" :key="k">
-                          <span v-html="item.data.short_description" v-if="item.data.short_description"></span>
-                        </span>
-                        <div>
-                          <v-dialog v-model="dialogReadMore" width="1000">
-                            <a slot="activator">
-                              更多
-                            </a>
-
-                            <v-card>
-                              <v-toolbar class="grey lighten-2 mt-5" fixed>
-                                <v-layout align-center justify-center row fill-height>
-                                  <div class="headline text-xs-center">{{ title }}</div>
-                                </v-layout>
-                              </v-toolbar>
-
-                              <v-card-text class="my-5">
-                                <span v-for="(item,k) in appdetails" :key="k">
-                                  <span v-if="item.data.detailed_description" v-html="item.data.detailed_description"></span>
-                                </span>
-                              </v-card-text>
-
-                              <v-divider></v-divider>
-
-                              <v-card-actions style="position:fixed;bottom:45px;margin:0 auto;left:0;right:0;" class="grey lighten-2">
-                                <div style="margin:0 auto;left:0;right:0;">
-                                  <v-btn color="primary" @click="dialogReadMore = false">
-                                    关闭
-                                  </v-btn>
-                                </div>
-                              </v-card-actions>
-                            </v-card>
-                          </v-dialog>
-                        </div>
-                      </v-flex>
-                    </v-layout>
-                  </div>
-                </div>
-                <div class="hidden-sm-and-down"></div>
-                <div class="hidden-sm-and-down">
-                  <v-layout wrap row>
-                    <v-flex xs12>
-                      <h4 class="display-1 font-weight-bold">￥{{ appPrices[0].现价 }}</h4>
-                      <span v-for="(item,k) in appInfos" :key="k">
-                        <div v-if="item.Value === 'prerelease'">
-                          游戏尚未发售
-                        </div>
-                      </span>
-                      <div v-if="details">
-                        <v-menu full-width top left offset-y>
-                          <v-btn slot="activator" block large outline>
-                            {{ title }}
-                            <v-icon right>
-                              fas fa-chevron-down
-                            </v-icon>
-                          </v-btn>
-                          <v-list>
-                            <v-list-tile v-for="(item, index) in packages" :key="index" :href="'https://store.steampowered.com/sub/' + item.packageid"
-                              target="_black">
-                              <v-list-tile-title v-html="item.option_text"></v-list-tile-title>
-                            </v-list-tile>
-                          </v-list>
-                        </v-menu>
-                      </div>
-                      <v-btn dark large block :href="'https://store.steampowered.com/app/' + appid" target="_balck"
-                        class="mx-0">购买</v-btn>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </v-layout>
-            </v-card>
-          </v-container>
-        </v-flex>
-      </v-layout>
-    </v-card>
+                </v-flex>
+                <ve-line v-if="chartData" height="30vh" :data="chartData" :legend-visible="false" backgroundColor="#fff" :extend="chartExtend"></ve-line>
+              </v-flex>
+            </div>
+          </v-layout>
+        </v-container>
+      </v-content>
+    </v-img>
     <v-container fluid grid-list-sm class="index-main-container">
       <div class="page-main">
         <div>
@@ -256,45 +183,6 @@
               </v-tabs>
             </div>
           </v-container>
-          <v-container fluid dark v-if="chartData">
-            <div>
-              <div class="my-3" id="gamePrice">
-                <h2>游戏价格 - Beta</h2>
-                <v-layout row wrap id="today">
-                  <v-flex xs12>
-                    <div v-for="(item,k) in appInfos" :key="k">
-                      <div v-if="item.Value === 'released'">
-                        <div v-if="isDiscount">
-                          <h4 class="mt-3">
-                            <span>正在打折中</span>
-                            <v-chip><span v-if="discountPrice === minPriceFinal" class="mx-1">史低</span> {{
-                              discountPrice }} 元 </v-chip>
-                          </h4>
-                          <h4 class="mt-3" v-if="discountPrice !== minPriceFinal">
-                            历史最低价格:
-                            <v-chip> {{ minPriceFinal }} 元 </v-chip>
-                          </h4>
-                        </div>
-                        <div v-else>
-                          <h4 class="mt-3">
-                            暂无折扣, 历史最低价格:
-                            <v-chip> {{ minPriceFinal }} 元 </v-chip>
-                          </h4>
-                        </div>
-                      </div>
-                      <div v-if="item.Value === 'prerelease'">
-                        游戏尚未发售
-                      </div>
-                    </div>
-
-                  </v-flex>
-                </v-layout>
-                <div class="mt-3">
-                  <ve-line :data="chartData"></ve-line>
-                </div>
-              </div>
-            </div>
-          </v-container>
         </div>
       </div>
     </v-container>
@@ -332,7 +220,7 @@ export default {
       lastUpdated: apps.data[0]['LastUpdated'],
       appPrices: result,
       chartData: {
-        columns: ['更新时间', '原价', '现价'],
+        columns: ['更新时间', '现价'],
         rows: _.orderBy(result, ['更新时间'], ['asc'])
       }
     }
@@ -371,7 +259,7 @@ export default {
       .then(response => {
         if (response.data[this.appid].data.package_groups[0].subs) {
           const getDetails =
-            response.data[this.appid].data.package_groups[0].subs
+              response.data[this.appid].data.package_groups[0].subs
           this.packages = getDetails
           this.details = true
         }
@@ -387,6 +275,15 @@ export default {
       .then(response => {
         this.minPriceFinal = response.data / 100
       })
+    this.chartExtend = {
+      series: {
+        step: 'middle',
+        smooth: false
+      },
+      yAxis: {
+        scale: true
+      }
+    }
   },
   mounted: function () {
     let appSystem = ''
@@ -401,6 +298,9 @@ export default {
     dialogOpenVideo: function (value) {
       this.videoUrl = value
       this.dialogVideo = true
+    },
+    changeMoviePath: function (value) {
+      return value.replace(/http/, 'https')
     }
   },
   filters: {
@@ -434,106 +334,106 @@ export default {
 </script>
 
 <style>
-.v-datatable th {
-  text-align: center !important;
-}
-
-.screenshot .v-responsive__content {
-  width: 400px;
-}
-
-.screenshot .v-tabs__bar {
-  background-color: transparent;
-}
-
-.screenshot .v-tabs__icon--prev {
-  left: 30px;
-}
-
-.screenshot .v-tabs__icon--next {
-  right: 30px;
-}
-
-.screenshot .v-tabs__icon--next,
-.screenshot .v-tabs__icon--prev {
-  font-size: 32px;
-  z-index: 99;
-  color: #fff;
-  line-height: 338px;
-}
-
-.screenshot .v-tabs__wrapper--show-arrows {
-  margin: 0;
-}
-
-.screenshot .v-tabs__item {
-  padding-left: 0;
-}
-
-.video .v-responsive__content {
-  width: 400px;
-}
-
-.video .v-tabs__bar {
-  background-color: transparent;
-}
-
-.video .v-tabs__icon--prev {
-  left: 30px;
-}
-
-.video .v-tabs__icon--next {
-  right: 30px;
-}
-
-.video .v-tabs__icon--next,
-.video .v-tabs__icon--prev {
-  font-size: 32px;
-  z-index: 99;
-  color: #fff;
-  line-height: 164px;
-}
-
-.video .v-tabs__wrapper--show-arrows {
-  margin: 0;
-}
-
-.video .v-tabs__item {
-  padding-left: 0;
-}
-
-.accent--text {
-  color: #000 !important;
-  caret-color: #000 !important;
-}
-
-.card--flex-toolbar {
-  margin-top: -20vh;
-}
-
-.header_video {
-  height: 100vh;
-}
-
-.discount_original_price {
-  text-decoration: line-through;
-}
-
-@media screen and (max-width: 1264px) {
-  .header_video {
-    height: 80vh;
+  .v-datatable th {
+    text-align: center !important;
   }
-}
 
-@media screen and (max-width: 960px) {
-  .header_video {
-    height: 75vh;
+  .screenshot .v-responsive__content {
+    width: 400px;
   }
-}
 
-@media screen and (max-width: 600px) {
-  .header_video {
-    height: 50vh;
+  .screenshot .v-tabs__bar {
+    background-color: transparent;
   }
-}
+
+  .screenshot .v-tabs__icon--prev {
+    left: 30px;
+  }
+
+  .screenshot .v-tabs__icon--next {
+    right: 30px;
+  }
+
+  .screenshot .v-tabs__icon--next,
+  .screenshot .v-tabs__icon--prev {
+    font-size: 32px;
+    z-index: 99;
+    color: #fff;
+    line-height: 338px;
+  }
+
+  .screenshot .v-tabs__wrapper--show-arrows {
+    margin: 0;
+  }
+
+  .screenshot .v-tabs__item {
+    padding-left: 0;
+  }
+
+  .video .v-responsive__content {
+    width: 400px;
+  }
+
+  .video .v-tabs__bar {
+    background-color: transparent;
+  }
+
+  .video .v-tabs__icon--prev {
+    left: 30px;
+  }
+
+  .video .v-tabs__icon--next {
+    right: 30px;
+  }
+
+  .video .v-tabs__icon--next,
+  .video .v-tabs__icon--prev {
+    font-size: 32px;
+    z-index: 99;
+    color: #fff;
+    line-height: 164px;
+  }
+
+  .video .v-tabs__wrapper--show-arrows {
+    margin: 0;
+  }
+
+  .video .v-tabs__item {
+    padding-left: 0;
+  }
+
+  .accent--text {
+    color: #000 !important;
+    caret-color: #000 !important;
+  }
+
+  .card--flex-toolbar {
+    margin-top: -20vh;
+  }
+
+  .header_video {
+    height: 100vh;
+  }
+
+  .discount_original_price {
+    text-decoration: line-through;
+  }
+
+  @media screen and (max-width: 1264px) {
+    .header_video {
+      height: 80vh;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .header_video {
+      height: 75vh;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .header_video {
+      height: 50vh;
+    }
+  }
 </style>
