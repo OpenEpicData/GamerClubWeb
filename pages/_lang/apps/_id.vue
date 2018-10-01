@@ -16,7 +16,7 @@
                     </span>
                   </h4>
                 </div>
-                <v-flex d-flex xs6>
+                <v-flex d-flex xs12>
                   <div>
                     <v-btn dark large flat outline class="mx-0" :href="'https://store.steampowered.com/app/' + appid" target="_balck">
                       <span>{{ $t('learn-more') }} ￥{{ appPrices[0].现价 }}</span>
