@@ -3,7 +3,7 @@
     <v-img v-if="appdetails[appid] && appdetails[appid].data" :src="appdetails[appid].data.screenshots[0].path_full" class="hidden-sm-and-down" style="height: 100vh" :lazy-src="'https://picsum.photos/10/6?image=15'">
       <v-content>
         <v-container fluid grid-list-sm class="index-main-container">
-          <v-layout align-center justify-center row fill-height>
+          <v-layout align-center justify-start row fill-height>
             <div>
               <v-flex xs10 lg6 class="px-3 py-5" style="background: linear-gradient(to right, rgba(170,75,107,.7), rgba(59,141,153,.7))">
                 <div class="py-3 white--text">
@@ -21,7 +21,7 @@
                     <v-btn dark large flat outline class="mx-0" :href="'https://store.steampowered.com/app/' + appid" target="_balck">
                       <span>{{ $t('learn-more') }} ￥{{ appPrices[0].现价 }}</span>
                     </v-btn>
-                    <v-btn dark large flat class="ml-3" v-if="appdetails[appid].data.movies[0]" @click="dialogOpenVideo(changeMoviePath(appdetails[appid].data.movies[0].webm.max))">
+                    <v-btn dark large flat class="ml-3" v-if="appdetails[appid].data.movies" @click="dialogOpenVideo(changeMoviePath(appdetails[appid].data.movies[0].webm.max))">
                       <v-icon left>far fa-play-circle</v-icon> <span>{{ $t('Play video') }}</span>
                     </v-btn>
                   </div>

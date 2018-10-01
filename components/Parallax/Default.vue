@@ -1,9 +1,9 @@
 <template>
-  <v-parallax dark src="https://i.loli.net/2018/09/28/5bad7c94ac367.jpg" class="hidden-sm-and-down">
+  <v-parallax dark src="https://compass-ssl.xbox.com/assets/59/91/59914d88-e694-416d-90ff-69dbd55996ef.jpg?n=64728194_GLP-Page-Hero-1084_1920x1080.jpg" class="hidden-sm-and-down">
     <v-container fluid grid-list-sm class="index-main-container">
       <v-layout align-center justify-start row fill-height>
-        <v-flex xs10 lg6 class="mx-3">
-          <div class="my-3">
+        <v-flex xs10 lg6 class="px-3 py-5" style="background: linear-gradient(to right, rgba(170,75,107,.7), rgba(59,141,153,.7))">
+          <div class="py-3">
             <h1 class="display-3">
               {{ $t('carousel.item1.title') }}
             </h1>
