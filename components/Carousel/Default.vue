@@ -19,44 +19,41 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      carousel: Array
-    }
+export default {
+  props: {
+    carousel: Array
   }
+}
 </script>
 
-<style>
-  .el-carousel__item:nth-child(2n) {
-    background-color: transparent;
-  }
+<style lang="stylus" scoped>
+$color-1 = #f5f5f5
 
-  .el-carousel__item:nth-child(2n + 1) {
-    background-color: transparent;
-  }
+.el-carousel__item
+    &:nth-child(2n)
+        background-color transparent
 
-  .v-carousel__controls {
-    background: transparent;
-  }
+    &:nth-child(2n
+        +1)
+            background-color transparent
 
-  .v-carousel__next,
-  .v-carousel__prev {
-    margin: 0 1vw;
-  }
+.v-carousel__controls
+    background transparent
 
-  .v-carousel__prev .v-btn i,
-  .v-carousel__next .v-btn i {
-    color: #f5f5f5 !important;
-    font-size: 30px !important;
-    margin: 15px 20px;
-  }
+.v-carousel__next
+.v-carousel__prev
+    margin 0 1vw
 
-  .v-carousel {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-  }
+.v-carousel__prev .v-btn i
+.v-carousel__next .v-btn i
+    color $color-1 !important
+    font-size 30px !important
+    margin 15px 20px
 
-  #header_description {
-    line-height: 6vh !important;
-  }
+.v-carousel
+    box-shadow none
+
+#header_description
+    line-height 6vh !important
+
 </style>

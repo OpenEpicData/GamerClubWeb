@@ -11,23 +11,23 @@
 </template>
 
 <script>
-  import LoginDialog from '~/components/Login/Dialog'
+import LoginDialog from '~/components/Login/Dialog'
 
-  export default {
-    props: ['BottomNav'],
-    components: {
-      LoginDialog
-    },
-    data: () => ({
-      BottomNavIndex: 1,
-      LoginDialog: false
-    }),
-    watch: {
-      BottomNavIndex: function (val) {
-        if (val === 2) {
-          this.BottomNavIndex = 1
-        }
+export default {
+  props: ['BottomNav'],
+  components: {
+    LoginDialog
+  },
+  data: () => ({
+    BottomNavIndex: 1,
+    LoginDialog: false
+  }),
+  watch: {
+    BottomNavIndex: function (val) {
+      if (val === 2) {
+        this.BottomNavIndex = 1
       }
     }
   }
+}
 </script>

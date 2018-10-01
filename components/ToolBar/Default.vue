@@ -37,22 +37,22 @@
 </template>
 
 <script>
-  import LoginDialog from '~/components/Login/Dialog'
-  export default {
-    props: ['ToolBar'],
-    components: {
-      LoginDialog
+import LoginDialog from '~/components/Login/Dialog'
+export default {
+  props: ['ToolBar'],
+  components: {
+    LoginDialog
+  },
+  data: () => ({
+    LoginDialog: false
+  }),
+  methods: {
+    enTo: function (value) {
+      this.$router.push(this.$router.currentRoute.path.replace('zh-cn', 'en-us'))
     },
-    data: () => ({
-      LoginDialog: false
-    }),
-    methods: {
-      enTo: function (value) {
-        this.$router.push(this.$router.currentRoute.path.replace('zh-cn', 'en-us'))
-      },
-      cnTo: function (value) {
-        this.$router.push(this.$router.currentRoute.path.replace('en-us', 'zh-cn'))
-      }
+    cnTo: function (value) {
+      this.$router.push(this.$router.currentRoute.path.replace('en-us', 'zh-cn'))
     }
   }
+}
 </script>
