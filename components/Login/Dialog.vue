@@ -34,27 +34,27 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      LoginDialog: {
-        default: false
-      }
-    },
-    watch: {
-      LoginDialog (val) {
-        if (this.$route.path === '/login') {
-          if (!val) {
-            this.$router.push('/')
-          } else {
-            this.$router.push('login')
-          }
+export default {
+  props: {
+    LoginDialog: {
+      default: false
+    }
+  },
+  watch: {
+    LoginDialog (val) {
+      if (this.$route.path === '/login') {
+        if (!val) {
+          this.$router.push('/')
         } else {
-          if (!val) {
-            this.$emit('update:LoginDialog', false)
-          }
+          this.$router.push('login')
+        }
+      } else {
+        if (!val) {
+          this.$emit('update:LoginDialog', false)
         }
       }
     }
   }
+}
 </script>
 
