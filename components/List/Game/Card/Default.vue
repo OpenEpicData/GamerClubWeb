@@ -96,7 +96,7 @@
   </v-flex>
 </template>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .v-image__image--preload
     filter blur(0)
 
