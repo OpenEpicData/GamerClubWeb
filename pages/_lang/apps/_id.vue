@@ -257,12 +257,6 @@ export default {
     axios
       .get('https://rest.steamhub.cn/api/v2/apps/details/' + this.appid + '?lang=' + this.$store.state.display.lang)
       .then(response => {
-        if (response.data[this.appid].data.package_groups[0].subs) {
-          const getDetails =
-              response.data[this.appid].data.package_groups[0].subs
-          this.packages = getDetails
-          this.details = true
-        }
         this.appdetails = response.data
         this.carouselLoading = 0
       })
