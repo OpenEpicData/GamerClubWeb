@@ -28,9 +28,11 @@
   "learn-more": "了解更多",
   "carousel": {
     "item1": {
-      "title": "刺客信条：奥德赛",
-      "description": "在《Assassin's Creed® Odyssey》当中主宰自己的命运。 从一名流浪者蜕变成传奇人物，踏上这趟奥德赛之旅，找出你过往的秘密并改变古希腊的命运。",
-      "star": "IGN 评分: 9.2/10 《刺客信条：奥德赛》发生在希腊的开放世界冒险光彩夺目且惊险刺激，更是系列历史上最出色的作品。"
+      "href": "https://www.rockstargames.com/reddeadredemption2/zh/",
+      "video": "https://www.bilibili.com/video/av32863870/?p=2",
+      "title": "荒野：大镖客 2",
+      "description": "现代开端美洲严峻腹地上演的传奇生存故事 - 年度最期待大作",
+      "star": "1899 年美洲。在 Blackwater 小镇的抢案出差错之后，Arthur Morgan 和 Van der Linde 一伙人被迫逃亡。国内的联邦探员和赏金猎人接踵而来，这伙人必须在美洲抢劫、偷窃和决斗，才能找出生路。随着内部的分裂对撕裂帮派的威胁加剧，Arthur 必须在自己的理想与对培育他的帮派的忠诚之间做选择。"
     },
     "item2": {
       "title": "Shadow of the Tomb Raider",

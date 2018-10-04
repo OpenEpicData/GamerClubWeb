@@ -28,9 +28,11 @@
   "learn-more": "Learn more",
   "carousel": {
     "item1": {
-      "title": "Assassin's Creed® Odyssey",
-      "description": "Choose your fate in Assassin's Creed® Odyssey. From outcast to living legend, embark on an odyssey to uncover the secrets of your past and change the fate of Ancient Greece.",
-      "star": "IGN Rating: 9.2/10 Assassin's Creed Odyssey's open-world adventure through ancient Greece is a gorgeous thrill, and the best the series has ever been."
+      "href": "https://www.rockstargames.com/reddeadredemption2/",
+      "video": "https://www.youtube.com/watch?v=lb-tlY6ytk8",
+      "title": "red dead redemption 2",
+      "description": "An epic tale of life in America at the dawn of the modern age - Most looking forward to the year",
+      "star": "America, 1899. After a robbery goes wrong in the town of Blackwater, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and bounty hunters massing on their heels, the gang must rob, steal and fight their way across America to survive. As deepening internal divisions threaten to tear the gang apart, Arthur must choose between his own ideals and loyalty to the gang who raised him."
     },
     "item2": {
       "title": "Shadow of the Tomb Raider",
