@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="grey lighten-4">
-      <Parallax></Parallax>
+      <Parallax :imgPath="'https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg'"></Parallax>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main mt-5">
           <div class="px-2 mt-3">

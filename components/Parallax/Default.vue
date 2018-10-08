@@ -1,5 +1,5 @@
 <template>
-  <v-parallax dark src="https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg" class="hidden-sm-and-down">
+  <v-parallax dark :src="imgPath" class="hidden-sm-and-down">
     <v-container fluid grid-list-sm class="index-main-container">
       <v-layout align-center justify-start row fill-height>
         <v-flex xs10 lg6 class="px-3 py-5" style="background: linear-gradient(to right, rgba(170,75,107,.7), rgba(59,141,153,.7))">
@@ -31,4 +31,9 @@
   </v-parallax>
 </template>
 
+<script>
+export default {
+  props: ['imgPath']
+}
+</script>
 
