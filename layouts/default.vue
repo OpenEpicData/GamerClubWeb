@@ -4,7 +4,6 @@
     <div class="grey lighten-4 my-5">
       <nuxt />
     </div>
-    <Tip :title.sync="this.$t('Welcome, tourists')"></Tip>
     <BottomNav :BottomNav.sync="BottomNav"></BottomNav>
   </v-app>
 </template>
@@ -12,13 +11,11 @@
 <script>
 import ToolBar from '~/components/ToolBar/Default'
 import BottomNav from '~/components/BottomNav/Default'
-import Tip from '~/components/Tip/Default'
 
 export default {
   components: {
     ToolBar,
-    BottomNav,
-    Tip
+    BottomNav
   },
   data: () => ({
     ToolBar: {
