@@ -59,11 +59,13 @@ export default {
       let windowHeight = document.documentElement.clientHeight
       let scrollHeight = document.documentElement.scrollHeight
       if (scrollTop + windowHeight === scrollHeight) {
+        this.$store.commit('DISPLAY_LOADING', true)
         let [apps] = await Promise.all([
           axios.get('https://rest.steamhub.cn/api/v2/apps/lists?param=36&page=' + (this.page + 1) + '&cc=' + this.$store.state.display.country)
         ])
         this.page = apps.data.current_page
         this.list = this.list.concat(apps.data)
+        this.$store.commit('DISPLAY_LOADING', false)
       }
     }
   },
