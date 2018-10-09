@@ -25,7 +25,7 @@
                       {{ item.title }}
                     </h3>
                     <h4>
-                      {{ $t("Today's peak") }}: {{ item.now }}
+                      {{ $t("Today's peak") }}: {{ item.total }}
                     </h4>
                   </nuxt-link>
                 </v-flex>
