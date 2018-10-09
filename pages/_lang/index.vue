@@ -4,49 +4,56 @@
       <Parallax :imgPath="'https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg'"></Parallax>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main mt-5">
-          <div class="px-2 mt-3">
-            <v-flex xs3>
-              <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
-            </v-flex>
-            <v-layout row wrap id="today">
-              <v-flex xs12 md8>
-                <h2 class="g-blue-hydrogen-text headline">{{ $t('Most popular games') }}</h2>
+          <div>
+            <div class="px-2 mt-3">
+              <v-flex xs3>
+                <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
               </v-flex>
-            </v-layout>
-          </div>
-          
-          <div class="mt-3">
-            <ListGameCardTrending :list.sync="trending.data"></ListGameCardTrending>
-            <ListGameCardLoading></ListGameCardLoading>
-          </div>
-
-          <div class="px-2 mt-3">
-            <v-flex xs3>
-              <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
-            </v-flex>
-            <v-layout row wrap id="today">
-              <v-flex xs12 md8>
-                <h2 class="g-blue-hydrogen-text headline">{{ $t('Latest updated app') }}</h2>
-              </v-flex>
-              <v-flex xs12 md4>
-                <div class="text-xs-right hidden-sm-and-down">
-                  <h3>
-                    {{ $t('Update items in the queue') }}:
-                    <span v-if="$store.state.display.loading">
-                      <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
-                    </span>
-                    <span v-else>{{ queue }}</span>
-                  </h3>
-                </div>
-              </v-flex>
-            </v-layout>
-          </div>
-
-          <div class="mt-3">
-            <div v-for="(item, i) in list" :key="i">
-              <ListGameCard :list.sync="item.data"></ListGameCard>
+              <v-layout row wrap id="today">
+                <v-flex xs12 md8>
+                  <h2 class="g-blue-hydrogen-text headline">{{ $t('Most popular games') }}</h2>
+                </v-flex>
+              </v-layout>
             </div>
-            <ListGameCardLoading></ListGameCardLoading>
+            
+            <div>
+              <ListGameCardTrending :list.sync="trending.data"></ListGameCardTrending>
+              <ListGameCardLoading></ListGameCardLoading>
+            </div>
+          </div>
+
+          <div>
+            <div class="px-2">
+              <v-flex xs3>
+                <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
+              </v-flex>
+              <v-layout row wrap id="today">
+                <v-flex xs12 md8>
+                  <h2 class="g-blue-hydrogen-text headline">{{ $t('Latest updated app') }}</h2>
+                </v-flex>
+                <v-flex xs12 md4>
+                  <div class="text-xs-right hidden-sm-and-down">
+                    <h3>
+                      {{ $t('Update items in the queue') }}:
+                      <span v-if="$store.state.display.loading">
+                        <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
+                      </span>
+                      <span v-else>{{ queue }}</span>
+                    </h3>
+                  </div>
+                </v-flex>
+              </v-layout>
+            </div>
+
+            <div>
+              <div v-for="(item, i) in list" :key="i">
+                <ListGameCard :list.sync="item.data"></ListGameCard>
+              </div>
+              <v-layout align-start justify-center row fill-height v-if="!$store.state.display.loading">
+                <v-flex xs12 md4><v-btn block outline large @click="loadMore">{{ $t('Load more') }} <v-icon right>fas fa-angle-down</v-icon> </v-btn></v-flex>
+              </v-layout>
+              <ListGameCardLoading></ListGameCardLoading>
+            </div>
           </div>
         </div>
       </v-container>

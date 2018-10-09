@@ -1,8 +1,8 @@
 <template>
   <v-flex d-flex xs12>
     <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 md4 lg3 xl2 v-for="(item,i) in list" :key="i" class="game-list-card px-2">
-        <v-hover v-if="i <= 11">
+      <v-flex d-flex xs12 sm6 md4 lg3 xl2 v-for="(item,i) in list.slice(0, 12)" :key="i" class="game-list-card px-2">
+        <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="320px"
             width="100%">
             <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'"
