@@ -10,6 +10,22 @@
             </v-flex>
             <v-layout row wrap id="today">
               <v-flex xs12 md8>
+                <h2 class="g-blue-hydrogen-text headline">{{ $t('Most popular games') }}</h2>
+              </v-flex>
+            </v-layout>
+          </div>
+          
+          <div class="mt-3">
+            <ListGameCardTrending :list.sync="trending.data"></ListGameCardTrending>
+            <ListGameCardLoading></ListGameCardLoading>
+          </div>
+
+          <div class="px-2 mt-3">
+            <v-flex xs3>
+              <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
+            </v-flex>
+            <v-layout row wrap id="today">
+              <v-flex xs12 md8>
                 <h2 class="g-blue-hydrogen-text headline">{{ $t('Latest updated app') }}</h2>
               </v-flex>
               <v-flex xs12 md4>
@@ -31,9 +47,6 @@
               <ListGameCard :list.sync="item.data"></ListGameCard>
             </div>
             <ListGameCardLoading></ListGameCardLoading>
-            <v-layout align-start justify-center row fill-height v-if="!$store.state.display.loading">
-              <v-flex xs12 md4><v-btn block outline large @click="loadMore">{{ $t('Load more') }} <v-icon right>fas fa-angle-down</v-icon> </v-btn></v-flex>
-            </v-layout>
           </div>
         </div>
       </v-container>
@@ -43,6 +56,7 @@
 
 <script>
 import ListGameCard from '~/components/List/Game/Card/Default'
+import ListGameCardTrending from '~/components/List/Game/Card/Trending'
 import ListGameCardLoading from '~/components/List/Game/Card/Loading'
 import Parallax from '~/components/Parallax/Default'
 import axios from 'axios'
@@ -51,12 +65,14 @@ export default {
   components: {
     ListGameCard,
     ListGameCardLoading,
+    ListGameCardTrending,
     Parallax
   },
   data () {
     return {
       queue: Number,
-      list: String
+      list: String,
+      trending: Object
     }
   },
   methods: {
@@ -71,13 +87,15 @@ export default {
     }
   },
   mounted: async function () {
-    let [queue, apps] = await Promise.all([
+    let [queue, apps, trending] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/game/search/app/update_queue/count'),
-      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=24' + '&cc=' + this.$store.state.display.country)
+      axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=24' + '&cc=' + this.$store.state.display.country),
+      axios.get('https://rest.steamhub.cn/api/v2/apps/trending')
     ])
     let list = []
     let page = apps.data.current_page
     this.queue = queue.data
+    this.trending = trending
     this.list = list.concat(apps.data)
     this.$store.commit('DISPLAY_LOADING', false)
   },
