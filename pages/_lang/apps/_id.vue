@@ -271,13 +271,14 @@ export default {
       })
     this.chartExtend = {
       series: {
-        step: 'middle',
+        step: 'start',
         smooth: false,
         lineStyle: {
           width: 5,
           shadowColor: 'rgba(106,48,147, 0.5)',
           shadowBlur: 5,
-          shadowOffsetY: 5
+          shadowOffsetY: 5,
+          shadowOffsetX: 5
         }
       },
       yAxis: {
