@@ -1,7 +1,7 @@
 <template>
   <v-flex d-flex xs12>
     <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 md4 lg3 v-for="(item,i) in list" :key="i" class="game-list-card px-2">
+      <v-flex d-flex xs12 sm6 md4 lg3 xl2 v-for="(item,i) in list" :key="i" class="game-list-card px-2">
         <v-hover>
           <v-menu
             :v-model="i"
@@ -10,42 +10,31 @@
             slot-scope="{ hover }"
             :close-on-content-click="false"
           >
-            <v-card slot="activator" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="320px" width="100%">
+            <v-card slot="activator" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" width="100%" style="min-height: 320px">
               <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="215px" v-on:click="cardTo(item.AppID)">
-                <v-container fill-height fluid pa-2>
-                  <v-layout align-start justify-start row fill-height>
-                    <v-flex xs12 flexbox class="text-xs-right" v-if="item.app_type">
-                      <v-btn class="card-right-attention-icon" small color="g-blue-hydrogen" dark :loading="dialogAttention"
-                        @click.stop="dialogAttention = true">
-                        <v-icon left>
-                          add
-                        </v-icon>
-                        {{ $t('attention') }}
-                      </v-btn>
+                <v-container fill-height fluid pb-0 pr-0>
+                  <v-layout align-end justify-start row fill-height>
+                    <v-flex xs12 flexbox class="text-xs-right cardTip" v-if="item.app_type">
+                      <span v-if="item.app_price[0]">
+                        <span v-if="item.app_price[0].PriceFinal">
+                          <v-btn dark small color="g-blue-hydrogen" class="cardTipButton">
+                            {{ minAppPrice(item.app_price) }}
+                          </v-btn>
+                        </span>
+                      </span>
                     </v-flex>
                   </v-layout>
                 </v-container>
               </v-img>
               <v-card-title primary-title>
                 <v-layout row wrap>
-                  <v-flex xs7>
+                  <v-flex xs12>
                     <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
                       <h3>
                         {{ item.Name }}
                       </h3>
                       <span class="grey--text">{{ $t('Updated on') }}: {{ time(item.LastUpdated) }}</span>
                     </nuxt-link>
-                  </v-flex>
-                  <v-flex xs5>
-                    <div class="text-xs-right">
-                       <span v-if="item.app_price[0]">
-                        <span v-if="item.app_price[0].PriceFinal">
-                          <v-btn dark small color="g-purple-purplin">
-                            {{ minAppPrice(item.app_price) }}
-                          </v-btn>
-                        </span>
-                      </span>
-                    </div>
                   </v-flex>
                 </v-layout>
               </v-card-title>

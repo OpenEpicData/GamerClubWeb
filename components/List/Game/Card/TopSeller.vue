@@ -7,10 +7,10 @@
             width="100%">
             <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'"
               :lazy-src="'/unknow.jpg'" height="215px" v-on:click="cardTo(item.appid)">
-              <v-container fill-height fluid pa-2>
-                <v-layout align-start justify-start row fill-height>
-                  <v-flex xs12 flexbox class="text-xs-right">
-                    <v-btn small color="g-blue-hydrogen" dark @click.stop="dialogAttention = true">
+              <v-container fill-height fluid pb-0 pr-0>
+                <v-layout align-end justify-start row fill-height>
+                  <v-flex xs12 flexbox class="text-xs-right cardTip">
+                    <v-btn small color="g-blue-hydrogen" dark @click.stop="dialogAttention = true" class="cardTipButton">
                       <span v-html="price(item.price)"></span>
                     </v-btn>
                   </v-flex>
@@ -37,6 +37,16 @@
     </v-layout>
   </v-flex>
 </template>
+
+<style>
+  .cardTipButton {
+    margin: 0
+  }
+  .cardTip {
+    padding: 0 !important
+  }
+</style>
+
 
 <style lang="stylus" scoped>
   .v-image__image--preload {
