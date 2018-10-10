@@ -1,7 +1,7 @@
 <template>
   <v-flex d-flex xs12 v-if="list">
     <v-layout row wrap>
-      <v-flex d-flex xs12 sm6 md4 lg3 xl2 v-for="(item,i) in list.slice(0, 12)" :key="i" class="game-list-card px-2">
+      <v-flex d-flex xs6 sm6 md4 lg3 xl2 v-for="(item,i) in list.slice(0, 12)" :key="i" class="game-list-card px-2">
         <v-hover>
           <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="320px"
             width="100%">
