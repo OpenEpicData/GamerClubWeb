@@ -26,7 +26,7 @@
                     </v-btn>
                   </div>
                 </v-flex>
-                <ve-line v-if="chartData" height="30vh" :data="chartData" :legend-visible="false" backgroundColor="#fff" :extend="chartExtend"></ve-line>
+                <ve-line v-if="chartData" height="30vh" :data="chartData" :colors="chartColors" :legend-visible="false" backgroundColor="#fff" :extend="chartExtend"></ve-line>
               </v-flex>
             </div>
           </v-layout>
@@ -272,7 +272,13 @@ export default {
     this.chartExtend = {
       series: {
         step: 'middle',
-        smooth: false
+        smooth: false,
+        lineStyle: {
+          width: 5,
+          shadowColor: 'rgba(106,48,147, 0.5)',
+          shadowBlur: 5,
+          shadowOffsetY: 5
+        }
       },
       yAxis: {
         scale: true
@@ -287,6 +293,14 @@ export default {
       }
     })
     this.appSystem = appSystem.split(',')
+    this.chartColors = [
+      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        { offset: 0, color: '#667db6' },
+        { offset: 0.33, color: ' #0082c8' },
+        { offset: 0.66, color: ' #0082c8' },
+        { offset: 1, color: ' #667db6' }
+      ])
+    ]
   },
   methods: {
     dialogOpenVideo: function (value) {
