@@ -38,15 +38,6 @@
   </v-flex>
 </template>
 
-<style>
-  .cardTipButton {
-    margin: 0
-  }
-  .cardTip {
-    padding: 0 !important
-  }
-</style>
-
 
 <style lang="stylus" scoped>
   .v-image__image--preload {
