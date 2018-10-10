@@ -23,6 +23,24 @@
           </div>
 
           <div>
+            <div class="px-2 mt-3">
+              <v-flex xs3>
+                <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
+              </v-flex>
+              <v-layout row wrap id="today">
+                <v-flex xs12 md8>
+                  <h2 class="g-blue-hydrogen-text headline">{{ $t('Popular sales game') }}</h2>
+                </v-flex>
+              </v-layout>
+            </div>
+            
+            <div>
+              <ListGameCardTopSeller :list.sync="topSeller.data"></ListGameCardTopSeller>
+              <ListGameCardLoading></ListGameCardLoading>
+            </div>
+          </div>
+
+          <div>
             <div class="px-2">
               <v-flex xs3>
                 <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
@@ -64,6 +82,7 @@
 <script>
 import ListGameCard from '~/components/List/Game/Card/Default'
 import ListGameCardTrending from '~/components/List/Game/Card/Trending'
+import ListGameCardTopSeller from '~/components/List/Game/Card/TopSeller'
 import ListGameCardLoading from '~/components/List/Game/Card/Loading'
 import Parallax from '~/components/Parallax/Default'
 import axios from 'axios'
@@ -73,13 +92,15 @@ export default {
     ListGameCard,
     ListGameCardLoading,
     ListGameCardTrending,
+    ListGameCardTopSeller,
     Parallax
   },
   data () {
     return {
       queue: Number,
       list: String,
-      trending: Object
+      trending: Object,
+      topSeller: Object
     }
   },
   methods: {
@@ -94,15 +115,17 @@ export default {
     }
   },
   mounted: async function () {
-    let [queue, apps, trending] = await Promise.all([
+    let [queue, apps, trending, topSeller] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/game/search/app/update_queue/count'),
       axios.get('https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=24' + '&cc=' + this.$store.state.display.country),
-      axios.get('https://rest.steamhub.cn/api/v2/apps/trending')
+      axios.get('https://rest.steamhub.cn/api/v2/apps/trending'),
+      axios.get('https://rest.steamhub.cn/api/v2/apps/topsellers?cc=' + this.$store.state.display.country)
     ])
     let list = []
     let page = apps.data.current_page
     this.queue = queue.data
     this.trending = trending
+    this.topSeller = topSeller
     this.list = list.concat(apps.data)
     this.$store.commit('DISPLAY_LOADING', false)
   },
