@@ -1,84 +1,43 @@
 <template>
-  <v-flex d-flex xs12>
+  <v-flex d-flex xs12 v-if="list">
     <v-layout row wrap>
       <v-flex d-flex xs6 sm6 md4 lg3 xl2 v-for="(item,i) in list" :key="i" class="game-list-card px-2">
         <v-hover>
-          <v-menu
-            :v-model="i"
-            offset-x
-            open-on-hover
-            slot-scope="{ hover }"
-            :close-on-content-click="false"
-          >
-            <v-card slot="activator" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" width="100%" style="min-height: 320px">
-              <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" :lazy-src="'/unknow.jpg'" height="215px" v-on:click="cardTo(item.AppID)">
-                <v-container fill-height fluid pb-0 pr-0>
-                  <v-layout align-end justify-start row fill-height>
-                    <v-flex xs12 flexbox class="text-xs-right cardTip" v-if="item.app_type">
-                      <span v-if="item.app_price[0]">
-                        <span v-if="item.app_price[0].PriceFinal">
-                          <v-btn dark small color="g-blue-hydrogen" class="cardTipButton">
-                            {{ minAppPrice(item.app_price) }}
-                          </v-btn>
+          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" width="100%">
+            <v-layout align-space-between justify-space-between column fill-height>
+              <v-flex>
+                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'"
+                  gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'" height="215px"
+                  v-on:click="cardTo(item.AppID)">
+                  <v-container fill-height fluid pt-0 pl-0>
+                    <v-layout align-start justify-start row fill-height>
+                      <v-flex xs12 flexbox class="text-xs-left cardTip">
+                        <span v-if="item.app_price[0]">
+                          <span v-if="item.app_price[0].PriceFinal">
+                            <v-btn dark small color="g-blue-hydrogen" class="cardTipButton">
+                              {{ minAppPrice(item.app_price) }}
+                            </v-btn>
+                          </span>
                         </span>
-                      </span>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-img>
-              <v-card-title primary-title>
-                <v-layout row wrap>
-                  <v-flex xs12>
-                    <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
-                      <h3>
-                        {{ item.Name }}
-                      </h3>
-                      <span class="grey--text">{{ $t('Updated on') }}: {{ time(item.LastUpdated) }}</span>
-                    </nuxt-link>
-                  </v-flex>
-                </v-layout>
-              </v-card-title>
-            </v-card>
-
-            <div v-if="item.app_price[0]">
-              <v-card v-if="item.app_price[0].PriceFinal">
-                <v-list>
-                  <v-list-tile avatar>
-                    <v-list-tile-avatar>
-                      <img :src="'https://steamcdn-a.opskins.media/steam/apps/' + item.AppID + '/capsule_sm_120.jpg'">
-                    </v-list-tile-avatar>
-
-                    <v-list-tile-content>
-                      <v-list-tile-title>{{ item.Name }}</v-list-tile-title>
-                    </v-list-tile-content>
-
-                    <v-list-tile-action>
-                      <v-btn icon>
-                        <v-icon>favorite</v-icon>
-                      </v-btn>
-                    </v-list-tile-action>
-                  </v-list-tile>
-                </v-list>
-
-                <v-divider></v-divider>
-
-                <v-data-table
-                  :items="item.app_price"
-                  hide-actions
-                  hide-headers
-                  class="elevation-1"
-                >
-                  <template slot="items" slot-scope="props" v-if="props.item.PriceInitial">
-                    <td>{{ props.item.LastUpdated }}</td>
-                    <td>
-                        {{ $t('Symbol of money') }}
-                        {{ props.item.PriceFinal  / 100 }}
-                    </td>
-                  </template>
-                </v-data-table>
-              </v-card>
-            </div>
-          </v-menu>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-img>
+              </v-flex>
+              <v-flex xs12 class="mx-1 mt-2">
+                <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
+                  <h3 style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                    {{ item.Name }}
+                  </h3>
+                </nuxt-link>
+              </v-flex>
+              <v-flex xs12 class="mx-1 pb-2">
+                <h5 class="grey--text text--lighten-1">
+                  {{ $t('Updated on') }}: {{ time(item.LastUpdated) }}
+                </h5>
+              </v-flex>
+            </v-layout>
+          </v-card>
         </v-hover>
       </v-flex>
     </v-layout>
@@ -86,37 +45,34 @@
 </template>
 
 <style lang="stylus" scoped>
-.v-image__image--preload
-    filter blur(0)
-
-.card-right-attention-icon
-    display none
-
-.game-list-card
-    :hover
-        .card-right-icon
-            display none
-
-        .card-right-attention-icon
-            display inline
-
-.v-menu__content
-    box-shadow none
-
-@media (max-width: 960px)
-    .card-right-attention-icon
-        display inline
-
-    .card-right-icon
-        display none
-
+  .v-image__image--preload
+      filter blur(0)
+  
+  .card-right-attention-icon
+      display none
+  
+  .game-list-card
+      :hover
+          .card-right-icon
+              display none
+  
+          .card-right-attention-icon
+              display inline
+  
+  .v-menu__content
+      box-shadow none
+  
+  @media (max-width: 960px)
+      .card-right-attention-icon
+          display inline
+  
+      .card-right-icon
+          display none
+  
 </style>
 
-
-
-
 <script>
-import _ from 'lodash'  
+import _ from 'lodash'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import relativeTime from 'dayjs/plugin/relativeTime'

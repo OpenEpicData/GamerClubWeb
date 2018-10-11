@@ -3,34 +3,37 @@
     <v-layout row wrap>
       <v-flex d-flex xs6 sm6 md4 lg3 xl2 v-for="(item,i) in list.slice(0, 12)" :key="i" class="game-list-card px-2">
         <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" height="320px"
+          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3"
             width="100%">
-            <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'"
-              :lazy-src="'/unknow.jpg'" height="215px" v-on:click="cardTo(item.appid)">
-              <v-container fill-height fluid pb-0 pr-0>
-                <v-layout align-end justify-start row fill-height>
-                  <v-flex xs12 flexbox class="text-xs-right cardTip">
-                    <v-btn small color="g-blue-hydrogen" dark @click.stop="dialogAttention = true" class="cardTipButton">
-                      <span v-html="price(item.price)"></span>
-                    </v-btn>
-                  </v-flex>
-                </v-layout>
-              </v-container>
-            </v-img>
-            <v-card-title primary-title>
-              <v-layout row wrap>
-                <v-flex xs12>
-                  <nuxt-link :to="$i18n.path('apps/'+ item.appid)" style="text-decoration: none;color: #000">
-                    <h3>
-                      {{ item.title }}
-                    </h3>
-                    <h4>
-                      {{ $t("Release date") }}: {{ item.releaseDate }}
-                    </h4>
-                  </nuxt-link>
-                </v-flex>
-              </v-layout>
-            </v-card-title>
+            <v-layout align-space-between justify-space-between column fill-height>
+              <v-flex>
+                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'"
+                  gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'" height="215px"
+                  v-on:click="cardTo(item.appid)">
+                  <v-container fill-height fluid pt-0 pl-0>
+                    <v-layout align-start justify-start row fill-height>
+                      <v-flex xs12 flexbox class="text-xs-left cardTip">
+                        <v-btn small color="g-blue-hydrogen" dark @click.stop="dialogAttention = true" class="cardTipButton">
+                          <span v-html="price(item.price)"></span>
+                        </v-btn>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-img>
+              </v-flex>
+              <v-flex xs12 class="mx-1 mt-2">
+                <nuxt-link :to="$i18n.path('apps/'+ item.appid)" style="text-decoration: none;color: #000">
+                  <h3 style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                    {{ item.title }}
+                  </h3>
+                </nuxt-link>
+              </v-flex>
+              <v-flex xs12 class="mx-1 pb-2">
+                <h5 class="grey--text text--lighten-1">
+                  {{ $t("Release date") }}: {{ item.releaseDate }}
+                </h5>
+              </v-flex>
+            </v-layout>
           </v-card>
         </v-hover>
       </v-flex>

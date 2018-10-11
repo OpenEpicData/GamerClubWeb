@@ -3,73 +3,33 @@
     <div class="grey lighten-4">
       <Parallax :imgPath="'https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg'"></Parallax>
       <v-container fluid grid-list-sm class="index-main-container">
-        <div class="page-main mt-5">
-          <div>
-            <div class="px-2 mt-3">
-              <v-flex xs3>
-                <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
-              </v-flex>
-              <v-layout row wrap id="today">
-                <v-flex xs12 md8>
-                  <h2 class="g-blue-hydrogen-text headline">{{ $t('Most popular games') }}</h2>
+        <div class="page-main">
+          <div v-for="(item, i) in blockCard" :key="i">
+            <div class="px-2 py-5">
+              <v-layout align-start justify-space-between row fill-height id="today">
+                <v-flex xs12>
+                  <v-progress-linear background-color="g-blue-hydrogen"></v-progress-linear>
+                </v-flex>
+                <v-flex xs12 class="text-xs-center">
+                  <h2 class="g-blue-hydrogen-text display-1">{{ item.title }}</h2>
+                </v-flex>
+                <v-flex xs12>
+                  <v-progress-linear background-color="g-blue-hydrogen"></v-progress-linear>
                 </v-flex>
               </v-layout>
             </div>
             
             <div>
-              <ListGameCardTrending :list.sync="trending.data"></ListGameCardTrending>
-              <ListGameCardLoading></ListGameCardLoading>
-            </div>
-          </div>
-
-          <div>
-            <div class="px-2 mt-3">
-              <v-flex xs3>
-                <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
-              </v-flex>
-              <v-layout row wrap id="today">
-                <v-flex xs12 md8>
-                  <h2 class="g-blue-hydrogen-text headline">{{ $t('Popular sales game') }}</h2>
-                </v-flex>
-              </v-layout>
-            </div>
-            
-            <div>
-              <ListGameCardTopSeller :list.sync="topSeller.data"></ListGameCardTopSeller>
-              <ListGameCardLoading></ListGameCardLoading>
-            </div>
-          </div>
-
-          <div>
-            <div class="px-2">
-              <v-flex xs3>
-                <v-progress-linear :v-model="12" width="12px" background-color="g-blue-hydrogen"></v-progress-linear>
-              </v-flex>
-              <v-layout row wrap id="today">
-                <v-flex xs12 md8>
-                  <h2 class="g-blue-hydrogen-text headline">{{ $t('Latest updated app') }}</h2>
-                </v-flex>
-                <v-flex xs12 md4>
-                  <div class="text-xs-right hidden-sm-and-down">
-                    <h3>
-                      {{ $t('Update items in the queue') }}:
-                      <span v-if="$store.state.display.loading">
-                        <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
-                      </span>
-                      <span v-else>{{ queue }}</span>
-                    </h3>
-                  </div>
-                </v-flex>
-              </v-layout>
-            </div>
-
-            <div>
-              <div v-for="(item, i) in list" :key="i">
-                <ListGameCard :list.sync="item.data"></ListGameCard>
+              <ListGameCardTrending :list.sync="trending.data" v-if="item.title === $t('Most popular games')"></ListGameCardTrending>
+              <ListGameCardTopSeller :list.sync="topSeller.data" v-if="item.title === $t('Popular sales game')"></ListGameCardTopSeller>
+              <div v-if="item.title === $t('Latest updated app')">
+                <div v-for="(item, i) in list" :key="i">
+                  <ListGameCard :list.sync="item.data"></ListGameCard>
+                </div>
+                <v-layout align-start justify-center row fill-height v-if="!$store.state.display.loading">
+                  <v-flex xs12 md4><v-btn block outline large @click="loadMore">{{ $t('Load more') }} <v-icon right>fas fa-angle-down</v-icon> </v-btn></v-flex>
+                </v-layout>
               </div>
-              <v-layout align-start justify-center row fill-height v-if="!$store.state.display.loading">
-                <v-flex xs12 md4><v-btn block outline large @click="loadMore">{{ $t('Load more') }} <v-icon right>fas fa-angle-down</v-icon> </v-btn></v-flex>
-              </v-layout>
               <ListGameCardLoading></ListGameCardLoading>
             </div>
           </div>
@@ -100,7 +60,12 @@ export default {
       queue: Number,
       list: String,
       trending: Object,
-      topSeller: Object
+      topSeller: Object,
+      blockCard: [
+        { title: this.$t('Most popular games') },
+        { title: this.$t('Popular sales game') },
+        { title: this.$t('Latest updated app') },
+      ]
     }
   },
   methods: {
