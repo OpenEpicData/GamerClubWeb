@@ -5,18 +5,19 @@
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main">
           <div v-for="(item, i) in blockCard" :key="i">
-            <div class="px-2 py-5">
+            <div class="px-2 py-3">
               <v-layout align-start justify-space-between row fill-height id="today">
-                <v-flex xs12>
+                <v-flex xs12 class="hidden-sm-and-down">
                   <v-progress-linear background-color="g-blue-hydrogen"></v-progress-linear>
                 </v-flex>
                 <v-flex xs12 class="text-xs-center">
                   <h2 class="g-blue-hydrogen-text display-1">{{ item.title }}</h2>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 class="hidden-sm-and-down">
                   <v-progress-linear background-color="g-blue-hydrogen"></v-progress-linear>
                 </v-flex>
               </v-layout>
+              <v-progress-linear background-color="g-blue-hydrogen" class="hidden-md-and-up"></v-progress-linear>
             </div>
             
             <div>
