@@ -1,10 +1,10 @@
 <template>
   <v-app id="inspire" class="grey lighten-4">
     <ToolBar :ToolBar.sync="ToolBar"></ToolBar>
-    <div class="grey lighten-4 my-5">
+    <div class="grey lighten-4 mt-5">
       <nuxt />
     </div>
-    <BottomNav :BottomNav.sync="BottomNav"></BottomNav>
+    <BottomNav :BottomNav.sync="BottomNav" class="hidden-md-and-up pt-5"></BottomNav>
   </v-app>
 </template>
 
