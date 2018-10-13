@@ -83,11 +83,7 @@ export default {
       appid: Number,
       appDetail: Object,
       appPrice: Object,
-      tab: [
-        { title: '数据' },
-        { title: '介绍' },
-        { title: '媒体库' }
-      ],
+      appInfo: Object,
       chartData: null,
       chartExtend: {
         series: {
@@ -145,12 +141,14 @@ export default {
   mounted: async function () {
     this.appDetail = null
     this.appPrice = null
+    this.appInfo = null
     this.lang = this.$store.state.display.lang
     this.country = this.$store.state.display.country
     let appid = this.appid = this.$route.params.id
-    let [appDetail, appPrice] = await Promise.all([
+    let [appDetail, appPrice, appInfo] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/apps/details/'+ this.appid + '?lang=' + this.lang),
-      axios.get('https://rest.steamhub.cn/api/v2/apps/prices/'+ this.appid + '?cc=' + this.country)
+      axios.get('https://rest.steamhub.cn/api/v2/apps/prices/'+ this.appid + '?cc=' + this.country),
+      axios.get('https://rest.steamhub.cn/api/v2/apps/infos/'+ this.appid)
     ])
     if (appDetail.data && appDetail.data.length !== 0 && appDetail.data.Data !== 'null') {
       let parseAppDetail = JSON.parse(JSON.parse(appDetail.data.Data))
@@ -180,6 +178,9 @@ export default {
         ]
       }
     }
+    if (appInfo.data && appInfo.data.length !== 0) {
+      this.appInfo = appInfo.data
+    }
     this.$store.commit('DISPLAY_LOADING', false)
   },
   head () {
@@ -196,9 +197,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.application--wrap {
-  background: #000 !important
-}
-</style>
