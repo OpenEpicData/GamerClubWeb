@@ -23,7 +23,7 @@
   },
   "home": "浏览",
   "Join the community": "加入社区",
-  "game": "游戏",
+  "game": "全部游戏",
   "search": "搜索",
   "learn-more": "了解更多",
   "carousel": {
@@ -80,5 +80,10 @@
   "Release date": "发售日期",
   "Popular sales game": "热门销售的游戏",
   "Current price": "现价",
-  "Historical price": "历史价格"
+  "Historical price": "历史价格",
+  "Localization": "本地化",
+  "Trending": "时下流行",
+  "Settings": "设置",
+  "Help": "帮助",
+  "Send feedback": "发送反馈"
 }

@@ -21,9 +21,9 @@
       }
     }
   },
-  "home": "home",
-  "game": "game",
-  "search": "search",
+  "home": "Home",
+  "game": "All Games",
+  "search": "Search",
   "Join the community": "Join the community",
   "learn-more": "Learn more",
   "carousel": {
@@ -50,7 +50,7 @@
   "Update items in the queue": "Update items in the queue",
   "Symbol of money": "$",
   "discounted": "Discounted",
-  "attention": "attention",
+  "attention": "Attention",
   "Recorded game": "Recorded game",
   "Updated on": "Updated on",
   "Lowest historical price": "Lowest",
@@ -80,5 +80,10 @@
   "Release date": "Release date",
   "Popular sales game": "Popular sales game",
   "Current price": "Current price",
-  "Historical price": "Historical price"
+  "Historical price": "Historical price",
+  "Localization": "Localization",
+  "Trending": "Trending",
+  "Settings": "Settings",
+  "Help": "Help",
+  "Send feedback": "Send feedback"
 }

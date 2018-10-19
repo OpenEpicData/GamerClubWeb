@@ -1,9 +1,6 @@
 <template>
-  <v-app id="inspire" class="grey lighten-4">
+  <v-app class="grey lighten-4">
     <ToolBar :ToolBar.sync="ToolBar"></ToolBar>
-    <div class="grey lighten-4 mt-5">
-      <nuxt />
-    </div>
     <BottomNav :BottomNav.sync="BottomNav" class="hidden-md-and-up pt-5"></BottomNav>
   </v-app>
 </template>
@@ -18,16 +15,15 @@ export default {
     BottomNav
   },
   data: () => ({
-    ToolBar: {
-      title: 'SteamHub',
-      items: {
-        left: [
-          { value: 'home', link: '' },
-          { value: 'game', link: 'apps/pages/' },
-          { value: 'search', link: 'search', key: 0 }
-        ]
-      }
-    },
+    ToolBar: [
+      { icon: 'home', text: 'home', link: '' },
+      { icon: 'whatshot', text: 'Trending', link: 'trending' },
+      { icon: 'apps', text: 'game', link: 'apps/pages/' },
+      { divider: true },
+      { icon: 'settings', text: 'Settings', link: 'setting' },
+      { icon: 'help', text: 'Help', link: 'help' },
+      { icon: 'feedback', text: 'Send feedback', link: 'feadback' },
+    ],
     BottomNav: {
       items: [
         { value: 'search', icon: 'search', link: 'search', key: 0 },
