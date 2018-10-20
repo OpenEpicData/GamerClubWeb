@@ -26,23 +26,34 @@
   "game": "全部游戏",
   "search": "搜索",
   "learn-more": "了解更多",
-  "carousel": {
-    "item1": {
+  "carousel": [
+    {
+      "img": "https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg",
       "href": "https://www.rockstargames.com/reddeadredemption2/zh/",
       "video": "https://www.bilibili.com/video/av32863870/?p=2",
       "title": "荒野：大镖客 2",
       "description": "现代开端美洲严峻腹地上演的传奇生存故事 - 年度最期待大作",
       "star": "1899 年美洲。在 Blackwater 小镇的抢案出差错之后，Arthur Morgan 和 Van der Linde 一伙人被迫逃亡。国内的联邦探员和赏金猎人接踵而来，这伙人必须在美洲抢劫、偷窃和决斗，才能找出生路。随着内部的分裂对撕裂帮派的威胁加剧，Arthur 必须在自己的理想与对培育他的帮派的忠诚之间做选择。"
-    },
-    "item2": {
-      "title": "Shadow of the Tomb Raider",
-      "description": "劳拉 · 克劳馥一路狂奔，拯救世界免遭玛雅预言中的天灾摧毁，她终将迎接命运，成长为命中注定的古墓侠盗。",
-      "star": "IGN 评分: 9/10 《古墓丽影 暗影》为劳拉·克劳馥的起源三部曲献上了强有力的终章。"
-    },
-    "item3": {
-      "title": "Cities: Skylines",
-      "description": "设计，建造和管理您的梦想之城，从公共服务到公民政策，挑战自我，从简单的城镇发展成繁华的大都市中心。",
-      "star": "IGN 评分: 8.5/10 《城市：天际线》的主题只有一个，那就是建造庞大、喧嚣的城市，而且不需要我们面对各种屠城灾难。"
+    }
+  ],
+  "carousel_game": {
+    "game": {
+      "tab": [
+        {
+          "to": "750920",
+          "img": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539968444267&di=a92f14a8e9ea77c9ad15637ce4d8e13b&imgtype=0&src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2018-3%2F201803311237500806.jpg",
+          "title": "古墓丽影：暗影",
+          "description": "劳拉 · 克劳馥一路狂奔，拯救世界免遭玛雅预言中的天灾摧毁，她终将迎接命运，成长为命中注定的古墓侠盗。",
+          "star": "IGN 评分: 9/10 《古墓丽影 暗影》为劳拉·克劳馥的起源三部曲献上了强有力的终章。"
+        },
+        {
+          "to": "255710",
+          "img": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539969272340&di=f4e81ec9e90fb183b72571fbc474d676&imgtype=0&src=http%3A%2F%2Fi3.17173.itc.cn%2F2015%2Fv%2F2015%2F09%2F09%2F144163642910402400_a580xH.jpg",
+          "title": "都市：天际线",
+          "description": "设计，建造和管理您的梦想之城，从公共服务到公民政策，挑战自我，从简单的城镇发展成繁华的大都市中心。",
+          "star": "IGN 评分: 8.5/10 《城市：天际线》的主题只有一个，那就是建造庞大、喧嚣的城市，而且不需要我们面对各种屠城灾难。"
+        }
+      ]
     }
   },
   "trend": "趋势",
@@ -85,5 +96,16 @@
   "Trending": "时下流行",
   "Settings": "设置",
   "Help": "帮助",
-  "Send feedback": "发送反馈"
+  "Send feedback": "发送反馈",
+  "Tool": {
+    "Grid": {
+      "Download-Steam": "下载 Steam",
+      "Beginner-tutorial": "新手教程",
+      "Community-information": "社区资料",
+      "Grievance-guide": "申诉指南",
+      "Account-inquiry": "账号查询",
+      "Server-status": "服务器状态",
+      "Player-community": "玩家社区"
+    }
+  }
 }

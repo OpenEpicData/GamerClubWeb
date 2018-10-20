@@ -26,23 +26,34 @@
   "search": "Search",
   "Join the community": "Join the community",
   "learn-more": "Learn more",
-  "carousel": {
-    "item1": {
+  "carousel": [
+    {
+      "img": "https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg",
       "href": "https://www.rockstargames.com/reddeadredemption2/",
       "video": "https://www.youtube.com/watch?v=lb-tlY6ytk8",
       "title": "red dead redemption 2",
       "description": "An epic tale of life in America at the dawn of the modern age - Most looking forward to the year",
       "star": "America, 1899. After a robbery goes wrong in the town of Blackwater, Arthur Morgan and the Van der Linde gang are forced to flee. With federal agents and bounty hunters massing on their heels, the gang must rob, steal and fight their way across America to survive. As deepening internal divisions threaten to tear the gang apart, Arthur must choose between his own ideals and loyalty to the gang who raised him."
-    },
-    "item2": {
-      "title": "Shadow of the Tomb Raider",
-      "description": "Laura Crawford rushed all the way to save the world from the scourge of the Mayan prophecy. She will finally meet her destiny and grow into a destined tomb.",
-      "star": "IGN Rating: 9/10 The 'Tomb Raider Shadow' provides a powerful final chapter for Laura Crouch's trilogy of origin."
-    },
-    "item3": {
-      "title": "Cities: Skylines",
-      "description": "Design, build and manage your city of dreams, from public service to citizenship policy, challenge yourself, from simple towns to bustling downtown.",
-      "star": "IGN Rating: 8.5/10 There is only one theme for 'City: Skyline', which is to build a huge, awkward city without the need to face various massacre disasters."
+    }
+  ],
+  "carousel_game": {
+    "game": {
+      "tab": [
+        {
+          "to": "750920",
+          "img": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539968444267&di=a92f14a8e9ea77c9ad15637ce4d8e13b&imgtype=0&src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2018-3%2F201803311237500806.jpg",
+          "title": "Shadow of the Tomb Raider",
+          "description": "Laura Crawford rushed all the way to save the world from the scourge of the Mayan prophecy. She will finally meet her destiny and grow into a destined tomb.",
+          "star": "IGN Rating: 9/10 The 'Tomb Raider Shadow' provides a powerful final chapter for Laura Crouch's trilogy of origin."
+        },
+        {
+          "to": "255710",
+          "img": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1539969272340&di=f4e81ec9e90fb183b72571fbc474d676&imgtype=0&src=http%3A%2F%2Fi3.17173.itc.cn%2F2015%2Fv%2F2015%2F09%2F09%2F144163642910402400_a580xH.jpg",
+          "title": "Cities: Skylines",
+          "description": "Design, build and manage your city of dreams, from public service to citizenship policy, challenge yourself, from simple towns to bustling downtown.",
+          "star": "IGN Rating: 8.5/10 There is only one theme for 'City: Skyline', which is to build a huge, awkward city without the need to face various massacre disasters."
+        }
+      ]
     }
   },
   "trend": "Trend",
@@ -85,5 +96,16 @@
   "Trending": "Trending",
   "Settings": "Settings",
   "Help": "Help",
-  "Send feedback": "Send feedback"
+  "Send feedback": "Send feedback",
+  "Tool": {
+    "Grid": {
+      "Download-Steam": "Download Steam",
+      "Beginner-tutorial": "Beginner tutorial",
+      "Community-information": "Community information",
+      "Grievance-guide": "Grievance guide",
+      "Account-inquiry": "Account inquiry",
+      "Server-status": "Server status",
+      "Player-community": "Player community"
+    }
+  }
 }
