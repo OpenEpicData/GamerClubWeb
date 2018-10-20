@@ -140,9 +140,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.v-list--subheader {
-  padding-bottom: 0
-}
-</style>
-
