@@ -6,33 +6,38 @@
       </v-tab>
       <v-tab-item v-for="(item, i) in news" :key="i">
         <v-card flat color="grey lighten-4">
-          <div class="mt-4">
-            <h2 class="text-xs-center g-blue-hydrogen-text">10月19日网站更新公告</h2>
+          <div class="mt-4" v-if="newsData">
+            <h2 class="text-xs-center g-blue-hydrogen-text">
+              <a :href="newsData.data[0].Link" target="_black" v-if="i === 0">{{ newsData.data[0].Title }}</a>
+            </h2>
           </div>
-          <v-container fluid class="index-main-container">
+          <v-container fluid class="index-main-container" v-if="newsData && i === 0">
             <v-list subheader class="grey lighten-4">
-              <template v-for="(item, i) in 5">
-                <v-divider inset :key="item"></v-divider>
+              <template v-for="(item, k) in newsData.data">
+                <v-divider inset :key="item.Title"></v-divider>
                 <v-list-tile
-                  :key="item"
+                  :key="item.ID"
                   avatar
+                  :href="item.Link"
+                  target="_black"
+                  v-if="k !== 0"
                 >
-                  <v-list-tile-avatar>
-                    <span v-html="'新闻'"></span>
+                  <v-list-tile-avatar v-if="item.Type">
+                    <span v-html="item.Type"></span>
                   </v-list-tile-avatar>
-                  <v-list-tile-content>
-                    <v-list-tile-sub-title v-html="'加班这么常见，怎么就成了欧美游戏业的“政治错误”？'"></v-list-tile-sub-title>
+                  <v-list-tile-content v-if="item.Title">
+                    <v-list-tile-sub-title v-html="item.Title"></v-list-tile-sub-title>
                   </v-list-tile-content>
-                  <v-list-tile-action>
-                    <h5 class="grey--text"><span>10/19</span></h5>
+                  <v-list-tile-action v-if="item.LastUpdated">
+                    <h5 class="grey--text"><span>{{ item.LastUpdated }}</span></h5>
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
             </v-list>
-            <v-divider inset :key="item"></v-divider>
+            <v-divider inset :key="item.ID"></v-divider>
           </v-container>
           <div class="mx-5">
-            <v-btn block large color="grey lighten-2 elevation-0">
+            <v-btn block large color="grey lighten-2 elevation-0" v-if="i === 0">
               <h4>阅读更多
                 <span class="g-blue-hydrogen-text">最新资讯</span>
               </h4>
@@ -46,6 +51,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: () => ({
     news: [
@@ -58,7 +64,14 @@ export default {
       {
         title: '攻略'
       }
-    ]
-  })
+    ],
+    newsData: null
+  }),
+  mounted: async function () {
+    let [newsData] = await Promise.all([
+      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=6'),
+    ])
+    this.newsData = newsData.data
+  }
 }
 </script>
