@@ -14,5 +14,13 @@ export default {
   }),
   mounted: async function () {
   },
+  head () {
+    return {
+      title: this.$t('global.page.topic.news.title') + ' -- SteamHub',
+      meta: [
+        { hid: 'description', name: 'description', content: this.$t('global.page.topic.news.description') }
+      ]
+    }
+  }
 }
 </script>

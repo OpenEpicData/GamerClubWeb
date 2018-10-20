@@ -11,6 +11,20 @@
           "description": "在 SteamHub 上查询并使用 AppID: {AppID} -- {title} 的数据"
         }
       },
+      "topic": {
+        "default": {
+          "title": "综合资讯",
+          "description": "在 SteamHub 上获取综合资讯。"
+        },
+        "news": {
+          "title": "业内新闻",
+          "description": "在 SteamHub 上获取业内新闻。"
+        },
+        "reviews": {
+          "title": "游戏评测",
+          "description": "在 SteamHub 上获取游戏评测。"
+        }
+      },
       "search": {
         "title": "SteamHub 搜索 -- SteamHub Search",
         "description": "SteamHub Search 提供丰富的搜索选项以供全世界范围内的开发者及用户进行深度挖掘。",
@@ -107,6 +121,5 @@
       "Server-status": "服务器状态",
       "Player-community": "玩家社区"
     }
-  },
-  "News": "资讯"
+  }
 }

@@ -28,15 +28,15 @@ export default {
     return {
       news: [
         {
-          title: '综合资讯',
+          title: this.$t('global.page.topic.default.title'),
           link: this.$i18n.path('topic')
         },
         {
-          title: '业内新闻',
+          title: this.$t('global.page.topic.news.title'),
           link: this.$i18n.path('topic/news')
         },
         {
-          title: '游戏评测',
+          title: this.$t('global.page.topic.reviews.title'),
           link: this.$i18n.path('topic/evaluation')
         }
       ],

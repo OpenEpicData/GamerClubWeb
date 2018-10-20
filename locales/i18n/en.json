@@ -11,6 +11,20 @@
           "description": "Query data using AppID: {AppID} -- {title} in SteamHub"
         }
       },
+      "topic": {
+        "default": {
+          "title": "Comprehensive information",
+          "description": "Get industry news on SteamHub."
+        },
+        "news": {
+          "title": "Industry news",
+          "description": "Get comprehensive information on SteamHub."
+        },
+        "Reviews": {
+          "title": "Reviews",
+          "description": "Get game reviews on SteamHub."
+        }
+      },
       "search": {
         "title": "SteamHub Search -- SteamHub Search",
         "description": "SteamHub Search offers a wealth of search options for deep mining by developers and users worldwide.",
