@@ -16,7 +16,7 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.lug.ustc.edu.cn/css?family=Roboto:300,400,500,700|Material+Icons' }
     ],
     script: [
-      { src: 'https://unpkg.com/echarts/dist/echarts.min.js' }
+      { src: 'https://cdn.jsdelivr.net/npm/echarts@4.2.0-rc.2/dist/echarts.min.js' }
     ],
   },
   modules: [
