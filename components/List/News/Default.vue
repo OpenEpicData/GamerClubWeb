@@ -1,0 +1,70 @@
+<template>
+  <div>
+    <v-container fluid class="index-main-container">
+      <v-list subheader two-line class="grey lighten-4" v-if="newsData">
+        <template v-for="(item, k) in newsData">
+          <v-divider inset :key="item.Title"></v-divider>
+          <v-list-tile
+            :key="k"
+            avatar
+            :href="item.Link"
+            target="_black"
+          >
+            <v-list-tile-avatar v-if="item.Type">
+              <span v-html="item.Type"></span>
+            </v-list-tile-avatar>
+            <v-list-tile-content v-if="item.Title">
+              <v-list-tile-title v-html="item.Title"></v-list-tile-title>
+              <v-list-tile-sub-title v-html="item.Description"></v-list-tile-sub-title>
+            </v-list-tile-content>
+            <v-list-tile-action v-if="item.LastUpdated">
+              <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+      </v-list>
+      <v-divider inset></v-divider>
+    </v-container>
+    <div class="mx-5">
+      <v-btn block large color="grey lighten-2 elevation-0" @click="loadMore()">
+        <h4>{{ $t('Load more') }}</h4>
+        <v-icon right small class="g-blue-hydrogen-text">fas fa-long-arrow-alt-down</v-icon>
+      </v-btn>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
+export default {
+  props: ['type'],
+  data: () => ({
+    newsData: null,
+    page: 1
+  }),
+  mounted: async function () {
+    let [newsData] = await Promise.all([
+      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=20&type=' + this.type),
+    ])
+    let data = []
+    this.newsData = data.concat(newsData.data.data)
+  },
+  methods: {
+    time: function (value) {
+      if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
+      if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
+    },
+    loadMore: async function () {
+      this.page ++
+      let [newsData] = await Promise.all([
+        axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=20&type=' + this.type + '&page=' + this.page),
+      ])
+      this.newsData = this.newsData.concat(newsData.data.data)
+    }
+  }
+}
+</script>
