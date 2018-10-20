@@ -31,7 +31,7 @@
                     <v-list-tile-sub-title v-html="item.Title"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action v-if="item.LastUpdated">
-                    <h5 class="grey--text"><span>{{ item.LastUpdated }}</span></h5>
+                    <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
@@ -53,7 +53,7 @@
                     <v-list-tile-sub-title v-html="item.Title"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action v-if="item.LastUpdated">
-                    <h5 class="grey--text"><span>{{ item.LastUpdated }}</span></h5>
+                    <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
@@ -75,7 +75,7 @@
                     <v-list-tile-sub-title v-html="item.Title"></v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action v-if="item.LastUpdated">
-                    <h5 class="grey--text"><span>{{ item.LastUpdated }}</span></h5>
+                    <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
                   </v-list-tile-action>
                 </v-list-tile>
               </template>
@@ -100,6 +100,10 @@
 
 <script>
 import axios from 'axios'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.extend(relativeTime)
 export default {
   data: () => ({
     news: [
@@ -126,6 +130,12 @@ export default {
     this.newsData = newsData.data
     this.newsOnly = newsOnly.data
     this.evaluation = evaluation.data
+  },
+  methods: {
+    time: function (value) {
+      if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
+      if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
+    }
   }
 }
 </script>
