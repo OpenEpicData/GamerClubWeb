@@ -36,7 +36,7 @@
             v-else
             :key="i"
             :to="$i18n.path(item.link)"
-            exact
+            :exact="item.link === 'topic' ? false : true"
           >
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
