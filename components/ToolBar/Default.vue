@@ -8,6 +8,7 @@
       clipped
       :mini-variant="drawer.mini"
       width="200"
+      hide-overlay
     >
       <v-list
         dense
