@@ -18,7 +18,7 @@ export default {
     ToolBar: [
       { icon: 'home', text: 'home', link: '' },
       { icon: 'whatshot', text: 'Trending', link: 'trending' },
-      { icon: 'far fa-newspaper', text: 'News', link: 'topic' },
+      { icon: 'far fa-newspaper', text: 'global.page.topic.default.title', link: 'topic' },
       { divider: true },
       { icon: 'settings', text: 'Settings', link: 'setting' },
       { icon: 'help', text: 'Help', link: 'help' },
