@@ -1,6 +1,6 @@
 <template>
-  <div v-if="appDetail" class="black">
-    <v-parallax dark :src="parallaxImgPath(appDetail.screenshots)">
+  <div v-if="appDetail">
+    <v-parallax :src="parallaxImgPath(appDetail.screenshots)">
       <v-container fluid grid-list-sm class="index-main-container">
         <v-layout align-center justify-start row fill-height>
           <v-flex xs12 lg8 class="px-3 py-5" style="background: linear-gradient(to right, rgba(170,75,107,.7), rgba(59,141,153,.7))">
@@ -23,7 +23,7 @@
               </div>
             </div>
             <v-flex d-flex xs3>
-              <v-btn dark flat outline :href="'https://store.steampowered.com/app/' + this.appid " target="_black" class="mx-0">
+              <v-btn flat outline dark :href="'https://store.steampowered.com/app/' + this.appid " target="_black" class="mx-0">
                 <span>{{ $t('learn-more') }}</span>
                 <span v-if="appPrice && appPrice.now" class="mx-2">{{ turnNowPrice(appPrice.now) }}</span>
               </v-btn>
@@ -32,10 +32,10 @@
         </v-layout>
       </v-container>
     </v-parallax>
-    <div class="black">
+    <div>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="mt-5">
-          <v-card dark>
+          <v-card>
             <div class="mx-2 py-2">
               <v-layout row wrap>
                 <v-flex xs12 v-if="!chartData">
@@ -59,6 +59,9 @@
                     <h2 class="display-1 text-xs-center">{{ $t('Historical price') }}</h2>
                   </div>
                   <ve-line :data="chartData" :colors="chartColors" :legend-visible="false" :extend="chartExtend" :settings="chartSettings"></ve-line>
+                </v-flex>
+                <v-flex xs12>
+                  <div id="SOHUCS" :sid="appid" ></div>
                 </v-flex>
               </v-layout>
             </div>
@@ -182,6 +185,42 @@ export default {
       this.appInfo = appInfo.data
     }
     this.$store.commit('DISPLAY_LOADING', false)
+
+    var changyanappid = 'cytSs9UVD'
+    var conf = 'prod_73685c1a6d8817e9cf1a1a7cbe125c1f'
+    var width = window.innerWidth || document.documentElement.clientWidth
+    if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>')
+    } else {
+      var loadJs = function (d, a) {
+        var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
+        var b = document.createElement('script')
+        b.setAttribute('type', 'text/javascript')
+        b.setAttribute('charset', 'UTF-8')
+        b.setAttribute('src', d)
+        if (typeof a === 'function') {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState
+              if (e === 'loaded' || e === 'complete') {
+                b.onreadystatechange = null
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      }
+      loadJs('http://changyan.sohu.com/upload/changyan.js',
+        function () {
+          window.changyan.api.config({
+            appid: changyanappid,
+            conf: conf
+          })
+        })
+    }
   },
   head () {
     return {
