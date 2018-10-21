@@ -20,7 +20,7 @@
           "title": "Industry news",
           "description": "Get comprehensive information on SteamHub."
         },
-        "Reviews": {
+        "reviews": {
           "title": "Reviews",
           "description": "Get game reviews on SteamHub."
         }
