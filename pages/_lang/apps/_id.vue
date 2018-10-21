@@ -95,13 +95,16 @@ export default {
           smooth: false,
           lineStyle: {
             width: 5,
-            color: '#fff'
+            shadowColor: 'rgba(106,48,147, 0.5)',
+            shadowBlur: 2,
+            shadowOffsetY: 5,
+            shadowOffsetX: 5
           }
         },
         yAxis: {
           scale: true,
           axisLabel: {
-            color: '#fff'
+            color: '#000'
           },
           splitLine: {
             lineStyle: {
@@ -111,7 +114,7 @@ export default {
         },
         xAxis: {
           axisLabel: {
-            color: '#fff'
+            color: '#000'
           },
           inverse: true
         }
