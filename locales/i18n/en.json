@@ -21,7 +21,7 @@
           "description": "Get comprehensive information on SteamHub."
         },
         "reviews": {
-          "title": "Reviews",
+          "title": "Game Reviews",
           "description": "Get game reviews on SteamHub."
         }
       },
