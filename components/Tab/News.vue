@@ -8,9 +8,9 @@
         <v-card flat color="grey lighten-4">
           <div class="mt-4" v-if="newsData">
             <h2 class="text-xs-center g-blue-hydrogen-text">
-              <a :href="newsData.data[0].Link" target="_black" v-if="i === 0">{{ newsData.data[0].Title }}</a>
-              <a :href="newsOnly.data[0].Link" target="_black" v-else-if="i === 1">{{ newsOnly.data[0].Title }}</a>
-              <a :href="evaluation.data[0].Link" target="_black" v-else-if="i === 2">{{ evaluation.data[0].Title }}</a>
+              <a @click="openDialog(newsData.data[0].Link, newsData.data[0].Title)" v-if="i === 0">{{ newsData.data[0].Title }}</a>
+              <a @click="openDialog(newsOnly.data[0].Link, newsOnly.data[0].Title)" v-else-if="i === 1">{{ newsOnly.data[0].Title }}</a>
+              <a @click="openDialog(evaluation.data[0].Link, evaluation.data[0].Title)" v-else-if="i === 2">{{ evaluation.data[0].Title }}</a>
             </h2>
           </div>
           <v-container fluid class="index-main-container">
@@ -20,8 +20,7 @@
                 <v-list-tile
                   :key="item.ID"
                   avatar
-                  :href="item.Link"
-                  target="_black"
+                  @click="openDialog(item.Link, item.Title)"
                   v-if="k !== 0"
                 >
                   <v-list-tile-avatar v-if="item.Type">
@@ -42,8 +41,7 @@
                 <v-list-tile
                   :key="item.ID"
                   avatar
-                  :href="item.Link"
-                  target="_black"
+                  @click="openDialog(item.Link, item.Title)"
                   v-if="k !== 0"
                 >
                   <v-list-tile-avatar v-if="item.Type">
@@ -64,8 +62,7 @@
                 <v-list-tile
                   :key="item.ID"
                   avatar
-                  :href="item.Link"
-                  target="_black"
+                  @click="openDialog(item.Link, item.Title)"
                   v-if="k !== 0"
                 >
                   <v-list-tile-avatar v-if="item.Type">
@@ -93,6 +90,17 @@
         </v-card>
       </v-tab-item>
     </v-tabs>
+    <v-dialog
+      v-model="dialog.open"
+      max-width="80%"
+      lazy
+    >
+      <v-card height="90vh">
+        <v-card-title class="headline">{{ dialog.title }}</v-card-title>
+
+        <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 90%"></iframe>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -115,6 +123,11 @@ export default {
         title: '评测'
       }
     ],
+    dialog: {
+      open: false,
+      title: null,
+      url: null
+    },
     newsLink: null,
     newsData: null,
     newsOnly: null,
@@ -134,6 +147,13 @@ export default {
     time: function (value) {
       if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
       if (this.$store.state.locale === 'en-us') return dayjs().from(dayjs(value))
+    },
+    openDialog: function (url, title) {
+      this.dialog = {
+        open: true,
+        title: title,
+        url: url
+      }
     }
   }
 }

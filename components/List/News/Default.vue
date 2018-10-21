@@ -3,12 +3,11 @@
     <v-container fluid class="index-main-container">
       <v-list subheader two-line class="grey lighten-4" v-if="newsData">
         <template v-for="(item, k) in newsData">
-          <v-divider inset :key="item.Title"></v-divider>
+          <v-divider inset :key="item.ID"></v-divider>
           <v-list-tile
             :key="k"
             avatar
-            :href="item.Link"
-            target="_black"
+            @click="openDialog(item.Link, item.Title)"
           >
             <v-list-tile-avatar v-if="item.Type">
               <span v-html="item.Type"></span>
@@ -31,6 +30,16 @@
         <v-icon right small class="g-blue-hydrogen-text">fas fa-long-arrow-alt-down</v-icon>
       </v-btn>
     </div>
+    <v-dialog
+      v-model="dialog.open"
+      max-width="80%"
+      lazy
+    >
+      <v-card height="90vh">
+        <v-card-title class="headline">{{ dialog.title }}</v-card-title>
+        <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 90%"></iframe>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -44,7 +53,12 @@ export default {
   props: ['type'],
   data: () => ({
     newsData: null,
-    page: 1
+    page: 1,
+    dialog: {
+      open: false,
+      title: null,
+      url: null
+    },
   }),
   mounted: async function () {
     let [newsData] = await Promise.all([
@@ -64,6 +78,13 @@ export default {
         axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=20&type=' + this.type + '&page=' + this.page),
       ])
       this.newsData = this.newsData.concat(newsData.data.data)
+    },
+    openDialog: function (url, title) {
+      this.dialog = {
+        open: true,
+        title: title,
+        url: url
+      }
     }
   }
 }
