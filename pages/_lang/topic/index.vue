@@ -5,7 +5,7 @@
         <div class="page-main">
           <v-card flat color="grey lighten-4">
             <div class="mt-4">
-              <h2 class="text-xs-center">
+              <h2 class="text-xs-center subheading">
                 <span v-for="(item,i) in news" :key="i" class="mx-3">
                   <nuxt-link :to="item.link"  v-if="item.link === $route.path ? active = true : ''"  :class="active ? 'g-blue-hydrogen-text' : ''">
                     {{ item.title }}

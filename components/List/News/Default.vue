@@ -16,7 +16,7 @@
               <v-list-tile-title v-html="item.Title"></v-list-tile-title>
               <v-list-tile-sub-title v-html="item.Description"></v-list-tile-sub-title>
             </v-list-tile-content>
-            <v-list-tile-action v-if="item.LastUpdated">
+            <v-list-tile-action v-if="item.LastUpdated" class="hidden-md-and-down">
               <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
             </v-list-tile-action>
           </v-list-tile>
@@ -89,3 +89,11 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+@media only screen and (max-width: 959px)
+    .container
+        padding-left: 0 !important
+        padding-right: 0 !important
+
+</style>
