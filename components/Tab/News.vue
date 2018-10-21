@@ -83,7 +83,7 @@
             <v-divider inset :key="item.ID"></v-divider>
           </v-container>
           <div class="mx-5">
-            <v-btn block large color="grey lighten-2 elevation-0" :to="newsLink = i === 0 ? $i18n.path('topic') : i === 1 ? $i18n.path('topic/news') : i === 2 ? $i18n.path('topic/evaluation') : ''"  v-if="newsLinkText = i === 0 ? '最新资讯' : i === 2 ? '最新新闻' : '最新评测'">
+            <v-btn block large color="grey lighten-2 elevation-0" :to="newsLink = i === 0 ? $i18n.path('topic') : i === 1 ? $i18n.path('topic/news') : i === 2 ? $i18n.path('topic/evaluation') : ''"  v-if="newsLinkText = i === 0 ? '最新资讯' : i === 1 ? '最新新闻' : '最新评测'">
               <h4>阅读更多
                 <span class="g-blue-hydrogen-text">{{ newsLinkText }}</span>
               </h4>
