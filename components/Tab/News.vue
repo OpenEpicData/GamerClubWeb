@@ -98,7 +98,7 @@
       <v-card height="90vh">
         <v-card-title class="headline">{{ dialog.title }}</v-card-title>
 
-        <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 90%"></iframe>
+        <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 90%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock"></iframe>
       </v-card>
     </v-dialog>
   </div>
