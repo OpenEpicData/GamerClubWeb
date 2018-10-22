@@ -76,10 +76,10 @@
       ></v-text-field>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat v-if="this.$store.state.locale === 'zh-cn'" @click="enTo()">English</v-btn>
-        <v-btn flat v-else-if="this.$store.state.locale === 'en-us'" @click="cnTo()">中文</v-btn>
-        <v-btn flat :to="$i18n.path('changelog')">{{ $t('ChangeLog') }}</v-btn>
-        <v-btn flat @click.stop="LoginDialog = true">
+        <v-btn flat v-if="this.$store.state.locale === 'zh-cn'" @click="enTo()" exact>English</v-btn>
+        <v-btn flat v-else-if="this.$store.state.locale === 'en-us'" @click="cnTo()" exact>中文</v-btn>
+        <v-btn flat :to="$i18n.path('changelog')" exact>{{ $t('ChangeLog') }}</v-btn>
+        <v-btn flat @click.stop="LoginDialog = true" exact>
           {{ $t('Join the community') }}
           <v-icon right>add_circle_outline</v-icon>
         </v-btn>
