@@ -32,6 +32,12 @@
           "title": "Search for data about {q} apps  -- SteamHub Search",
           "description": "Search and use app data information about {q} in SteamHub Search"
         }
+      },
+      "changelog": {
+        "index": {
+          "title": "Changelog",
+          "description": "We update {name} with incremental updates"
+        }
       }
     }
   },
@@ -40,6 +46,9 @@
   "search": "Search",
   "Join the community": "Join the community",
   "learn-more": "Learn more",
+  "ChangeLog": "ChangeLog",
+  "We update SteamHub with incremental updates": "We update {name} with incremental updates",
+  "View the SteamHub main repository": "View the {name} main repository",
   "carousel": [
     {
       "img": "https://compass-ssl.xbox.com/assets/3b/4b/3b4b33d4-2325-4b90-a76a-544181fbf534.jpg",
