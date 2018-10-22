@@ -9,5 +9,3 @@
     </v-container>
   </div>
 </template>
-
-

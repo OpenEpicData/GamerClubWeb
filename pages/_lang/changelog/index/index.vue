@@ -139,7 +139,7 @@ export default {
   },
   head () {
     return {
-      title: this.$t('global.page.changelog.index.title'),
+      title: this.$t('global.page.changelog.index.title') + ' -- SteamHub' ,
       meta: [
         {
           hid: 'description',
