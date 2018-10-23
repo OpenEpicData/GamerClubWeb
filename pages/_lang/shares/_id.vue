@@ -26,26 +26,26 @@
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    layout: 'share',
-    async asyncData ({ params }) {
-      return { id: params.id }
-    },
-    data: () => ({
-      appdetails: ''
-    }),
-    created: function () {
-      axios
-        .get(`https://api.steamhub.cn/api/v1/steam/app/appdetails/` + this.id, {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
-        .then(response => {
-          this.appdetails = response.data
-        })
-    }
+export default {
+  layout: 'share',
+  async asyncData ({ params }) {
+    return { id: params.id }
+  },
+  data: () => ({
+    appdetails: ''
+  }),
+  created: function () {
+    axios
+      .get('https://api.steamhub.cn/api/v1/steam/app/appdetails/' + this.id, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+      .then(response => {
+        this.appdetails = response.data
+      })
   }
+}
 </script>
