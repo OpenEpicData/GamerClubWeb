@@ -1,18 +1,27 @@
 <template>
   <div>
-    <ListNews :type="''"></ListNews>
+    <ListNews :newsData="newsData"></ListNews>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import ListNews from '~/components/List/News/Default'
 export default {
   components: {
     ListNews
   },
   data: () => ({
+    newsData: Object
   }),
-  mounted: async function () {
+  async asyncData () {
+    let [newsData] = await Promise.all([
+      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=20&type='),
+    ])
+    let data = []
+    return {
+      newsData: data.concat(newsData.data.data)
+    }
   },
   head () {
     return {

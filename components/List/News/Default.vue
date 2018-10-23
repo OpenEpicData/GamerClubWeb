@@ -44,15 +44,13 @@
 </template>
 
 <script>
-import axios from 'axios'
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 export default {
-  props: ['type'],
+  props: ['newsData'],
   data: () => ({
-    newsData: null,
     page: 1,
     dialog: {
       open: false,
@@ -60,13 +58,6 @@ export default {
       url: null
     },
   }),
-  mounted: async function () {
-    let [newsData] = await Promise.all([
-      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=20&type=' + this.type),
-    ])
-    let data = []
-    this.newsData = data.concat(newsData.data.data)
-  },
   methods: {
     time: function (value) {
       if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))
