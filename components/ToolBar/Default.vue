@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-navigation-drawer
-      v-if="!$vuetify.breakpoint.xs"
       v-model="drawer.display"
       fixed
       class="grey lighten-3"
@@ -103,7 +102,7 @@ export default {
   data: () => ({
     LoginDialog: false,
     drawer: {
-      display: true,
+      display: null,
       mini: true
     },
     search: {
@@ -111,6 +110,7 @@ export default {
     }
   }),
   mounted: function () {
+    this.drawer.display = this.$vuetify.breakpoint.xs ? false : true
     this.search_value_display()
   },
   methods: {
