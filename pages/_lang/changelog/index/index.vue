@@ -20,7 +20,7 @@
               <v-icon class="mx-2">fas fa-code-branch</v-icon>
             </a> 
           </h2>
-          <v-progress-linear :indeterminate="true" color="g-blue-hydrogen"  v-if="$store.state.display.loading"></v-progress-linear>
+
           <v-timeline dense>
             <v-timeline-item
               v-for="(item, i) in webData"
@@ -48,7 +48,7 @@
               <v-icon class="mx-2">fas fa-code-branch</v-icon>
             </a>
           </h2>
-          <v-progress-linear :indeterminate="true"  v-if="$store.state.display.loading"></v-progress-linear>
+          
           <v-timeline dense>
             <v-timeline-item
               v-for="(item, i) in apiData"
@@ -75,7 +75,7 @@
               <v-icon class="mx-2">fas fa-code-branch</v-icon>
             </a>
           </h2>
-          <v-progress-linear :indeterminate="true"  v-if="$store.state.display.loading"></v-progress-linear>
+          
           <v-timeline dense>
             <v-timeline-item
               v-for="(item, i) in restData"
@@ -117,19 +117,17 @@ export default {
       restData: Object
     }
   },
-  created: function () {
-    this.$store.commit('DISPLAY_LOADING', true)
-  },
-  mounted: async function () {
+  async asyncData () {
     let [webData, apiData, restData] = await Promise.all([
       axios.get('https://api.github.com/repos/InGaming/SteamHub.Web/commits'),
       axios.get('https://api.github.com/repos/InGaming/SteamHub.API/commits'),
       axios.get('https://api.github.com/repos/InGaming/SteamHub.RESTful/commits'),
     ])
-    this.webData = webData.data
-    this.apiData = apiData.data
-    this.restData = restData.data
-    this.$store.commit('DISPLAY_LOADING', false)
+    return {
+      webData: webData.data,
+      apiData: apiData.data,
+      restData: restData.data,
+    }
   },
   methods: {
     time: function (value) {
