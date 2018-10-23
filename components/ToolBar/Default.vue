@@ -1,6 +1,7 @@
 <template>
   <div>
     <v-navigation-drawer
+      v-if="!$vuetify.breakpoint.xs"
       v-model="drawer.display"
       fixed
       class="grey lighten-3"
