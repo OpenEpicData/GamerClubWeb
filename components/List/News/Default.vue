@@ -50,7 +50,7 @@ import 'dayjs/locale/zh-cn'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 export default {
-  props: ['newsData'],
+  props: ['newsData', 'type'],
   data: () => ({
     page: 1,
     dialog: {

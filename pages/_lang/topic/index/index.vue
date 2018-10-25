@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ListNews :newsData="newsData"></ListNews>
+    <ListNews :newsData="newsData" :type="''"></ListNews>
   </div>
 </template>
 
