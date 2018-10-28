@@ -2,7 +2,7 @@
   <v-tabs v-model="trendingTab" color="grey lighten-4" slider-color="g-blue-hydrogen">
     <v-flex xs4 md2>
       <h2 style="line-height: 56px">
-        <span style="border-left: 4px #1da6ba solid;" class="mr-3"></span>
+        <span style="border-left: 4px #1da6ba solid;" class="mr-3 border-side"></span>
         {{ $t('Trending') }}
       </h2>
     </v-flex>
@@ -24,7 +24,7 @@
       </v-card>
     </v-tab-item>
     <v-flex class="text-xs-right">
-      <v-btn flat :to="loadMoreTrendingLink">
+      <v-btn flat :to="loadMoreTrendingLink" class="btn-hover-icon-right">
         <h4 class="g-blue-hydrogen-text">
           更多
           <v-icon right small class="g-blue-hydrogen-text">fas fa-long-arrow-alt-right</v-icon>
