@@ -24,7 +24,6 @@
         </v-img>
       </div>
       <v-bottom-nav
-        app
         :active.sync="carouselTab"
         :value="true"
         absolute
