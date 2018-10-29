@@ -1,31 +1,23 @@
 <template>
   <div>
-    <div id="ListGame" class="grey lighten-4" v-scroll="onScroll">
-      <v-container fluid grid-list-sm class="index-main-container">
-        <div class="page-main mt-5">
-          <div class="px-2">
-              <v-btn color="g-purple-purplin mx-0" dark>
-                <v-icon left>apps</v-icon>{{ $t('game') }}
-              </v-btn>
-          </div>
-          <v-layout class="px-2 mt-3" row wrap id="today">
+    <div id="ListGame" class="grey lighten-4">
+      <v-container fluid grid-list-sm>
+        <div class="page-main">
+          <v-layout class="px-2" row wrap>
+            <div class="px-2">
+              <vs-button type="line" icon="apps" size="large">
+                {{ $t('game') }} 
+                <span v-if="list[0]">{{ list[0].total }}</span>
+              </vs-button>
+            </div>
             <v-flex xs12>
-              <h2>
-                {{ $t('Recorded game') }}:
-                <span v-if="$store.state.display.loading">
-                  <v-progress-circular :width="3" indeterminate color="purple"></v-progress-circular>
-                </span>
-                <span v-else>
-                  <span v-if="list[0]">{{ list[0].total }}</span>
-                </span>
-              </h2>
+              <div id="ListGame">
+                <div v-for="(item, i) in list" :key="i">
+                  <ListGameCard :list.sync="item.data" :xl2="true"></ListGameCard>
+                </div>
+              </div>
             </v-flex>
           </v-layout>
-          <div class="my-3" id="ListGame">
-            <div v-for="(item, i) in list" :key="i">
-              <ListGameCard :list.sync="item.data" :xl2="true"></ListGameCard>
-            </div>
-          </div>
           <ListGameCardLoading></ListGameCardLoading>
         </div>
       </v-container>

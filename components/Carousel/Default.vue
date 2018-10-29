@@ -3,15 +3,13 @@
     <v-carousel-item transition="fade-transition" reverse-transition="fade-transition" v-for="(item, i) in carousel" :key="i" :dark="item.dark" :light="item.light">
       <v-img :src="item.src" :lazy-src="'/unknow.jpg'" :aspect-ratio="16/9" v-bind:class="item.color" height="100%"
         width="100%" :gradient="item.gradient">
-        <v-layout align-center justify-space-around row fill-height>
-          <v-flex xs5 sm5 md8 class="mx-3">
+        <v-layout align-center justify-start row fill-height>
+          <div>
             <h1 class="display-1" id="header_description">{{ item.description }}</h1>
             <h4 class="subheading my-3">{{ item.star }}</h4>
             <v-btn :dark="item.dark" outline flat :light="item.light" large class="mx-0" :to="item.to">{{
               item.btn_title }}</v-btn>
-          </v-flex>
-          <v-flex xs1>
-          </v-flex>
+          </div>
         </v-layout>
       </v-img>
     </v-carousel-item>
