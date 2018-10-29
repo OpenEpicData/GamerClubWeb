@@ -99,11 +99,11 @@ export default {
     price: function (value) {
       if (this.$store.state.display.country === 'cn') {
         let regex = /^¥[0-9]+([.]{1}[0-9]+){0,1}¥[0-9]+([.]{1}[0-9]+){0,1}/.exec(value)
-        if (regex) { value = ' <strike>' + /^¥[0-9]+([.]{1}[0-9]+){0,1}/.exec(regex)[0] + '</strike> ' + value.replace(/^¥[0-9]+([.]{1}[0-9]+){0,1}/, '') }
+        if (regex) { value = ' <del style="text-decoration:line-through">' + /^¥[0-9]+([.]{1}[0-9]+){0,1}/.exec(regex)[0] + '</del> ' + value.replace(/^¥[0-9]+([.]{1}[0-9]+){0,1}/, '') }
       } else if (this.$store.state.display.country === 'us') {
         let regex = /^\$[0-9]+([.]{1}[0-9]+){0,1}\$[0-9]+([.]{1}[0-9]+){0,1}/.exec(value)
         if (regex) {
-          value = ' <strike>' + /^\$[0-9]+([.]{1}[0-9]+){0,1}/.exec(regex[0])[0] + '</strike> ' + value.replace(/^\$[0-9]+([.]{1}[0-9]+){0,1}/, '')
+          value = ' <del style="text-decoration:line-through">' + /^\$[0-9]+([.]{1}[0-9]+){0,1}/.exec(regex[0])[0] + '</del> ' + value.replace(/^\$[0-9]+([.]{1}[0-9]+){0,1}/, '')
         }
       }
       return value
