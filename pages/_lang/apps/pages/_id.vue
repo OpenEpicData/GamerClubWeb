@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="ListGame" class="grey lighten-4">
+    <div id="ListGame" class="grey lighten-4" v-scroll="onScroll">
       <v-container fluid grid-list-sm>
         <div class="page-main">
           <v-layout class="px-2" row wrap>
