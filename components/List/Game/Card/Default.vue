@@ -1,22 +1,22 @@
 <template>
-  <v-flex d-flex xs12 v-if="list">
+  <v-flex xs12 v-if="list">
     <v-layout row wrap>
-      <v-flex d-flex xs6 sm6 md4 lg3 v-for="(item,i) in list" :key="i" class="game-list-card px-1">
-        <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3" width="100%">
+      <v-flex xs6 sm6 md4 lg3 :xl2="xl2" v-for="(item,i) in list" :key="i" class="game-list-card px-1">
+        <div>
+          <vs-card actionable class="grey lighten-4 my-3">
             <v-layout align-space-between justify-space-between column fill-height>
-              <v-flex>
-                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'"
-                  gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'" height="215px"
+              <v-flex slot="media">
+                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" height="225px"
+                  gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'"
                   v-on:click="cardTo(item.AppID)">
                   <v-container fill-height fluid pt-0 pl-0>
                     <v-layout align-start justify-start row fill-height>
                       <v-flex xs12 flexbox class="text-xs-left cardTip">
                         <span v-if="item.app_price[0]">
                           <span v-if="item.app_price[0].PriceFinal">
-                            <v-btn dark small color="g-blue-hydrogen" class="cardTipButton">
+                            <vs-button color="purple" gradient-color-secondary="blue" type="gradient" size="small">
                               {{ minAppPrice(item.app_price) }}
-                            </v-btn>
+                            </vs-button>
                           </span>
                         </span>
                       </v-flex>
@@ -24,21 +24,19 @@
                   </v-container>
                 </v-img>
               </v-flex>
-              <v-flex xs12 class="mx-1 mt-2">
+              <v-flex xs12 class="mx-1 mt-2 cardText">
                 <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
-                  <h3 style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                  <h3 class="title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                     {{ item.Name }}
                   </h3>
+                  <h5 class="grey--text text--lighten-1">
+                    {{ $t('Updated on') }}: {{ time(item.LastUpdated) }}
+                  </h5>
                 </nuxt-link>
               </v-flex>
-              <v-flex xs12 class="mx-1 pb-2">
-                <h5 class="grey--text text--lighten-1">
-                  {{ $t('Updated on') }}: {{ time(item.LastUpdated) }}
-                </h5>
-              </v-flex>
             </v-layout>
-          </v-card>
-        </v-hover>
+          </vs-card>
+        </div>
       </v-flex>
     </v-layout>
   </v-flex>
@@ -79,7 +77,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 export default {
-  props: ['list'],
+  props: ['list', 'xl2'],
   data () {
     return {
       dialogAttention: false

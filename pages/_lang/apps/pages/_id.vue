@@ -23,7 +23,7 @@
           </v-layout>
           <div class="my-3" id="ListGame">
             <div v-for="(item, i) in list" :key="i">
-              <ListGameCard :list.sync="item.data"></ListGameCard>
+              <ListGameCard :list.sync="item.data" :xl2="true"></ListGameCard>
             </div>
           </div>
           <ListGameCardLoading></ListGameCardLoading>

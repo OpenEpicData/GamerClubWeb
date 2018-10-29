@@ -1,41 +1,38 @@
 <template>
-  <v-flex d-flex xs12 v-if="list">
+  <v-flex xs12 v-if="list">
     <v-layout row wrap>
-      <v-flex d-flex xs6 sm6 md4 lg3 v-for="(item,i) in list" :key="i" class="game-list-card px-1">
-        <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" flat class="grey lighten-4 my-3"
-            width="100%">
+      <v-flex xs6 sm6 md4 lg3 v-for="(item,i) in list" :key="i" class="game-list-card px-1">
+        <div>
+          <vs-card actionable class="grey lighten-4 my-3">
             <v-layout align-space-between justify-space-between column fill-height>
-              <v-flex>
-                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'"
-                  gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'" height="215px"
-                  v-on:click="cardTo(item.appid)">
+              <v-flex slot="media">
+                <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'" height="225px"
+                  gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'"
+                  v-on:click="cardTo(item.AppID)">
                   <v-container fill-height fluid pt-0 pl-0>
                     <v-layout align-start justify-start row fill-height>
                       <v-flex xs12 flexbox class="text-xs-left cardTip">
-                        <v-btn small color="g-blue-hydrogen" dark @click.stop="dialogAttention = true" class="cardTipButton">
+                        <vs-button color="purple" gradient-color-secondary="blue" type="gradient" size="small">
                           {{ $t('Currently online') }}: {{ item.now }}
-                        </v-btn>
+                        </vs-button>
                       </v-flex>
                     </v-layout>
                   </v-container>
                 </v-img>
               </v-flex>
-              <v-flex xs12 class="mx-1 mt-2">
-                <nuxt-link :to="$i18n.path('apps/'+ item.appid)" style="text-decoration: none;color: #000">
-                  <h3 style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+              <v-flex xs12 class="mx-1 mt-2 cardText">
+                <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
+                  <h3 class="title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                     {{ item.title }}
                   </h3>
+                  <h5 class="grey--text text--lighten-1">
+                    {{ $t("Today's peak") }}: {{ item.total }}
+                  </h5>
                 </nuxt-link>
               </v-flex>
-              <v-flex xs12 class="mx-1 pb-2">
-                <h5 class="grey--text text--lighten-1">
-                  {{ $t("Today's peak") }}: {{ item.total }}
-                </h5>
-              </v-flex>
             </v-layout>
-          </v-card>
-        </v-hover>
+          </vs-card>
+        </div>
       </v-flex>
     </v-layout>
   </v-flex>

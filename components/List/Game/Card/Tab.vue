@@ -17,7 +17,7 @@
         <ListGameCardTopSeller :list.sync="topSeller.data.slice(0, 4)" v-if="item.title === $t('Popular sales game') && topSeller.data"></ListGameCardTopSeller>
         <div v-if="item.title === $t('Latest updated app') && list">
           <div v-for="(item, i) in list" :key="i">
-            <ListGameCard :list.sync="item.data.slice(0, 4)"></ListGameCard>
+            <ListGameCard :list.sync="item.data.slice(0, 4)" :xl2="false"></ListGameCard>
           </div>
         </div>
         <ListGameCardLoading></ListGameCardLoading>
