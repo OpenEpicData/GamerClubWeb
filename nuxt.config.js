@@ -27,6 +27,7 @@ module.exports = {
   ],
   plugins: [
     '~/plugins/vuetify.js',
+    '~/plugins/vuesax.js',
     '~/plugins/i18n.js',
     { src: '~/plugins/v-charts.js', ssr: false }
   ],
