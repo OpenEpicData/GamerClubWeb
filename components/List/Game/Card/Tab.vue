@@ -1,18 +1,18 @@
 <template>
-  <v-tabs v-model="trendingTab" color="grey lighten-4" slider-color="g-blue-hydrogen">
+  <v-tabs v-model="trendingTab" slider-color="white" dark color="black">
     <v-flex xs4 md2>
-      <h2 style="line-height: 56px">
+      <h2 style="line-height: 56px" class="white--text">
         <span style="border-left: 4px #1da6ba solid;" class="mr-3 border-side"></span>
         {{ $t('Trending') }}
       </h2>
     </v-flex>
     <v-tab v-for="(item, i) in blockCard" :key="i" ripple>
-      <h4 class="g-blue-hydrogen-text">
+      <h4>
         {{ item.title }}
       </h4>
     </v-tab>
     <v-tab-item v-for="(item, i) in blockCard" :key="i">
-      <v-card flat color="grey lighten-4">
+      <v-card flat dark color="black">
         <ListGameCardTrending :list.sync="trending.data.slice(0, 4)" v-if="item.title === $t('Most popular games') && trending.data"></ListGameCardTrending>
         <ListGameCardTopSeller :list.sync="topSeller.data.slice(0, 4)" v-if="item.title === $t('Popular sales game') && topSeller.data"></ListGameCardTopSeller>
         <div v-if="item.title === $t('Latest updated app') && list">
@@ -25,9 +25,9 @@
     </v-tab-item>
     <v-flex class="text-xs-right">
       <v-btn flat :to="loadMoreTrendingLink" class="btn-hover-icon-right">
-        <h4 class="g-blue-hydrogen-text">
+        <h4>
           更多
-          <v-icon right small class="g-blue-hydrogen-text">fas fa-long-arrow-alt-right</v-icon>
+          <v-icon right small>fas fa-long-arrow-alt-right</v-icon>
         </h4>
       </v-btn>
     </v-flex>

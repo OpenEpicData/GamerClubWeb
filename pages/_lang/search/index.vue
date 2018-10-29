@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-app class="g-blue-hydrogen" dark>
+    <v-app class="black" dark>
       <v-content>
         <v-container fluid fill-height class="index-main-container">
           <v-layout align-center justify-center row>
@@ -17,7 +17,7 @@
                 autofocus
               ></v-text-field>
               <div class="text-xs-center">
-                <v-btn large color="white" light @click="searchButton">{{ $t('Search now') }}</v-btn>
+                <v-btn large dark @click="searchButton">{{ $t('Search now') }}</v-btn>
               </div>
             </v-flex>
           </v-layout>

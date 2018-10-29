@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs6 sm6 md4 lg3 v-for="(item,i) in list" :key="i" class="game-list-card px-1">
         <div>
-          <vs-card actionable class="grey lighten-4 my-3">
+          <vs-card actionable class="black my-3">
             <v-layout align-space-between justify-space-between column fill-height>
               <v-flex slot="media">
                 <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'" height="225px"
@@ -22,7 +22,7 @@
               </v-flex>
               <v-flex xs12 class="mx-1 mt-2 cardText">
                 <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
-                  <h3 class="title" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                  <h3 class="title white--text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                     {{ item.title }}
                   </h3>
                   <h5 class="grey--text text--lighten-1">

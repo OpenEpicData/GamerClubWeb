@@ -21,11 +21,11 @@
             </a> 
           </h2>
 
-          <v-timeline dense>
+          <v-timeline dense dark>
             <v-timeline-item
               v-for="(item, i) in webData"
               :key="i"
-              color="g-blue-hydrogen"
+              color="grey"
               small
             >
             <span></span>
@@ -49,11 +49,11 @@
             </a>
           </h2>
           
-          <v-timeline dense>
+          <v-timeline dense dark>
             <v-timeline-item
               v-for="(item, i) in apiData"
               :key="i"
-              color="g-blue-hydrogen"
+              color="grey"
               small
             >
               <v-layout pt-3>
@@ -76,11 +76,11 @@
             </a>
           </h2>
           
-          <v-timeline dense>
+          <v-timeline dense dark>
             <v-timeline-item
               v-for="(item, i) in restData"
               :key="i"
-              color="g-blue-hydrogen"
+              color="grey"
               small
             >
             <span></span>

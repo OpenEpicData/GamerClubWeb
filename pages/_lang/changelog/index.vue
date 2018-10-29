@@ -1,8 +1,8 @@
 <template>
-  <div class="grey lighten-4">
+  <div>
     <v-container fluid grid-list-sm class="index-main-container">
       <div class="page-main">
-        <v-card flat color="grey lighten-4">
+        <v-card flat color="black" dark>
           <nuxt-child />
         </v-card>
       </div>

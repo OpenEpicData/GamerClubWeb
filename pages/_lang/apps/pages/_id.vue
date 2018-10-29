@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div id="ListGame" class="grey lighten-4" v-scroll="onScroll">
+  <div class="black">
+    <div id="ListGame" v-scroll="onScroll">
       <v-container fluid grid-list-sm>
         <div class="page-main">
           <v-layout class="px-2" row wrap>
             <div class="px-2">
-              <vs-button type="line" icon="apps" size="large">
+              <vs-button type="filled" icon="apps" size="large" color="dark">
                 {{ $t('game') }} 
                 <span v-if="list[0]">{{ list[0].total }}</span>
               </vs-button>

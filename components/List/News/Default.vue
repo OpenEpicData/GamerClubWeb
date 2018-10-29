@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid class="index-main-container">
-      <v-list subheader two-line class="grey lighten-4" v-if="newsData">
+      <v-list subheader two-line class="black" v-if="newsData" dark>
         <template v-for="(item, k) in newsData">
           <v-divider inset :key="item.ID"></v-divider>
           <v-list-tile

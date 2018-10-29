@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="grey lighten-4">
+  <div class="black">
+    <div>
       <Parallax></Parallax>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main">

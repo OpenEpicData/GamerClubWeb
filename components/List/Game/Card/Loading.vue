@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap v-if="$store.state.display.loading">
     <v-flex xs12 sm6 md3 lg2 v-for="(item,i) in 6" :key="i" class="game-list-card px-2">
-      <v-card flat class="grey lighten-4 my-3">
+      <v-card flat class="black" dark>
         <v-card-title primary-title>
           <v-layout row wrap>
             <v-flex xs12>

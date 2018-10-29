@@ -2,7 +2,7 @@
   <div style="height: 100%">
     <v-card height="100%" flat>
       <div style="height: calc(100% - 56px)">
-        <v-img @click="cardTo($i18n.path('apps/' + $t('carousel_game.game.tab[' + carouselTab + '].to')))" :src="image" height="100%" :aspect-ratio="16/9" gradient="to top right, rgba(100,115,201,.33), rgba(25,32,72,.7)" style="cursor: pointer;">
+        <v-img @click="cardTo($i18n.path('apps/' + $t('carousel_game.game.tab[' + carouselTab + '].to')))" :src="image" height="100%" :aspect-ratio="16/9" gradient="to top right, rgba(0,0,0,.7), rgba(0,0,0,.7)" style="cursor: pointer;">
           <v-layout fill-height align-center justify-center>
             <v-flex xs12 md10 class="white--text text-xs-center">
               <v-container>
@@ -27,7 +27,7 @@
         :active.sync="carouselTab"
         :value="true"
         absolute
-        color="g-blue-hydrogen"
+        class="black"
       >
         <v-btn
           dark

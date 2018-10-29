@@ -1,15 +1,15 @@
 <template>
   <div>
     <v-layout wrap row v-if="result">
-      <v-flex xs12 md8 v-for="(item,i) in result.data" :key="i" class="search-list-card">
+      <v-flex xs12 md8 v-for="(item,i) in result.data" :key="i" class="search-list-card" style="border: 1px solid #fff">
         <v-hover>
-          <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" v-if="item.AppType" flat class="grey lighten-4" height="18vh">
+          <v-card dark color="black" slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 0}`" v-if="item.AppType" flat>
             <div>
-              <v-card-title primary-title class="grey lighten-4">
+              <v-card-title primary-title class="black">
                 <v-layout align-start justify-start row fill-height>
                   <v-flex>
-                    <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="color: #000">
-                      <h3 class="mb-0 display-1">
+                    <nuxt-link :to="$i18n.path('apps/'+ item.AppID)">
+                      <h3 class="mb-0 display-1 white--text">
                         <span v-if="item.Name && item.ChineseName && language === 'zh-cn'">
                           {{ item.ChineseName }}
                         </span>
@@ -39,8 +39,8 @@
           </v-card>
         </v-hover>
       </v-flex>
-      <v-pagination v-model="result.current_page" :length=result.last_page></v-pagination>
     </v-layout>
+    <vs-pagination :total="result.last_page" v-model="result.current_page" class="mt-5" color="black"></vs-pagination>
   </div>
 </template>
 
@@ -54,6 +54,12 @@ export default {
 </script>
 
 <style>
+  .vs-pagination--ul, .vs-pagination--buttons {
+    background: #424242
+  }
+  .vs-pagination--nav {
+    justify-content: left
+  }
   .card-right-attention-icon {
     display: none;
   }

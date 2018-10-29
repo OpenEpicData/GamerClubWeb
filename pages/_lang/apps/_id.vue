@@ -35,7 +35,7 @@
     <div>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="mt-5">
-          <v-card>
+          <v-card dark color="black">
             <div class="mx-2 py-2">
               <v-layout row wrap>
                 <v-flex xs12 v-if="!chartData">
@@ -104,17 +104,17 @@ export default {
         yAxis: {
           scale: true,
           axisLabel: {
-            color: '#000'
+            color: '#fff'
           },
           splitLine: {
             lineStyle: {
-              color: '#000'
+              color: '#fff'
             }
           }
         },
         xAxis: {
           axisLabel: {
-            color: '#000'
+            color: '#fff'
           },
           inverse: true
         }

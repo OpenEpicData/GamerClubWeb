@@ -1,26 +1,26 @@
 <template>
   <div>
-    <div class="grey lighten-4">
+    <div class="black">
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="page-main" id="SearchList">
           <v-content>
             <v-layout row wrap>
               <v-flex xs8 md6>
-                <v-text-field solo outline single-line color="black" :label="$t('Search game, id') + '...'" append-icon="search"
+                <v-text-field dark solo outline single-line color="white" :label="$t('Search game, id') + '...'" append-icon="search"
                   v-model="search" full-width autofocus></v-text-field>
               </v-flex>
               <v-flex xs4 md4>
-                <v-btn large color="g-blue-hydrogen" dark @click="searchButton">{{ $t('Search now') }}</v-btn>
+                <v-btn large dark @click="searchButton">{{ $t('Search now') }}</v-btn>
               </v-flex>
               <v-flex xs12 md4>
-                <h2 class="mt-3 ml-3">
-                  <span v-if="isData">{{ $t('Total inquiry') }}: {{ resultLength }}</span>
-                  <span v-else>{{ $t('No data') }}</span>
+                <h2>
+                  <span v-if="isData" class="white--text">{{ $t('Total inquiry') }}: {{ resultLength }}</span>
+                  <span v-else class="white--text">{{ $t('No data') }}</span>
                 </h2>
-                <h3 class="ml-3">{{ $t('Query data time') }}: {{ fecthSearchTime }} MS</h3>
+                <h3 class="white--text">{{ $t('Query data time') }}: {{ fecthSearchTime }} MS</h3>
               </v-flex>
             </v-layout>
-            <listSearchCard :result.sync="result"></listSearchCard>
+            <listSearchCard :result.sync="result" class="mt-5"></listSearchCard>
           </v-content>
         </div>
       </v-container>

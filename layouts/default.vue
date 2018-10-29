@@ -1,5 +1,5 @@
 <template>
-  <v-app class="grey lighten-4">
+  <v-app class="black">
     <ToolBar :ToolBar.sync="ToolBar"></ToolBar>
     <BottomNav :BottomNav.sync="BottomNav" class="hidden-md-and-up pt-5"></BottomNav>
   </v-app>

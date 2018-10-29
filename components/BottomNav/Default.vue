@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-bottom-nav class="hidden-md-and-up" :active.sync="BottomNavIndex" color="white" :value="true" fixed shift>
-      <v-btn v-for="(item, i) in BottomNav.items" :key="i" :to="$i18n.path(item.link)" @click.stop="LoginDialog = item.click">
+    <v-bottom-nav class="hidden-md-and-up" :active.sync="BottomNavIndex" color="black" :value="true" fixed shift>
+      <v-btn v-for="(item, i) in BottomNav.items" :key="i" :to="$i18n.path(item.link)" @click.stop="LoginDialog = item.click" dark>
         <span>{{ $t(item.value) }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
