@@ -22,10 +22,10 @@
           <v-flex d-flex xs12>
             <v-layout align-start justify-center row fill-height>
               <v-flex xs12>
-                <vs-button color="red" style="width: 25%">
+                <vs-button color="red" style="width: 25%" target :href="$t('carousel[0].href')">
                   <span>{{ $t('learn-more') }}</span>
                 </vs-button>
-                <vs-button color="white" style="width: 25%" class="black--text">
+                <vs-button color="white" style="width: 25%" class="black--text" target :href="$t('carousel[0].video')">
                   <span>{{ $t('Play video') }}</span>
                 </vs-button>
               </v-flex>
