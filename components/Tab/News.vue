@@ -59,14 +59,14 @@
               </template>
             </v-list>
             <v-list subheader v-if="evaluation && i === 2" dark>
-              <template v-for="(item, k) in evaluation.data" dar>
+              <template v-for="(item, k) in evaluation.data">
                 <v-divider inset :key="item.Title"></v-divider>
                 <v-list-tile
                   :key="item.ID"
                   avatar
                   @click="openDialog(item.Link, item.Title)"
                   v-if="k !== 0"
-                  calss="black"
+                  class="black"
                 >
                   <v-list-tile-avatar v-if="item.Type">
                     <span v-html="item.Type"></span>
