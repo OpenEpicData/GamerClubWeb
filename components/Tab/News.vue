@@ -99,6 +99,16 @@
   </div>
 </template>
 
+
+<style lang="stylus">
+.news-tab-dialog
+  .vs-dialog
+    max-width 80vw !important
+    height 90vh !important
+    .vs-dialog-text
+      height 85vh !important
+</style>
+
 <script>
 import axios from 'axios'
 import dayjs from 'dayjs'
