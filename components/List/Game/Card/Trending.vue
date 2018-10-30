@@ -1,7 +1,7 @@
 <template>
   <v-flex xs12 v-if="list">
     <v-layout row wrap>
-      <v-flex xs6 sm6 md4 lg3 v-for="(item,i) in list" :key="i" class="game-list-card px-1">
+      <v-flex xs6 sm6 md4 lg3 :xl2="xl2" v-for="(item,i) in list" :key="i" class="game-list-card px-1">
         <div>
           <vs-card actionable class="black my-3">
             <v-layout align-space-between justify-space-between column fill-height>
@@ -85,7 +85,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 export default {
-  props: ['list'],
+  props: ['list', 'xl2'],
   data () {
     return {
       dialogAttention: false
