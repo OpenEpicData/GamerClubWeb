@@ -93,17 +93,9 @@
         </v-card>
       </v-tab-item>
     </v-tabs>
-    <v-dialog
-      v-model="dialog.open"
-      max-width="80%"
-      lazy
-    >
-      <v-card height="90vh">
-        <v-card-title class="headline">{{ dialog.title }}</v-card-title>
-
-        <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 90%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock"></iframe>
-      </v-card>
-    </v-dialog>
+    <vs-prompt :vs-active.sync="dialog.open" :vs-title="dialog.title" class="news-tab-dialog" color='danger' :vs-buttons-hidden="true">
+      <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 100%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock"></iframe>
+    </vs-prompt>
   </div>
 </template>
 
@@ -157,10 +149,20 @@ export default {
         title: title,
         url: url
       }
-    }
+    },
   }
 }
 </script>
+
+<style lang="stylus">
+.news-tab-dialog
+  .vs-dialog
+    max-width 80vw !important
+    height 90vh !important
+    .vs-dialog-text
+      height 85vh !important
+</style>
+
 
 <style lang="stylus" scoped>
 @media only screen and (max-width: 959px)

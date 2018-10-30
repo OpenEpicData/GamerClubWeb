@@ -30,16 +30,9 @@
         <v-icon right small class="red--text">fas fa-long-arrow-alt-down</v-icon>
       </v-btn>
     </div>
-    <v-dialog
-      v-model="dialog.open"
-      max-width="80%"
-      lazy
-    >
-      <v-card height="90vh">
-        <v-card-title class="headline">{{ dialog.title }}</v-card-title>
-        <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 90%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock"></iframe>
-      </v-card>
-    </v-dialog>
+    <vs-prompt :vs-active.sync="dialog.open" :vs-title="dialog.title" class="news-tab-dialog" color='danger' :vs-buttons-hidden="true">
+      <iframe :src="dialog.url" frameborder="0" width="100%" style="height: 100%" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-pointer-lock"></iframe>
+    </vs-prompt>
   </div>
 </template>
 
