@@ -75,6 +75,16 @@ export default {
 }
 </script>
 
+<style lang="stylus">
+.news-tab-dialog
+  .vs-dialog
+    max-width 80vw !important
+    height 90vh !important
+    .vs-dialog-text
+      height 85vh !important
+</style>
+
+
 <style lang="stylus" scoped>
 @media only screen and (max-width: 959px)
     .container
