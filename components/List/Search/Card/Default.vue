@@ -26,7 +26,7 @@
                     <span class="grey--text">{{ $t('Updated on') }}: {{ time(item.LastUpdated) }}</span>
                   </v-flex>
                   <v-flex flexbox class="text-xs-right" v-if="item.AppType">
-                    <v-btn class="card-right-attention-icon" small color="g-blue-hydrogen" dark>
+                    <v-btn class="card-right-attention-icon" small color="red" dark>
                       <v-icon left>
                         add
                       </v-icon>

@@ -12,7 +12,7 @@
                   <v-container fill-height fluid pt-0 pl-0>
                     <v-layout align-start justify-start row fill-height>
                       <v-flex xs12 flexbox class="text-xs-left cardTip">
-                        <vs-button color="purple" gradient-color-secondary="blue" type="gradient" size="small">
+                        <vs-button color="purple" gradient-color-secondary="red" type="gradient" size="small">
                           {{ $t('Currently online') }}: {{ item.now }}
                         </vs-button>
                       </v-flex>

@@ -2,12 +2,12 @@
   <div class="black">
     <v-card flat style="position: fixed;width: 50%;margin: 2vh auto 0 auto;left:0;right:0;z-index: 2;background-color:transparent">
       <h2 class="text-xs-center subheading">
-        <v-btn dark>
+        <v-btn dark color="primary">
           <span v-for="(item,i) in news" :key="i" class="px-3">
             <nuxt-link :to="item.link"  v-if="item.link === $route.path ? active = true : ''"  :class="active ? 'white--text' : ''">
               {{ item.title }}
             </nuxt-link>
-            <nuxt-link :to="item.link" v-else class="grey--text">{{ item.title }}</nuxt-link>
+            <nuxt-link :to="item.link" v-else class="black--text">{{ item.title }}</nuxt-link>
           </span>
         </v-btn>
       </h2>

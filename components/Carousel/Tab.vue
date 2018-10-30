@@ -14,7 +14,7 @@
                 <h3 class="my-3">{{ $t('carousel_game.game.tab[' + carouselTab + '].description') }}</h3>
                 <v-layout fill-height align-center justify-center class="hidden-sm-and-down">
                   <v-flex xs3>
-                    <v-progress-linear background-color="g-blue-hydrogen"></v-progress-linear>
+                    <v-progress-linear background-color="red"></v-progress-linear>
                   </v-flex>
                 </v-layout>
                 <h4 class="hidden-sm-and-down">{{ $t('carousel_game.game.tab[' + carouselTab + '].star') }}</h4>

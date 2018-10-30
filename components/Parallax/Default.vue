@@ -28,7 +28,7 @@
             </v-btn>
           </v-flex>
           <v-flex d-flex xs3>
-            <v-progress-linear background-color="g-purple-purplin" color="g-purple-purplin" class="hidden-sm-and-down"></v-progress-linear>
+            <v-progress-linear background-color="red" color="red" class="hidden-sm-and-down"></v-progress-linear>
           </v-flex>
           <h2 class="title font-weight-thin hidden-sm-and-down">{{ $t('carousel[0].star') }}</h2>
         </v-flex>

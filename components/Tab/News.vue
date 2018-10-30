@@ -85,9 +85,9 @@
           <div class="mx-5">
             <v-btn block large dark :to="newsLink = i === 0 ? $i18n.path('topic') : i === 1 ? $i18n.path('topic/news') : i === 2 ? $i18n.path('topic/evaluation') : ''"  v-if="newsLinkText = i === 0 ? '最新资讯' : i === 1 ? '最新新闻' : '最新评测'">
               <h4>阅读更多
-                <span class="g-blue-hydrogen-text">{{ newsLinkText }}</span>
+                <span class="red--text">{{ newsLinkText }}</span>
               </h4>
-              <v-icon right small class="g-blue-hydrogen-text">fas fa-long-arrow-alt-right</v-icon>
+              <v-icon right small class="red--text">fas fa-long-arrow-alt-right</v-icon>
             </v-btn>
           </div>
         </v-card>

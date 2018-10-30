@@ -15,7 +15,7 @@
       <v-layout wrap row>
         <v-flex xs12 lg4>
           <h2 class="title my-3 text-xs-center">
-            <span class="g-blue-hydrogen-text">SteamHub.Web</span>
+            <span class="red--text">SteamHub.Web</span>
             <a href="https://github.com/InGaming/SteamHub.Web" target="_black">
               <v-icon class="mx-2">fas fa-code-branch</v-icon>
             </a> 
@@ -43,7 +43,7 @@
         </v-flex>
         <v-flex xs12 lg4>
           <h2 class="title my-3 text-xs-center">
-            <span class="g-blue-hydrogen-text">SteamHub.API</span>
+            <span class="red--text">SteamHub.API</span>
             <a href="https://github.com/InGaming/SteamHub.API" target="_black">
               <v-icon class="mx-2">fas fa-code-branch</v-icon>
             </a>
@@ -70,7 +70,7 @@
         </v-flex>
         <v-flex xs12 lg4>
           <h2 class="title my-3 text-xs-center">
-            <span class="g-blue-hydrogen-text">SteamHub.RESTful</span>
+            <span class="red--text">SteamHub.RESTful</span>
             <a href="https://github.com/InGaming/SteamHub.RESTful" target="_black">
               <v-icon class="mx-2">fas fa-code-branch</v-icon>
             </a>

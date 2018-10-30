@@ -25,9 +25,9 @@
       <v-divider inset></v-divider>
     </v-container>
     <div class="mx-5">
-      <v-btn block large color="grey lighten-2 elevation-0" @click="loadMore()">
+      <v-btn block large @click="loadMore()">
         <h4>{{ $t('Load more') }}</h4>
-        <v-icon right small class="g-blue-hydrogen-text">fas fa-long-arrow-alt-down</v-icon>
+        <v-icon right small class="red--text">fas fa-long-arrow-alt-down</v-icon>
       </v-btn>
     </div>
     <v-dialog
