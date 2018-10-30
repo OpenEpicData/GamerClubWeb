@@ -1,22 +1,82 @@
-# steamhub
+# Roadmap
 
-> steamhub web
-
-## Build Setup
-
-``` bash
-# install dependencies
-$ npm install # Or yarn install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out the [Nuxt.js](https://github.com/nuxt/nuxt.js) and [Vuetify.js](https://vuetifyjs.com/) documentation.
+## 前端
+### 应用
+* 应用列表
+    * 排序(2018 Q4)
+    * 搜索
+* 详情
+    * 基础信息
+    * 应用评分(2019 Q4)
+    * 价格历史
+    * 应用推荐(2019 Q4)
+    * 新闻推荐(2019 Q1)
+    * 应用收藏(2019 Q4)
+    * 价格通知(2019 Q4)
+* 管理后台(2019 Q4)
+    * 信息修改
+    * 应用删除
+    * 内容审查
+### 搜索
+* 新闻搜索(2018 Q4)
+* 游戏搜索
+* 混合搜索(2019 Q1)
+### 新闻
+* 详情
+* 推荐(2018 Q4)
+## Web 应用后端
+### 中间件
+* 缓存
+## 应用后端
+### 自然语言处理
+* 新闻
+    * 分词
+    * 语句分析
+    * 文本概括
+    * 关键词提取
+### 队列
+* 任务执行
+* 任务中断
+* 可视化队列控制(2019 Q1)
+### 定时任务
+* 爬虫
+* 推送(2019 Q4)
+    * 价格折扣
+    * 游戏更新
+    * 网站更新
+    * 网站维护
+## 开发者(2019 Q3)
+### 授权
+* 付费
+* 免费
+## 用户(2019 Q4)
+### 认证
+* OAuth2.0
+* JWT
+### 权限
+* 管理员
+* 版主
+* 一般用户
+* 游客
+### 账户
+* 第三方对接
+* 删除
+## 爬虫
+### 游戏
+* 价格
+    * 多国家
+* 信息
+    * 基本描述(2018 Q4)
+    * 新闻整合
+    * 玩家评分(2018 Q4)
+* 趋势
+    * 游玩榜
+    * 销售榜
+    * 新游榜(2018 Q4)
+### 媒体
+* 新闻
+    * 实时新闻
+    * 精选媒体(2018 Q4)
+* 评测
+    * 媒体评分(2018 Q4)
+    * 媒体测评
