@@ -116,6 +116,7 @@ import 'dayjs/locale/zh-cn'
 import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 export default {
+  props: ['newsData', 'newsOnly', 'evaluation'],
   data: () => ({
     news: [
       {
@@ -134,20 +135,7 @@ export default {
       url: null
     },
     newsLink: null,
-    newsData: null,
-    newsOnly: null,
-    evaluation: null,
   }),
-  mounted: async function () {
-    let [newsData, newsOnly, evaluation] = await Promise.all([
-      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=6'),
-      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=6&type=新闻'),
-      axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=6&type=评测'),
-    ])
-    this.newsData = newsData.data
-    this.newsOnly = newsOnly.data
-    this.evaluation = evaluation.data
-  },
   methods: {
     time: function (value) {
       if (this.$store.state.locale === 'zh-cn') return dayjs().locale('zh-cn').from(dayjs(value))

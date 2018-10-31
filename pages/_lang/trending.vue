@@ -45,13 +45,16 @@ export default {
     list: null,
     updateTime: 60
   }),
-  mounted: async function () {
+  async asyncData () {
     let [apps] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/apps/trending')
     ])
     let list = []
-    this.$store.commit('DISPLAY_LOADING', false)
-    this.list = apps.data
+    return {
+      list: apps.data
+    }
+  },
+  mounted: function () {
     this.todo()
   },
   methods: {
