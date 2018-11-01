@@ -8,7 +8,7 @@
               <v-flex slot="media">
                 <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'" height="225px"
                   gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'"
-                  v-on:click="cardTo(item.AppID)">
+                  v-on:click="cardTo(item.appid)">
                   <v-container fill-height fluid pt-0 pl-0>
                     <v-layout align-start justify-start row fill-height>
                       <v-flex xs12 flexbox class="text-xs-left cardTip">
@@ -21,7 +21,7 @@
                 </v-img>
               </v-flex>
               <v-flex xs12 class="mx-1 mt-2 cardText">
-                <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
+                <nuxt-link :to="$i18n.path('apps/'+ item.appid)" style="text-decoration: none;color: #000">
                   <h3 class="title white--text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
                     {{ item.title }}
                   </h3>
