@@ -56,6 +56,7 @@ export default {
   },
   mounted: function () {
     this.todo()
+    this.$store.commit('DISPLAY_LOADING', false)
   },
   methods: {
     todo: function () {  

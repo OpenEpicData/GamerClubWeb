@@ -11,9 +11,12 @@
                   v-on:click="cardTo(item.appid)">
                   <v-container fill-height fluid pt-0 pl-0>
                     <v-layout align-start justify-start row fill-height>
-                      <v-flex xs12 flexbox class="text-xs-left cardTip">
-                        <vs-button color="purple" gradient-color-secondary="red" type="gradient" size="small">
-                          <span v-html="price(item.price)"></span>
+                      <v-flex xs12 flexbox class="text-xs-left cardTip" v-if="top_color = i === 0 ? 'orange' : 'purple'">
+                        <vs-button :color="top_color" gradient-color-secondary="red" type="gradient" size="large">
+                          <h4>
+                            TOP {{ i + 1 }}
+                            <span v-html="price(item.price)"></span>
+                          </h4>
                         </vs-button>
                       </v-flex>
                     </v-layout>

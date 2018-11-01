@@ -14,8 +14,10 @@
                       <v-flex xs12 flexbox class="text-xs-left cardTip">
                         <span v-if="item.app_price[0]">
                           <span v-if="item.app_price[0].PriceFinal">
-                            <vs-button color="purple" gradient-color-secondary="red" type="gradient" size="small">
-                              {{ minAppPrice(item.app_price) }}
+                            <vs-button color="purple" gradient-color-secondary="red" type="gradient" size="large">
+                              <h4>
+                                {{ minAppPrice(item.app_price) }}
+                              </h4>
                             </vs-button>
                           </span>
                         </span>
