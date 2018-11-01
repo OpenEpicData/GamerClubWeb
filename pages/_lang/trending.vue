@@ -5,10 +5,10 @@
         <div class="page-main">
           <v-layout class="px-2" row wrap>
             <div class="px-2">
-              <vs-button type="filled" icon="apps" size="large" color="dark">
+              <vs-button type="line" icon="apps" size="large" color="danger">
                 {{ $t('Trending') }}
               </vs-button>
-              <vs-button type="filled" size="large" color="dark">
+              <vs-button type="line" size="large" color="white">
                 {{ updateTime }} 秒后自动刷新
               </vs-button>
             </div>
