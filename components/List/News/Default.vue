@@ -7,7 +7,7 @@
           <v-list-tile
             :key="k"
             avatar
-            @click="openDialog(item.Link, item.Title)"
+            :to="$i18n.path('topic/' + item.Title)"
           >
             <v-list-tile-avatar v-if="item.Type">
               <span v-html="item.Type"></span>

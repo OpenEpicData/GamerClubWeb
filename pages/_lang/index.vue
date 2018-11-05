@@ -9,7 +9,7 @@
               <CarouselTab></CarouselTab>
             </v-flex>
             <v-flex xs12 md6>
-              <TabNews :newsData.sync="newsData" :newsOnly.sync="newsOnly" :evaluation.sync="evaluation"></TabNews>
+              <TabNews :newsData.sync="newsData"></TabNews>
             </v-flex>
           </v-layout>
           
@@ -37,15 +37,11 @@ import axios from 'axios'
 
 export default {
   async asyncData () {
-    let [newsData, newsOnly, evaluation] = await Promise.all([
+    let [newsData] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/news/lists?size=6'),
-      axios.get(encodeURI('https://rest.steamhub.cn/api/v2/news/lists?size=6&type=新闻')),
-      axios.get(encodeURI('https://rest.steamhub.cn/api/v2/news/lists?size=6&type=评测')),
     ])
     return {
       newsData: newsData.data,
-      newsOnly: newsOnly.data,
-      evaluation: evaluation.data
     }
   },
   components: {

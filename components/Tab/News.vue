@@ -8,9 +8,7 @@
         <v-card flat dark class="black">
           <div class="mt-4" v-if="newsData">
             <h2 class="text-xs-center">
-              <a class="white--text" @click="openDialog(newsData.data[0].Link, newsData.data[0].Title)" v-if="i === 0">{{ newsData.data[0].Title }}</a>
-              <a class="white--text" @click="openDialog(newsOnly.data[0].Link, newsOnly.data[0].Title)" v-else-if="i === 1">{{ newsOnly.data[0].Title }}</a>
-              <a class="white--text" @click="openDialog(evaluation.data[0].Link, evaluation.data[0].Title)" v-else-if="i === 2">{{ evaluation.data[0].Title }}</a>
+              <nuxt-link :to="$i18n.path('topic/' + newsData.data[0].Title)" v-if="i === 0">{{ newsData.data[0].Title }}</nuxt-link>
             </h2>
           </div>
           <v-container fluid class="index-main-container">
@@ -20,51 +18,7 @@
                 <v-list-tile
                   :key="item.ID"
                   avatar
-                  @click="openDialog(item.Link, item.Title)"
-                  v-if="k !== 0"
-                  class="black"
-                >
-                  <v-list-tile-avatar v-if="item.Type">
-                    <span v-html="item.Type"></span>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content v-if="item.Title">
-                    <v-list-tile-sub-title v-html="item.Title"></v-list-tile-sub-title>
-                  </v-list-tile-content>
-                  <v-list-tile-action v-if="item.LastUpdated" class="hidden-md-and-down">
-                    <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
-                  </v-list-tile-action>
-                </v-list-tile>
-              </template>
-            </v-list>
-            <v-list subheader v-if="newsOnly && i === 1" dark>
-              <template v-for="(item, k) in newsOnly.data">
-                <v-divider inset :key="item.Title"></v-divider>
-                <v-list-tile
-                  :key="item.ID"
-                  avatar
-                  @click="openDialog(item.Link, item.Title)"
-                  v-if="k !== 0"
-                  class="black"
-                >
-                  <v-list-tile-avatar v-if="item.Type">
-                    <span v-html="item.Type"></span>
-                  </v-list-tile-avatar>
-                  <v-list-tile-content v-if="item.Title">
-                    <v-list-tile-sub-title v-html="item.Title"></v-list-tile-sub-title>
-                  </v-list-tile-content>
-                  <v-list-tile-action v-if="item.LastUpdated" class="hidden-md-and-down">
-                    <h5 class="grey--text"><span>{{ time(item.LastUpdated) }}</span></h5>
-                  </v-list-tile-action>
-                </v-list-tile>
-              </template>
-            </v-list>
-            <v-list subheader v-if="evaluation && i === 2" dark>
-              <template v-for="(item, k) in evaluation.data">
-                <v-divider inset :key="item.Title"></v-divider>
-                <v-list-tile
-                  :key="item.ID"
-                  avatar
-                  @click="openDialog(item.Link, item.Title)"
+                  :to="$i18n.path('topic/' + item.Title)"
                   v-if="k !== 0"
                   class="black"
                 >
