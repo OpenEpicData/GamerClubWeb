@@ -3,18 +3,29 @@
     <div id="ListGame">
       <v-container fluid grid-list-sm>
         <div class="page-main">
-          <v-layout class="px-2" row wrap>
-            <div class="px-2">
-              <vs-button type="line" icon="apps" size="large" color="danger">
-                {{ $t('Trending') }}
-              </vs-button>
+          <v-layout align-start justify-start column fill-height class="mx-2">
+            <div>
               <vs-button type="line" size="large" color="white">
                 {{ updateTime }} 秒后自动刷新
               </vs-button>
+              <vs-button type="line" icon="apps" size="large" color="danger">
+                {{ $t('Trending') }}
+              </vs-button>
             </div>
+            <div>
+              <v-switch
+                label="a"
+                color="red"
+                dark
+                v-model="totalMaxTodaySwitch"
+                class="mx-2"
+              ></v-switch>
+            </div>
+          </v-layout>
+          <v-layout class="px-2" row wrap>
             <v-flex xs12>
               <div>
-                <ListGameCardTrending :list.sync="list" :xl2="true" v-if="list"></ListGameCardTrending>
+                <ListGameCardTrending :list.sync="list" :xl2="true" :totalMaxTodaySwitch="totalMaxTodaySwitch" v-if="list"></ListGameCardTrending>
               </div>
             </v-flex>
           </v-layout>
@@ -43,23 +54,26 @@ export default {
     dialogAPI: false,
     page: 1,
     list: null,
-    updateTime: 60
+    updateTime: 60,
+    totalMaxTodaySwitch: false
   }),
   async asyncData () {
     let [apps] = await Promise.all([
       axios.get('https://rest.steamhub.cn/api/v2/apps/trending')
     ])
-    let list = []
     return {
       list: apps.data
     }
   },
   mounted: function () {
-    this.todo()
+    this.todo(this.totalMaxTodaySwitch)
     this.$store.commit('DISPLAY_LOADING', false)
   },
   methods: {
-    todo: function () {  
+    todo: function (val) {  
+      let link = ''
+      if (val) link = 'https://rest.steamhub.cn/api/v2/apps/trending?type=total&count=max&date=today'
+      else link = 'https://rest.steamhub.cn/api/v2/apps/trending'
       let self = this         
       setInterval(function () {
         self.updateTime > 1 ? self.updateTime-- : self.updateTime = 60
@@ -68,17 +82,29 @@ export default {
         self.$store.commit('DISPLAY_LOADING', true)
         self.list = null
         let [apps] = await Promise.all([
-          axios.get('https://rest.steamhub.cn/api/v2/apps/trending')
+          axios.get(link)
         ])
         self.list = apps.data
         self.$store.commit('DISPLAY_LOADING', false)
       }, 60000)
+    },
+    getTrendingNow: async function (val) {
+      let link = ''
+      if (val) link = 'https://rest.steamhub.cn/api/v2/apps/trending?type=total&count=max&date=today'
+      else link = 'https://rest.steamhub.cn/api/v2/apps/trending'
+      let [apps] = await Promise.all([
+        axios.get(link)
+      ])
+      this.list = apps.data
     }
   },
   watch: {
     dialogAPI (val) {
       if (!val) return
       setTimeout(() => (this.dialogAPI = false), 1000)
+    },
+    async totalMaxTodaySwitch (newVal, oldVal) {
+      this.getTrendingNow(newVal)
     }
   },
   filters: {

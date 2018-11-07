@@ -20,10 +20,13 @@
                             type="gradient"
                             size="large">
                             <h4>
-                              <span v-if="i < 8">
+                              <span>
                                 TOP: {{ i + 1 }}
                               </span>
-                              <span>
+                              <span v-if="totalMaxTodaySwitch">
+                                今日峰值: {{ item.Total }}
+                              </span>
+                              <span v-else>
                                 {{ $t('Currently online') }}: {{ item.Now }}
                               </span>
                             </h4>
@@ -99,7 +102,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 export default {
-  props: ['list', 'xl2', 'xl2_header'],
+  props: ['list', 'xl2', 'totalMaxTodaySwitch'],
   data () {
     return {
       dialogAttention: false
