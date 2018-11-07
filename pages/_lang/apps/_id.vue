@@ -1,24 +1,24 @@
 <template>
   <div v-if="appDetail">
-    <v-parallax :src="parallaxImgPath(appDetail.screenshots)">
+    <v-parallax :src="parallaxImgPath(apps.screenshots)">
       <v-container fluid grid-list-sm class="index-main-container">
         <v-layout align-center justify-start row fill-height>
           <v-flex xs12 lg8 class="px-3 py-5" style="background: linear-gradient(to right, rgba(170,75,107,.7), rgba(59,141,153,.7))">
             <div>
               <div>
                 <h1 class="display-3 hidden-sm-and-down">
-                  {{ appDetail.name }}
+                  {{ appDetail.Name }}
                 </h1>
                 <h1 class="display-1 hidden-md-and-up">
-                  {{ appDetail.name }}
+                  {{ appDetail.Name }}
                 </h1>
               </div>
               <div>
                 <h4 class="headline font-weight-thin py-3 hidden-sm-and-down">
-                  "{{ appDetail.short_description }}"
+                  "{{ appDetail.ShortDescription }}"
                 </h4>
                 <h4 class="subheading font-weight-thin py-3 hidden-md-and-up">
-                  "{{ appDetail.short_description }}"
+                  "{{ appDetail.ShortDescription }}"
                 </h4>
               </div>
             </div>
@@ -35,37 +35,46 @@
     <div>
       <v-container fluid grid-list-sm class="index-main-container">
         <div class="mt-5">
-          <v-card dark color="black">
-            <div class="mx-2 py-2">
-              <v-layout row wrap>
-                <v-flex xs12 v-if="!chartData">
-                  <div v-if="appDetail.movies">
-                    <video :src="appDetail.movies[0].webm.max" v-if="appDetail.movies[0]" height="100%" width="100%" controls preload></video>
-                  </div>
-                  <div v-else-if="appDetail.screenshots">
-                    <img :src="parallaxImgPath(appDetail.screenshots)" height="100%" width="100%">
-                  </div>
-                </v-flex>
-                <v-flex xs12 md6 v-else>
-                  <div v-if="appDetail.movies">
-                    <video :src="appDetail.movies[0].webm.max" v-if="appDetail.movies[0]" height="100%" width="100%" controls preload></video>
-                  </div>
-                  <div v-else-if="appDetail.screenshots">
-                    <img :src="parallaxImgPath(appDetail.screenshots)" height="100%" width="100%">
-                  </div>
-                </v-flex>
-                <v-flex xs12 md6 v-if="chartData">
+          <div class="mx-2 py-2">
+            <v-layout row wrap>
+              <v-flex xs12 md9>
+                <div v-if="apps.movies">
+                  <video :src="apps.movies[0].webm.max" v-if="apps.movies" height="100%" width="100%" controls preload></video>
+                </div>
+                <div v-else-if="apps.screenshots">
+                  <img :src="parallaxImgPath(apps.screenshots)" height="100%" width="100%">
+                </div>
+                <div v-if="chartData">
                   <div class="pt-4">
                     <h2 class="display-1 text-xs-center">{{ $t('Historical price') }}</h2>
                   </div>
                   <ve-line :data="chartData" :colors="chartColors" :legend-visible="false" :extend="chartExtend" :settings="chartSettings"></ve-line>
-                </v-flex>
-                <v-flex xs12>
-                  <div id="SOHUCS" :sid="appid" ></div>
-                </v-flex>
-              </v-layout>
-            </div>
-          </v-card>
+                </div>
+              </v-flex>
+              <v-flex xs12 md3 class="white--text pl-3">
+                <div>
+                  <h4 class="title">
+                    推荐游戏
+                  </h4>
+                  <v-layout row wrap class="py-3" v-for="i in 4" :key="i">
+                    <v-flex xs8>
+                      <img :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + appid + '/header.jpg'" height="100%" width="100%">
+                    </v-flex>
+                    <v-flex xs4 class="pl-2">
+                      <h5 class="title">
+                        {{ appDetail.Name }}
+                      </h5>
+                      <h6>
+                        {{ apps.developers[0] }}
+                        <br>
+                        {{ appDetail.ReleaseDate.split('|')[1] }}
+                      </h6>
+                    </v-flex>
+                  </v-layout>
+                </div>
+              </v-flex>
+            </v-layout>
+          </div>
         </div>
       </v-container>
     </div>
@@ -84,9 +93,9 @@ export default {
       name: 'Unknown app',
       lang: String,
       appid: Number,
-      appDetail: Object,
-      appPrice: Object,
-      appInfo: Object,
+      appDetail: null,
+      appPrice: null,
+      appInfo: null,
       chartData: null,
       chartExtend: {
         series: {
@@ -95,10 +104,10 @@ export default {
           smooth: false,
           lineStyle: {
             width: 5,
-            shadowColor: 'rgba(106,48,147, 0.5)',
-            shadowBlur: 2,
-            shadowOffsetY: 5,
-            shadowOffsetX: 5
+            shadowColor: 'rgb(242, 19, 93)',
+            shadowBlur: 1,
+            shadowOffsetY: 0,
+            shadowOffsetX: 2
           }
         },
         yAxis: {
@@ -144,24 +153,29 @@ export default {
       return value
     }
   },
+  async asyncData ({ params }) {
+    let [apps] = await Promise.all([
+      axios.get('https://bird.ioliu.cn/v2?url=https://store.steampowered.com/api/appdetails?appids='+ params.id),
+    ])
+    if (apps.data && apps.data[params.id]['success']) {
+      let data = apps.data[params.id]['data']
+      return {
+        apps: data,
+        appid: params.id,
+        name: data['name']
+      }
+    }
+  },
   mounted: async function () {
-    this.appDetail = null
-    this.appPrice = null
-    this.appInfo = null
     this.lang = this.$store.state.display.lang
     this.country = this.$store.state.display.country
-    let appid = this.appid = this.$route.params.id
     let [appDetail, appPrice, appInfo] = await Promise.all([
-      axios.get('https://rest.steamhub.cn/api/v2/apps/details/'+ this.appid + '?lang=' + this.lang),
+      axios.get('https://rest.steamhub.cn/api/v2/apps/lists/'+ this.appid + '?lang=' + this.lang),
       axios.get('https://rest.steamhub.cn/api/v2/apps/prices/'+ this.appid + '?cc=' + this.country),
       axios.get('https://rest.steamhub.cn/api/v2/apps/infos/'+ this.appid)
     ])
-    if (appDetail.data && appDetail.data.length !== 0 && appDetail.data.Data !== 'null') {
-      let parseAppDetail = JSON.parse(JSON.parse(appDetail.data.Data))
-      if (parseAppDetail[appid]['success'] === true) {
-        this.appDetail = parseAppDetail[appid]['data']
-        this.name = this.appDetail.name
-      }
+    if (appDetail.data && appDetail.data.length !== 0) {
+      this.appDetail = appDetail.data[0]
     }
     if (appPrice.data && appPrice.data.length !== 0) {
       let checkPrice = appPrice.data[0]
@@ -176,10 +190,9 @@ export default {
         }
         this.chartColors = [
           new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#667db6' },
-            { offset: 0.33, color: ' #0082c8' },
-            { offset: 0.66, color: ' #0082c8' },
-            { offset: 1, color: ' #667db6' }
+            { offset: 0, color: '#fff' },
+            { offset: 0.5, color: ' #fff' },
+            { offset: 1, color: ' #fff' },
           ]),
         ]
       }
@@ -188,42 +201,6 @@ export default {
       this.appInfo = appInfo.data
     }
     this.$store.commit('DISPLAY_LOADING', false)
-
-    var changyanappid = 'cytSs9UVD'
-    var conf = 'prod_73685c1a6d8817e9cf1a1a7cbe125c1f'
-    var width = window.innerWidth || document.documentElement.clientWidth
-    if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>')
-    } else {
-      var loadJs = function (d, a) {
-        var c = document.getElementsByTagName('head')[0] || document.head || document.documentElement
-        var b = document.createElement('script')
-        b.setAttribute('type', 'text/javascript')
-        b.setAttribute('charset', 'UTF-8')
-        b.setAttribute('src', d)
-        if (typeof a === 'function') {
-          if (window.attachEvent) {
-            b.onreadystatechange = function () {
-              var e = b.readyState
-              if (e === 'loaded' || e === 'complete') {
-                b.onreadystatechange = null
-                a()
-              }
-            }
-          } else {
-            b.onload = a
-          }
-        }
-        c.appendChild(b)
-      }
-      loadJs('https://changyan.sohu.com/upload/changyan.js',
-        function () {
-          window.changyan.api.config({
-            appid: changyanappid,
-            conf: conf
-          })
-        })
-    }
   },
   head () {
     return {
