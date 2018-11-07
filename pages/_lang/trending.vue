@@ -14,7 +14,7 @@
             </div>
             <div>
               <v-switch
-                label="a"
+                label="今日峰值"
                 color="red"
                 dark
                 v-model="totalMaxTodaySwitch"
