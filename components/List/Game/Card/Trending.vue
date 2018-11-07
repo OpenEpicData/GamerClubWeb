@@ -2,59 +2,29 @@
   <div v-if="list">
     <div>
       <v-layout row wrap>
-        <v-flex xs6 lg3 :xl2="xl2_header" v-for="(item,i) in list.slice(0, 8)" :key="i" class="game-list-card px-1">
+        <v-flex xs6 sm6 md4 lg3 :xl2="xl2" v-for="(item,i) in list" :key="i" class="game-list-card px-1">
           <div>
             <vs-card actionable class="black my-3">
               <v-layout align-space-between justify-space-between column fill-height>
                 <v-flex slot="media">
-                  <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'" height="225px"
+                  <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.AppID + '/header.jpg'" height="225px"
                     gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'"
-                    v-on:click="cardTo(item.appid)">
-                    <v-container fill-height fluid py-0 px-0>
-                      <v-layout align-start justify-space-between column fill-height>
-                        <div flexbox class="text-xs-left cardTip" v-if="top_color = i === 0 ? 'orange' : 'purple'">
-                          <vs-button :color="top_color" gradient-color-secondary="red" type="gradient" size="large">
-                            <h4>
-                              TOP {{ i + 1 }}
-                              <span>
-                                {{ $t('Currently online') }}: {{ item.now }}
-                              </span>
-                            </h4>
-                          </vs-button>
-                        </div>
-                      </v-layout>
-                    </v-container>
-                  </v-img>
-                </v-flex>
-                <v-flex xs12 class="mx-1 mt-2 cardText">
-                  <nuxt-link :to="$i18n.path('apps/'+ item.appid)" style="text-decoration: none;color: #000">
-                    <h3 class="title white--text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-                      {{ item.title }}
-                    </h3>
-                    <h5 class="grey--text text--lighten-1">
-                      {{ $t("Today's peak") }}: {{ item.total }}
-                    </h5>
-                  </nuxt-link>
-                </v-flex>
-              </v-layout>
-            </vs-card>
-          </div>
-        </v-flex>
-        <v-flex xs6 sm6 md4 lg3 :xl2="xl2" v-for="(item,i) in list.slice(7)" :key="i" class="game-list-card px-1">
-          <div>
-            <vs-card actionable class="black my-3">
-              <v-layout align-space-between justify-space-between column fill-height>
-                <v-flex slot="media">
-                  <v-img style="cursor:pointer" :src="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appid + '/header.jpg'" height="225px"
-                    gradient="to top right, rgba(20,30,48,.33), rgba(36,59,85,.33)" :lazy-src="'/unknow.jpg'"
-                    v-on:click="cardTo(item.appid)">
+                    v-on:click="cardTo(item.AppID)">
                     <v-container fill-height fluid pt-0 pl-0>
                       <v-layout align-start justify-start row fill-height>
                         <v-flex xs12 flexbox class="text-xs-left cardTip">
-                          <vs-button color="purple" gradient-color-secondary="red" type="gradient" size="large">
+                          <vs-button
+                            v-if="topColor = i === 0 ? 'orange' : 'purple'"
+                            :color="topColor"
+                            gradient-color-secondary="red"
+                            type="gradient"
+                            size="large">
                             <h4>
+                              <span v-if="i < 8">
+                                TOP: {{ i + 1 }}
+                              </span>
                               <span>
-                                {{ $t('Currently online') }}: {{ item.now }}
+                                {{ $t('Currently online') }}: {{ item.Now }}
                               </span>
                             </h4>
                           </vs-button>
@@ -64,12 +34,12 @@
                   </v-img>
                 </v-flex>
                 <v-flex xs12 class="mx-1 mt-2 cardText">
-                  <nuxt-link :to="$i18n.path('apps/'+ item.appid)" style="text-decoration: none;color: #000">
+                  <nuxt-link :to="$i18n.path('apps/'+ item.AppID)" style="text-decoration: none;color: #000">
                     <h3 class="title white--text" style="overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-                      {{ item.title }}
+                      {{ item.Title }}
                     </h3>
                     <h5 class="grey--text text--lighten-1">
-                      {{ $t("Today's peak") }}: {{ item.total }}
+                      {{ $t("Today's peak") }}: {{ item.Total }}
                     </h5>
                   </nuxt-link>
                 </v-flex>
