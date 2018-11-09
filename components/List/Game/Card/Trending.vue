@@ -23,8 +23,11 @@
                               <span>
                                 TOP: {{ i + 1 }}
                               </span>
-                              <span v-if="totalMaxTodaySwitch">
+                              <span v-if="totalSwitch === 'totalToday'">
                                 今日峰值: {{ item.Total }}
+                              </span>
+                              <span v-else-if="totalSwitch === 'totalWeek'">
+                                本周峰值: {{ item.Total }}
                               </span>
                               <span v-else>
                                 {{ $t('Currently online') }}: {{ item.Now }}
@@ -42,7 +45,7 @@
                       {{ item.Title }}
                     </h3>
                     <h5 class="grey--text text--lighten-1">
-                      {{ $t("Today's peak") }}: {{ item.Total }}
+                      发生于: {{ item.Created }}
                     </h5>
                   </nuxt-link>
                 </v-flex>
@@ -102,7 +105,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 export default {
-  props: ['list', 'xl2', 'totalMaxTodaySwitch'],
+  props: ['list', 'xl2', 'totalSwitch'],
   data () {
     return {
       dialogAttention: false

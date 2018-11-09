@@ -5,27 +5,21 @@
         <div class="page-main">
           <v-layout align-start justify-start column fill-height class="mx-2">
             <div>
-              <vs-button type="line" size="large" color="white">
-                {{ updateTime }} 秒后自动刷新
-              </vs-button>
-              <vs-button type="line" icon="apps" size="large" color="danger">
-                {{ $t('Trending') }}
-              </vs-button>
-            </div>
-            <div>
-              <v-switch
-                label="今日峰值"
-                color="red"
-                dark
-                v-model="totalMaxTodaySwitch"
-                class="mx-2"
-              ></v-switch>
+              <v-radio-group v-model="totalSwitch" row dark class="mx-2">
+                <v-radio label="当前趋势" value="totalNow" color="red"></v-radio>
+                <v-radio label="今日峰值" value="totalToday" color="red"></v-radio>
+                <v-radio label="本周最热" value="totalWeek" color="red"></v-radio>
+                <v-tooltip top>
+                  <v-btn icon flat slot="activator" :loading="reflash" @click="getTrendingNow(totalSwitch)"><v-icon>autorenew</v-icon></v-btn>
+                  <span>刷新</span>
+                </v-tooltip>
+              </v-radio-group>
             </div>
           </v-layout>
           <v-layout class="px-2" row wrap>
             <v-flex xs12>
               <div>
-                <ListGameCardTrending :list.sync="list" :xl2="true" :totalMaxTodaySwitch="totalMaxTodaySwitch" v-if="list"></ListGameCardTrending>
+                <ListGameCardTrending :list.sync="list" :xl2="true" :totalSwitch="totalSwitch" v-if="list"></ListGameCardTrending>
               </div>
             </v-flex>
           </v-layout>
@@ -55,7 +49,7 @@ export default {
     page: 1,
     list: null,
     updateTime: 60,
-    totalMaxTodaySwitch: false
+    totalSwitch: 'totalNow'
   }),
   async asyncData () {
     let [apps] = await Promise.all([
@@ -66,32 +60,14 @@ export default {
     }
   },
   mounted: function () {
-    this.todo(this.totalMaxTodaySwitch)
     this.$store.commit('DISPLAY_LOADING', false)
   },
   methods: {
-    todo: function (val) {  
-      let link = ''
-      if (val) link = 'https://rest.steamhub.cn/api/v2/apps/trending?type=total&count=max&date=today'
-      else link = 'https://rest.steamhub.cn/api/v2/apps/trending'
-      let self = this         
-      setInterval(function () {
-        self.updateTime > 1 ? self.updateTime-- : self.updateTime = 60
-      }, 1000)
-      setInterval(async function () {
-        self.$store.commit('DISPLAY_LOADING', true)
-        self.list = null
-        let [apps] = await Promise.all([
-          axios.get(link)
-        ])
-        self.list = apps.data
-        self.$store.commit('DISPLAY_LOADING', false)
-      }, 60000)
-    },
     getTrendingNow: async function (val) {
-      let link = ''
-      if (val) link = 'https://rest.steamhub.cn/api/v2/apps/trending?type=total&count=max&date=today'
-      else link = 'https://rest.steamhub.cn/api/v2/apps/trending'
+      let link = 'https://rest.steamhub.cn/api/v2/apps/trending'
+      if (val === 'totalToday') link = link + '?type=total&count=max&date=today'
+      else if (val === 'totalWeek') link = link + '?type=total&count=max&date=week'
+      else link = link
       let [apps] = await Promise.all([
         axios.get(link)
       ])
@@ -103,7 +79,7 @@ export default {
       if (!val) return
       setTimeout(() => (this.dialogAPI = false), 1000)
     },
-    async totalMaxTodaySwitch (newVal, oldVal) {
+    async totalSwitch (newVal, oldVal) {
       this.getTrendingNow(newVal)
     }
   },

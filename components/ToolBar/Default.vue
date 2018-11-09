@@ -80,7 +80,7 @@
     </v-toolbar>
     <v-content>
         <vs-alert :active="true" color="danger" icon="new_releases" >
-          <span>SteamHub 后端数据程序正在维护，预计 <b>2018-11-07</b> 左右恢复。</span>
+          <span>SteamHub 后端数据程序正在维护，预计 <b>2018-11-11</b> 左右恢复。</span>
         </vs-alert>
       <nuxt />
     </v-content>
