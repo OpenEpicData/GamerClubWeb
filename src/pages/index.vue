@@ -94,7 +94,10 @@
       <div class="my-5">
         <swiperWitchLargeCard />
       </div>
-      <div class="white--text pt-5" style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad">
+      <div
+        class="white--text pt-5"
+        style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad)"
+      >
         <div class="mt-3">
           <h4 class="display-1">
             立即开启你的新旅程
@@ -105,7 +108,11 @@
           </h6>
         </div>
         <div class="py-5">
-          <v-layout align-center justify-center fill-height>
+          <v-layout
+            align-center
+            justify-center
+            fill-height
+          >
             <div>
               <v-text-field
                 label="您的邮件地址"
@@ -116,7 +123,11 @@
                 background-color="transparent"
                 dark
               >
-               <v-btn round slot="append-outer" style="top: -12px">或使用 Steam 登录</v-btn>
+                <v-btn
+                  slot="append-outer"
+                  round
+                  style="top: -12px"
+                >或使用 Steam 登录</v-btn>
               </v-text-field>
             </div>
           </v-layout>
