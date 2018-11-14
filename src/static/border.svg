@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="117px" height="89px" viewBox="0 0 117 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50 (54983) - http://www.bohemiancoding.com/sketch -->
+    <title>79C26B38-EED9-4D50-932D-AEB8299D953B</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M156.6,830 L258.4,830 C262.597364,830 266,833.402636 266,837.6 L266,911.4 C266,915.597364 262.597364,919 258.4,919 L156.6,919 C152.402636,919 149,915.597364 149,911.4 L149,837.6 C149,833.402636 152.402636,830 156.6,830 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="117" height="89" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Responsive-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="1,1,6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.15">
+        <g id="Home-Mobile" transform="translate(-149.000000, -830.000000)" fill="#FFFFFF" stroke="#222222" stroke-width="2">
+            <use id="Rectangle-8-Copy-2" mask="url(#mask-2)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

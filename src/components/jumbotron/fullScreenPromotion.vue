@@ -1,0 +1,63 @@
+<template>
+  <v-layout
+    align-center
+    justify-center
+    class="white--text"
+  >
+    <v-img
+      src="https://assets.materialup.com/uploads/ac0adcf1-8c3e-49b7-80e2-0a1c5618638b/attachment.png"
+      height="100vh"
+      :aspect-ratio="16/9"
+      gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+    >
+      <v-layout
+        align-space-between
+        justify-space-between
+        fill-height
+        column
+      >
+        <div />
+        <div>
+          <h1 class="display-4">
+            <span class="font-weight-thin">
+              准确完整的
+            </span>
+            <span class="font-weight-black">
+              Steam 数据
+            </span>
+          </h1>
+          <h2 class="display-2 my-2">
+            <span>
+              通过 SteamHub,探索你不知道的 Steam 秘密
+            </span>
+          </h2>
+          <div>
+            <v-btn
+              round
+              large
+              color="primary"
+            >
+              浏览游戏
+            </v-btn>
+            <v-btn
+              round
+              outline
+              large
+              dark
+            >
+              查看趋势
+            </v-btn>
+          </div>
+        </div>
+        <div>
+          <v-icon
+            x-large 
+            dark
+          >
+            fas fa-angle-double-down faa-bounce animated
+          </v-icon>
+        </div>
+      </v-layout>
+    </v-img>
+  </v-layout>
+</template>
