@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
+.nuxt
 node_modules
 /dist
 
