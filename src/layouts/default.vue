@@ -6,7 +6,11 @@
       color="transparent"
       dark
     >
-      <v-toolbar-title>SteamHub</v-toolbar-title>
+      <v-toolbar-title>
+        <v-btn flat round to="/">
+          SteamHub
+        </v-btn>
+      </v-toolbar-title>
       <v-spacer />
       <div class="hidden-sm-and-down">
         <v-btn flat>注册</v-btn>
