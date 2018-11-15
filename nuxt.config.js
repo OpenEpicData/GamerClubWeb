@@ -34,6 +34,12 @@ module.exports = {
     { src: '~/plugins/vuetify.js' },
     { src: '~/plugins/swiper.js', ssr: false }
   ],
+  /**
+   * Modules
+   */
+  modules: [
+    '@nuxtjs/axios',
+  ],
   /*
   ** Build configuration
   */

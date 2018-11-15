@@ -24,6 +24,22 @@
 </template>
 
 <style>
+.purple-gradient {
+  background: linear-gradient(180deg,#8b60ed,#b372bd);
+}
+.yello-gradient {
+  background: linear-gradient(0deg,#f19a1a,#ffc73c);
+}
+.green-gradient {
+  background: linear-gradient(180deg,#6edcc4,#1aab8b);
+}
+.blue-gradient {
+  background: linear-gradient(180deg,#21c8f6,#637bff);
+}
+.red-gradient {
+  background: linear-gradient(180deg,#f44881,#ec454f);
+}
+
 @media (min-width: 0) and (max-width: 600px) {
   .display-4 {
     font-size: 30px !important;
