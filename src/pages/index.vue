@@ -111,6 +111,7 @@
           outline
           large
           round
+          to="/game/"
         >浏览所有游戏</v-btn>
       </div>
       <div class="mt-5">
@@ -127,45 +128,6 @@
           v-if="news"
           :news.sync="news.data"
         />
-      </div>
-      <div
-        class="white--text pt-5"
-        style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad)"
-      >
-        <div class="mt-3">
-          <h4 class="display-1">
-            立即开启你的新旅程
-          </h4>
-          <h6 class="subheading mt-2">
-            加入需要不到一分钟,这将是你一整天中做出的最佳决定.<br>
-            SteamHub 是一个非盈利的开源项目,我们也提供开发者付费计划用以支持每月的服务器建设支出.
-          </h6>
-        </div>
-        <div class="py-5">
-          <v-layout
-            align-center
-            justify-center
-            fill-height
-          >
-            <div>
-              <v-text-field
-                label="您的邮件地址"
-                append-icon="email"
-                type="email"
-                solo
-                color="white"
-                background-color="transparent"
-                dark
-              >
-                <v-btn
-                  slot="append-outer"
-                  round
-                  style="top: -12px"
-                >或使用 Steam 登录</v-btn>
-              </v-text-field>
-            </div>
-          </v-layout>
-        </div>
       </div>
     </div>
   </v-container>

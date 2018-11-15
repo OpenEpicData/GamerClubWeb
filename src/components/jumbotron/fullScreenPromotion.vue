@@ -36,6 +36,7 @@
               round
               large
               color="primary"
+              to="/game/"
             >
               浏览游戏
             </v-btn>
@@ -44,6 +45,7 @@
               outline
               large
               dark
+              to="/game/trending"
             >
               查看趋势
             </v-btn>
