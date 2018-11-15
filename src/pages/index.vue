@@ -194,7 +194,7 @@ export default {
           title: '动作',
           color: 'blue-gradient',
           dark: true,
-          img: '/actionGameImg.png',
+          img: 'https://i.loli.net/2018/11/15/5bed6062dce47.png',
           knownGame: {
             title: '已知游戏',
           },
@@ -207,7 +207,7 @@ export default {
           title: '开放世界',
           color: 'red-gradient',
           dark: true,
-          img: '/openWorldGameImg.png',
+          img: 'https://i.loli.net/2018/11/15/5bed6061120a7.png',
           knownGame: {
             title: '已知游戏',
           },
@@ -219,7 +219,7 @@ export default {
           title: '角色扮演',
           color: 'purple-gradient',
           dark: true,
-          img: '/cosplayGameImg.png',
+          img: 'https://i.loli.net/2018/11/15/5bed60661504e.png',
           knownGame: {
             title: '已知游戏',
           },
@@ -231,7 +231,7 @@ export default {
           title: '模拟',
           color: 'yello-gradient',
           dark: true,
-          img: '/simulationGameImg.png',
+          img: 'https://i.loli.net/2018/11/15/5bed60612e917.png',
           knownGame: {
             title: '已知游戏',
           },

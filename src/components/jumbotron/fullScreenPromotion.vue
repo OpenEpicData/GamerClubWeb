@@ -5,7 +5,7 @@
     class="white--text"
   >
     <v-img
-      src="https://assets.materialup.com/uploads/ac0adcf1-8c3e-49b7-80e2-0a1c5618638b/attachment.png"
+      src="https://i.loli.net/2018/11/15/5bed603019f22.png"
       height="100vh"
       :aspect-ratio="16/9"
       gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
