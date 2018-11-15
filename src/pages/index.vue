@@ -173,8 +173,8 @@
 
 <script>
 import fullScreenPromotion from '~/components/jumbotron/fullScreenPromotion'
-import tagWithSmallCard from '~/components/card/tagWithSmall'
-import swiperWitchLargeCard from '~/components/swiper/withLargeCard'
+import tagWithSmallCard from '~/components/card/tag/small'
+import swiperWitchLargeCard from '~/components/card/swiper/large'
 export default {
   components: {
     fullScreenPromotion,
