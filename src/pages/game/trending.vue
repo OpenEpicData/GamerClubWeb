@@ -132,6 +132,7 @@ export default {
   },
   async mounted () {
     await this.fetchTrending()
+    this.turnChartData(this.topReview.data)
   },
   methods: {
     async fetchSomething (url) {
@@ -146,7 +147,16 @@ export default {
       this.popular = popular
       this.latest = latest
       this.topReview = topReview
-    }
+    },
+    turnChartData: function (value) {
+      for(let k in value) {
+        for(let i in value[k]['app_price']) {
+          value[k]['app_price'][i]['PriceFinal'] = value[k]['app_price'][i]['PriceFinal'] / 100
+          value[k]['app_price'][i]['PriceInitial'] = value[k]['app_price'][i]['PriceInitial'] / 100
+        }
+      }
+      return value
+    },
   },
 }
 </script>

@@ -20,7 +20,10 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/material-icons@0.2.3/iconfont/material-icons.min.css' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/font-awesome-animation@0.2.1/dist/font-awesome-animation.min.css' },
-      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/swiper@4/dist/css/swiper.min.css'}
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/swiper@4/dist/css/swiper.min.css'},
+    ],
+    script: [
+      { src: 'https://cdn.jsdelivr.net/npm/echarts@4.2.0-rc.2/dist/echarts.min.js' }
     ],
   },
   /*
@@ -32,7 +35,8 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/vuetify.js' },
-    { src: '~/plugins/swiper.js', ssr: false }
+    { src: '~/plugins/swiper.js', ssr: false },
+    { src: '~/plugins/v-charts.js', ssr: false }
   ],
   /**
    * Modules

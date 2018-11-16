@@ -15,21 +15,27 @@
           column
         >
           <div>
-            <v-chip
-              small
-              class="grey lighten-2"
-            >
-              <v-icon
+            <v-tooltip top>
+              <v-chip
+                slot="activator"
                 small
-                left
+                class="grey lighten-2"
               >
-                far fa-smile-beam
-              </v-icon>
+                <v-icon
+                  small
+                  left
+                >
+                  far fa-smile-beam
+                </v-icon>
+                <span>
+                  {{ review.app_review[0].ReviewTitle }}
+                  {{ parseFloat(review.app_review[0].Percentage) }}/100
+                </span>
+              </v-chip>
               <span>
-                {{ review.app_review[0].ReviewTitle }}
-                {{ review.app_review[0].ReviewPeople }}
+                {{ review.app_review[0].ReviewPeople }} 篇评测中 {{ review.app_review[0].Percentage }} 的用户推荐
               </span>
-            </v-chip>
+            </v-tooltip>
           </div>
         </v-layout>
       </v-img>
@@ -51,20 +57,35 @@
         </div>
         <div />
         <div>
-          <v-chip
-            small
-            class="grey lighten-2"
+          <v-menu
+            v-model="priceMenu"
+            :close-on-content-click="false"
+            :nudge-width="700"
+            :offset-overflow="true"
+            lazy
+            open-on-hover
           >
-            <span v-if="review.app_price.length === 0 && review.Free === 1">
-              免费
-            </span>
-            <span v-else-if="review.app_price[0]">
-              ￥ {{ review.app_price[0].PriceFinal / 100 }}
-            </span>
-            <span v-else>
-              未知
-            </span>
-          </v-chip>
+            <v-chip
+              slot="activator"
+              small
+              class="grey lighten-2"
+              @mouseover="chipPriceHover(review.app_price, review.AppID)"
+              @mouseleave="chipPriceLeave(review.app_price, review.AppID)"
+            >
+              <span v-if="review.app_price.length === 0 && review.Free === 1">
+                免费
+              </span>
+              <span v-else-if="review.app_price[0]">
+                ￥ {{ review.app_price[0].PriceFinal }}
+              </span>
+              <span v-else>
+                未知
+              </span>
+            </v-chip>
+            <v-card>
+              <ve-line :colors="chartColors" :legend-visible="false" :extend="chartExtend" :settings="chartSettings" :data="chartData" :ref="`chart${review.AppID}`" />
+            </v-card>
+          </v-menu>
         </div>
       </v-layout>
     </div>
@@ -79,6 +100,54 @@ export default {
       default: null,
       required: true
     },
-  }
+  },
+  data () {
+    this.chartSettings = {
+      labelMap: {
+        'PriceFinal': '价格'
+      },
+    }
+    return {
+      appidPrice: false,
+      priceMenu: false,
+      chartData: {
+        columns: ['LastUpdated', 'PriceFinal'],
+        rows: null
+      },
+      chartExtend: {
+        series: {
+          step: 'end',
+          type:'line',
+          smooth: false,
+          lineStyle: {
+            width: 5,
+          }
+        },
+        yAxis: {
+          scale: true,
+        },
+        xAxis: {
+          inverse: true,
+        }
+      }
+    }
+  },
+  mounted () {
+    this.chartColors = [
+      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+        { offset: 0, color: '#f44881' },
+        { offset: 1, color: '#ec454f' },
+      ]),
+    ]
+  },
+  methods: {
+    chipPriceHover: function (val, appid) {
+      this.chartData.rows = val
+      this.$refs[`chart${appid}`].echarts.resize()
+    },
+    chipPriceLeave: function (val, appid) {
+      this.$refs[`chart${appid}`].echarts.resize()
+    },
+  },
 }
 </script>
