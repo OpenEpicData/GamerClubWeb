@@ -7,7 +7,11 @@
       dark
     >
       <v-toolbar-title>
-        <v-btn flat round to="/">
+        <v-btn
+          flat
+          round
+          to="/"
+        >
           SteamHub
         </v-btn>
       </v-toolbar-title>
