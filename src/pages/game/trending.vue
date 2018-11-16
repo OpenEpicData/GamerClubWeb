@@ -20,8 +20,8 @@
           wrap
         >
           <v-flex
-            v-for="(item,i) in popular.slice(0, 4)"
-            :key="i"
+            v-for="(popularItem,popularIndex) in popular.slice(0, 4)"
+            :key="popularIndex"
             xs12
             sm6
             md3
@@ -29,8 +29,8 @@
             class="px-3 my-5"
           >
             <popularWithSmallCard
-              v-if="item"
-              :popular.sync="item"
+              v-if="popularItem"
+              :popular.sync="popularItem"
             />
           </v-flex>
         </v-layout>
@@ -46,8 +46,8 @@
           wrap
         >
           <v-flex
-            v-for="(item,i) in latest.data.slice((k-1)*4,(k) * 4)"
-            :key="i"
+            v-for="(latestItem,latestIndex) in latest.data.slice((k-1)*4,(k) * 4)"
+            :key="latestIndex"
             xs12
             sm6
             md3
@@ -55,7 +55,7 @@
             class="px-3 my-5"
           >
             <latestWithSmallCard
-              :latest.sync="item"
+              :latest.sync="latestItem"
             />
           </v-flex>
         </v-layout>
