@@ -83,16 +83,16 @@
                 >
                   <div>
                     <h5
-                      class="font-weight-medium"
-                      style="color: #3d4852;font-size: 1.5rem;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"
+                      class="font-weight-medium hide-2line"
+                      style="color: #3d4852;font-size: 1.5rem;"
                     >
                       {{ item.Title }}...
                     </h5>
                   </div>
                   <div class="my-3">
                     <h6
-                      class="font-weight-regular"
-                      style="font-size: .875rem;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;"
+                      class="font-weight-regular hide-3line"
+                      style="font-size: .875rem;"
                       v-text="parseHTML(item.news_articles.Body)"
                     />
                   </div>

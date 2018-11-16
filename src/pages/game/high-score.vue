@@ -21,14 +21,12 @@
               {{ high_score.data[0].Name }}
             </h1>
             <h2
-              class="subheading my-4"
-              style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"
+              class="subheading my-4 hide-2line"
             >
               {{ high_score.data[0].ShortDescription }}
             </h2>
             <h2
-              class="subheading"
-              style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"
+              class="subheading hide-2line"
             >
               {{ parseHTML(high_score.data[0].DetailedDescription) }}
             </h2>
@@ -199,8 +197,7 @@
                     {{ platformItem }}
                   </v-chip>
                   <h4
-                    class="body-2"
-                    style="overflow: hidden;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;"
+                    class="body-2 hide-4line"
                   >
                     {{ parseHTML(highScoreItem.ShortDescription) }}
                   </h4>

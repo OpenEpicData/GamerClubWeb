@@ -67,16 +67,16 @@
         >
           <div>
             <h5
-              class="font-weight-medium"
-              style="color: #3d4852;font-size: 1.5rem;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;"
+              class="font-weight-medium hide-2line"
+              style="color: #3d4852;font-size: 1.5rem;"
             >
               因为一个感人的故事，任天堂允许在自己赞助...
             </h5>
           </div>
           <div class="my-3">
             <h6
-              class="font-weight-regular"
-              style="font-size: .875rem;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;"
+              class="font-weight-regular hide-3line"
+              style="font-size: .875rem;"
             >
               在日本，有个叫“奇迹体验”的节目组，节目内容也正如其名，介绍来自世界各地难以置信的故事，或充满希望，或让人毛骨悚然，都永远围绕着“奇迹”二字。
             </h6>
