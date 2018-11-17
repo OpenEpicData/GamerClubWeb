@@ -83,7 +83,14 @@
               </span>
             </v-chip>
             <v-card>
-              <ve-line :colors="chartColors" :legend-visible="false" :extend="chartExtend" :settings="chartSettings" :data="chartData" :ref="`chart${review.AppID}`" />
+              <ve-line
+                :ref="`chart${review.AppID}`"
+                :colors="chartColors"
+                :legend-visible="false"
+                :extend="chartExtend"
+                :settings="chartSettings"
+                :data="chartData"
+              />
             </v-card>
           </v-menu>
         </div>
@@ -110,6 +117,7 @@ export default {
     return {
       appidPrice: false,
       priceMenu: false,
+      chartColors: null,
       chartData: {
         columns: ['LastUpdated', 'PriceFinal'],
         rows: null
