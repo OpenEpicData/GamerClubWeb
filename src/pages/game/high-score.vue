@@ -148,12 +148,15 @@
                 <div>
                   <h2 class="title text-truncate">
                     {{ highScoreItem.Name }} 
-                    <v-chip small>
-                      <span>
-                        ￥ {{ highScoreItem.app_price[0].PriceFinal / 100 }}  
-                      </span> 
-                    </v-chip>
                   </h2>
+                  <v-chip 
+                    class="mx-0" 
+                    small
+                  >
+                    <span>
+                      ￥ {{ highScoreItem.app_price[0].PriceFinal / 100 }}  
+                    </span> 
+                  </v-chip>
                   <v-chip
                     v-if="highScoreItem.RequiredAge >= 16"
                     color="transparent"
@@ -182,13 +185,13 @@
                         fab fa-windows
                       </v-icon>
                       <v-icon
-                        v-if="platformItem === 'mac'"
+                        v-else-if="platformItem === 'mac'"
                         small
                       >
                         fab fa-apple
                       </v-icon>
                       <v-icon
-                        v-if="platformItem === 'linux'"
+                        v-else-if="platformItem === 'linux'"
                         small
                       >
                         fab fa-linux
@@ -208,6 +211,12 @@
         </v-flex>
       </v-layout>
     </div>
+  </div>
+  <div v-else>
+    <v-progress-circular
+      indeterminate
+      color="primary"
+    />
   </div>
 </template>
 
