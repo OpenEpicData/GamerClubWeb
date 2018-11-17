@@ -57,7 +57,8 @@
     },
     "rules": {
       "vue/no-v-html": "off",
-      "vue/attribute-hyphenation": "off"
+      "vue/attribute-hyphenation": "off",
+      "vue/no-use-v-if-with-v-for": "off"
     }
   },
   "postcss": {
