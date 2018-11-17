@@ -133,7 +133,7 @@
                 dark
               >
                 <v-card-text>
-                  载入中
+                  载入中,首次加载可能会有延迟...
                   <v-progress-linear
                     indeterminate
                     color="white"
