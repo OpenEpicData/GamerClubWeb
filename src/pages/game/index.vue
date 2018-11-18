@@ -25,14 +25,17 @@
             v-model="game_price"
             :label="`价格`"
           />
-          <v-checkbox
+          <v-radio-group
             v-for="(priceItem, priceIndex) in price.data"
             :key="priceIndex"
             v-model="priceCheckbox"
-            :label="`${priceItem.title}`"
-            :value="`${priceItem.type}`"
             class="mt-0"
-          />
+          >
+            <v-radio 
+              :label="`${priceItem.title}`"
+              :value="`${priceItem.type}`"
+            />
+          </v-radio-group>
         </div>
         <div v-if="tags">
           <v-switch
@@ -127,13 +130,9 @@
                 {{ item }}  
               </v-chip> 
             </span>
-            <span
-              v-for="(item) in priceCheckbox" 
-              v-if="priceCheckbox[0]"
-              :key="item"
-            >
+            <span v-if="priceCheckbox[0]">
               <v-chip class="mx-0">
-                {{ parseArray(item) }}  
+                {{ parseArray(priceCheckbox) }} 
               </v-chip>
             </span>
           </div>
@@ -159,14 +158,10 @@
             </v-dialog>
             <div v-if="lists">
               <div
-                v-for="(listsItem, listsIndex) in lists"
-                :key="listsIndex"
+                v-for="(dataItem, dataIndex) in lists.data"
+                :key="dataIndex"
               >
-                <div
-                  v-for="(dataItem, dataIndex) in listsItem.data"
-                  :key="dataIndex"
-                  class="mt-4"
-                >
+                <div>
                   <div>
                     <v-layout
                       row
@@ -255,6 +250,10 @@ export default {
         title: '价格',
         data: [
           {
+            title: '全部价格',
+            type: [0, 300000]
+          },
+          {
             title: '小于 30 元',
             type: [0, 3000]
           },
@@ -278,7 +277,7 @@ export default {
     searchInputValue: async function (newVal) {
       if (!newVal) {
         this.listsLoading = true
-        let lists = await this.fetchSomething('https://rest.steamhub.cn/api/search?query=search&q[]=null&price[]=')
+        let lists = await this.fetchSomething('http://rest.steamhub.test/api/search?query=search&q[]=null&price=')
         this.lists = lists
         this.listsLoading = false
       }
@@ -291,19 +290,18 @@ export default {
       this.query_type_url = this.query_url + url
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url
       this.listsLoading = true
-      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
     priceCheckbox: async function (newVal) {
       this.query_url = ''
       this.query_price_url = ''
-      let val = newVal.join('&price[]=')
-      let url = `&price[]=${val}`
+      let url = `&price=${newVal}`
       this.query_price_url = this.query_price_url + url
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url
       this.listsLoading = true
-      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
@@ -317,8 +315,8 @@ export default {
     },
     async fetchTrending () {
       let [tags, lists] = await Promise.all([
-        await this.fetchSomething('https://rest.steamhub.cn/api/v2/apps/tags?type=list'),
-        await this.fetchSomething('https://rest.steamhub.cn/api/search?query=search&q[]=null&price[]=')
+        await this.fetchSomething('http://rest.steamhub.test/api/v2/apps/tags?type=list'),
+        await this.fetchSomething('http://rest.steamhub.test/api/search?query=search&q[]=null&price=')
       ])
       this.tags = tags
       this.lists = lists
@@ -328,6 +326,8 @@ export default {
       let array = val.split(',')
       if (array[1] === '300000') {
         return '大于 150 元'
+      } else if (array[0] === '0' && array[0] === '300000') {
+        return '全部价格'
       } else {
         return array[0] / 100 + ' - ' + array[1] / 100 + '元'
       }
@@ -337,7 +337,7 @@ export default {
       this.query_input_url = ''
       this.query_input_url = `&q[]=${this.searchInputValue}`
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url
-      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
       this.lists = lists
     }
   },
