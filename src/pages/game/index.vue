@@ -288,7 +288,7 @@ export default {
     searchInputValue: async function (newVal) {
       if (!newVal) {
         this.listsLoading = true
-        let lists = await this.fetchSomething('http://rest.steamhub.test/api/search?query=search&q[]=null&price=')
+        let lists = await this.fetchSomething('https://rest.steamhub.cn/api/search?query=search&q[]=null&price=')
         this.lists = lists
         this.listsLoading = false
         this.query_input_url = ''
@@ -300,7 +300,7 @@ export default {
       this.query_price_null = this.query_url + url
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
       this.listsLoading = true
-      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
@@ -312,7 +312,7 @@ export default {
       this.query_type_url = this.query_url + url
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
       this.listsLoading = true
-      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
@@ -323,7 +323,7 @@ export default {
       this.query_price_url = this.query_price_url + url
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
       this.listsLoading = true
-      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
@@ -337,8 +337,8 @@ export default {
     },
     async fetchTrending () {
       let [tags, lists] = await Promise.all([
-        await this.fetchSomething('http://rest.steamhub.test/api/v2/apps/tags?type=list'),
-        await this.fetchSomething('http://rest.steamhub.test/api/search?query=search&q[]=null&price=')
+        await this.fetchSomething('https://rest.steamhub.cn/api/v2/apps/tags?type=list'),
+        await this.fetchSomething('https://rest.steamhub.cn/api/search?query=search&q[]=null&price=')
       ])
       this.tags = tags
       this.lists = lists
@@ -359,7 +359,7 @@ export default {
       this.query_input_url = ''
       this.query_input_url = `&q[]=${this.searchInputValue}`
       this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
-      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
       this.lists = lists
     }
   },
