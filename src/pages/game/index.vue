@@ -25,6 +25,11 @@
             v-model="game_price"
             :label="`价格`"
           />
+          <v-checkbox
+            v-model="priceNullCheckbox"
+            :label="`${priceNull.title}`"
+            class="mt-0"
+          />
           <v-radio-group
             v-for="(priceItem, priceIndex) in price.data"
             :key="priceIndex"
@@ -112,7 +117,8 @@
           </h1>
           <h4 class="body-2 mt-1">
             部分价格在某一时间进行过永久降价,搜索出来的结果可能与选项不匹配 <br>
-            每个游戏可能具有多种类型,当前页面只显示最新的一种
+            每个游戏可能具有多种类型,当前页面只显示最新的一种<br>
+            当启用 "包含免费游戏" 时,价格筛选将失效
           </h4>
           <div class="mt-3">
             <v-chip
@@ -242,10 +248,15 @@ export default {
       searchInputValue: '',
       query_url: '',
       query_price_url: '',
+      query_price_null: '',
       query_type_url: '',
       query_input_url: '',
       typeCheckbox: [],
       priceCheckbox: [],
+      priceNullCheckbox: false,
+      priceNull: {
+        title: '包含免费游戏'
+      },
       price: {
         title: '价格',
         data: [
@@ -277,10 +288,21 @@ export default {
     searchInputValue: async function (newVal) {
       if (!newVal) {
         this.listsLoading = true
-        let lists = await this.fetchSomething('https://rest.steamhub.cn/api/search?query=search&q[]=null&price=')
+        let lists = await this.fetchSomething('http://rest.steamhub.test/api/search?query=search&q[]=null&price=')
         this.lists = lists
         this.listsLoading = false
+        this.query_input_url = ''
       }
+    },
+    priceNullCheckbox: async function (newVal) {
+      this.query_url = ''
+      let url = `&price_null=${newVal}`
+      this.query_price_null = this.query_url + url
+      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
+      this.listsLoading = true
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
+      this.lists = lists
+      this.listsLoading = false
     },
     typeCheckbox: async function (newVal) {
       this.query_url = ''
@@ -288,9 +310,9 @@ export default {
       let val = newVal.join('&type[]=')
       let url = `&type[]=${val}`
       this.query_type_url = this.query_url + url
-      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url
+      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
       this.listsLoading = true
-      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
@@ -299,9 +321,9 @@ export default {
       this.query_price_url = ''
       let url = `&price=${newVal}`
       this.query_price_url = this.query_price_url + url
-      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url
+      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
       this.listsLoading = true
-      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
       this.lists = lists
       this.listsLoading = false
     },
@@ -315,8 +337,8 @@ export default {
     },
     async fetchTrending () {
       let [tags, lists] = await Promise.all([
-        await this.fetchSomething('https://rest.steamhub.cn/api/v2/apps/tags?type=list'),
-        await this.fetchSomething('https://rest.steamhub.cn/api/search?query=search&q[]=null&price=')
+        await this.fetchSomething('http://rest.steamhub.test/api/v2/apps/tags?type=list'),
+        await this.fetchSomething('http://rest.steamhub.test/api/search?query=search&q[]=null&price=')
       ])
       this.tags = tags
       this.lists = lists
@@ -336,8 +358,8 @@ export default {
       this.query_url = ''
       this.query_input_url = ''
       this.query_input_url = `&q[]=${this.searchInputValue}`
-      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url
-      let lists = await this.fetchSomething(`https://rest.steamhub.cn/api/search?query=search${this.query_url}`)
+      this.query_url = this.query_input_url + this.query_type_url + this.query_price_url + this.query_price_null
+      let lists = await this.fetchSomething(`http://rest.steamhub.test/api/search?query=search${this.query_url}`)
       this.lists = lists
     }
   },
