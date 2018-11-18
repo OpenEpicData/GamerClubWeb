@@ -1,7 +1,16 @@
 <template>
   <div class="mt-5">
-    <v-layout fill-height row wrap>
-      <v-flex xs12 md2 class="text-xs-left" hidden-md-and-down>
+    <v-layout
+      fill-height
+      row
+      wrap
+    >
+      <v-flex
+        xs12
+        md2
+        class="text-xs-left"
+        hidden-md-and-down
+      >
         <v-text-field
           v-model="searchInputValue"
           outline
@@ -53,7 +62,10 @@
                 <v-flex
                   v-for="(tagsItem, tagsIndex) in tags.slice(10, 60)"
                   :key="tagsIndex"
-                  xs4 sm3 md2 lg1
+                  xs4
+                  sm3
+                  md2
+                  lg1
                 >
                   <v-checkbox
                     v-model="typeCheckbox"
@@ -100,7 +112,10 @@
             每个游戏可能具有多种类型,当前页面只显示最新的一种
           </h4>
           <div class="mt-3">
-            <v-chip v-if="searchInputValue" class="mx-0">
+            <v-chip
+              v-if="searchInputValue"
+              class="mx-0"
+            >
               {{ searchInputValue }}
             </v-chip>
             <span
@@ -113,7 +128,7 @@
               </v-chip> 
             </span>
             <span
-              v-for="(item, i) in priceCheckbox" 
+              v-for="(item) in priceCheckbox" 
               v-if="priceCheckbox[0]"
               :key="item"
             >
@@ -158,20 +173,36 @@
                       wrap
                       fill-height
                     >
-                      <v-flex xs1 md2 class="pt-1 hidden-sm-and-down">
+                      <v-flex
+                        xs1
+                        md2
+                        class="pt-1 hidden-sm-and-down"
+                      >
                         <img :src="`https://steamcdn-a.opskins.media/steam/apps/${dataItem.AppID}/capsule_sm_120.jpg?t=1542333066`">
                       </v-flex>
-                      <v-flex xs9 md8>
+                      <v-flex
+                        xs9
+                        md8
+                      >
                         <div>
                           <h2 class="text-truncate subheading">
                             {{ dataItem.Name }}
-                            <v-chip small v-if="dataItem.app_price[0]">
-                              <span v-if="dataItem.app_price[0].PriceDiscount > 0" class="mr-2">
+                            <v-chip
+                              v-if="dataItem.app_price[0]"
+                              small
+                            >
+                              <span
+                                v-if="dataItem.app_price[0].PriceDiscount > 0"
+                                class="mr-2"
+                              >
                                 <del>￥ {{ dataItem.app_price[0].PriceInitial / 100 }}</del>
                               </span>
                               ￥ {{ dataItem.app_price[0].PriceFinal / 100 }}
                             </v-chip>
-                            <v-chip small v-if="dataItem.app_tag[0]">
+                            <v-chip
+                              v-if="dataItem.app_tag[0]"
+                              small
+                            >
                               {{ dataItem.app_tag[0].Tag }}
                             </v-chip>
                           </h2>
@@ -181,7 +212,13 @@
                         </div>
                       </v-flex>
                       <v-flex xs2>
-                        <v-btn round small color="red-gradient" disabled outline>
+                        <v-btn
+                          round
+                          small
+                          color="red-gradient"
+                          disabled
+                          outline
+                        >
                           关注
                         </v-btn>
                       </v-flex>
