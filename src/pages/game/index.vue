@@ -326,7 +326,7 @@ export default {
       let array = val.split(',')
       if (array[1] === '300000') {
         return '大于 150 元'
-      } else if (array[0] === '0' && array[0] === '300000') {
+      } else if (array[0] === '0' && array[1] === '300000') {
         return '全部价格'
       } else {
         return array[0] / 100 + ' - ' + array[1] / 100 + '元'
