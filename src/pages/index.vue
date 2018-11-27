@@ -230,7 +230,7 @@ export default {
   },
   head () {
     return {
-      title: '全球 Steam 数据统计分析',
+      title: '全球 Steam 数据统计分析 -- SteamHub',
       meta: [
         { hid: 'description', name: 'description', content: 'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询。' }
       ]

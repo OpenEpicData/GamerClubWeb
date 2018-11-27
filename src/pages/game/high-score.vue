@@ -249,7 +249,7 @@ export default {
   },
   head () {
     return {
-      title: '媒体高分',
+      title: '媒体高分 -- SteamHub',
       meta: [
         { hid: 'description', name: 'description', content: '来自专业评测机构 Metacritic 的打分,每一分都客观可靠.' }
       ]

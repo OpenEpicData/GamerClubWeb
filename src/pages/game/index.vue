@@ -365,7 +365,7 @@ export default {
   },
   head () {
     return {
-      title: '游戏列表',
+      title: '游戏列表 -- SteamHub',
       meta: [
         { hid: 'description', name: 'description', content: '浏览我们存储的 Steam 游戏数据.' }
       ]

@@ -160,7 +160,7 @@ export default {
   },
   head () {
     return {
-      title: '玩家趋势',
+      title: '玩家趋势 -- SteamHub',
       meta: [
         { hid: 'description', name: 'description', content: 'SteamHub 提供实时的 Steam 玩家游玩,游戏销售等趋势' }
       ]
