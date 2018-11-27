@@ -363,11 +363,14 @@ export default {
       this.lists = lists
     }
   },
+  head () {
+    return {
+      title: '游戏列表',
+      meta: [
+        { hid: 'description', name: 'description', content: '浏览我们存储的 Steam 游戏数据.' }
+      ]
+    }
+  }
 }
 </script>
 
-<style scoped>
-.v-avatar {
-
-}
-</style>

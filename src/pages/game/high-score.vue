@@ -247,6 +247,14 @@ export default {
       return val.split('|')
     }
   },
+  head () {
+    return {
+      title: '媒体高分',
+      meta: [
+        { hid: 'description', name: 'description', content: '来自专业评测机构 Metacritic 的打分,每一分都客观可靠.' }
+      ]
+    }
+  }
 }
 </script>
 
