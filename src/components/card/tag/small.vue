@@ -2,12 +2,14 @@
   <v-card
     height="240px"
     flat
+    class="elevation-0"
   >
     <v-card
       height="180px"
       :color="tagWithSmall.color"
       :dark="tagWithSmall.dark"
       flat
+      class="elevation-0"
     >
       <v-layout
         align-center
