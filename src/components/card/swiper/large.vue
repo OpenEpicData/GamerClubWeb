@@ -93,7 +93,7 @@
                     <h6
                       class="font-weight-regular hide-3line"
                       style="font-size: .875rem;"
-                      v-text="parseHTML(item.news_articles.Body)"
+                      v-text="item.Description"
                     />
                   </div>
                   <div>
