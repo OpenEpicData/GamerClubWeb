@@ -11,7 +11,8 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询。' }
+      { name: 'google-site-verification', content: 'vFe_TBRSTiibJ4sRWsoemcOgFa6Rw4z5KDa3Ob5Laok' },
+      { hid: 'description', name: 'description', content: 'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询。' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo_64x64.png' },
