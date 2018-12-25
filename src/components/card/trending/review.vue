@@ -2,6 +2,8 @@
   <v-card
     height="160px"
     class="text-xs-left"
+    :href="`https://store.steampowered.com/app/${review.AppID}`"
+    target="_blank"
   >
     <div>
       <v-img
