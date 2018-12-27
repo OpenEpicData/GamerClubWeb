@@ -19,6 +19,7 @@
       class="white--text mt-5 pt-5 text-xs-center"
       style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad)"
     >
+      <loading />
       <div class="mt-3">
         <h4 class="display-1">立即开启你的新旅程</h4>
         <h6 class="subheading mt-2">加入需要不到一分钟,这将是你一整天中做出的最佳决定.
@@ -47,13 +48,15 @@
 </template>
 
 <script>
-import logo from '~/components/logo'
+import logo from "~/components/logo";
+import loading from "~/components/loading";
 
 export default {
   components: {
-    logo
+    logo,
+    loading
   }
-}
+};
 </script>
 
 

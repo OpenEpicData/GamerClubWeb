@@ -110,7 +110,7 @@
                       >
                         fas fa-clock
                       </v-icon>
-                      2018-11-14
+                      {{ item.LastUpdated }}
                     </v-chip>
                   </div>
                 </v-layout>

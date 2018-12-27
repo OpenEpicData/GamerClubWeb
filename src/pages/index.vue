@@ -128,17 +128,23 @@
           v-if="news"
           :news.sync="news.data"
         />
+        <loading 
+          class="primary--text"
+          v-else 
+        />
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
+import loading from "~/components/loading";
 import fullScreenPromotion from '~/components/jumbotron/fullScreenPromotion'
 import tagWithSmallCard from '~/components/card/tag/small'
 import swiperWitchLargeCard from '~/components/card/swiper/large'
 export default {
   components: {
+    loading,
     fullScreenPromotion,
     tagWithSmallCard,
     swiperWitchLargeCard
