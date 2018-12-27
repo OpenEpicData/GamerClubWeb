@@ -15,7 +15,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询。' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/logo_64x64.png' },
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/vuetify@1/dist/vuetify.min.css' },
       { rel: 'styleshell', href: 'https://cdn.jsdelivr.net/combine/npm/vuetify@1/dist/vuetify.min.css,npm/material-icons@0.2.3' },
       { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/material-icons@0.2.3/iconfont/material-icons.min.css' },
