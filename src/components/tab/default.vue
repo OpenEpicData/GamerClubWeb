@@ -1,5 +1,5 @@
 <template>
-  <v-tabs
+  <VTabs
     v-model="tab.model"
     :color="tab.color"
     :slider-color="tab.slider.color"
@@ -9,7 +9,7 @@
     height="60vh"
     active-class=""
   >
-    <v-tab
+    <VTab
       v-for="(item, i) in tab.item"
       :key="i"
       :to="item.link"
@@ -18,8 +18,8 @@
       <h2 class="title font-weight-bold">
         {{ item.title }}
       </h2>
-    </v-tab>
-  </v-tabs>
+    </VTab>
+  </VTabs>
 </template>
 
 <script>

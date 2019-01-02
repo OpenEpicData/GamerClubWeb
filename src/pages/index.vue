@@ -1,23 +1,23 @@
 <template>
-  <v-container
+  <VContainer
     fluid
     class="text-xs-center"
   >
-    <fullScreenPromotion />
+    <FullScreenPromotion />
     <div class="mt-5">
       <h4 class="display-1">
         为开发人员/游戏爱好者提供全量数据
       </h4>
     </div>
     <div>
-      <v-layout
+      <VLayout
         wrap
         row
         justify-center
         fill-height
         class="mt-5"
       >
-        <v-flex
+        <VFlex
           v-for="i in 3"
           :key="i"
           xs4
@@ -35,7 +35,7 @@
                 {{ gameTotal.toLocaleString() }}
               </span>
               <span v-else>
-                <v-progress-circular
+                <VProgressCircular
                   indeterminate
                   color="primary"
                 />
@@ -53,7 +53,7 @@
                 {{ priceTotal.toLocaleString() }}
               </span>
               <span v-else>
-                <v-progress-circular
+                <VProgressCircular
                   indeterminate
                   color="primary"
                 />
@@ -71,7 +71,7 @@
                 {{ reviewTotal.toLocaleString() }}
               </span>
               <span v-else>
-                <v-progress-circular
+                <VProgressCircular
                   indeterminate
                   color="primary"
                 />
@@ -82,16 +82,16 @@
               </span>
             </h5>
           </div>
-        </v-flex>
-      </v-layout>
-      <v-layout
+        </VFlex>
+      </VLayout>
+      <VLayout
         align-start
         justify-center
         row
         wrap
         class="mt-5"
       >
-        <v-flex
+        <VFlex
           v-for="(item,i) in tagWithSmall"
           :key="i"
           xs6
@@ -99,20 +99,22 @@
           lg2
           class="px-3 my-3"
         >
-          <tagWithSmallCard
+          <TagWithSmallCard
             :tagWithSmall="item"
             :tagTotal.sync="tagTotal"
             :tagReviewTotal.sync="tagReviewTotal"
           />
-        </v-flex>
-      </v-layout>
+        </VFlex>
+      </VLayout>
       <div class="mt-3">
-        <v-btn
+        <VBtn
           outline
           large
           round
           to="/game/"
-        >浏览所有游戏</v-btn>
+        >
+          浏览所有游戏
+        </VBtn>
       </div>
       <div class="mt-5">
         <h4 class="display-1">
@@ -124,17 +126,17 @@
       </div>
       
       <div class="my-5">
-        <swiperWitchLargeCard
+        <SwiperWitchLargeCard
           v-if="news"
           :news.sync="news.data"
         />
-        <loading 
-          class="primary--text"
-          v-else 
+        <Loading 
+          v-else
+          class="primary--text" 
         />
       </div>
     </div>
-  </v-container>
+  </VContainer>
 </template>
 
 <script>

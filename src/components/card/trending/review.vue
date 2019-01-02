@@ -1,49 +1,49 @@
 <template>
-  <v-card
+  <VCard
     height="160px"
     class="text-xs-left"
     :href="`https://store.steampowered.com/app/${review.AppID}`"
     target="_blank"
   >
     <div>
-      <v-img
+      <VImg
         :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${review.AppID}/header.jpg`"
         height="160px"
       >
-        <v-layout
+        <VLayout
           align-start
           justify-start
           fill-height
           column
         >
           <div>
-            <v-tooltip top>
-              <v-chip
+            <VTooltip top>
+              <VChip
                 slot="activator"
                 small
                 class="grey lighten-2"
               >
-                <v-icon
+                <VIcon
                   small
                   left
                 >
                   far fa-smile-beam
-                </v-icon>
+                </VIcon>
                 <span>
                   {{ review.app_review[0].ReviewTitle }}
                   {{ parseFloat(review.app_review[0].Percentage) }}/100
                 </span>
-              </v-chip>
+              </VChip>
               <span>
                 {{ review.app_review[0].ReviewPeople }} 篇评测中 {{ review.app_review[0].Percentage }} 的用户推荐
               </span>
-            </v-tooltip>
+            </VTooltip>
           </div>
-        </v-layout>
-      </v-img>
+        </VLayout>
+      </VImg>
     </div>
     <div>
-      <v-layout
+      <VLayout
         align-start
         justify-space-between
         row
@@ -59,7 +59,7 @@
         </div>
         <div />
         <div>
-          <v-menu
+          <VMenu
             v-model="priceMenu"
             :close-on-content-click="false"
             :nudge-width="700"
@@ -67,7 +67,7 @@
             lazy
             open-on-hover
           >
-            <v-chip
+            <VChip
               slot="activator"
               small
               class="grey lighten-2"
@@ -83,9 +83,9 @@
               <span v-else>
                 未知
               </span>
-            </v-chip>
-            <v-card>
-              <ve-line
+            </VChip>
+            <VCard>
+              <VeLine
                 :ref="`chart${review.AppID}`"
                 :colors="chartColors"
                 :legend-visible="false"
@@ -93,12 +93,12 @@
                 :settings="chartSettings"
                 :data="chartData"
               />
-            </v-card>
-          </v-menu>
+            </VCard>
+          </VMenu>
         </div>
-      </v-layout>
+      </VLayout>
     </div>
-  </v-card>
+  </VCard>
 </template>
 
 <script>

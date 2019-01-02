@@ -1,35 +1,55 @@
 <template>
-  <v-app>
-    <v-toolbar flat absolute color="transparent" dark>
-      <v-toolbar-title>
-        <nuxt-link to="/">
-          <logo></logo>
-        </nuxt-link>
-      </v-toolbar-title>
-      <v-spacer/>
+  <VApp>
+    <VToolbar
+      flat
+      absolute
+      color="transparent"
+      dark
+    >
+      <VToolbarTitle>
+        <NuxtLink to="/">
+          <Logo />
+        </NuxtLink>
+      </VToolbarTitle>
+      <VSpacer />
       <div class="hidden-sm-and-down">
-        <v-btn flat>注册</v-btn>
-        <v-btn flat outline round>立即开始</v-btn>
+        <VBtn flat>
+          注册
+        </VBtn>
+        <VBtn
+          flat
+          outline
+          round
+        >
+          立即开始
+        </VBtn>
       </div>
-    </v-toolbar>
-    <v-content>
-      <nuxt/>
-    </v-content>
+    </VToolbar>
+    <VContent>
+      <Nuxt />
+    </VContent>
     <div
       class="white--text mt-5 pt-5 text-xs-center"
       style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad)"
     >
-      <loading />
+      <Loading />
       <div class="mt-3">
-        <h4 class="display-1">立即开启你的新旅程</h4>
-        <h6 class="subheading mt-2">加入需要不到一分钟,这将是你一整天中做出的最佳决定.
+        <h4 class="display-1">
+          立即开启你的新旅程
+        </h4>
+        <h6 class="subheading mt-2">
+          加入需要不到一分钟,这将是你一整天中做出的最佳决定.
           <br>SteamHub 是一个非盈利的开源项目,我们也提供开发者付费计划用以支持每月的服务器建设支出.
         </h6>
       </div>
       <div class="py-5">
-        <v-layout align-center justify-center fill-height>
+        <VLayout
+          align-center
+          justify-center
+          fill-height
+        >
           <div>
-            <v-text-field
+            <VTextField
               label="您的邮件地址"
               append-icon="email"
               type="email"
@@ -38,13 +58,19 @@
               background-color="transparent"
               dark
             >
-              <v-btn slot="append-outer" round style="top: -12px">或使用 Steam 登录</v-btn>
-            </v-text-field>
+              <VBtn
+                slot="append-outer"
+                round
+                style="top: -12px"
+              >
+                或使用 Steam 登录
+              </VBtn>
+            </VTextField>
           </div>
-        </v-layout>
+        </VLayout>
       </div>
     </div>
-  </v-app>
+  </VApp>
 </template>
 
 <script>

@@ -1,14 +1,14 @@
 <template>
   <div v-if="high_score">
     <div class="red-gradient white--text py-5">
-      <v-layout
+      <VLayout
         justify-center
         align-center
         fill-height
         row
         wrap
       >
-        <v-flex
+        <VFlex
           xs12
           md8
           lg6
@@ -32,62 +32,66 @@
             </h2>
           </div>
           <div class="pt-5">
-            <v-chip
+            <VChip
               v-if="high_score.data[0].RequiredAge >= 16"
               dark
               color="transparent"
               class="white--text mx-0"
             >
-              <v-avatar>
-                <v-icon>
+              <VAvatar>
+                <VIcon>
                   fas fa-prescription
-                </v-icon>
-              </v-avatar>
+                </VIcon>
+              </VAvatar>
               限制级 R{{ high_score.data[0].RequiredAge }}
-            </v-chip>
-            <v-chip
+            </VChip>
+            <VChip
               v-for="(platformItem, platformIndex) in splitPlatforms(high_score.data[0].Platforms)"
               :key="platformIndex"
               dark
               color="transparent"
               class="white--text mx-0"
             >
-              <v-avatar>
-                <v-icon v-if="platformItem === 'windows'">
+              <VAvatar>
+                <VIcon v-if="platformItem === 'windows'">
                   fab fa-windows
-                </v-icon>
-                <v-icon v-if="platformItem === 'mac'">
+                </VIcon>
+                <VIcon v-if="platformItem === 'mac'">
                   fab fa-apple
-                </v-icon>
-                <v-icon v-if="platformItem === 'linux'">
+                </VIcon>
+                <VIcon v-if="platformItem === 'linux'">
                   fab fa-linux
-                </v-icon>
-              </v-avatar>
+                </VIcon>
+              </VAvatar>
               {{ platformItem }}
-            </v-chip>
+            </VChip>
           </div>
           <div class="pt-2">
-            <v-btn
+            <VBtn
               round
               large
               class="mx-0"
-            >查看游戏 ￥ {{ high_score.data[0].app_price[0].PriceFinal / 100 }}</v-btn>
-            <v-btn
+            >
+              查看游戏 ￥ {{ high_score.data[0].app_price[0].PriceFinal / 100 }}
+            </VBtn>
+            <VBtn
               round
               large
               outline
               dark
               disabled
-            >关注</v-btn>
+            >
+              关注
+            </VBtn>
           </div>
-        </v-flex>
-        <v-flex
+        </VFlex>
+        <VFlex
           xs12
           sm6
           md4
           class="pt-5 mt-4"
         >
-          <v-progress-circular
+          <VProgressCircular
             :rotate="-90"
             :size="150"
             :width="15"
@@ -98,26 +102,26 @@
               {{ high_score.data[0].Metacritic }}
               Metacritic
             </h2>
-          </v-progress-circular>
+          </VProgressCircular>
           <div class="mt-3">
             <h4 class="body-2 font-weight-regular">
               Metacritic 是一个权威评测机构,<br>提供媒体评测与用户打分
             </h4>
           </div>
-        </v-flex>
-      </v-layout>
+        </VFlex>
+      </VLayout>
     </div>
     <div>
-      <v-layout
+      <VLayout
         align-center
         justify-center
         fill-height
         row
         wrap
       >
-        <v-flex md8>
-          <v-timeline>
-            <v-timeline-item
+        <VFlex md8>
+          <VTimeline>
+            <VTimelineItem
               v-for="(highScoreItem, highScoreIndex) in high_score.data.slice(1)"
               :key="highScoreIndex"
               hide-dot
@@ -125,7 +129,7 @@
               large
               class="my-4"
             >
-              <v-progress-circular
+              <VProgressCircular
                 slot="opposite"
                 :rotate="-90"
                 :size="150"
@@ -138,8 +142,8 @@
                   {{ highScoreItem.Metacritic }}
                   Metacritic
                 </h2>
-              </v-progress-circular>
-              <v-card
+              </VProgressCircular>
+              <VCard
                 flat
                 color="transparent"
                 small
@@ -149,71 +153,71 @@
                   <h2 class="title text-truncate">
                     {{ highScoreItem.Name }} 
                   </h2>
-                  <v-chip 
+                  <VChip 
                     class="mx-0" 
                     small
                   >
                     <span>
                       ￥ {{ highScoreItem.app_price[0].PriceFinal / 100 }}  
                     </span> 
-                  </v-chip>
-                  <v-chip
+                  </VChip>
+                  <VChip
                     v-if="highScoreItem.RequiredAge >= 16"
                     color="transparent"
                     small
                     class="mx-0"
                   >
-                    <v-avatar>
-                      <v-icon small>
+                    <VAvatar>
+                      <VIcon small>
                         fas fa-prescription
-                      </v-icon>
-                    </v-avatar>
+                      </VIcon>
+                    </VAvatar>
                     限制级 R{{ highScoreItem.RequiredAge }}
-                  </v-chip>
-                  <v-chip
+                  </VChip>
+                  <VChip
                     v-for="(platformItem, platformIndex) in splitPlatforms(highScoreItem.Platforms)"
                     :key="platformIndex"
                     color="transparent"
                     small
                     class="mx-0"
                   >
-                    <v-avatar>
-                      <v-icon
+                    <VAvatar>
+                      <VIcon
                         v-if="platformItem === 'windows'"
                         small
                       >
                         fab fa-windows
-                      </v-icon>
-                      <v-icon
+                      </VIcon>
+                      <VIcon
                         v-else-if="platformItem === 'mac'"
                         small
                       >
                         fab fa-apple
-                      </v-icon>
-                      <v-icon
+                      </VIcon>
+                      <VIcon
                         v-else-if="platformItem === 'linux'"
                         small
                       >
                         fab fa-linux
-                      </v-icon>
-                    </v-avatar>
+                      </VIcon>
+                    </VAvatar>
                     {{ platformItem }}
-                  </v-chip>
+                  </VChip>
                   <h4
                     class="body-2 hide-4line"
                   >
                     {{ parseHTML(highScoreItem.ShortDescription) }}
                   </h4>
                 </div>
-              </v-card>
-            </v-timeline-item>
-          </v-timeline>
-        </v-flex>
-      </v-layout>
+              </VCard>
+            </VTimelineItem>
+          </VTimeline>
+        </VFlex>
+      </VLayout>
     </div>
   </div>
   <div v-else>
-    <v-progress-circular
+    <VProgressCircular
       indeterminate
       color="primary"
     />

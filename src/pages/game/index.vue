@@ -1,17 +1,17 @@
 <template>
   <div class="mt-5">
-    <v-layout
+    <VLayout
       fill-height
       row
       wrap
     >
-      <v-flex
+      <VFlex
         xs12
         md2
         class="text-xs-left"
         hidden-md-and-down
       >
-        <v-text-field
+        <VTextField
           v-model="searchInputValue"
           outline
           label="回车搜索"
@@ -21,33 +21,33 @@
           @keyup.enter="searchInput"
         />
         <div>
-          <v-switch
+          <VSwitch
             v-model="game_price"
             :label="`价格`"
           />
-          <v-checkbox
+          <VCheckbox
             v-model="priceNullCheckbox"
             :label="`${priceNull.title}`"
             class="mt-0"
           />
-          <v-radio-group
+          <VRadioGroup
             v-for="(priceItem, priceIndex) in price.data"
             :key="priceIndex"
             v-model="priceCheckbox"
             class="mt-0"
           >
-            <v-radio 
+            <VRadio 
               :label="`${priceItem.title}`"
               :value="`${priceItem.type}`"
             />
-          </v-radio-group>
+          </VRadioGroup>
         </div>
         <div v-if="tags">
-          <v-switch
+          <VSwitch
             v-model="game_type"
             :label="`类型`"
           />
-          <v-checkbox
+          <VCheckbox
             v-for="(tagsItem, tagsIndex) in tags.slice(0, 10)"
             :key="tagsIndex"
             v-model="typeCheckbox"
@@ -55,19 +55,19 @@
             :value="`${tagsItem}`"
             class="mt-0"
           />
-          <v-dialog
+          <VDialog
             v-model="moreTag"
             lazy
           >
-            <v-card>
-              <v-layout
+            <VCard>
+              <VLayout
                 justify-start
                 align-center
                 row 
                 wrap
                 class="px-5 py-5"
               >
-                <v-flex
+                <VFlex
                   v-for="(tagsItem, tagsIndex) in tags.slice(10, 60)"
                   :key="tagsIndex"
                   xs4
@@ -75,17 +75,17 @@
                   md2
                   lg1
                 >
-                  <v-checkbox
+                  <VCheckbox
                     v-model="typeCheckbox"
                     :label="`${tagsItem}`"
                     :value="`${tagsItem}`"
                     class="mt-0"
                   />
-                </v-flex>
-              </v-layout>
-            </v-card>
-          </v-dialog>
-          <v-btn
+                </VFlex>
+              </VLayout>
+            </VCard>
+          </VDialog>
+          <VBtn
             v-if="!moreTag"
             block 
             round 
@@ -93,19 +93,19 @@
             @click="moreTag = true"
           >
             更多
-            <v-icon right>
+            <VIcon right>
               fas fa-angle-double-down
-            </v-icon>
-          </v-btn>
+            </VIcon>
+          </VBtn>
         </div>
         <div v-else>
-          <v-progress-circular
+          <VProgressCircular
             indeterminate
             color="primary"
           />
         </div>
-      </v-flex>
-      <v-flex 
+      </VFlex>
+      <VFlex 
         xs12
         md12
         lg8
@@ -121,47 +121,47 @@
             当启用 "包含免费游戏" 时,价格筛选将失效
           </h4>
           <div class="mt-3">
-            <v-chip
+            <VChip
               v-if="searchInputValue"
               class="mx-0"
             >
               {{ searchInputValue }}
-            </v-chip>
+            </VChip>
             <span
               v-for="(item, i) in typeCheckbox" 
               v-if="typeCheckbox[0]"
               :key="i"
             >
-              <v-chip class="mx-0">
+              <VChip class="mx-0">
                 {{ item }}  
-              </v-chip> 
+              </VChip> 
             </span>
             <span v-if="priceCheckbox[0]">
-              <v-chip class="mx-0">
+              <VChip class="mx-0">
                 {{ parseArray(priceCheckbox) }} 
-              </v-chip>
+              </VChip>
             </span>
           </div>
           <div class="mt-5">
-            <v-dialog
+            <VDialog
               v-model="listsLoading"
               persistent
               width="300"
             >
-              <v-card
+              <VCard
                 color="primary"
                 dark
               >
-                <v-card-text>
+                <VCardText>
                   载入中,首次加载可能会有延迟...
-                  <v-progress-linear
+                  <VProgressLinear
                     indeterminate
                     color="white"
                     class="mb-0"
                   />
-                </v-card-text>
-              </v-card>
-            </v-dialog>
+                </VCardText>
+              </VCard>
+            </VDialog>
             <div v-if="lists">
               <div
                 v-for="(dataItem, dataIndex) in lists.data"
@@ -169,26 +169,26 @@
               >
                 <div>
                   <div>
-                    <v-layout
+                    <VLayout
                       row
                       wrap
                       fill-height
                     >
-                      <v-flex
+                      <VFlex
                         xs1
                         md2
                         class="pt-1 hidden-sm-and-down"
                       >
                         <img :src="`https://steamcdn-a.opskins.media/steam/apps/${dataItem.AppID}/capsule_sm_120.jpg?t=1542333066`">
-                      </v-flex>
-                      <v-flex
+                      </VFlex>
+                      <VFlex
                         xs9
                         md8
                       >
                         <div>
                           <h2 class="text-truncate subheading">
                             {{ dataItem.Name }}
-                            <v-chip
+                            <VChip
                               v-if="dataItem.app_price[0]"
                               small
                             >
@@ -199,21 +199,21 @@
                                 <del>￥ {{ dataItem.app_price[0].PriceInitial / 100 }}</del>
                               </span>
                               ￥ {{ dataItem.app_price[0].PriceFinal / 100 }}
-                            </v-chip>
-                            <v-chip
+                            </VChip>
+                            <VChip
                               v-if="dataItem.app_tag[0]"
                               small
                             >
                               {{ dataItem.app_tag[0].Tag }}
-                            </v-chip>
+                            </VChip>
                           </h2>
                           <h3 class="text-truncate body-2">
                             {{ dataItem.ShortDescription }}
                           </h3>
                         </div>
-                      </v-flex>
-                      <v-flex xs2>
-                        <v-btn
+                      </VFlex>
+                      <VFlex xs2>
+                        <VBtn
                           round
                           small
                           color="red-gradient"
@@ -221,17 +221,17 @@
                           outline
                         >
                           关注
-                        </v-btn>
-                      </v-flex>
-                    </v-layout>
+                        </VBtn>
+                      </VFlex>
+                    </VLayout>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </v-flex>
-    </v-layout>
+      </VFlex>
+    </VLayout>
   </div>
 </template>
 

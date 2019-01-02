@@ -1,39 +1,39 @@
 <template>
-  <v-card
+  <VCard
     height="160px"
     class="text-xs-left"
     :href="`https://store.steampowered.com/app/${popular.AppID}`"
     target="_blank"
   >
     <div>
-      <v-img
+      <VImg
         :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${popular.AppID}/header.jpg`"
         height="160px"
       >
-        <v-layout
+        <VLayout
           align-start
           justify-space-between
           column
           fill-height
         >
           <div class="text-xs-right">
-            <v-chip
+            <VChip
               small
               class="grey lighten-2"
             >
-              <v-avatar>
-                <v-icon small>
+              <VAvatar>
+                <VIcon small>
                   fas fa-users
-                </v-icon>
-              </v-avatar>
+                </VIcon>
+              </VAvatar>
               当前在线: {{ popular.Now }}
-            </v-chip>
+            </VChip>
           </div>
-        </v-layout>
-      </v-img>
+        </VLayout>
+      </VImg>
     </div>
     <div>
-      <v-layout
+      <VLayout
         align-start
         justify-start
         row
@@ -47,9 +47,9 @@
             {{ popular.LastUpdated }}
           </h5>
         </div>
-      </v-layout>
+      </VLayout>
     </div>
-  </v-card>
+  </VCard>
 </template>
 
 <script>

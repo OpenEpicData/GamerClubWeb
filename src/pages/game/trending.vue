@@ -13,13 +13,13 @@
       </h2>
 
       <div v-if="popular && item.type === 'popular'">
-        <v-layout
+        <VLayout
           align-start
           justify-center
           row
           wrap
         >
-          <v-flex
+          <VFlex
             v-for="(popularItem,popularIndex) in popular.slice(0, 4)"
             :key="popularIndex"
             xs12
@@ -28,16 +28,16 @@
             xl2
             class="px-3 my-5"
           >
-            <popularWithSmallCard
+            <PopularWithSmallCard
               v-if="popularItem"
               :popular.sync="popularItem"
             />
-          </v-flex>
-        </v-layout>
+          </VFlex>
+        </VLayout>
       </div>
 
       <div v-else-if="latest && item.type === 'latest'">
-        <v-layout
+        <VLayout
           v-for="k in 2"
           :key="k"
           align-start
@@ -45,7 +45,7 @@
           row
           wrap
         >
-          <v-flex
+          <VFlex
             v-for="(latestItem,latestIndex) in latest.data.slice((k-1)*4,(k) * 4)"
             :key="latestIndex"
             xs12
@@ -54,15 +54,15 @@
             xl2
             class="px-3 my-5"
           >
-            <latestWithSmallCard
+            <LatestWithSmallCard
               :latest.sync="latestItem"
             />
-          </v-flex>
-        </v-layout>
+          </VFlex>
+        </VLayout>
       </div>
 
       <div v-else-if="topReview && item.type === 'topReview'">
-        <v-layout
+        <VLayout
           v-for="k in 2"
           :key="k"
           align-start
@@ -70,7 +70,7 @@
           row
           wrap
         >
-          <v-flex
+          <VFlex
             v-for="(reviewItem, reviewIndex) in topReview.data.slice((k-1)*4,(k) * 4)"
             :key="reviewIndex"
             xs12
@@ -79,15 +79,15 @@
             xl2
             class="px-3 my-5"
           >
-            <reviewtWithSmallCard
+            <ReviewtWithSmallCard
               :review.sync="reviewItem"
             />
-          </v-flex>
-        </v-layout>
+          </VFlex>
+        </VLayout>
       </div>
 
       <div v-else>
-        <v-progress-circular
+        <VProgressCircular
           indeterminate
           color="primary"
         />
