@@ -133,15 +133,6 @@
         </VIcon>
       </div>
     </div>
-    <div class="mt-3">
-      <VBtn
-        outline
-        large
-        round
-      >
-        了解更多
-      </VBtn>
-    </div>
   </div>
 </template>
 
