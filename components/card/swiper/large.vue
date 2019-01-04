@@ -86,7 +86,12 @@
                       class="font-weight-medium hide-2line"
                       style="color: #3d4852;font-size: 1.5rem;"
                     >
-                      {{ item.Title }}...
+                      <a 
+                        :href="item.Link" 
+                        target="_black"
+                        class="black--text">
+                        {{ item.Title }}...
+                      </a>
                     </h5>
                   </div>
                   <div class="my-3">
