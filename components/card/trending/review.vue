@@ -1,44 +1,62 @@
 <template>
   <VCard
     :href="`https://store.steampowered.com/app/${review.AppID}`"
-    height="160px"
+    height="310px"
     class="text-xs-left"
     target="_blank"
+    color="transparent"
+    flat
   >
     <div>
+      <div>
+        <v-sheet
+          class="v-sheet--offset px-1 mx-3"
+          color="brown"
+          elevation="15"
+          style="opacity:.9"
+        >
+          <VTooltip top>
+            <VChip
+              slot="activator"
+              small
+              class="brown lighten-3"
+            >
+              <VIcon
+                small
+                left
+              >
+                far fa-smile-beam
+              </VIcon>
+              <span>
+                {{ review.app_review[0].ReviewTitle }}
+                {{ parseFloat(review.app_review[0].Percentage) }}/100
+              </span>
+            </VChip>
+            <span>
+              {{ review.app_review[0].ReviewPeople }} 篇评测中 {{ review.app_review[0].Percentage }} 的用户推荐
+            </span>
+          </VTooltip>
+          <v-sparkline
+            :labels="parse_label(review)"
+            :smooth="true"
+            :value="parse_value(review)"
+            color="white"
+            elevation="12"
+            line-width="2"
+            padding="16"
+          />
+        </v-sheet>
+      </div>
       <VImg
         :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${review.AppID}/header.jpg`"
-        height="160px"
+        height="150px"
       >
         <VLayout
-          align-start
-          justify-start
+          align-space-around
+          justify-space-between
           fill-height
           column
         >
-          <div>
-            <VTooltip top>
-              <VChip
-                slot="activator"
-                small
-                class="grey lighten-2"
-              >
-                <VIcon
-                  small
-                  left
-                >
-                  far fa-smile-beam
-                </VIcon>
-                <span>
-                  {{ review.app_review[0].ReviewTitle }}
-                  {{ parseFloat(review.app_review[0].Percentage) }}/100
-                </span>
-              </VChip>
-              <span>
-                {{ review.app_review[0].ReviewPeople }} 篇评测中 {{ review.app_review[0].Percentage }} 的用户推荐
-              </span>
-            </VTooltip>
-          </div>
         </VLayout>
       </VImg>
     </div>
@@ -102,6 +120,13 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
+dayjs.locale('zh-cn')
+
 export default {
   props: {
     review: {
@@ -157,7 +182,29 @@ export default {
     },
     chipPriceLeave: function(val, appid) {
       this.$refs[`chart${appid}`].echarts.resize()
+    },
+    parse_label: function(val) {
+      let array_label = []
+      for (let index = 5; index > 0; index--) {
+        array_label.push(dayjs(val.app_review[index].LastUpdated).toNow())
+      }
+      return array_label
+    },
+    parse_value: function(val) {
+      let array_label = []
+      for (let index = 0; index < 5; index++) {
+        array_label.push(val.app_review[index].ReviewPeople)
+      }
+      return array_label.reverse()
     }
   }
 }
 </script>
+
+<style>
+  .v-sheet--offset {
+    top: 60px;
+    position: relative;
+    z-index: 2
+  }
+</style>

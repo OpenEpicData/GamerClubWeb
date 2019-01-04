@@ -77,7 +77,7 @@
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-2"
           >
             <reviewtWithSmallCard
               :review.sync="reviewItem"
