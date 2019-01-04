@@ -9,9 +9,18 @@ module.exports = {
   head: {
     title: pkg.name,
     meta: [
-      { charset: 'utf-8' },
+      { charset: '%s -- SteamHub' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      {
+        name: 'google-site-verification',
+        content: 'vFe_TBRSTiibJ4sRWsoemcOgFa6Rw4z5KDa3Ob5Laok'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'SteamHub 是一个全球 Steam 的数据统计社区,每天为开发者和玩家提供实时的 价格,资讯 数据查询。'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.png' },
@@ -19,6 +28,35 @@ module.exports = {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/npm/vuetify@1/dist/vuetify.min.css'
+      },
+      {
+        rel: 'styleshell',
+        href:
+          'https://cdn.jsdelivr.net/combine/npm/vuetify@1/dist/vuetify.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdn.jsdelivr.net/npm/font-awesome-animation@0.2.1/dist/font-awesome-animation.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/npm/swiper@4/dist/css/swiper.min.css'
+      }
+    ],
+    script: [
+      {
+        src:
+          'https://cdn.jsdelivr.net/npm/echarts@4.2.0-rc.2/dist/echarts.min.js'
       }
     ]
   },
@@ -26,7 +64,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#3B8070' },
 
   /*
   ** Global CSS
@@ -36,14 +74,24 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/vuetify'],
+  plugins: [
+    { src: '~/plugins/vuetify' },
+    { src: '~/plugins/swiper.js', ssr: false },
+    { src: '~/plugins/v-charts.js', ssr: false }
+  ],
 
   /*
   ** Nuxt.js modules
   */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-122218785-1'
+      }
+    ]
   ],
   /*
   ** Axios module configuration

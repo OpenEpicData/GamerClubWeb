@@ -959,6 +959,13 @@
   dependencies:
     consola "^2.3.0"
 
+"@nuxtjs/google-analytics@^2.0.2":
+  version "2.0.2"
+  resolved "http://registry.npm.taobao.org/@nuxtjs/google-analytics/download/@nuxtjs/google-analytics-2.0.2.tgz#75353143628fd7697b41eb5aa7da38a513394eca"
+  integrity sha1-dTUxQ2KP12l7Qetap9o4pRM5Tso=
+  dependencies:
+    vue-analytics "^5.4.0"
+
 "@nuxtjs/opencollective@^0.2.0":
   version "0.2.1"
   resolved "http://registry.npm.taobao.org/@nuxtjs/opencollective/download/@nuxtjs/opencollective-0.2.1.tgz#ddf3e6a22990997322bc2b82e2455a7fbffc518d"
@@ -2677,6 +2684,13 @@ dom-serializer@0:
     domelementtype "~1.1.1"
     entities "~1.1.1"
 
+dom7@^2.1.2:
+  version "2.1.2"
+  resolved "http://registry.npm.taobao.org/dom7/download/dom7-2.1.2.tgz#a914070c0abe8465384997a9c4f34475f67f75bd"
+  integrity sha1-qRQHDAq+hGU4SZepxPNEdfZ/db0=
+  dependencies:
+    ssr-window "^1.0.1"
+
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/domain-browser/download/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
@@ -2748,6 +2762,28 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
+
+echarts-amap@1.0.0-rc.6:
+  version "1.0.0-rc.6"
+  resolved "http://registry.npm.taobao.org/echarts-amap/download/echarts-amap-1.0.0-rc.6.tgz#5782a74daee52ed44ce3f8f62577561783f09e16"
+  integrity sha1-V4KnTa7lLtRM4/j2JXdWF4PwnhY=
+
+echarts-liquidfill@^2.0.2:
+  version "2.0.3"
+  resolved "http://registry.npm.taobao.org/echarts-liquidfill/download/echarts-liquidfill-2.0.3.tgz#a73ce81f9a2804bfb213cb7c4c2324495859c127"
+  integrity sha1-pzzoH5ooBL+yE8t8TCMkSVhZwSc=
+
+echarts-wordcloud@^1.1.3:
+  version "1.1.3"
+  resolved "http://registry.npm.taobao.org/echarts-wordcloud/download/echarts-wordcloud-1.1.3.tgz#07b140c8ba76b19c317b43c310f3d5dc99289ff2"
+  integrity sha1-B7FAyLp2sZwxe0PDEPPV3Jkon/I=
+
+echarts@^4.2.0-rc.2:
+  version "4.2.0-rc.2"
+  resolved "http://registry.npm.taobao.org/echarts/download/echarts-4.2.0-rc.2.tgz#6a98397aafa81b65cbf0bc15d9afdbfb244df91e"
+  integrity sha1-apg5eq+oG2XL8LwV2a/b+yRN+R4=
+  dependencies:
+    zrender "4.0.5"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -4863,6 +4899,11 @@ number-is-nan@^1.0.0:
   resolved "http://registry.npm.taobao.org/number-is-nan/download/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
+numerify@1.2.9:
+  version "1.2.9"
+  resolved "http://registry.npm.taobao.org/numerify/download/numerify-1.2.9.tgz#af4696bb1d57f8d3970a615d8b0cd53d932bd559"
+  integrity sha1-r0aWux1X+NOXCmFdiwzVPZMr1Vk=
+
 nuxt@^2.0.0:
   version "2.3.4"
   resolved "http://registry.npm.taobao.org/nuxt/download/nuxt-2.3.4.tgz#61f5fe856ebbeced89f04a3734baa4ee91cc3cfa"
@@ -6612,6 +6653,11 @@ sprintf-js@~1.0.2:
   resolved "http://registry.npm.taobao.org/sprintf-js/download/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
+ssr-window@^1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/ssr-window/download/ssr-window-1.0.1.tgz#30752a6a4666e7767f0b7e6aa6fc2fdbd0d9b369"
+  integrity sha1-MHUqakZm53Z/C35qpvwv29DZs2k=
+
 ssri@^6.0.1:
   version "6.0.1"
   resolved "http://registry.npm.taobao.org/ssri/download/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
@@ -6851,6 +6897,14 @@ svgo@^1.0.0:
     stable "~0.1.6"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+swiper@^4.0.7:
+  version "4.4.6"
+  resolved "http://registry.npm.taobao.org/swiper/download/swiper-4.4.6.tgz#0dfa9d66e39811c73e96ea55cea61047a4091667"
+  integrity sha1-DfqdZuOYEcc+lupVzqYQR6QJFmc=
+  dependencies:
+    dom7 "^2.1.2"
+    ssr-window "^1.0.1"
 
 table@^5.0.2:
   version "5.1.1"
@@ -7272,6 +7326,11 @@ utila@^0.4.0, utila@~0.4:
   resolved "http://registry.npm.taobao.org/utila/download/utila-0.4.0.tgz#8a16a05d445657a3aea5eecc5b12a4fa5379772c"
   integrity sha1-ihagXURWV6Oupe7MWxKk+lN5dyw=
 
+utils-lite@0.1.10:
+  version "0.1.10"
+  resolved "http://registry.npm.taobao.org/utils-lite/download/utils-lite-0.1.10.tgz#d2908c0482e23c31e6b082558540e7134ffad7d7"
+  integrity sha1-0pCMBILiPDHmsIJVhUDnE0/619c=
+
 utils-merge@1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/utils-merge/download/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
@@ -7281,6 +7340,17 @@ uuid@^3.3.2:
   version "3.3.2"
   resolved "http://registry.npm.taobao.org/uuid/download/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha1-G0r0lV6zB3xQHCOHL8ZROBFYcTE=
+
+v-charts@^1.19.0:
+  version "1.19.0"
+  resolved "http://registry.npm.taobao.org/v-charts/download/v-charts-1.19.0.tgz#07b701800b159bd514264ffc8bf12b0405142da3"
+  integrity sha1-B7cBgAsVm9UUJk/8i/ErBAUULaM=
+  dependencies:
+    echarts-amap "1.0.0-rc.6"
+    echarts-liquidfill "^2.0.2"
+    echarts-wordcloud "^1.1.3"
+    numerify "1.2.9"
+    utils-lite "0.1.10"
 
 vary@~1.1.2:
   version "1.1.2"
@@ -7298,6 +7368,19 @@ vm-browserify@0.0.4:
   integrity sha1-XX6kW7755Kb/ZflUOOCofDV9WnM=
   dependencies:
     indexof "0.0.1"
+
+vue-analytics@^5.4.0:
+  version "5.16.1"
+  resolved "http://registry.npm.taobao.org/vue-analytics/download/vue-analytics-5.16.1.tgz#2fa909a245e1cee9993a69f0b72caf1dd6126c10"
+  integrity sha1-L6kJokXhzumZOmnwtyyvHdYSbBA=
+
+vue-awesome-swiper@^3.1.3:
+  version "3.1.3"
+  resolved "http://registry.npm.taobao.org/vue-awesome-swiper/download/vue-awesome-swiper-3.1.3.tgz#05500b501ffb3fec9bf7eb9985bcf4ae8360ed9e"
+  integrity sha1-BVALUB/7P+yb9+uZhbz0roNg7Z4=
+  dependencies:
+    object-assign "^4.1.1"
+    swiper "^4.0.7"
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
@@ -7615,3 +7698,8 @@ yallist@^3.0.0, yallist@^3.0.2:
   version "3.0.3"
   resolved "http://registry.npm.taobao.org/yallist/download/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
   integrity sha1-tLBJ4xS+VF486AIjbWzSLNkcPek=
+
+zrender@4.0.5:
+  version "4.0.5"
+  resolved "http://registry.npm.taobao.org/zrender/download/zrender-4.0.5.tgz#6e8f738971ce2cd624aac82b2156729b1c0e5a82"
+  integrity sha1-bo9ziXHOLNYkqsgrIVZymxwOWoI=

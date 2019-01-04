@@ -52,7 +52,7 @@
 
 <style>
 #loading {
-  fill: currentColor; 
+  fill: currentColor;
 }
 /* make keyframes that tell the start state and the end state of our object */
 @-webkit-keyframes fadeIn {
