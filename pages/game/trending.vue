@@ -28,7 +28,7 @@
             xl2
             class="px-3 my-5"
           >
-            <PopularWithSmallCard
+            <popularWithSmallCard
               v-if="popularItem"
               :popular.sync="popularItem"
             />
@@ -54,7 +54,7 @@
             xl2
             class="px-3 my-5"
           >
-            <LatestWithSmallCard
+            <latestWithSmallCard
               :latest.sync="latestItem"
             />
           </VFlex>
@@ -79,7 +79,7 @@
             xl2
             class="px-3 my-5"
           >
-            <ReviewtWithSmallCard
+            <reviewtWithSmallCard
               :review.sync="reviewItem"
             />
           </VFlex>
