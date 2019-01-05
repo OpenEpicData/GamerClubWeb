@@ -11,6 +11,14 @@
           <logo />
         </nuxt-link>
       </VToolbarTitle>
+      <v-alert
+        :value="true"
+        color="white"
+        icon="info"
+        outline
+      >
+        我们正在迁移数据至 API V3,页面展示数据可能与实际不同
+      </v-alert>
       <VSpacer />
       <div class="hidden-sm-and-down">
         <VBtn flat>

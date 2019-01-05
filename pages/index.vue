@@ -28,54 +28,63 @@
         >
           <div class="my-3">
             <h5 v-if="i === 1">
-              <span
-                v-if="gameTotal"
-                class="headline"
-              >
-                {{ gameTotal.toLocaleString() }}
-              </span>
-              <span v-else>
-                <VProgressCircular
-                  indeterminate
-                  color="primary"
-                />
-              </span>
+              <v-badge>
+                <span slot="badge">V3</span>
+                <span
+                  v-if="gameTotal"
+                  class="headline"
+                >
+                  {{ gameTotal.toLocaleString() }}
+                </span>
+                <span v-else>
+                  <VProgressCircular
+                    indeterminate
+                    color="primary"
+                  />
+                </span>
+              </v-badge>
               <br>
               <span class="subheading grey--text mt-2">
                 已知游戏
               </span>
             </h5>
             <h5 v-if="i === 2">
-              <span
-                v-if="priceTotal"
-                class="headline"
-              >
-                {{ priceTotal.toLocaleString() }}
-              </span>
-              <span v-else>
-                <VProgressCircular
-                  indeterminate
-                  color="primary"
-                />
-              </span>
+              <v-badge>
+                <span slot="badge">V3</span>
+                <span
+                  v-if="priceTotal"
+                  class="headline"
+                >
+                  {{ priceTotal.toLocaleString() }}
+                </span>
+                <span v-else>
+                  <VProgressCircular
+                    indeterminate
+                    color="primary"
+                  />
+                </span>
+              </v-badge>
               <br>
               <span class="subheading grey--text mt-2">
                 归档价格
               </span>
             </h5>
             <h5 v-if="i === 3">
-              <span
-                v-if="reviewTotal"
-                class="headline"
-              >
-                {{ reviewTotal.toLocaleString() }}
-              </span>
-              <span v-else>
-                <VProgressCircular
-                  indeterminate
-                  color="primary"
-                />
-              </span>
+              <v-badge>
+                <span slot="badge">V3</span>
+                <span
+                  v-if="reviewTotal"
+                  class="headline"
+                >
+                  {{ reviewTotal.toLocaleString() }}
+                </span>
+                <span v-else>
+                  <VProgressCircular
+                    indeterminate
+                    color="primary"
+                  />
+                </span>
+              </v-badge>
               <br>
               <span class="subheading grey--text mt-2">
                 用户评测
@@ -229,13 +238,13 @@ export default {
         news
       ] = await Promise.all([
         await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/lists?math=count'
+          'https://v3.steamhub.cn/api/v3/game/list'
         ),
         await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/prices?math=count'
+          'https://v3.steamhub.cn/api/v3/game/price'
         ),
         await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/reviews?math=count'
+          'https://v3.steamhub.cn/api/v3/game/review'
         ),
         await this.fetchSomething(
           'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&math=count'
@@ -247,9 +256,9 @@ export default {
           'https://rest.steamhub.cn/api/v2/news/lists?size=16'
         )
       ])
-      this.gameTotal = gameTotal
-      this.priceTotal = priceTotal
-      this.reviewTotal = reviewTotal
+      this.gameTotal = gameTotal.meta.total
+      this.priceTotal = priceTotal.meta.total
+      this.reviewTotal = reviewTotal.meta.total
       this.tagTotal = tagTotal
       this.tagReviewTotal = tagReviewTotal
       this.news = news
