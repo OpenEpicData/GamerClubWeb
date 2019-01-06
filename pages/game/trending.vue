@@ -144,22 +144,10 @@ export default {
     this.popular = await this.fetchSomething(
       'https://rest.steamhub.cn/api/v2/apps/trending'
     )
-    this.turnChartData(this.top_review.data)
   },
   methods: {
     async fetchSomething(url) {
       return await this.$axios.$get(encodeURI(url))
-    },
-    turnChartData: function(value) {
-      for (let k in value.data) {
-        for (let i in value[k]['game_prices']) {
-          value[k]['game_prices'][i]['final'] =
-            value[k]['game_prices'][i]['final'] / 100
-          value[k]['game_prices'][i]['initial'] =
-            value[k]['game_prices'][i]['initial'] / 100
-        }
-      }
-      return value.reverse()
     }
   },
   head() {

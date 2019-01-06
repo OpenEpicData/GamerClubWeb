@@ -133,6 +133,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
   props: {
     review: {
@@ -191,6 +192,17 @@ export default {
         { offset: 1, color: '#ec454f' }
       ])
     ]
+    if (this.price.length > 0) {
+      const parse_price = this.price
+      const last_price = parse_price[parse_price.length -1]
+      const chunk = {
+        final: last_price.final,
+        created_at: dayjs().format("YYYY-MM-DD HH:mm:ss")
+      }
+      this.price.push(chunk)
+      this.price.reverse()
+      console.log(this.price)
+    }
   },
   methods: {
     chipPriceHover: function(val, appid) {
