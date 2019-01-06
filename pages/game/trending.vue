@@ -61,7 +61,7 @@
         </VLayout>
       </div>
 
-      <div v-else-if="topReview && item.type === 'topReview'">
+      <div v-else-if="top_review && item.type === 'top_review'">
         <VLayout
           v-for="k in 2"
           :key="k"
@@ -71,16 +71,18 @@
           wrap
         >
           <VFlex
-            v-for="(reviewItem, reviewIndex) in topReview.data.slice((k-1)*4,(k) * 4)"
+            v-for="(reviewItem, reviewIndex) in top_review.data.slice((k-1)*4,(k) * 4)"
             :key="reviewIndex"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-2"
+            class="px-3 my-5"
           >
             <reviewtWithSmallCard
-              :review.sync="reviewItem"
+              :review.sync="reviewItem.game_reviews"
+              :price.sync="reviewItem.game_prices"
+              :data.sync="reviewItem"
             />
           </VFlex>
         </VLayout>
@@ -110,7 +112,7 @@ export default {
     return {
       popular: null,
       latest: null,
-      topReview: null,
+      top_review: null,
       text: [
         {
           title: '时下热门',
@@ -120,7 +122,7 @@ export default {
         {
           title: '好评如潮',
           description: '来自每一位真实用户的评测,他们可不会说假话',
-          type: 'topReview'
+          type: 'top_review'
         },
         {
           title: '最近更新',
@@ -132,14 +134,14 @@ export default {
   },
   async mounted() {
     await this.fetchTrending()
-    this.turnChartData(this.topReview.data)
+    this.turnChartData(this.top_review.data)
   },
   methods: {
     async fetchSomething(url) {
       return await this.$axios.$get(encodeURI(url))
     },
     async fetchTrending() {
-      let [popular, latest, topReview] = await Promise.all([
+      let [popular, latest, top_review] = await Promise.all([
         await this.fetchSomething(
           'https://rest.steamhub.cn/api/v2/apps/trending'
         ),
@@ -147,20 +149,20 @@ export default {
           'https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=8'
         ),
         await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/reviews?type=top&param=8'
+          'https://v3.steamhub.cn/api/v3/game/list?steam_user_review_score=80,100&order=desc&order_field=steam_user_review_score'
         )
       ])
       this.popular = popular
       this.latest = latest
-      this.topReview = topReview
+      this.top_review = top_review
     },
     turnChartData: function(value) {
-      for (let k in value) {
-        for (let i in value[k]['app_price']) {
-          value[k]['app_price'][i]['PriceFinal'] =
-            value[k]['app_price'][i]['PriceFinal'] / 100
-          value[k]['app_price'][i]['PriceInitial'] =
-            value[k]['app_price'][i]['PriceInitial'] / 100
+      for (let k in value.data) {
+        for (let i in value[k]['game_prices']) {
+          value[k]['game_prices'][i]['final'] =
+            value[k]['game_prices'][i]['final'] / 100
+          value[k]['game_prices'][i]['initial'] =
+            value[k]['game_prices'][i]['initial'] / 100
         }
       }
       return value

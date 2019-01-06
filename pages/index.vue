@@ -237,15 +237,9 @@ export default {
         tagReviewTotal,
         news
       ] = await Promise.all([
-        await this.fetchSomething(
-          'https://v3.steamhub.cn/api/v3/game/list'
-        ),
-        await this.fetchSomething(
-          'https://v3.steamhub.cn/api/v3/game/price'
-        ),
-        await this.fetchSomething(
-          'https://v3.steamhub.cn/api/v3/game/review'
-        ),
+        await this.fetchSomething('https://v3.steamhub.cn/api/v3/game/list'),
+        await this.fetchSomething('https://v3.steamhub.cn/api/v3/game/price'),
+        await this.fetchSomething('https://v3.steamhub.cn/api/v3/game/review'),
         await this.fetchSomething(
           'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&math=count'
         ),
