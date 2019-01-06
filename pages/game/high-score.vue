@@ -18,22 +18,28 @@
         >
           <div>
             <h1 class="display-3 text-truncate">
-              {{ high_score.data[0].Name }}
+              <a               
+                :href="`https://store.steampowered.com/app/${high_score[0].appid}`"
+                target="_black"
+                class="white--text"
+              >
+                {{ high_score[0].name }}
+              </a>
             </h1>
             <h2
               class="subheading my-4 hide-2line"
             >
-              {{ high_score.data[0].ShortDescription }}
+              {{ high_score[0].short_description }}
             </h2>
             <h2
               class="subheading hide-2line"
             >
-              {{ parseHTML(high_score.data[0].DetailedDescription) }}
+              {{ parseHTML(high_score[0].detailed_description) }}...
             </h2>
           </div>
           <div class="pt-5">
             <VChip
-              v-if="high_score.data[0].RequiredAge >= 16"
+              v-if="high_score[0].age >= 16"
               dark
               color="transparent"
               class="white--text mx-0"
@@ -43,10 +49,10 @@
                   fas fa-prescription
                 </VIcon>
               </VAvatar>
-              限制级 R{{ high_score.data[0].RequiredAge }}
+              限制级 R{{ high_score[0].age }}
             </VChip>
             <VChip
-              v-for="(platformItem, platformIndex) in splitPlatforms(high_score.data[0].Platforms)"
+              v-for="(platformItem, platformIndex) in splitPlatforms(high_score[0].platforms)"
               :key="platformIndex"
               dark
               color="transparent"
@@ -68,11 +74,16 @@
           </div>
           <div class="pt-2">
             <VBtn
+              :href="`https://store.steampowered.com/app/${high_score[0].appid}`"
               round
               large
               class="mx-0"
+              target="_black"
             >
-              查看游戏 ￥ {{ high_score.data[0].app_price[0].PriceFinal / 100 }}
+              查看游戏 
+              <span v-if="high_score[0].game_prices.length > 0">
+                ￥ {{ high_score[0].game_prices[0].final }}
+              </span>
             </VBtn>
             <VBtn
               round
@@ -95,11 +106,11 @@
             :rotate="-90"
             :size="150"
             :width="15"
-            :value="high_score.data[0].Metacritic"
+            :value="high_score[0].metacritic_review_score"
             color=""
           >
             <h2 class="title">
-              {{ high_score.data[0].Metacritic }}
+              {{ high_score[0].metacritic_review_score }}
               Metacritic
             </h2>
           </VProgressCircular>
@@ -122,7 +133,7 @@
         <VFlex md8>
           <VTimeline>
             <VTimelineItem
-              v-for="(highScoreItem, highScoreIndex) in high_score.data.slice(1)"
+              v-for="(highScoreItem, highScoreIndex) in high_score"
               :key="highScoreIndex"
               hide-dot
               color="grey"
@@ -134,12 +145,12 @@
                 :rotate="-90"
                 :size="150"
                 :width="10"
-                :value="highScoreItem.Metacritic"
+                :value="highScoreItem.metacritic_review_score"
                 color=""
                 class="mt-3"
               >
                 <h2 class="title text-xs-center">
-                  {{ highScoreItem.Metacritic }}
+                  {{ highScoreItem.metacritic_review_score }}
                   Metacritic
                 </h2>
               </VProgressCircular>
@@ -151,18 +162,30 @@
               >
                 <div>
                   <h2 class="title text-truncate">
-                    {{ highScoreItem.Name }} 
+                    <a               
+                      :href="`https://store.steampowered.com/app/${highScoreItem.appid}`"
+                      target="_black"
+                      class="black--text"
+                    >
+                      {{ highScoreItem.name }}
+                    </a>
                   </h2>
                   <VChip 
                     class="mx-0" 
                     small
                   >
-                    <span>
-                      ￥ {{ highScoreItem.app_price[0].PriceFinal / 100 }}  
+                    <span v-if="highScoreItem.game_prices.length > 0">
+                      ￥ {{ highScoreItem.game_prices[0].final }}  
                     </span> 
+                    <span v-else-if="highScoreItem.free === true">
+                      免费游戏
+                    </span>
+                    <span v-else>
+                      价格未知
+                    </span>
                   </VChip>
                   <VChip
-                    v-if="highScoreItem.RequiredAge >= 16"
+                    v-if="highScoreItem.age >= 16"
                     color="transparent"
                     small
                     class="mx-0"
@@ -172,10 +195,10 @@
                         fas fa-prescription
                       </VIcon>
                     </VAvatar>
-                    限制级 R{{ highScoreItem.RequiredAge }}
+                    限制级 R{{ highScoreItem.age }}
                   </VChip>
                   <VChip
-                    v-for="(platformItem, platformIndex) in splitPlatforms(highScoreItem.Platforms)"
+                    v-for="(platformItem, platformIndex) in splitPlatforms(highScoreItem.platforms)"
                     :key="platformIndex"
                     color="transparent"
                     small
@@ -189,16 +212,16 @@
                         fab fa-windows
                       </VIcon>
                       <VIcon
-                        v-else-if="platformItem === 'mac'"
-                        small
-                      >
-                        fab fa-apple
-                      </VIcon>
-                      <VIcon
                         v-else-if="platformItem === 'linux'"
                         small
                       >
                         fab fa-linux
+                      </VIcon>
+                      <VIcon
+                        v-else-if="platformItem === 'mac'"
+                        small
+                      >
+                        fab fa-apple
                       </VIcon>
                     </VAvatar>
                     {{ platformItem }}
@@ -206,7 +229,7 @@
                   <h4
                     class="body-2 hide-4line"
                   >
-                    {{ parseHTML(highScoreItem.ShortDescription) }}
+                    {{ parseHTML(highScoreItem.short_description) }}
                   </h4>
                 </div>
               </VCard>
@@ -232,25 +255,21 @@ export default {
     }
   },
   async mounted() {
-    await this.fetchTrending()
+    let high_score = await this.fetchSomething(
+      'https://v3.steamhub.cn/api/v3/game/list?order=desc&order_field=metacritic_review_score&length=16&simple_paginate=1'
+    )
+    this.high_score = high_score.data
   },
   methods: {
     async fetchSomething(url) {
       return await this.$axios.$get(encodeURI(url))
     },
-    async fetchTrending() {
-      let [high_score] = await Promise.all([
-        await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/lists?type=high-score&param=16'
-        )
-      ])
-      this.high_score = high_score
-    },
     parseHTML: function(val) {
-      return val.replace(/<[^>]+>/g, '')
+      return val.replace(/<[^>]+>/g, '').slice(0, 200)
     },
     splitPlatforms: function(val) {
-      return val.split('|')
+      const split_data = val.split('|')
+      return split_data.slice(0, split_data.length - 1)
     }
   },
   head() {
@@ -260,7 +279,8 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: '来自专业评测机构 Metacritic 的打分,每一分都客观可靠.'
+          content:
+            '来自专业评测机构 metacritic_review_score 的打分,每一分都客观可靠.'
         }
       ]
     }
