@@ -69,7 +69,12 @@
             {{ data.name }}
           </h4>
           <h5 class="caption">
-            {{ data.created_at }}
+            <span v-if="data.updated_at">
+              {{ data.updated_at }}
+            </span>
+            <span v-else>
+              {{ data.created_at }}
+            </span>
           </h5>
         </div>
         <div />
