@@ -133,30 +133,22 @@ export default {
     }
   },
   async mounted() {
-    await this.fetchTrending()
+    let length_param = 'length=8&simple_paginate=1'
+    let api_domain = 'https://v3.steamhub.cn/api/v3/game/list'
+    this.latest = await this.fetchSomething(
+      `${api_domain}?order=desc&order_field=updated_at&length=8&${length_param}`
+    )
+    this.top_review = await this.fetchSomething(
+      `${api_domain}?steam_user_review_score=80,100&order=desc&order_field=steam_user_review_score&${length_param}`
+    )
+    this.popular = await this.fetchSomething(
+      'https://rest.steamhub.cn/api/v2/apps/trending'
+    )
     this.turnChartData(this.top_review.data)
   },
   methods: {
     async fetchSomething(url) {
       return await this.$axios.$get(encodeURI(url))
-    },
-    async fetchTrending() {
-      let length_param = 'length=8&simple_paginate=1'
-      let api_domain = 'https://v3.steamhub.cn/api/v3/game/list'
-      let [popular, latest, top_review] = await Promise.all([
-        await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/trending'
-        ),
-        await this.fetchSomething(
-          `${api_domain}?order=desc&order_field=updated_at&length=8&${length_param}`
-        ),
-        await this.fetchSomething(
-          `${api_domain}?steam_user_review_score=80,100&order=desc&order_field=steam_user_review_score&${length_param}`
-        )
-      ])
-      this.popular = popular
-      this.latest = latest
-      this.top_review = top_review
     },
     turnChartData: function(value) {
       for (let k in value.data) {
