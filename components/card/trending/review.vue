@@ -25,15 +25,14 @@
                 small
                 class="grey lighten-2"
               >
-                <VIcon
+                <v-rating 
+                  v-model="rating"
+                  half-increments
+                  dense
                   small
-                  left
-                >
-                  far fa-smile-beam
-                </VIcon>
+                />
                 <span>
-                  {{ review[0].summary }}
-                  {{ parseFloat(review[0].score) }}/100
+                  {{ review[0].score / 10 }}
                 </span>
               </VChip>
               <span>
@@ -145,6 +144,7 @@ export default {
       }
     }
     return {
+      rating: null,
       appidPrice: false,
       priceMenu: false,
       chartColors: null,
@@ -177,6 +177,7 @@ export default {
         { offset: 1, color: '#ec454f' }
       ])
     ]
+    this.rating = this.review[0].score / 20
   },
   methods: {
     chipPriceHover: function(val, appid) {
@@ -186,6 +187,6 @@ export default {
     chipPriceLeave: function(val, appid) {
       this.$refs[`chart${appid}`].echarts.resize()
     }
-  }
+  },
 }
 </script>
