@@ -31,10 +31,10 @@
               <v-badge>
                 <span slot="badge">V3</span>
                 <span
-                  v-if="gameTotal"
+                  v-if="game"
                   class="headline"
                 >
-                  {{ gameTotal.toLocaleString() }}
+                  {{ game.meta.total.toLocaleString() }}
                 </span>
                 <span v-else>
                   <VProgressCircular
@@ -52,10 +52,10 @@
               <v-badge>
                 <span slot="badge">V3</span>
                 <span
-                  v-if="priceTotal"
+                  v-if="price"
                   class="headline"
                 >
-                  {{ priceTotal.toLocaleString() }}
+                  {{ price.meta.total.toLocaleString() }}
                 </span>
                 <span v-else>
                   <VProgressCircular
@@ -73,10 +73,10 @@
               <v-badge>
                 <span slot="badge">V3</span>
                 <span
-                  v-if="reviewTotal"
+                  v-if="review"
                   class="headline"
                 >
-                  {{ reviewTotal.toLocaleString() }}
+                  {{ review.meta.total.toLocaleString() }}
                 </span>
                 <span v-else>
                   <VProgressCircular
@@ -162,9 +162,9 @@ export default {
   },
   data() {
     return {
-      gameTotal: null,
-      priceTotal: null,
-      reviewTotal: null,
+      game: null,
+      price: null,
+      review: null,
       tagTotal: null,
       tagReviewTotal: null,
       news: null,
@@ -222,40 +222,28 @@ export default {
     }
   },
   async mounted() {
-    await this.fetchTags()
+    this.game = await this.fetchSomething(
+      'https://v3.steamhub.cn/api/v3/game/list'
+    )
+    this.price = await this.fetchSomething(
+      'https://v3.steamhub.cn/api/v3/game/price'
+    )
+    this.review = await this.fetchSomething(
+      'https://v3.steamhub.cn/api/v3/game/review'
+    )
+    this.tagTotal = await this.fetchSomething(
+      'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&math=count'
+    )
+    this.tagReviewTotal = await this.fetchSomething(
+      'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&type=reviews&math=count'
+    )
+    this.news = await this.fetchSomething(
+      'https://rest.steamhub.cn/api/v2/news/lists?size=16'
+    )
   },
   methods: {
     async fetchSomething(url) {
       return await this.$axios.$get(encodeURI(url))
-    },
-    async fetchTags() {
-      let [
-        gameTotal,
-        priceTotal,
-        reviewTotal,
-        tagTotal,
-        tagReviewTotal,
-        news
-      ] = await Promise.all([
-        await this.fetchSomething('https://v3.steamhub.cn/api/v3/game/list'),
-        await this.fetchSomething('https://v3.steamhub.cn/api/v3/game/price'),
-        await this.fetchSomething('https://v3.steamhub.cn/api/v3/game/review'),
-        await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&math=count'
-        ),
-        await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&type=reviews&math=count'
-        ),
-        await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/news/lists?size=16'
-        )
-      ])
-      this.gameTotal = gameTotal.meta.total
-      this.priceTotal = priceTotal.meta.total
-      this.reviewTotal = reviewTotal.meta.total
-      this.tagTotal = tagTotal
-      this.tagReviewTotal = tagReviewTotal
-      this.news = news
     }
   },
   head() {
