@@ -54,8 +54,10 @@
             xl2
             class="px-3 my-5"
           >
-            <latestWithSmallCard
-              :latest.sync="latestItem"
+            <reviewtWithSmallCard
+              :review.sync="latestItem.game_reviews"
+              :price.sync="latestItem.game_prices"
+              :data.sync="latestItem"
             />
           </VFlex>
         </VLayout>
@@ -100,12 +102,10 @@
 
 <script>
 import popularWithSmallCard from '~/components/card/trending/popular'
-import latestWithSmallCard from '~/components/card/trending/latest'
 import reviewtWithSmallCard from '~/components/card/trending/review'
 export default {
   components: {
     popularWithSmallCard,
-    latestWithSmallCard,
     reviewtWithSmallCard
   },
   data() {
@@ -141,15 +141,17 @@ export default {
       return await this.$axios.$get(encodeURI(url))
     },
     async fetchTrending() {
+      let length_param = 'length=8&simple_paginate=1'
+      let api_domain = 'https://v3.steamhub.cn/api/v3/game/list'
       let [popular, latest, top_review] = await Promise.all([
         await this.fetchSomething(
           'https://rest.steamhub.cn/api/v2/apps/trending'
         ),
         await this.fetchSomething(
-          'https://rest.steamhub.cn/api/v2/apps/lists?page=1&param=8'
+          `${api_domain}?order=desc&order_field=updated_at&length=8&${length_param}`
         ),
         await this.fetchSomething(
-          'https://v3.steamhub.cn/api/v3/game/list?steam_user_review_score=80,100&order=desc&order_field=steam_user_review_score'
+          `${api_domain}?steam_user_review_score=80,100&order=desc&order_field=steam_user_review_score&${length_param}`
         )
       ])
       this.popular = popular
@@ -165,7 +167,7 @@ export default {
             value[k]['game_prices'][i]['initial'] / 100
         }
       }
-      return value
+      return value.reverse()
     }
   },
   head() {

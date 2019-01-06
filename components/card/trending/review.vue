@@ -1,6 +1,6 @@
 <template>
   <VCard
-    :href="`https://store.steampowered.com/app/${review[0].appid}`"
+    :href="`https://store.steampowered.com/app/${data.appid}`"
     height="160px"
     class="text-xs-left"
     target="_blank"
@@ -9,7 +9,7 @@
   >
     <div>
       <VImg
-        :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${review[0].appid}/header.jpg`"
+        :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${data.appid}/header.jpg`"
         height="160px"
       >
         <VLayout
@@ -19,26 +19,40 @@
           column
         >
           <div>
-            <VTooltip top>
-              <VChip
-                slot="activator"
-                small
+            <div v-if="review.length > 0">
+              <VTooltip top>
+                <VChip
+                  v-if="rating = review.length > 0 ? review[0].score / 20 : null"
+                  slot="activator"
+                  small
+                  class="grey lighten-2"
+                >
+                  <v-rating 
+                    v-model="rating"
+                    half-increments
+                    dense
+                    small
+                  />
+                  <span>
+                    {{ review[0].score / 10 }}
+                  </span>
+                </VChip>
+                <span>
+                  {{ review[0].count }} 篇评测中 {{ review[0].score }}% 的用户推荐
+                </span>
+              </VTooltip>
+            </div>
+            <div v-else>
+              <v-chip 
+                small 
                 class="grey lighten-2"
               >
-                <v-rating 
-                  v-model="rating"
-                  half-increments
-                  dense
-                  small
-                />
-                <span>
-                  {{ review[0].score / 10 }}
-                </span>
-              </VChip>
-              <span>
-                {{ review[0].count }} 篇评测中 {{ review[0].score }}% 的用户推荐
-              </span>
-            </VTooltip>
+                <v-icon left>
+                  far fa-question-circle
+                </v-icon>
+                暂无评分
+              </v-chip>
+            </div>
           </div>
         </VLayout>
       </VImg>
@@ -55,7 +69,7 @@
             {{ data.name }}
           </h4>
           <h5 class="caption">
-            {{ review[0].created_at }}
+            {{ data.created_at }}
           </h5>
         </div>
         <div />
@@ -95,7 +109,7 @@
                 SteamHub API 已被重写,旧价格数据不再显示
               </v-alert>
               <VeLine
-                :ref="`chart${review[0].appid}`"
+                :ref="`chart${data.appid}`"
                 :colors="chartColors"
                 :legend-visible="false"
                 :extend="chartExtend"
@@ -177,7 +191,6 @@ export default {
         { offset: 1, color: '#ec454f' }
       ])
     ]
-    this.rating = this.review[0].score / 20
   },
   methods: {
     chipPriceHover: function(val, appid) {
@@ -187,6 +200,6 @@ export default {
     chipPriceLeave: function(val, appid) {
       this.$refs[`chart${appid}`].echarts.resize()
     }
-  },
+  }
 }
 </script>
