@@ -139,7 +139,7 @@ export default {
       `${api_domain}?order=desc&order_field=updated_at&length=8&${length_param}`
     )
     this.top_review = await this.fetchSomething(
-      `${api_domain}?steam_user_review_score=80,100&order=desc&order_field=steam_user_review_score&${length_param}`
+      `${api_domain}?steam_user_review_score=80,100&order=desc&order_field=updated_at&${length_param}`
     )
     this.popular = await this.fetchSomething(
       'https://rest.steamhub.cn/api/v2/apps/trending'
