@@ -31,11 +31,6 @@
             >
               {{ high_score[0].short_description }}
             </h2>
-            <h2
-              class="subheading hide-2line"
-            >
-              {{ parseHTML(high_score[0].detailed_description) }}...
-            </h2>
           </div>
           <div class="pt-5">
             <VChip
@@ -133,7 +128,7 @@
         <VFlex md8>
           <VTimeline>
             <VTimelineItem
-              v-for="(highScoreItem, highScoreIndex) in high_score"
+              v-for="(highScoreItem, highScoreIndex) in high_score.slice(1)"
               :key="highScoreIndex"
               hide-dot
               color="grey"
