@@ -186,7 +186,7 @@ export default {
           }
         },
         yAxis: {
-          scale: true,
+          scale: true
         },
         xAxis: {
           inverse: true

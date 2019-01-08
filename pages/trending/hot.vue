@@ -28,10 +28,10 @@
         v-if="loading === false && popular.data.length <= 100" 
         class="mt-5">
         <v-btn 
+          :color="'red--text'" 
           round 
-          large 
-          @click="load_more(page)"
-          :color="'red--text'">
+          large
+          @click="load_more(page)">
           加载更多
           <v-icon right>
             fas fa-level-down-alt

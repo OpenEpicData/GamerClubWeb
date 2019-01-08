@@ -31,10 +31,10 @@
         v-if="loading === false && review.data.length <= 100" 
         class="mt-5">
         <v-btn 
+          :color="'purple--text'" 
           round 
-          large 
-          @click="load_more(page)"
-          :color="'purple--text'">
+          large
+          @click="load_more(page)">
           加载更多
           <v-icon right>
             fas fa-level-down-alt
