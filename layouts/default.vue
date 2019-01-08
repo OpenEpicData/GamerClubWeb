@@ -130,6 +130,9 @@ export default {
 .blue-gradient {
   background: linear-gradient(180deg, #21c8f6, #637bff);
 }
+.card-blue-gradient {
+  background: linear-gradient(90deg, #5FBBFE, #208BD8);
+}
 .red-gradient {
   background: linear-gradient(180deg, #f44881, #ec454f);
 }

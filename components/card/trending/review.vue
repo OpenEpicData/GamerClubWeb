@@ -29,6 +29,8 @@
                 >
                   <v-rating 
                     v-model="rating"
+                    :color="color"
+                    :background-color="color"
                     half-increments
                     dense
                     small
@@ -120,6 +122,7 @@
                 :extend="chartExtend"
                 :settings="chartSettings"
                 :data="chartData"
+                :mark-point="markPoint"
               />
             </VCard>
           </VMenu>
@@ -155,6 +158,11 @@ export default {
       type: null,
       default: null,
       required: true
+    },
+    color: {
+      type: null,
+      default: null,
+      required: true
     }
   },
   data() {
@@ -162,6 +170,14 @@ export default {
       labelMap: {
         final: '价格'
       }
+    }
+    this.markPoint = {
+      data: [
+        {
+          name: '最小值',
+          type: 'min'
+        }
+      ]
     }
     return {
       rating: null,
@@ -175,9 +191,14 @@ export default {
       chartExtend: {
         series: {
           type: 'line',
-          smooth: false,
+          smooth: true,
           lineStyle: {
-            width: 5
+            width: 7,
+            shadowColor: 'rgba(0, 0, 0, 0.2)',
+            shadowBlur: 3,
+            shadowOffsetY: 5,
+            shadowOffsetX: 5,
+            borderRadius: 50
           }
         },
         yAxis: {
@@ -192,8 +213,9 @@ export default {
   mounted() {
     this.chartColors = [
       new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#f44881' },
-        { offset: 1, color: '#ec454f' }
+        { offset: 0, color: '#2196F3' },
+        { offset: 0.5, color: '#2196F3' },
+        { offset: 1, color: '#2196F3' }
       ])
     ]
     if (this.price.length > 0) {

@@ -70,9 +70,22 @@
               :review.sync="latestItem.game_reviews"
               :price.sync="latestItem.game_prices"
               :data.sync="latestItem"
+              :color="'blue'"
             />
           </VFlex>
         </VLayout>
+        <div class="mt-3">
+          <v-btn 
+            round 
+            large 
+            color="blue--text" 
+            to="/trending/hot">
+            浏览最近更新游戏
+            <v-icon right>
+              fas fa-file-medical-alt
+            </v-icon>
+          </v-btn>
+        </div>
       </div>
 
       <div v-else-if="top_review && item.type === 'top_review'">
@@ -97,9 +110,22 @@
               :review.sync="reviewItem.game_reviews"
               :price.sync="reviewItem.game_prices"
               :data.sync="reviewItem"
+              :color="'purple'"
             />
           </VFlex>
         </VLayout>
+        <div class="mt-3">
+          <v-btn 
+            round 
+            large 
+            color="purple--text" 
+            to="/trending/hot">
+            浏览全部好评游戏
+            <v-icon right>
+              far fa-thumbs-up
+            </v-icon>
+          </v-btn>
+        </div>
       </div>
 
       <div v-else>

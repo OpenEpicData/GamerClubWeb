@@ -27,6 +27,8 @@
                 >
                   <v-rating 
                     v-model="rating"
+                    color="red"
+                    background-color="red"
                     half-increments
                     dense
                     small
@@ -116,6 +118,7 @@
                 :extend="chartExtend"
                 :settings="chartSettings"
                 :data="chartData"
+                :mark-point="markPoint"
               />
             </VCard>
           </VMenu>
@@ -149,6 +152,18 @@ export default {
         final: '价格'
       }
     }
+    this.markPoint = {
+      data: [
+        {
+          name: '最小值',
+          type: 'min'
+        }
+      ]
+    }
+    this.grid = {
+      show: true,
+      borderWidth: 0
+    }
     return {
       rating: null,
       priceMenu: false,
@@ -162,11 +177,16 @@ export default {
           type: 'line',
           smooth: true,
           lineStyle: {
-            width: 5
+            width: 7,
+            shadowColor: 'rgba(0, 0, 0, 0.2)',
+            shadowBlur: 3,
+            shadowOffsetY: 5,
+            shadowOffsetX: 5,
+            borderRadius: 50
           }
         },
         yAxis: {
-          scale: true
+          scale: true,
         },
         xAxis: {
           inverse: true
@@ -177,8 +197,9 @@ export default {
   mounted() {
     this.chartColors = [
       new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#f44881' },
-        { offset: 1, color: '#ec454f' }
+        { offset: 0, color: '#2196F3' },
+        { offset: 0.5, color: '#2196F3' },
+        { offset: 1, color: '#2196F3' }
       ])
     ]
     if (this.popular.game_prices.length > 0) {
