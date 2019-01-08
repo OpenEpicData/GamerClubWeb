@@ -20,7 +20,7 @@
           wrap
         >
           <VFlex
-            v-for="(popularItem,popularIndex) in popular.slice(0, 4)"
+            v-for="(popularItem,popularIndex) in popular.data.slice(0, 4)"
             :key="popularIndex"
             xs12
             sm6
@@ -134,15 +134,15 @@ export default {
   },
   async mounted() {
     let length_param = 'length=8&simple_paginate=1'
-    let api_domain = 'https://v3.steamhub.cn/api/v3/game/list'
+    let api_domain = 'https://v3.steamhub.cn/api/v3/game/'
     this.latest = await this.fetchSomething(
-      `${api_domain}?order=desc&order_field=updated_at&length=8&${length_param}`
+      `${api_domain}list?order=desc&order_field=updated_at&${length_param}`
     )
     this.top_review = await this.fetchSomething(
-      `${api_domain}?steam_user_review_score=80,100&order=desc&order_field=updated_at&${length_param}`
+      `${api_domain}list?steam_user_review_score=80,100&order=desc&order_field=updated_at&${length_param}`
     )
     this.popular = await this.fetchSomething(
-      'https://rest.steamhub.cn/api/v2/apps/trending'
+      `${api_domain}hot?order=desc&order_field=created_at&${length_param}`
     )
   },
   methods: {
