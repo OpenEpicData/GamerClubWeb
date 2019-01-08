@@ -34,9 +34,9 @@ export default {
         fixed: true,
         dark: true,
         item: [
-          { title: '趋势', link: '/game/trending' },
-          { title: '高分', link: '/game/high-score' },
-          { title: '浏览', link: '/game/' }
+          { title: '流行趋势', link: '/game/trending' },
+          { title: '媒体高分', link: '/game/high-score' },
+          { title: '浏览游戏', link: '/game/' }
         ]
       }
     }

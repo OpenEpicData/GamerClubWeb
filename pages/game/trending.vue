@@ -79,7 +79,7 @@
             round 
             large 
             color="blue--text" 
-            to="/trending/hot">
+            to="/trending/latest">
             浏览最近更新游戏
             <v-icon right>
               fas fa-file-medical-alt
@@ -119,7 +119,7 @@
             round 
             large 
             color="purple--text" 
-            to="/trending/hot">
+            to="/trending/review">
             浏览全部好评游戏
             <v-icon right>
               far fa-thumbs-up

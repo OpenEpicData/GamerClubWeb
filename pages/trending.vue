@@ -35,7 +35,9 @@ export default {
         dark: true,
         item: [
           { title: '热门游戏', link: '/trending/hot' },
-          { title: '趋势', link: '/game/trending' }
+          { title: '玩家高分', link: '/trending/review' },
+          { title: '最近更新', link: '/trending/latest' },
+          { title: '流行趋势', link: '/game/trending' }
         ]
       }
     }

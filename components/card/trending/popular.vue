@@ -28,7 +28,7 @@
                   <v-rating 
                     v-model="rating"
                     color="red"
-                    background-color="red"
+                    background-color="transparent"
                     half-increments
                     dense
                     small

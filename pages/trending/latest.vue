@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div v-if="popular">
+    <div v-if="review">
       <VLayout
-        v-for="k in popular.data.length / 4"
+        v-for="k in review.data.length / 4"
         :key="k"
         align-start
         justify-center
@@ -10,28 +10,31 @@
         wrap
       >
         <VFlex
-          v-for="(popularItem,popularIndex) in popular.data.slice((k-1)*4,(k) * 4)"
-          :key="popularIndex"
+          v-for="(reviewItem,reviewIndex) in review.data.slice((k-1)*4,(k) * 4)"
+          :key="reviewIndex"
           xs12
           sm6
           md3
           xl2
           class="px-3 my-5"
         >
-          <popularWithSmallCard
-            v-if="popularItem"
-            :popular.sync="popularItem"
+          <reviewWithSmallCard
+            v-if="reviewItem"
+            :review.sync="reviewItem.game_reviews"
+            :price.sync="reviewItem.game_prices"
+            :data.sync="reviewItem"
+            :color="'blue'"
           />
         </VFlex>
       </VLayout>
       <div 
-        v-if="loading === false && popular.data.length <= 100" 
+        v-if="loading === false && review.data.length <= 100" 
         class="mt-5">
         <v-btn 
           round 
           large 
           @click="load_more(page)"
-          :color="'red--text'">
+          :color="'blue--text'">
           加载更多
           <v-icon right>
             fas fa-level-down-alt
@@ -46,16 +49,16 @@
 </template>
 
 <script>
-import popularWithSmallCard from '~/components/card/trending/popular'
+import reviewWithSmallCard from '~/components/card/trending/review'
 import loading from '~/components/loading'
 export default {
   components: {
     loading,
-    popularWithSmallCard
+    reviewWithSmallCard
   },
   data() {
     return {
-      popular: null,
+      review: null,
       page: 1,
       loading: true
     }
@@ -63,8 +66,8 @@ export default {
   async mounted() {
     let length_param = 'length=16&simple_paginate=1'
     let api_domain = 'https://v3.steamhub.cn/api/v3/game/'
-    this.popular = await this.fetchSomething(
-      `${api_domain}hot?order=desc&order_field=created_at&${length_param}`
+    this.review = await this.fetchSomething(
+      `${api_domain}list?order=desc&order_field=updated_at&${length_param}`
     )
     this.loading = false
   },
@@ -75,23 +78,23 @@ export default {
     async load_more(page) {
       this.loading = true
       this.page++
-      let fecth_popular = await this.fetchSomething(
-        `https://v3.steamhub.cn/api/v3/game/hot?order=desc&order_field=created_at&length=16&simple_paginate=1&page=${
+      let fecth_review = await this.fetchSomething(
+        `https://v3.steamhub.cn/api/v3/game/list?order=desc&order_field=updated_at&length=16&simple_paginate=1&page=${
           this.page
         }`
       )
-      this.popular.data.push(...fecth_popular.data)
+      this.review.data.push(...fecth_review.data)
       this.loading = false
     }
   },
   head() {
     return {
-      title: '高分游戏 -- SteamHub',
+      title: '最近更新 -- SteamHub',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: '在 SteamHub 上查看每一位真实玩家选出的高分游戏'
+          content: '在 SteamHub 上查看我们最近更新的游戏数据列表'
         }
       ]
     }

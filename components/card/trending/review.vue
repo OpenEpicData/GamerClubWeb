@@ -30,7 +30,7 @@
                   <v-rating 
                     v-model="rating"
                     :color="color"
-                    :background-color="color"
+                    background-color="transparent"
                     half-increments
                     dense
                     small
