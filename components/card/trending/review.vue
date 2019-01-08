@@ -174,7 +174,6 @@ export default {
       },
       chartExtend: {
         series: {
-          step: 'end',
           type: 'line',
           smooth: false,
           lineStyle: {

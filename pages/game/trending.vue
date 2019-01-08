@@ -34,6 +34,18 @@
             />
           </VFlex>
         </VLayout>
+        <div class="mt-3">
+          <v-btn 
+            round 
+            large 
+            color="red--text" 
+            to="/trending/hot">
+            浏览全部热门游戏
+            <v-icon right>
+              fab fa-hotjar
+            </v-icon>
+          </v-btn>
+        </div>
       </div>
 
       <div v-else-if="latest && item.type === 'latest'">

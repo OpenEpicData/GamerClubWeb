@@ -159,9 +159,8 @@ export default {
       },
       chartExtend: {
         series: {
-          step: 'end',
           type: 'line',
-          smooth: false,
+          smooth: true,
           lineStyle: {
             width: 5
           }
