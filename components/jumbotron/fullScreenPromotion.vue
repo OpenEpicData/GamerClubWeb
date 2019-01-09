@@ -1,16 +1,16 @@
 <template>
-  <VLayout
+  <v-layout
     align-center
     justify-center
     class="white--text"
   >
-    <VImg
+    <v-img
       :aspect-ratio="16/9"
       src="https://i.loli.net/2018/11/15/5bed603019f22.png"
       height="100vh"
       gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
     >
-      <VLayout
+      <v-layout
         align-space-between
         justify-space-between
         fill-height
@@ -32,15 +32,15 @@
             </span>
           </h2>
           <div>
-            <VBtn
+            <v-btn
               round
               large
               color="primary"
               to="/game/trending"
             >
               查看趋势
-            </VBtn>
-            <VBtn
+            </v-btn>
+            <v-btn
               round
               large
               outline
@@ -48,18 +48,18 @@
               to="/game/"
             >
               浏览游戏
-            </VBtn>
+            </v-btn>
           </div>
         </div>
         <div>
-          <VIcon
-            x-large 
+          <v-icon
+            x-large
             dark
           >
             fas fa-angle-double-down faa-bounce animated
-          </VIcon>
+          </v-icon>
         </div>
-      </VLayout>
-    </VImg>
-  </VLayout>
+      </v-layout>
+    </v-img>
+  </v-layout>
 </template>

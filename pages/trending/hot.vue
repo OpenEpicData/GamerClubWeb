@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="popular">
-      <VLayout
+      <v-layout
         v-for="k in popular.data.length / 4"
         :key="k"
         align-start
@@ -9,7 +9,7 @@
         row
         wrap
       >
-        <VFlex
+        <v-flex
           v-for="(popularItem,popularIndex) in popular.data.slice((k-1)*4,(k) * 4)"
           :key="popularIndex"
           xs12
@@ -22,16 +22,18 @@
             v-if="popularItem"
             :popular.sync="popularItem"
           />
-        </VFlex>
-      </VLayout>
-      <div 
-        v-if="loading === false && popular.data.length <= 100" 
-        class="mt-5">
-        <v-btn 
-          :color="'red--text'" 
-          round 
+        </v-flex>
+      </v-layout>
+      <div
+        v-if="loading === false && popular.data.length <= 100"
+        class="mt-5"
+      >
+        <v-btn
+          :color="'red--text'"
+          round
           large
-          @click="load_more(page)">
+          @click="load_more(page)"
+        >
           加载更多
           <v-icon right>
             fas fa-level-down-alt
@@ -40,7 +42,7 @@
       </div>
     </div>
     <div v-if="loading === true">
-      <loading class="primary--text"/>
+      <loading class="primary--text" />
     </div>
   </div>
 </template>

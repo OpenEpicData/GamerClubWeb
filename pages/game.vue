@@ -4,15 +4,15 @@
       class="grey-gradient"
       style="height:20vh"
     />
-    <tabDefault 
+    <tabDefault
       :tab="tab"
     />
-    <VContainer
+    <v-container
       fluid
       class="text-xs-center"
     >
       <nuxt-child />
-    </VContainer>
+    </v-container>
   </div>
 </template>
 

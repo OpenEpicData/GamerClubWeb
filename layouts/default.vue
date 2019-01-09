@@ -1,16 +1,16 @@
 <template>
-  <VApp>
-    <VToolbar
+  <v-app>
+    <v-toolbar
       flat
       absolute
       color="transparent"
       dark
     >
-      <VToolbarTitle>
+      <v-toolbar-title>
         <nuxt-link to="/">
           <logo />
         </nuxt-link>
-      </VToolbarTitle>
+      </v-toolbar-title>
       <v-alert
         :value="true"
         color="white"
@@ -19,23 +19,23 @@
       >
         我们正在迁移数据至 API V3,页面展示数据可能与实际不同
       </v-alert>
-      <VSpacer />
+      <v-spacer />
       <div class="hidden-sm-and-down">
-        <VBtn flat>
+        <v-btn flat>
           注册
-        </VBtn>
-        <VBtn
+        </v-btn>
+        <v-btn
           flat
           outline
           round
         >
           立即开始
-        </VBtn>
+        </v-btn>
       </div>
-    </VToolbar>
-    <VContent>
+    </v-toolbar>
+    <v-content>
       <nuxt />
-    </VContent>
+    </v-content>
     <div
       class="white--text mt-5 pt-5 text-xs-center"
       style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad)"
@@ -51,13 +51,13 @@
         </h6>
       </div>
       <div class="py-5">
-        <VLayout
+        <v-layout
           align-center
           justify-center
           fill-height
         >
           <div>
-            <VTextField
+            <v-text-field
               label="您的邮件地址"
               append-icon="email"
               type="email"
@@ -66,19 +66,19 @@
               background-color="transparent"
               dark
             >
-              <VBtn
+              <v-btn
                 slot="append-outer"
                 round
                 style="top: -12px"
               >
                 或使用 Steam 登录
-              </VBtn>
-            </VTextField>
+              </v-btn>
+            </v-text-field>
           </div>
-        </VLayout>
+        </v-layout>
       </div>
     </div>
-  </VApp>
+  </v-app>
 </template>
 
 <script>
@@ -92,7 +92,6 @@ export default {
   }
 }
 </script>
-
 
 <style>
 .hide-2line {

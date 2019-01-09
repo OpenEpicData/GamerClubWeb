@@ -1,14 +1,14 @@
 <template>
   <div v-if="high_score">
     <div class="red-gradient white--text py-5">
-      <VLayout
+      <v-layout
         justify-center
         align-center
         fill-height
         row
         wrap
       >
-        <VFlex
+        <v-flex
           xs12
           md8
           lg6
@@ -18,7 +18,7 @@
         >
           <div>
             <h1 class="display-3 text-truncate">
-              <a               
+              <a
                 :href="`https://store.steampowered.com/app/${high_score[0].appid}`"
                 target="_black"
                 class="white--text"
@@ -33,54 +33,54 @@
             </h2>
           </div>
           <div class="pt-5">
-            <VChip
+            <v-chip
               v-if="high_score[0].age >= 16"
               dark
               color="transparent"
               class="white--text mx-0"
             >
-              <VAvatar>
-                <VIcon>
+              <v-avatar>
+                <v-icon>
                   fas fa-prescription
-                </VIcon>
-              </VAvatar>
+                </v-icon>
+              </v-avatar>
               限制级 R{{ high_score[0].age }}
-            </VChip>
-            <VChip
+            </v-chip>
+            <v-chip
               v-for="(platformItem, platformIndex) in splitPlatforms(high_score[0].platforms)"
               :key="platformIndex"
               dark
               color="transparent"
               class="white--text mx-0"
             >
-              <VAvatar>
-                <VIcon v-if="platformItem === 'windows'">
+              <v-avatar>
+                <v-icon v-if="platformItem === 'windows'">
                   fab fa-windows
-                </VIcon>
-                <VIcon v-if="platformItem === 'mac'">
+                </v-icon>
+                <v-icon v-if="platformItem === 'mac'">
                   fab fa-apple
-                </VIcon>
-                <VIcon v-if="platformItem === 'linux'">
+                </v-icon>
+                <v-icon v-if="platformItem === 'linux'">
                   fab fa-linux
-                </VIcon>
-              </VAvatar>
+                </v-icon>
+              </v-avatar>
               {{ platformItem }}
-            </VChip>
+            </v-chip>
           </div>
           <div class="pt-2">
-            <VBtn
+            <v-btn
               :href="`https://store.steampowered.com/app/${high_score[0].appid}`"
               round
               large
               class="mx-0"
               target="_black"
             >
-              查看游戏 
+              查看游戏
               <span v-if="high_score[0].game_prices.length > 0">
                 ￥ {{ high_score[0].game_prices[0].final }}
               </span>
-            </VBtn>
-            <VBtn
+            </v-btn>
+            <v-btn
               round
               large
               outline
@@ -88,16 +88,16 @@
               disabled
             >
               关注
-            </VBtn>
+            </v-btn>
           </div>
-        </VFlex>
-        <VFlex
+        </v-flex>
+        <v-flex
           xs12
           sm6
           md4
           class="pt-5 mt-4"
         >
-          <VProgressCircular
+          <v-progress-circular
             :rotate="-90"
             :size="150"
             :width="15"
@@ -108,26 +108,26 @@
               {{ high_score[0].metacritic_review_score }}
               Metacritic
             </h2>
-          </VProgressCircular>
+          </v-progress-circular>
           <div class="mt-3">
             <h4 class="body-2 font-weight-regular">
               Metacritic 是一个权威评测机构,<br>提供媒体评测与用户打分
             </h4>
           </div>
-        </VFlex>
-      </VLayout>
+        </v-flex>
+      </v-layout>
     </div>
     <div>
-      <VLayout
+      <v-layout
         align-center
         justify-center
         fill-height
         row
         wrap
       >
-        <VFlex md8>
-          <VTimeline>
-            <VTimelineItem
+        <v-flex md8>
+          <v-timeline>
+            <v-timeline-item
               v-for="(highScoreItem, highScoreIndex) in high_score.slice(1)"
               :key="highScoreIndex"
               hide-dot
@@ -135,7 +135,7 @@
               large
               class="my-4"
             >
-              <VProgressCircular
+              <v-progress-circular
                 slot="opposite"
                 :rotate="-90"
                 :size="150"
@@ -148,8 +148,8 @@
                   {{ highScoreItem.metacritic_review_score }}
                   Metacritic
                 </h2>
-              </VProgressCircular>
-              <VCard
+              </v-progress-circular>
+              <v-card
                 flat
                 color="transparent"
                 small
@@ -157,7 +157,7 @@
               >
                 <div>
                   <h2 class="title text-truncate">
-                    <a               
+                    <a
                       :href="`https://store.steampowered.com/app/${highScoreItem.appid}`"
                       target="_black"
                       class="black--text"
@@ -165,77 +165,77 @@
                       {{ highScoreItem.name }}
                     </a>
                   </h2>
-                  <VChip 
-                    class="mx-0" 
+                  <v-chip
+                    class="mx-0"
                     small
                   >
                     <span v-if="highScoreItem.game_prices.length > 0">
-                      ￥ {{ highScoreItem.game_prices[0].final }}  
-                    </span> 
+                      ￥ {{ highScoreItem.game_prices[0].final }}
+                    </span>
                     <span v-else-if="highScoreItem.free === true">
                       免费游戏
                     </span>
                     <span v-else>
                       价格未知
                     </span>
-                  </VChip>
-                  <VChip
+                  </v-chip>
+                  <v-chip
                     v-if="highScoreItem.age >= 16"
                     color="transparent"
                     small
                     class="mx-0"
                   >
-                    <VAvatar>
-                      <VIcon small>
+                    <v-avatar>
+                      <v-icon small>
                         fas fa-prescription
-                      </VIcon>
-                    </VAvatar>
+                      </v-icon>
+                    </v-avatar>
                     限制级 R{{ highScoreItem.age }}
-                  </VChip>
-                  <VChip
+                  </v-chip>
+                  <v-chip
                     v-for="(platformItem, platformIndex) in splitPlatforms(highScoreItem.platforms)"
                     :key="platformIndex"
                     color="transparent"
                     small
                     class="mx-0"
                   >
-                    <VAvatar>
-                      <VIcon
+                    <v-avatar>
+                      <v-icon
                         v-if="platformItem === 'windows'"
                         small
                       >
                         fab fa-windows
-                      </VIcon>
-                      <VIcon
+                      </v-icon>
+                      <v-icon
                         v-else-if="platformItem === 'linux'"
                         small
                       >
                         fab fa-linux
-                      </VIcon>
-                      <VIcon
+                      </v-icon>
+                      <v-icon
                         v-else-if="platformItem === 'mac'"
                         small
                       >
                         fab fa-apple
-                      </VIcon>
-                    </VAvatar>
+                      </v-icon>
+                    </v-avatar>
                     {{ platformItem }}
-                  </VChip>
+                  </v-chip>
                   <h4
                     class="body-2 hide-4line"
                   >
                     {{ parseHTML(highScoreItem.short_description) }}
                   </h4>
                 </div>
-              </VCard>
-            </VTimelineItem>
-          </VTimeline>
-        </VFlex>
-      </VLayout>
+              </v-card>
+            </v-timeline-item>
+          </v-timeline>
+        </v-flex>
+      </v-layout>
     </div>
   </div>
   <div v-else>
-    <VProgressCircular
+    <v-progress-circular
       indeterminate
       color="primary"
     />

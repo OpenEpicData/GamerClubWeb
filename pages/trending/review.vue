@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="review">
-      <VLayout
+      <v-layout
         v-for="k in review.data.length / 4"
         :key="k"
         align-start
@@ -9,7 +9,7 @@
         row
         wrap
       >
-        <VFlex
+        <v-flex
           v-for="(reviewItem,reviewIndex) in review.data.slice((k-1)*4,(k) * 4)"
           :key="reviewIndex"
           xs12
@@ -25,16 +25,18 @@
             :data.sync="reviewItem"
             :color="'purple'"
           />
-        </VFlex>
-      </VLayout>
-      <div 
-        v-if="loading === false && review.data.length <= 100" 
-        class="mt-5">
-        <v-btn 
-          :color="'purple--text'" 
-          round 
+        </v-flex>
+      </v-layout>
+      <div
+        v-if="loading === false && review.data.length <= 100"
+        class="mt-5"
+      >
+        <v-btn
+          :color="'purple--text'"
+          round
           large
-          @click="load_more(page)">
+          @click="load_more(page)"
+        >
           加载更多
           <v-icon right>
             fas fa-level-down-alt
@@ -43,7 +45,7 @@
       </div>
     </div>
     <div v-if="loading === true">
-      <loading class="primary--text"/>
+      <loading class="primary--text" />
     </div>
   </div>
 </template>

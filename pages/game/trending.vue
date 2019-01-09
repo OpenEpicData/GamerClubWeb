@@ -13,13 +13,13 @@
       </h2>
 
       <div v-if="popular && item.type === 'popular'">
-        <VLayout
+        <v-layout
           align-start
           justify-center
           row
           wrap
         >
-          <VFlex
+          <v-flex
             v-for="(popularItem,popularIndex) in popular.data.slice(0, 4)"
             :key="popularIndex"
             xs12
@@ -32,14 +32,15 @@
               v-if="popularItem"
               :popular.sync="popularItem"
             />
-          </VFlex>
-        </VLayout>
+          </v-flex>
+        </v-layout>
         <div class="mt-3">
-          <v-btn 
-            round 
-            large 
-            color="red--text" 
-            to="/trending/hot">
+          <v-btn
+            round
+            large
+            color="red--text"
+            to="/trending/hot"
+          >
             浏览全部热门游戏
             <v-icon right>
               fab fa-hotjar
@@ -49,7 +50,7 @@
       </div>
 
       <div v-else-if="latest && item.type === 'latest'">
-        <VLayout
+        <v-layout
           v-for="k in 2"
           :key="k"
           align-start
@@ -57,7 +58,7 @@
           row
           wrap
         >
-          <VFlex
+          <v-flex
             v-for="(latestItem,latestIndex) in latest.data.slice((k-1)*4,(k) * 4)"
             :key="latestIndex"
             xs12
@@ -72,14 +73,15 @@
               :data.sync="latestItem"
               :color="'blue'"
             />
-          </VFlex>
-        </VLayout>
+          </v-flex>
+        </v-layout>
         <div class="mt-3">
-          <v-btn 
-            round 
-            large 
-            color="blue--text" 
-            to="/trending/latest">
+          <v-btn
+            round
+            large
+            color="blue--text"
+            to="/trending/latest"
+          >
             浏览最近更新游戏
             <v-icon right>
               fas fa-file-medical-alt
@@ -89,7 +91,7 @@
       </div>
 
       <div v-else-if="top_review && item.type === 'top_review'">
-        <VLayout
+        <v-layout
           v-for="k in 2"
           :key="k"
           align-start
@@ -97,7 +99,7 @@
           row
           wrap
         >
-          <VFlex
+          <v-flex
             v-for="(reviewItem, reviewIndex) in top_review.data.slice((k-1)*4,(k) * 4)"
             :key="reviewIndex"
             xs12
@@ -112,14 +114,15 @@
               :data.sync="reviewItem"
               :color="'purple'"
             />
-          </VFlex>
-        </VLayout>
+          </v-flex>
+        </v-layout>
         <div class="mt-3">
-          <v-btn 
-            round 
-            large 
-            color="purple--text" 
-            to="/trending/review">
+          <v-btn
+            round
+            large
+            color="purple--text"
+            to="/trending/review"
+          >
             浏览全部好评游戏
             <v-icon right>
               far fa-thumbs-up
@@ -129,7 +132,7 @@
       </div>
 
       <div v-else>
-        <VProgressCircular
+        <v-progress-circular
           indeterminate
           color="primary"
         />

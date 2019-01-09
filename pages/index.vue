@@ -1,5 +1,5 @@
 <template>
-  <VContainer
+  <v-container
     fluid
     class="text-xs-center"
   >
@@ -10,14 +10,14 @@
       </h4>
     </div>
     <div>
-      <VLayout
+      <v-layout
         wrap
         row
         justify-center
         fill-height
         class="mt-5"
       >
-        <VFlex
+        <v-flex
           v-for="i in 3"
           :key="i"
           xs4
@@ -37,7 +37,7 @@
                   {{ game.meta.total.toLocaleString() }}
                 </span>
                 <span v-else>
-                  <VProgressCircular
+                  <v-progress-circular
                     indeterminate
                     color="primary"
                   />
@@ -58,7 +58,7 @@
                   {{ price.meta.total.toLocaleString() }}
                 </span>
                 <span v-else>
-                  <VProgressCircular
+                  <v-progress-circular
                     indeterminate
                     color="primary"
                   />
@@ -79,7 +79,7 @@
                   {{ review.meta.total.toLocaleString() }}
                 </span>
                 <span v-else>
-                  <VProgressCircular
+                  <v-progress-circular
                     indeterminate
                     color="primary"
                   />
@@ -91,16 +91,16 @@
               </span>
             </h5>
           </div>
-        </VFlex>
-      </VLayout>
-      <VLayout
+        </v-flex>
+      </v-layout>
+      <v-layout
         align-start
         justify-center
         row
         wrap
         class="mt-5"
       >
-        <VFlex
+        <v-flex
           v-for="(item,i) in tagWithSmall"
           :key="i"
           xs6
@@ -113,17 +113,17 @@
             :tag-total.sync="tagTotal"
             :tag-review-total.sync="tagReviewTotal"
           />
-        </VFlex>
-      </VLayout>
+        </v-flex>
+      </v-layout>
       <div class="mt-3">
-        <VBtn
+        <v-btn
           outline
           large
           round
           to="/game/"
         >
           浏览所有游戏
-        </VBtn>
+        </v-btn>
       </div>
       <div class="mt-5">
         <h4 class="display-1">
@@ -133,19 +133,19 @@
           SteamHub 的内容并不匮乏,浏览大多数报道，发现您喜爱的拓展知识。
         </h6>
       </div>
-      
+
       <div class="my-5">
         <swiperWitchLargeCard
           v-if="news"
           :news.sync="news.data"
         />
-        <loading 
+        <loading
           v-else
-          class="primary--text" 
+          class="primary--text"
         />
       </div>
     </div>
-  </VContainer>
+  </v-container>
 </template>
 
 <script>

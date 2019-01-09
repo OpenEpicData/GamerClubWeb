@@ -1,16 +1,16 @@
 <template>
-  <VCard
+  <v-card
     :href="`https://store.steampowered.com/app/${popular.appid}`"
     height="160px"
     class="text-xs-left"
     target="_blank"
   >
     <div>
-      <VImg
+      <v-img
         :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${popular.appid}/header.jpg`"
         height="160px"
       >
-        <VLayout
+        <v-layout
           align-start
           justify-start
           column
@@ -18,14 +18,14 @@
         >
           <div>
             <div v-if="popular.game_reviews.length > 0">
-              <VTooltip top>
-                <VChip
+              <v-tooltip top>
+                <v-chip
                   v-if="rating = popular.game_reviews.length > 0 ? popular.game_reviews[0].score / 20 : null"
                   slot="activator"
                   small
                   class="grey lighten-2"
                 >
-                  <v-rating 
+                  <v-rating
                     v-model="rating"
                     color="red"
                     background-color="transparent"
@@ -36,15 +36,15 @@
                   <span>
                     {{ popular.game_reviews[0].score / 10 }}
                   </span>
-                </VChip>
+                </v-chip>
                 <span>
                   {{ popular.game_reviews[0].count }} 篇评测中 {{ popular.game_reviews[0].score }}% 的用户推荐
                 </span>
-              </VTooltip>
+              </v-tooltip>
             </div>
             <div v-else>
-              <v-chip 
-                small 
+              <v-chip
+                small
                 class="grey lighten-2"
               >
                 <v-icon left>
@@ -54,11 +54,11 @@
               </v-chip>
             </div>
           </div>
-        </VLayout>
-      </VImg>
+        </v-layout>
+      </v-img>
     </div>
     <div>
-      <VLayout
+      <v-layout
         align-start
         justify-space-between
         row
@@ -71,13 +71,13 @@
           <h5 class="caption">
             当前在线: {{ popular.current }}
             <br>
-            {{ popular.created_at }} 
+            {{ popular.created_at }}
           </h5>
-          
+
         </div>
         <div />
         <div v-if="popular.game_prices.length > 0">
-          <VMenu
+          <v-menu
             v-model="priceMenu"
             :close-on-content-click="false"
             :nudge-width="700"
@@ -85,7 +85,7 @@
             lazy
             open-on-hover
           >
-            <VChip
+            <v-chip
               slot="activator"
               small
               class="grey lighten-2"
@@ -101,8 +101,8 @@
               <span v-else>
                 未知
               </span>
-            </VChip>
-            <VCard>
+            </v-chip>
+            <v-card>
               <v-alert
                 :value="true"
                 color="info"
@@ -111,7 +111,7 @@
               >
                 SteamHub API 已被重写,旧价格数据不再显示
               </v-alert>
-              <VeLine
+              <ve-line
                 :ref="`chart${popular.appid}`"
                 :colors="chartColors"
                 :legend-visible="false"
@@ -120,8 +120,8 @@
                 :data="chartData"
                 :mark-point="markPoint"
               />
-            </VCard>
-          </VMenu>
+            </v-card>
+          </v-menu>
         </div>
         <div v-else>
           <v-chip
@@ -131,9 +131,9 @@
             暂无价格
           </v-chip>
         </div>
-      </VLayout>
+      </v-layout>
     </div>
-  </VCard>
+  </v-card>
 </template>
 
 <script>
