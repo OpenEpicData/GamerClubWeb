@@ -138,7 +138,7 @@
                   far fa-clock
                 </v-icon>
                 <span class="caption grey--text font-weight-light" v-if="game.game_reviews.length > 0">
-                  上次更新 {{ game.game_reviews[game.game_reviews.length - 1].created_at }}
+                  上次更新 {{ game.created_at }}
                 </span>
               </v-card-text>
             </v-card>
@@ -236,7 +236,7 @@
                     justify-end
                   >
                     <span 
-                      v-if="game.game_reviews" 
+                      v-if="game.game_reviews.length > 0" 
                       class="subheading ml-2">
                       {{ game.game_reviews[0].score }}% 的 Steam 用户推荐
                     </span>
