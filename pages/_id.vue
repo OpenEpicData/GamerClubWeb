@@ -137,7 +137,7 @@
                 >
                   far fa-clock
                 </v-icon>
-                <span class="caption grey--text font-weight-light" v-if="game.game_reviews.length > 0">
+                <span class="caption grey--text font-weight-light">
                   上次更新 {{ game.created_at }}
                 </span>
               </v-card-text>
