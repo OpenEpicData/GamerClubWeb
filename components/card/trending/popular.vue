@@ -1,9 +1,8 @@
 <template>
   <v-card
-    :href="`https://store.steampowered.com/app/${popular.appid}`"
+    :to="`/${popular.appid}`"
     height="160px"
     class="text-xs-left"
-    target="_blank"
   >
     <div>
       <v-img

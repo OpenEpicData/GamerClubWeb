@@ -19,8 +19,7 @@
           <div>
             <h1 class="display-3 text-truncate">
               <a
-                :href="`https://store.steampowered.com/app/${high_score[0].appid}`"
-                target="_black"
+                :to="`/${high_score[0].appid}`"
                 class="white--text"
               >
                 {{ high_score[0].name }}
@@ -69,15 +68,14 @@
           </div>
           <div class="pt-2">
             <v-btn
-              :href="`https://store.steampowered.com/app/${high_score[0].appid}`"
+              :to="`/${high_score[0].appid}`"
               round
               large
               class="mx-0"
-              target="_black"
             >
               查看游戏
               <span v-if="high_score[0].game_prices.length > 0">
-                ￥ {{ high_score[0].game_prices[0].final }}
+                ￥ {{ high_score.slice().reverse()[0].game_prices[0].final }}
               </span>
             </v-btn>
             <v-btn
@@ -158,8 +156,7 @@
                 <div>
                   <h2 class="title text-truncate">
                     <a
-                      :href="`https://store.steampowered.com/app/${highScoreItem.appid}`"
-                      target="_black"
+                      :to="`/${highScoreItem.appid}`"
                       class="black--text"
                     >
                       {{ highScoreItem.name }}
