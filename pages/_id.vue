@@ -227,7 +227,7 @@
                     <span 
                       v-if="game.game_prices.length > 0" 
                       class="ml-2">
-                      ￥ {{ game.game_prices[0].final }}
+                      ￥ {{ game.game_prices[game.game_prices.length -1].final }}
                     </span>
                   </v-btn>
 
