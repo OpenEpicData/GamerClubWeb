@@ -116,18 +116,18 @@
                     color="green" 
                     dark 
                     small>
-                    -{{ game.game_prices[0].discount }}%
+                    -{{ game.game_prices[game.game_prices.length -1].discount }}%
                   </v-chip>
                 </div>
                 <div class="subheading font-weight-light grey--text">
                   <span>
                     当前价格: 
                     <del>
-                      ￥{{ game.game_prices[0].initial }}
+                      ￥{{ game.game_prices[game.game_prices.length -1].initial }}
                     </del>
                   </span>
                   <span class="red--text">
-                    ￥{{ game.game_prices[0].final }}
+                    ￥{{ game.game_prices[game.game_prices.length -1].final }}
                   </span>
                 </div>
                 <v-divider class="my-2"/>
