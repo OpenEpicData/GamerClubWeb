@@ -422,7 +422,7 @@ export default {
       loading: true,
       head: {
         title: `AppID: ${this.$route.params.id} 的详细数据 -- SteamHub`,
-        description: null
+        description: `在 SteamHub 查看 AppID: ${this.$route.params.id} 的评价趋势,价格走势,媒体信息...`
       }
     }
   },
@@ -481,7 +481,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: '在 SteamHub 上查看全球最热门的游戏列表'
+          content: this.head.description
         }
       ]
     }
