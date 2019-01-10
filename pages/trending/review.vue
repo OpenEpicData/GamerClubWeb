@@ -91,12 +91,12 @@ export default {
   },
   head() {
     return {
-      title: '热门游戏 -- SteamHub',
+      title: '广受好评的游戏 -- SteamHub',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: '在 SteamHub 上查看全球最热门的游戏列表'
+          content: '在 SteamHub 上浏览每一位真实玩家给出的好评游戏'
         }
       ]
     }
