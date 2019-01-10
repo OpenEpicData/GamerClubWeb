@@ -88,12 +88,12 @@ export default {
   },
   head() {
     return {
-      title: '高分游戏 -- SteamHub',
+      title: '热门游戏 -- SteamHub',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: '在 SteamHub 上查看每一位真实玩家选出的高分游戏'
+          content: '在 SteamHub 上浏览此时大多数正在游玩的游戏'
         }
       ]
     }
