@@ -317,6 +317,7 @@
             </v-card>
 
             <v-card
+              v-if="media.data"
               class="mx-auto mt-5"
             >
               <v-card-title>
