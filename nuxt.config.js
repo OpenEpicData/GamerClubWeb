@@ -31,12 +31,8 @@ module.exports = {
       },
       {
         rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/vuetify@1/dist/vuetify.min.css'
-      },
-      {
-        rel: 'styleshell',
         href:
-          'https://cdn.jsdelivr.net/combine/npm/vuetify@1/dist/vuetify.min.css'
+          'https://cdn.jsdelivr.net/npm/vuetify@1.5.0-beta.0/dist/vuetify.min.css'
       },
       {
         rel: 'stylesheet',
@@ -65,11 +61,6 @@ module.exports = {
   ** Customize the progress-bar color
   */
   loading: { color: '#3B8070' },
-
-  /*
-  ** Global CSS
-  */
-  css: ['~/assets/style/app.styl'],
 
   /*
   ** Plugins to load before mounting the App
