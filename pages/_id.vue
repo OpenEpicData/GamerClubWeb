@@ -183,7 +183,7 @@
                     游戏类型: {{ game.type }}
                   </div>
                   <div>
-                    支持语言: <span v-html="game.languages"></span>
+                    支持语言: <span v-html="game.languages"/>
                   </div>
                   <div>
                     支持系统: {{ game.platforms }}
@@ -423,7 +423,9 @@ export default {
       loading: true,
       head: {
         title: `AppID: ${this.$route.params.id} 的详细数据 -- SteamHub`,
-        description: `在 SteamHub 查看 AppID: ${this.$route.params.id} 的评价趋势,价格走势,媒体信息...`
+        description: `在 SteamHub 查看 AppID: ${
+          this.$route.params.id
+        } 的评价趋势,价格走势,媒体信息...`
       }
     }
   },
