@@ -3,6 +3,7 @@
     :to="`/${popular.appid}`"
     height="160px"
     class="text-xs-left"
+    color="transparent"
   >
     <div>
       <v-img
