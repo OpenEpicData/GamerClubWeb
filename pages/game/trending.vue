@@ -34,6 +34,7 @@
             />
           </v-flex>
         </v-layout>
+
         <div>
           <v-btn
             dark
@@ -50,7 +51,28 @@
         </div>
       </div>
 
-      <div v-else-if="latest && item.type === 'latest'">
+      <div v-else-if="item.type === 'popular'">
+        <v-layout
+          align-start
+          justify-center
+          row
+          wrap
+        >
+          <v-flex
+            v-for="i in 4"
+            :key="i"
+            xs12
+            sm6
+            md3
+            xl2
+            class="px-3 my-5"
+          >
+            <loading />
+          </v-flex>
+        </v-layout>
+      </div>
+
+      <div v-if="latest && item.type === 'latest'">
         <v-layout
           v-for="k in 2"
           :key="k"
@@ -92,7 +114,30 @@
         </div>
       </div>
 
-      <div v-else-if="top_review && item.type === 'top_review'">
+      <div v-else-if="item.type === 'latest'">
+        <v-layout
+          v-for="n in 2"
+          :key="n"
+          align-start
+          justify-center
+          row
+          wrap
+        >
+          <v-flex
+            v-for="i in 4"
+            :key="i"
+            xs12
+            sm6
+            md3
+            xl2
+            class="px-3 my-5"
+          >
+            <loading />
+          </v-flex>
+        </v-layout>
+      </div>
+
+      <div v-if="top_review && item.type === 'top_review'">
         <v-layout
           v-for="k in 2"
           :key="k"
@@ -134,11 +179,27 @@
         </div>
       </div>
 
-      <div v-else>
-        <v-progress-circular
-          indeterminate
-          color="primary"
-        />
+      <div v-else-if="item.type === 'top_review'">
+        <v-layout
+          v-for="n in 2"
+          :key="n"
+          align-start
+          justify-center
+          row
+          wrap
+        >
+          <v-flex
+            v-for="i in 4"
+            :key="i"
+            xs12
+            sm6
+            md3
+            xl2
+            class="px-3 my-5"
+          >
+            <loading />
+          </v-flex>
+        </v-layout>
       </div>
     </div>
   </div>
@@ -147,10 +208,12 @@
 <script>
 import popularWithSmallCard from '~/components/card/trending/popular'
 import reviewtWithSmallCard from '~/components/card/trending/review'
+import loading from '~/components/card/loading'
 export default {
   components: {
     popularWithSmallCard,
-    reviewtWithSmallCard
+    reviewtWithSmallCard,
+    loading
   },
   data() {
     return {

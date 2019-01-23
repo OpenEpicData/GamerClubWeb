@@ -44,14 +44,33 @@
       </div>
     </div>
     <div v-if="loading === true">
-      <loading class="primary--text" />
+      <v-layout
+        v-for="n in 4"
+        :key="n"
+        align-start
+        justify-center
+        row
+        wrap
+      >
+        <v-flex
+          v-for="i in 4"
+          :key="i"
+          xs12
+          sm6
+          md3
+          xl2
+          class="px-3 my-5"
+        >
+          <loading />
+        </v-flex>
+      </v-layout>
     </div>
   </div>
 </template>
 
 <script>
 import reviewWithSmallCard from '~/components/card/trending/review'
-import loading from '~/components/loading'
+import loading from '~/components/card/loading'
 export default {
   components: {
     loading,
