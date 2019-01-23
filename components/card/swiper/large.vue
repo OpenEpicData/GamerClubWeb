@@ -43,7 +43,7 @@
                     <v-btn
                       color="amber darken-1"
                       depressed
-                      round
+                      rounded
                       dark
                     >
                       {{ item.Type }}
@@ -59,7 +59,7 @@
                   </div>
                   <div>
                     <v-btn
-                      flat
+                      text
                     >
                       <v-icon left>
                         far fa-newspaper

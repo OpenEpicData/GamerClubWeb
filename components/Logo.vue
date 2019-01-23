@@ -3,7 +3,7 @@
     id="aceecbfa"
     viewBox="0 0 591 155"
     preserveAspectRatio="xMidYMid meet"
-    class="css-14axogb v-btn v-btn--flat"
+    class="css-14axogb v-btn v-btn--text"
   >
     <defs id="SvgjsDefs1559" />
     <g

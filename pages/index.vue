@@ -117,9 +117,9 @@
       </v-layout>
       <div class="mt-3">
         <v-btn
-          outline
+          outlined
           large
-          round
+          rounded
           to="/game/"
         >
           浏览所有游戏

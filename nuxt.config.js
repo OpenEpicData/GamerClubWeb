@@ -32,7 +32,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://cdn.jsdelivr.net/npm/vuetify@1.5.0-beta.0/dist/vuetify.min.css'
+          'https://cdn.jsdelivr.net/npm/vuetify@2.0.0-alpha.1/dist/vuetify.css'
       },
       {
         rel: 'stylesheet',

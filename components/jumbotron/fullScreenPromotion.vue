@@ -33,7 +33,7 @@
           </h2>
           <div>
             <v-btn
-              round
+              rounded
               large
               color="primary"
               to="/game/trending"
@@ -41,9 +41,9 @@
               查看趋势
             </v-btn>
             <v-btn
-              round
+              rounded
               large
-              outline
+              outlined
               dark
               to="/game/"
             >

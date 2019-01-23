@@ -107,7 +107,7 @@
                 :value="true"
                 color="info"
                 icon="info"
-                outline
+                outlined
               >
                 SteamHub API 已被重写,旧价格数据不再显示
               </v-alert>

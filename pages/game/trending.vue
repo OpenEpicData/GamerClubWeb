@@ -36,7 +36,7 @@
         </v-layout>
         <div class="mt-3">
           <v-btn
-            round
+            rounded
             large
             color="red--text"
             to="/trending/hot"
@@ -77,7 +77,7 @@
         </v-layout>
         <div class="mt-3">
           <v-btn
-            round
+            rounded
             large
             color="blue--text"
             to="/trending/latest"
@@ -118,7 +118,7 @@
         </v-layout>
         <div class="mt-3">
           <v-btn
-            round
+            rounded
             large
             color="purple--text"
             to="/trending/review"

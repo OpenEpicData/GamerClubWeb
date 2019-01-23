@@ -219,7 +219,7 @@
 
                   <v-btn 
                     :href="`https://store.steampowered.com/app/${game.appid}`" 
-                    round 
+                    rounded 
                     dark 
                     small 
                     target="_black">
