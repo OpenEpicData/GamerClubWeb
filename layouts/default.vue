@@ -7,18 +7,14 @@
       dark
     >
       <v-toolbar-title>
-        <nuxt-link to="/">
-          <logo />
-        </nuxt-link>
+        <v-btn 
+          text 
+          large 
+          to="/"
+          color="transparent">
+          <logo style="width:150px;height:54px"/>
+        </v-btn>
       </v-toolbar-title>
-      <v-alert
-        :value="true"
-        color="white"
-        icon="info"
-        outlined
-      >
-        我们正在迁移数据至 API V3,页面展示数据可能与实际不同
-      </v-alert>
       <v-spacer />
       <div class="hidden-sm-and-down">
         <v-btn text>
@@ -26,8 +22,8 @@
         </v-btn>
         <v-btn
           text
-          outlined
-          rounded
+          outline 
+          rounded 
         >
           立即开始
         </v-btn>
@@ -57,23 +53,15 @@
           fill-height
         >
           <div>
-            <v-text-field
-              label="您的邮件地址"
-              append-icon="email"
-              type="email"
-              solo
-              color="white"
-              background-color="transparent"
+            <v-btn
+              slot="append-outer"
+              rounded 
+              large
               dark
+              style="top: -12px"
             >
-              <v-btn
-                slot="append-outer"
-                rounded
-                style="top: -12px"
-              >
-                或使用 Steam 登录
-              </v-btn>
-            </v-text-field>
+              使用 Steam 登录
+            </v-btn>
           </div>
         </v-layout>
       </div>

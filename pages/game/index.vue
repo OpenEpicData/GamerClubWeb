@@ -88,7 +88,7 @@
           <v-btn
             v-if="!moreTag"
             block
-            rounded
+            rounded 
             text
             @click="moreTag = true"
           >
@@ -216,11 +216,11 @@
                       </v-flex>
                       <v-flex xs2>
                         <v-btn
-                          rounded
+                          rounded 
                           small
                           color="red-gradient"
                           disabled
-                          outlined
+                          outline 
                         >
                           关注
                         </v-btn>

@@ -83,6 +83,7 @@
             :nudge-width="700"
             :offset-overflow="true"
             lazy
+            left
             open-on-hover
           >
             <v-chip
@@ -109,7 +110,7 @@
                 icon="info"
                 outlined
               >
-                SteamHub API 已被重写,旧价格数据不再显示
+                游戏名: {{ popular.name }}
               </v-alert>
               <ve-line
                 :ref="`chart${popular.appid}`"

@@ -27,7 +27,7 @@
             <v-btn
               color="amber darken-1"
               depressed
-              rounded
+              rounded 
               dark
             >
               新闻
@@ -84,7 +84,7 @@
           <div>
             <v-chip
               flat
-              round
+              rounded
               small
               class="mx-0 grey--text"
               color="transparent"
@@ -99,7 +99,7 @@
             </v-chip>
             <v-chip
               flat
-              round
+              rounded
               small
               class="mx-0 grey--text"
               color="transparent"

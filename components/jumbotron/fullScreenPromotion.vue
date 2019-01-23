@@ -26,14 +26,14 @@
               Steam 数据
             </span>
           </h1>
-          <h2 class="display-2 my-2">
+          <h2 class="display-2 my-3">
             <span>
               通过 SteamHub,探索你不知道的 Steam 秘密
             </span>
           </h2>
           <div>
             <v-btn
-              rounded
+              rounded 
               large
               color="primary"
               to="/game/trending"
@@ -41,9 +41,9 @@
               查看趋势
             </v-btn>
             <v-btn
-              rounded
+              rounded 
               large
-              outlined
+              outline
               dark
               to="/game/"
             >

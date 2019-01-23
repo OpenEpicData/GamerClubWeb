@@ -9,7 +9,7 @@
             <use xlink:href="#path-1"></use>
         </mask>
     </defs>
-    <g id="Responsive-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="1,1,6" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.15">
+    <g id="Responsive-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="1,1,6" stroke-linecap="rounded" stroke-linejoin="rounded" stroke-opacity="0.15">
         <g id="Home-Mobile" transform="translate(-149.000000, -830.000000)" fill="#FFFFFF" stroke="#222222" stroke-width="2">
             <use id="Rectangle-8-Copy-2" mask="url(#mask-2)" xlink:href="#path-1"></use>
         </g>

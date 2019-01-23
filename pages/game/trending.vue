@@ -34,11 +34,12 @@
             />
           </v-flex>
         </v-layout>
-        <div class="mt-3">
+        <div>
           <v-btn
-            rounded
+            dark
+            rounded 
             large
-            color="red--text"
+            color="red"
             to="/trending/hot"
           >
             浏览全部热门游戏
@@ -75,11 +76,12 @@
             />
           </v-flex>
         </v-layout>
-        <div class="mt-3">
+        <div>
           <v-btn
-            rounded
+            dark
+            rounded 
             large
-            color="blue--text"
+            color="blue"
             to="/trending/latest"
           >
             浏览最近更新游戏
@@ -116,11 +118,12 @@
             />
           </v-flex>
         </v-layout>
-        <div class="mt-3">
+        <div>
           <v-btn
-            rounded
+            dark
+            rounded 
             large
-            color="purple--text"
+            color="purple"
             to="/trending/review"
           >
             浏览全部好评游戏

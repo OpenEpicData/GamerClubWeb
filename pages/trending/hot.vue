@@ -26,11 +26,10 @@
       </v-layout>
       <div
         v-if="loading === false && popular.data.length <= 100"
-        class="mt-5"
       >
         <v-btn
           :color="'red--text'"
-          rounded
+          rounded 
           large
           @click="load_more(page)"
         >

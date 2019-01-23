@@ -24,7 +24,7 @@
           md3
           lg2
           class="px-3"
-          style="border: 1px solid #fff;border-image: url(/border.svg) 1 round"
+          style="border: 1px solid #fff;border-image: url(/border.svg) 1 rounded"
         >
           <div class="my-3">
             <h5 v-if="i === 1">
@@ -117,9 +117,9 @@
       </v-layout>
       <div class="mt-3">
         <v-btn
-          outlined
+          outline 
           large
-          rounded
+          rounded 
           to="/game/"
         >
           浏览所有游戏

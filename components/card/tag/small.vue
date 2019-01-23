@@ -38,7 +38,7 @@
       justify-center
       row
       fill-height
-      style="height:60px;border: 1px solid #ccc;border-radius: .5rem;border-image:url(/border.svg) 1 round"
+      style="height:60px;border: 1px solid #ccc;border-radius: .5rem;border-image:url(/border.svg) 1 rounded"
     >
       <v-flex
         v-for="k in 3"
