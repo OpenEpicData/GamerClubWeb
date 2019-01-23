@@ -84,6 +84,7 @@
             :offset-overflow="true"
             lazy
             left
+            top
             open-on-hover
           >
             <v-chip
