@@ -9,6 +9,7 @@
       <v-img
         :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${popular.appid}/header.jpg`"
         height="160px"
+        class="elevation-5"
       >
         <v-layout
           align-start
@@ -62,10 +63,10 @@
         align-start
         justify-space-between
         row
-        style="margin: 0 5px;"
+        style="margin: 10px 5px;"
       >
         <div>
-          <h4 class="body-2 font-weight-bold">
+          <h4 class="title font-weight-bold">
             {{ popular.name }}
           </h4>
           <h5 class="caption">
