@@ -28,8 +28,7 @@
         v-if="loading === false && popular.data.length <= 100"
       >
         <v-btn
-          :color="'red--text'"
-           
+          :color="'primary'"
           large
           @click="load_more(page)"
         >

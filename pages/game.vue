@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="grey-gradient"
+      class="primary"
       style="height:20vh"
     />
     <tabDefault
@@ -26,7 +26,7 @@ export default {
     return {
       tab: {
         model: this.$route.fullPath,
-        color: 'grey-gradient',
+        color: 'primary',
         slider: {
           color: 'white'
         },

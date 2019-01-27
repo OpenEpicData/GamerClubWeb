@@ -3,7 +3,7 @@
     :to="`/${popular.appid}`"
     height="160px"
     class="text-xs-left"
-    color="transparent"
+    color="primary"
   >
     <div>
       <v-img
@@ -23,11 +23,11 @@
                   v-if="rating = popular.game_reviews.length > 0 ? popular.game_reviews[0].score / 20 : null"
                   slot="activator"
                   small
-                  class="grey lighten-2"
+                  
                 >
                   <v-rating
                     v-model="rating"
-                    color="red"
+                    color="accent"
                     background-color="transparent"
                     half-increments
                     dense
@@ -45,7 +45,7 @@
             <div v-else>
               <v-chip
                 small
-                class="grey lighten-2"
+                
               >
                 <v-icon left>
                   far fa-question-circle
@@ -90,7 +90,7 @@
             <v-chip
               slot="activator"
               small
-              class="grey lighten-2"
+              
               @mouseover="chipPriceHover(popular.game_prices, popular.appid)"
               @mouseleave="chipPriceLeave(popular.game_prices, popular.appid)"
             >
@@ -104,10 +104,10 @@
                 未知
               </span>
             </v-chip>
-            <v-card>
+            <v-card color="primary">
               <v-alert
                 :value="true"
-                color="info"
+                color="accent"
                 icon="info"
                 outlined
               >
@@ -128,7 +128,7 @@
         <div v-else>
           <v-chip
             small
-            class="grey lighten-2"
+            
           >
             暂无价格
           </v-chip>
@@ -188,10 +188,24 @@ export default {
           }
         },
         yAxis: {
-          scale: true
+          scale: true,
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#fff',
+              width: 1
+            }
+          }
         },
         xAxis: {
-          inverse: true
+          inverse: true,
+          axisLine: {
+            show: true,
+            lineStyle: {
+              color: '#fff',
+              width: 1
+            }
+          }
         }
       }
     }
@@ -199,9 +213,9 @@ export default {
   mounted() {
     this.chartColors = [
       new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#2196F3' },
-        { offset: 0.5, color: '#2196F3' },
-        { offset: 1, color: '#2196F3' }
+        { offset: 0, color: '#84FFFF' },
+        { offset: 0.5, color: '#84FFFF' },
+        { offset: 1, color: '#84FFFF' }
       ])
     ]
     if (this.popular.game_prices.length > 0) {

@@ -31,8 +31,7 @@
         v-if="loading === false && review.data.length <= 100"
       >
         <v-btn
-          :color="'purple--text'"
-           
+          :color="'primary'"
           large
           @click="load_more(page)"
         >

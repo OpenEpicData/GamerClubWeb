@@ -1,5 +1,7 @@
 <template>
-  <v-app dark class="secondary">
+  <v-app 
+    dark 
+    class="secondary">
     <v-toolbar
       fixed
       color="primary"

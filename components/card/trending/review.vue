@@ -3,8 +3,7 @@
     :to="`/${data.appid}`"
     height="160px"
     class="text-xs-left"
-    color="transparent"
-    flat
+    color="primary"
   >
     <div>
       <v-img
@@ -24,11 +23,10 @@
                   v-if="rating = review.length > 0 ? review[0].score / 20 : null"
                   slot="activator"
                   small
-                  class="grey lighten-2"
                 >
                   <v-rating
                     v-model="rating"
-                    :color="color"
+                    color="accent"
                     background-color="transparent"
                     half-increments
                     dense
@@ -46,7 +44,6 @@
             <div v-else>
               <v-chip
                 small
-                class="grey lighten-2"
               >
                 <v-icon left>
                   far fa-question-circle
@@ -93,7 +90,6 @@
             <v-chip
               slot="activator"
               small
-              class="grey lighten-2"
               @mouseover="chipPriceHover(price, data.appid)"
               @mouseleave="chipPriceLeave(price, data.appid)"
             >
@@ -107,10 +103,10 @@
                 未知
               </span>
             </v-chip>
-            <v-card>
+            <v-card color="primary">
               <v-alert
                 :value="true"
-                color="info"
+                color="accent"
                 icon="info"
                 outlined
               >
@@ -131,7 +127,6 @@
         <div v-else>
           <v-chip
             small
-            class="grey lighten-2"
           >
             暂无价格
           </v-chip>
@@ -214,9 +209,9 @@ export default {
   mounted() {
     this.chartColors = [
       new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#2196F3' },
-        { offset: 0.5, color: '#2196F3' },
-        { offset: 1, color: '#2196F3' }
+        { offset: 0, color: '#84FFFF' },
+        { offset: 0.5, color: '#84FFFF' },
+        { offset: 1, color: '#84FFFF' }
       ])
     ]
     if (this.price.length > 0) {

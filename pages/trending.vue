@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="grey-gradient"
+      class="primary"
       style="height:20vh"
     />
     <tabDefault
@@ -26,7 +26,7 @@ export default {
     return {
       tab: {
         model: this.$route.fullPath,
-        color: 'grey-gradient',
+        color: 'primary',
         slider: {
           color: 'white'
         },
@@ -36,8 +36,7 @@ export default {
         item: [
           { title: '热门游戏', link: '/trending/hot' },
           { title: '玩家高分', link: '/trending/review' },
-          { title: '最近更新', link: '/trending/latest' },
-          { title: '流行趋势', link: '/game/trending' }
+          { title: '最近更新', link: '/trending/latest' }
         ]
       }
     }

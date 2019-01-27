@@ -21,7 +21,9 @@
           <v-item-group>
             <v-container grid-list-md>
               <h2 class="text-xs-left display-1">
-                <v-icon x-large color="accent">
+                <v-icon 
+                  x-large 
+                  color="accent">
                   fas fa-glass-cheers
                 </v-icon>
                 特别推荐
@@ -40,18 +42,18 @@
                       slot-scope="{ active, toggle }"
                       :color="active ? 'secondary' : 'primary'"
                       :class="{ 'scale-1-1': n === 2, 'z-index-2': n === 2 }"
+                      :to="game[n - 1].appid"
                       class="d-flex align-center"
                       dark
                       height="400"
                       @click="toggle"
-                      :to="game[n - 1].appid"
                     >
                       <v-scroll-y-transition>
                         <v-img 
                           :aspect-ratio="16/9" 
+                          :src="game[n - 1].img"
                           gradient="to top right, rgba(0,0,0,.5), rgba(67,67,67,.5)"
-                          height="400"
-                          :src="game[n - 1].img">
+                          height="400">
                           <v-layout 
                             wrap 
                             column 
@@ -63,7 +65,9 @@
                                 {{ game[n - 1].name }}
                               </span>
                             </div>
-                            <div v-if="n === 2" class="py-2">
+                            <div 
+                              v-if="n === 2" 
+                              class="py-2">
                               EPICDATA: 不玩吃亏
                             </div>
                           </v-layout>
@@ -100,17 +104,20 @@ export default {
         {
           appid: '646570',
           name: '杀戮尖塔',
-          img: 'https://cdna.artstation.com/p/assets/images/images/008/984/116/large/lysander-xonora-slay-the-spire-wallpaper.jpg?1516473520'
+          img:
+            'https://cdna.artstation.com/p/assets/images/images/008/984/116/large/lysander-xonora-slay-the-spire-wallpaper.jpg?1516473520'
         },
         {
           appid: '294100',
           name: '边缘世界',
-          img: 'https://cdna.artstation.com/p/assets/images/images/010/469/760/large/vadim-sadovski-rimworld.jpg?1524598927'
+          img:
+            'https://cdna.artstation.com/p/assets/images/images/010/469/760/large/vadim-sadovski-rimworld.jpg?1524598927'
         },
         {
           appid: '255710',
           name: '城市：天际线',
-          img: 'https://cdna.artstation.com/p/assets/images/images/008/405/610/large/5518-studios-screen-shot-2017-12-06-at-1-23-23-pm.jpg?1512555855'
+          img:
+            'https://cdna.artstation.com/p/assets/images/images/008/405/610/large/5518-studios-screen-shot-2017-12-06-at-1-23-23-pm.jpg?1512555855'
         }
       ]
     }
@@ -127,7 +134,7 @@ export default {
 }
 .gradient-border {
   --borderWidth: 3px;
-  background: #1D1F20;
+  background: #1d1f20;
   position: relative;
   border-radius: var(--borderWidth);
 }
@@ -138,23 +145,31 @@ export default {
   left: calc(-1 * var(--borderWidth));
   height: calc(100% + var(--borderWidth) * 2);
   width: calc(100% + var(--borderWidth) * 2);
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
   border-radius: calc(2 * var(--borderWidth));
   z-index: -1;
   animation: animatedgradient 5s ease alternate infinite;
   background-size: 300% 300%;
 }
-
-
 @keyframes animatedgradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 </style>
