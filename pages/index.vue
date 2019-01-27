@@ -115,11 +115,10 @@
           />
         </v-flex>
       </v-layout>
-      <div class="mt-3">
+      <div class="my-3 pb-5">
         <v-btn
           outline 
           large
-           
           to="/game/"
         >
           浏览所有游戏
@@ -171,7 +170,7 @@ export default {
       tagWithSmall: [
         {
           title: '动作',
-          color: 'blue-gradient',
+          color: 'cyan darken-1',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed6062dce47.png',
           knownGame: {
@@ -184,7 +183,7 @@ export default {
         },
         {
           title: '开放世界',
-          color: 'red-gradient',
+          color: 'cyan darken-1',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed6061120a7.png',
           knownGame: {
@@ -196,7 +195,7 @@ export default {
         },
         {
           title: '角色扮演',
-          color: 'purple-gradient',
+          color: 'cyan darken-1',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed60661504e.png',
           knownGame: {
@@ -208,7 +207,7 @@ export default {
         },
         {
           title: '模拟',
-          color: 'yello-gradient',
+          color: 'cyan darken-1',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed60612e917.png',
           knownGame: {

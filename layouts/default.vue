@@ -1,10 +1,10 @@
 <template>
-  <v-app class="grey lighten-4">
+  <v-app dark class="secondary">
     <v-toolbar
-      flat
-      absolute
-      color="transparent"
+      fixed
+      color="primary"
       dark
+      extended
     >
       <v-toolbar-title>
         <v-btn 
@@ -17,24 +17,35 @@
       </v-toolbar-title>
       <v-spacer />
       <div class="hidden-sm-and-down">
-        <v-btn text>
-          注册
-        </v-btn>
         <v-btn
           text
           outline 
-           
+          color="accent"
         >
           立即开始
         </v-btn>
       </div>
+
+      <v-tabs
+        slot="extension"
+        v-model="toolbar.tab.active"
+        color="secondary"
+        fixed-tabs
+      >
+        <v-tab
+          v-for="(item, i) in toolbar.tab.item"
+          :key="i"
+          :to="item.path"
+        >
+          {{ item.name }}
+        </v-tab>
+      </v-tabs>
     </v-toolbar>
     <v-content>
       <nuxt />
     </v-content>
     <div
-      class="white--text mt-5 pt-5 text-xs-center"
-      style="background: radial-gradient(circle at 1% 1%,#328bf2,#1644ad)"
+      class="mt-5 pt-5 text-xs-center primary"
     >
       <loading />
       <div class="mt-3">
@@ -77,11 +88,41 @@ export default {
   components: {
     logo,
     loading
+  },
+  data() {
+    return {
+      toolbar: {
+        tab: {
+          active: this.$route.fullPath,
+          item: [
+            {
+              name: '浏览',
+              path: '/'
+            },
+            {
+              name: '热门',
+              path: '/trending/hot'
+            },
+            {
+              name: '趋势',
+              path: '/game/trending'
+            }
+          ]
+        }
+      }
+    }
   }
 }
 </script>
 
 <style>
+.v-tabs__slider {
+  border-bottom: 5px solid #fff;
+  border-radius: 9999px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
 .hide-2line {
   overflow: hidden;
   display: -webkit-box;

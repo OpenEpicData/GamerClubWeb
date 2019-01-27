@@ -36,12 +36,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.v-tabs__slider {
-  border-bottom: 5px solid #fff;
-  border-radius: 9999px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-</style>

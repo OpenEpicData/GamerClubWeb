@@ -8,8 +8,7 @@
       :color="tagWithSmall.color"
       :dark="tagWithSmall.dark"
       height="180px"
-      flat
-      class="elevation-0"
+      class="elevation-10"
     >
       <v-layout
         align-center
@@ -27,7 +26,7 @@
           />
         </div>
         <div class="my-2">
-          <h5 class="subheading">
+          <h5 class="subheading primary--text">
             {{ tagWithSmall.title }}
           </h5>
         </div>
@@ -38,7 +37,7 @@
       justify-center
       row
       fill-height
-      style="height:60px;border: 1px solid #ccc;border-radius: .5rem;border-image:url(/border.svg) 1 rounded"
+      style="height:60px;"
     >
       <v-flex
         v-for="k in 3"
