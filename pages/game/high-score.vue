@@ -1,6 +1,6 @@
 <template>
   <div v-if="high_score">
-    <div class="red-gradient white--text py-5">
+    <div class="primary py-5">
       <v-layout
         justify-center
         align-center
@@ -20,7 +20,7 @@
             <h1 class="display-3 text-truncate">
               <a
                 :to="`/${high_score[0].appid}`"
-                class="white--text"
+                class="accent--text"
               >
                 {{ high_score[0].name }}
               </a>
@@ -155,12 +155,12 @@
               >
                 <div>
                   <h2 class="title text-truncate">
-                    <a
+                    <nuxt-link
                       :to="`/${highScoreItem.appid}`"
-                      class="black--text"
+                      class="accent--text"
                     >
                       {{ highScoreItem.name }}
-                    </a>
+                    </nuxt-link>
                   </h2>
                   <v-chip
                     class="mx-0"
