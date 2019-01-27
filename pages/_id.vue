@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="grey-gradient"
+      class="primary"
       style="height:20vh"
     />
     <tabDefault
@@ -29,7 +29,7 @@
             >
               <v-sheet
                 class="v-sheet--offset mx-auto"
-                color="cyan"
+                color="cyan darken-1"
                 elevation="12"
                 max-width="calc(100% - 32px)"
               >
@@ -95,7 +95,7 @@
             >
               <v-sheet
                 class="v-sheet--offset mx-auto"
-                color="cyan"
+                color="cyan darken-1"
                 elevation="12"
                 max-width="calc(100% - 32px)"
               >
@@ -276,7 +276,7 @@
                   :size="150"
                   :width="15"
                   :value="game.metacritic_review_score"
-                  color="cyan"
+                  color="cyan darken-1"
                 >
                   <h2 class="title">
                     {{ game.metacritic_review_score }}
@@ -406,7 +406,7 @@ export default {
     return {
       tab: {
         model: this.$route.fullPath,
-        color: 'grey-gradient',
+        color: 'primary',
         slider: {
           color: 'white'
         },
@@ -414,8 +414,7 @@ export default {
         fixed: true,
         dark: true,
         item: [
-          { title: this.$route.params.id, link: this.$route.fullPath },
-          { title: '流行趋势', link: '/game/trending' }
+          { title: this.$route.params.id, link: this.$route.fullPath }
         ]
       },
       game: null,
