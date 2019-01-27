@@ -67,14 +67,16 @@
           <h4 class="title font-weight-bold">
             {{ data.name }}
           </h4>
-          <h5 class="caption">
-            <span v-if="data.updated_at">
-              {{ data.updated_at }}
-            </span>
-            <span v-else>
-              {{ data.created_at }}
-            </span>
-          </h5>
+          <div class="blue-grey--text">
+            <h5 v-if="data.publishers" class="body-2">
+              By {{ data.publishers }}
+            </h5>
+            <h5 class="caption">
+              <span v-if="data.released_at">
+                {{ data.released_at }}
+              </span>
+            </h5>
+          </div>
         </div>
         <div />
         <div v-if="price.length > 0">

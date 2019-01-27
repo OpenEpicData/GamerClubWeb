@@ -69,12 +69,14 @@
           <h4 class="title font-weight-bold">
             {{ popular.name }}
           </h4>
-          <h5 class="caption">
-            当前在线: {{ popular.current }}
-            <br>
-            {{ popular.created_at }}
-          </h5>
-
+          <div class="blue-grey--text">
+            <h5 v-if="popular.game_list && popular.game_list.publishers" class="body-2">
+              By {{ popular.game_list.publishers }}
+            </h5>
+            <h5 class="caption">
+              当前在线: {{ popular.current }}
+            </h5>
+          </div>
         </div>
         <div />
         <div v-if="popular.game_prices.length > 0">
@@ -98,7 +100,15 @@
               <span v-if="popular.game_prices.length === 0 && popular.game_list.free === 1">
                 免费
               </span>
-              <span v-else-if="popular.game_prices[0]">
+              <span v-else-if="popular.game_prices.length > 2 && popular.game_prices[2].final > popular.game_prices[1].final">
+                <span class="accent--text body-2">
+                  ￥ {{ popular.game_prices[0].final }}
+                </span>
+                <del>
+                  {{ popular.game_prices[2].final }}
+                </del>
+              </span>
+              <span v-else-if="popular.game_prices[0] ">
                 ￥ {{ popular.game_prices[0].final }}
               </span>
               <span v-else>
