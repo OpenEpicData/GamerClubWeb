@@ -413,9 +413,7 @@ export default {
         centered: true,
         fixed: true,
         dark: true,
-        item: [
-          { title: this.$route.params.id, link: this.$route.fullPath }
-        ]
+        item: [{ title: this.$route.params.id, link: this.$route.fullPath }]
       },
       game: null,
       media: null,
