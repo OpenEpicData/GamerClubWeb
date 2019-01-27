@@ -88,7 +88,7 @@
           <v-btn
             v-if="!moreTag"
             block
-            rounded 
+             
             text
             @click="moreTag = true"
           >
@@ -216,7 +216,7 @@
                       </v-flex>
                       <v-flex xs2>
                         <v-btn
-                          rounded 
+                           
                           small
                           color="red-gradient"
                           disabled

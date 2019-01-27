@@ -32,7 +32,7 @@
       >
         <v-btn
           :color="'purple--text'"
-          rounded 
+           
           large
           @click="load_more(page)"
         >

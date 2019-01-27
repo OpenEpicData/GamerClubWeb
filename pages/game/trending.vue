@@ -38,7 +38,7 @@
         <div>
           <v-btn
             dark
-            rounded 
+             
             large
             color="red"
             to="/trending/hot"
@@ -101,7 +101,7 @@
         <div>
           <v-btn
             dark
-            rounded 
+             
             large
             color="blue"
             to="/trending/latest"
@@ -166,7 +166,7 @@
         <div>
           <v-btn
             dark
-            rounded 
+             
             large
             color="purple"
             to="/trending/review"

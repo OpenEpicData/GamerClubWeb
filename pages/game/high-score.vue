@@ -69,7 +69,7 @@
           <div class="pt-2">
             <v-btn
               :to="`/${high_score[0].appid}`"
-              rounded 
+               
               large
               class="mx-0"
             >
@@ -79,7 +79,7 @@
               </span>
             </v-btn>
             <v-btn
-              rounded 
+               
               large
               outline 
               dark

@@ -43,7 +43,7 @@
                     <v-btn
                       color="amber darken-1"
                       depressed
-                      rounded 
+                       
                       dark
                     >
                       {{ item.Type }}
@@ -105,7 +105,7 @@
                   <div>
                     <v-chip
                       flat
-                      rounded
+                      
                       small
                       class="mx-0 grey--text"
                       color="transparent"

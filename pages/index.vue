@@ -119,7 +119,7 @@
         <v-btn
           outline 
           large
-          rounded 
+           
           to="/game/"
         >
           浏览所有游戏

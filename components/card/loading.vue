@@ -5,7 +5,9 @@
     color="transparent"
     flat
   >
-    <v-container grid-list-sm fluid>
+    <v-container 
+      grid-list-sm 
+      fluid>
       <div>
         <v-img
           :src="`https://s2.ax1x.com/2019/01/23/kE9MQ0.png`"
@@ -19,7 +21,9 @@
             justify-center
             ma-0
           >
-            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+            <v-progress-circular 
+              indeterminate 
+              color="grey lighten-5"/>
           </v-layout>
         </v-img>
       </div>

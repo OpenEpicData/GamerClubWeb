@@ -23,7 +23,7 @@
         <v-btn
           text
           outline 
-          rounded 
+           
         >
           立即开始
         </v-btn>
@@ -55,7 +55,7 @@
           <div>
             <v-btn
               slot="append-outer"
-              rounded 
+               
               large
               dark
               style="top: -12px"
