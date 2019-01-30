@@ -153,6 +153,18 @@ export default {
         navigation: {
           prevEl: '.swiper-prev',
           nextEl: '.swiper-next'
+        },
+        breakpoints: { 
+        //当宽度小于等于480
+          640: { 
+            slidesPerView: 1,
+            spaceBetween: 20
+          },
+          //当宽度小于等于640
+          1200: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          }
         }
       }
     }
