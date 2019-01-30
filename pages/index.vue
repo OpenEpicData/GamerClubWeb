@@ -119,9 +119,9 @@
         <v-btn
           outline 
           large
-          to="/game/"
+          to="/game/trending"
         >
-          浏览所有游戏
+          浏览趋势
         </v-btn>
       </div>
       <div class="mt-5">
