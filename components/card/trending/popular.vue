@@ -67,11 +67,15 @@
         style="margin: 10px 5px;"
       >
         <v-flex xs8>
-          <h4 class="title font-weight-bold" v-bind:class="{ 'text-truncate': truncate }">
+          <h4 
+            :class="{ 'text-truncate': truncate }" 
+            class="title font-weight-bold">
             {{ popular.name }}
           </h4>
           <div class="blue-grey--text">
-            <h5 v-if="popular.game_list && popular.game_list.publishers" class="body-2">
+            <h5 
+              v-if="popular.game_list && popular.game_list.publishers" 
+              class="body-2">
               By {{ popular.game_list.publishers }}
             </h5>
             <h5 class="caption">
@@ -80,7 +84,10 @@
           </div>
         </v-flex>
         <v-flex />
-        <v-flex v-if="popular.game_prices.length > 0" xs3 class="text-xs-right">
+        <v-flex 
+          v-if="popular.game_prices.length > 0" 
+          xs3 
+          class="text-xs-right">
           <v-menu
             v-model="priceMenu"
             :close-on-content-click="false"
@@ -137,7 +144,10 @@
             </v-card>
           </v-menu>
         </v-flex>
-        <v-flex v-else xs3 class="text-xs-right">
+        <v-flex 
+          v-else 
+          xs3 
+          class="text-xs-right">
           <v-chip
             small
             disabled
@@ -163,7 +173,7 @@ export default {
       type: null,
       default: null,
       required: true
-    },
+    }
   },
   data() {
     this.chartSettings = {

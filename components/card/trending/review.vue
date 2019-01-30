@@ -68,7 +68,9 @@
             {{ data.name }}
           </h4>
           <div class="blue-grey--text">
-            <h5 v-if="data.publishers" class="body-2">
+            <h5 
+              v-if="data.publishers" 
+              class="body-2">
               By {{ data.publishers }}
             </h5>
             <h5 class="caption">
@@ -79,7 +81,10 @@
           </div>
         </v-flex>
         <v-flex />
-        <v-flex v-if="price.length > 0" xs3 class="text-xs-right">
+        <v-flex 
+          v-if="price.length > 0" 
+          xs3 
+          class="text-xs-right">
           <v-menu
             v-model="priceMenu"
             :close-on-content-click="false"
@@ -127,7 +132,9 @@
             </v-card>
           </v-menu>
         </v-flex>
-        <v-flex v-else xs3>
+        <v-flex 
+          v-else 
+          xs3>
           <v-chip
             small
             disabled

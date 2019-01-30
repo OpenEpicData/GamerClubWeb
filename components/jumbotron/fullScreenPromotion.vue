@@ -150,7 +150,9 @@ export default {
     }
   },
   async mounted() {
-    const hot_games = await this.$axios.$get(`https://v3.steamhub.cn/api/v3/game/hot?order=desc&order_field=created_at&length=8&simple_paginate=1`)
+    const hot_games = await this.$axios.$get(
+      `https://v3.steamhub.cn/api/v3/game/hot?order=desc&order_field=created_at&length=16&simple_paginate=1`
+    )
     this.hot_games = hot_games
   }
 }
