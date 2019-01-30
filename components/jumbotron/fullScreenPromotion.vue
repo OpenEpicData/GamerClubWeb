@@ -20,9 +20,9 @@
         <div>
           <v-item-group>
             <v-container grid-list-md>
-              <h2 class="text-xs-left display-1">
+              <h2 class="text-xs-left headline">
                 <v-icon 
-                  x-large 
+                  large 
                   color="accent">
                   fas fa-glass-cheers
                 </v-icon>
@@ -45,7 +45,7 @@
                       :to="game[n - 1].appid"
                       class="d-flex align-center"
                       dark
-                      height="400"
+                      height="350"
                       @click="toggle"
                     >
                       <v-scroll-y-transition>
@@ -53,7 +53,7 @@
                           :aspect-ratio="16/9" 
                           :src="game[n - 1].img"
                           gradient="to top right, rgba(0,0,0,.5), rgba(67,67,67,.5)"
-                          height="400">
+                          height="350">
                           <v-layout 
                             wrap 
                             column 
@@ -81,12 +81,33 @@
           </v-item-group>
         </div>
         <div>
-          <v-icon
-            x-large
-            dark
+          <v-sheet
+            v-if="hot_games"
+            class="mx-auto hidden-md-and-down"
+            max-width="1400"
           >
-            fas fa-angle-double-down faa-bounce animated
-          </v-icon>
+            <v-slide-group multiple>
+              <v-slide-item
+                v-for="(item, n) in hot_games.data"
+                :key="n"
+              >
+                <v-flex
+                  slot-scope="{ active }"
+                  :input-value="active"
+                  xs12
+                  sm6
+                  md3
+                  xl2
+                >
+                  <popularWithSmallCard
+                    v-if="item"
+                    :popular.sync="item"
+                    :truncate="true"
+                  />
+                </v-flex>
+              </v-slide-item>
+            </v-slide-group>
+          </v-sheet>
         </div>
       </v-layout>
     </v-img>
@@ -94,9 +115,15 @@
 </template>
 
 <script>
+import popularWithSmallCard from '~/components/card/trending/popular'
+
 export default {
+  components: {
+    popularWithSmallCard
+  },
   data() {
     return {
+      hot_games: null,
       slide: {
         active: 1
       },
@@ -121,6 +148,10 @@ export default {
         }
       ]
     }
+  },
+  async mounted() {
+    const hot_games = await this.$axios.$get(`https://v3.steamhub.cn/api/v3/game/hot?order=desc&order_field=created_at&length=8&simple_paginate=1`)
+    this.hot_games = hot_games
   }
 }
 </script>

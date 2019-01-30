@@ -63,7 +63,7 @@
         row
         style="margin: 10px 5px;"
       >
-        <div>
+        <v-flex xs8>
           <h4 class="title font-weight-bold">
             {{ data.name }}
           </h4>
@@ -77,9 +77,9 @@
               </span>
             </h5>
           </div>
-        </div>
-        <div />
-        <div v-if="price.length > 0">
+        </v-flex>
+        <v-flex />
+        <v-flex v-if="price.length > 0" xs3 class="text-xs-right">
           <v-menu
             v-model="priceMenu"
             :close-on-content-click="false"
@@ -126,14 +126,15 @@
               />
             </v-card>
           </v-menu>
-        </div>
-        <div v-else>
+        </v-flex>
+        <v-flex v-else xs3>
           <v-chip
             small
+            disabled
           >
-            暂无价格
+            <del>￥ ??</del>
           </v-chip>
-        </div>
+        </v-flex>
       </v-layout>
     </div>
   </v-card>
