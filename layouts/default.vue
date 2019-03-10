@@ -31,8 +31,9 @@
       <template v-slot:extension>
         <v-tabs
           v-model="toolbar.tab.active"
-          color="secondary"
+          class="secondary"
           fixed-tabs
+          slider-color="accent"
         >
           <v-tab
             v-for="(item, i) in toolbar.tab.item"
@@ -117,3 +118,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-tabs-slider {
+  border-bottom: 5px solid #fff;
+  border-radius: 9999px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+</style>

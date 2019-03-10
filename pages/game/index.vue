@@ -1,245 +1,257 @@
 <template>
-  <div class="mt-5">
-    <v-layout
-      fill-height
-      row
-      wrap
-    >
-      <v-flex
-        xs12
-        md2
-        class="text-xs-left"
-        hidden-md-and-down
+  <div>
+    <v-banner 
+      single-line 
+      dark>
+      <v-icon
+        slot="icon"
       >
-        <v-text-field
-          v-model="searchInputValue"
-          outline
-          label="回车搜索"
-          single-line
-          append-icon="search"
-          clearable
-          @keyup.enter="searchInput"
-        />
-        <div>
-          <v-switch
-            v-model="game_price"
-            :label="`价格`"
+        fas fa-exclamation-triangle
+      </v-icon>
+      SteamHub 搜索功能正在重构中
+    </v-banner>
+    <div class="mt-5">
+      <v-layout
+        fill-height
+        row
+        wrap
+      >
+        <v-flex
+          xs12
+          md2
+          class="text-xs-left"
+          hidden-md-and-down
+        >
+          <v-text-field
+            v-model="searchInputValue"
+            outline
+            label="回车搜索"
+            single-line
+            append-icon="search"
+            clearable
+            @keyup.enter="searchInput"
           />
-          <v-checkbox
-            v-model="priceNullCheckbox"
-            :label="`${priceNull.title}`"
-            class="mt-0"
-          />
-          <v-radio-group
-            v-for="(priceItem, priceIndex) in price.data"
-            :key="priceIndex"
-            v-model="priceCheckbox"
-            class="mt-0"
-          >
-            <v-radio
-              :label="`${priceItem.title}`"
-              :value="`${priceItem.type}`"
+          <div>
+            <v-switch
+              v-model="game_price"
+              :label="`价格`"
             />
-          </v-radio-group>
-        </div>
-        <div v-if="tags">
-          <v-switch
-            v-model="game_type"
-            :label="`类型`"
-          />
-          <v-checkbox
-            v-for="(tagsItem, tagsIndex) in tags.slice(0, 10)"
-            :key="tagsIndex"
-            v-model="typeCheckbox"
-            :label="`${tagsItem}`"
-            :value="`${tagsItem}`"
-            class="mt-0"
-          />
-          <v-dialog
-            v-model="moreTag"
-            lazy
-          >
-            <v-card>
-              <v-layout
-                justify-start
-                align-center
-                row
-                wrap
-                class="px-5 py-5"
-              >
-                <v-flex
-                  v-for="(tagsItem, tagsIndex) in tags.slice(10, 60)"
-                  :key="tagsIndex"
-                  xs4
-                  sm3
-                  md2
-                  lg1
-                >
-                  <v-checkbox
-                    v-model="typeCheckbox"
-                    :label="`${tagsItem}`"
-                    :value="`${tagsItem}`"
-                    class="mt-0"
-                  />
-                </v-flex>
-              </v-layout>
-            </v-card>
-          </v-dialog>
-          <v-btn
-            v-if="!moreTag"
-            block
-             
-            text
-            @click="moreTag = true"
-          >
-            更多
-            <v-icon right>
-              fas fa-angle-double-down
-            </v-icon>
-          </v-btn>
-        </div>
-        <div v-else>
-          <v-progress-circular
-            indeterminate
-            color="primary"
-          />
-        </div>
-      </v-flex>
-      <v-flex
-        xs12
-        md12
-        lg8
-        class="text-xs-left"
-      >
-        <div class="pl-5">
-          <h1 class="display-1">
-            所有结果
-          </h1>
-          <h4 class="body-2 mt-1">
-            部分价格在某一时间进行过永久降价,搜索出来的结果可能与选项不匹配 <br>
-            每个游戏可能具有多种类型,当前页面只显示最新的一种<br>
-            当启用 "包含免费游戏" 时,价格筛选将失效
-          </h4>
-          <div class="mt-3">
-            <v-chip
-              v-if="searchInputValue"
-              class="mx-0"
+            <v-checkbox
+              v-model="priceNullCheckbox"
+              :label="`${priceNull.title}`"
+              class="mt-0"
+            />
+            <v-radio-group
+              v-for="(priceItem, priceIndex) in price.data"
+              :key="priceIndex"
+              v-model="priceCheckbox"
+              class="mt-0"
             >
-              {{ searchInputValue }}
-            </v-chip>
-            <span
-              v-for="(item, i) in typeCheckbox"
-              :key="i"
-            >
-              <v-chip
-                v-if="typeCheckbox[0]"
-                class="mx-0"
-              >
-                {{ item }}
-              </v-chip>
-            </span>
-            <span v-if="priceCheckbox[0]">
-              <v-chip class="mx-0">
-                {{ parseArray(priceCheckbox) }}
-              </v-chip>
-            </span>
+              <v-radio
+                :label="`${priceItem.title}`"
+                :value="`${priceItem.type}`"
+              />
+            </v-radio-group>
           </div>
-          <div class="mt-5">
+          <div v-if="tags">
+            <v-switch
+              v-model="game_type"
+              :label="`类型`"
+            />
+            <v-checkbox
+              v-for="(tagsItem, tagsIndex) in tags.slice(0, 10)"
+              :key="tagsIndex"
+              v-model="typeCheckbox"
+              :label="`${tagsItem}`"
+              :value="`${tagsItem}`"
+              class="mt-0"
+            />
             <v-dialog
-              v-model="listsLoading"
-              persistent
-              width="300"
+              v-model="moreTag"
+              lazy
             >
-              <v-card
-                color="primary"
-                dark
-              >
-                <v-cardText>
-                  载入中,首次加载可能会有延迟...
-                  <v-progress-linear
-                    indeterminate
-                    color="white"
-                    class="mb-0"
-                  />
-                </v-cardText>
+              <v-card>
+                <v-layout
+                  justify-start
+                  align-center
+                  row
+                  wrap
+                  class="px-5 py-5"
+                >
+                  <v-flex
+                    v-for="(tagsItem, tagsIndex) in tags.slice(10, 60)"
+                    :key="tagsIndex"
+                    xs4
+                    sm3
+                    md2
+                    lg1
+                  >
+                    <v-checkbox
+                      v-model="typeCheckbox"
+                      :label="`${tagsItem}`"
+                      :value="`${tagsItem}`"
+                      class="mt-0"
+                    />
+                  </v-flex>
+                </v-layout>
               </v-card>
             </v-dialog>
-            <div v-if="lists">
-              <div
-                v-for="(dataItem, dataIndex) in lists.data"
-                :key="dataIndex"
+            <v-btn
+              v-if="!moreTag"
+              block
+             
+              text
+              @click="moreTag = true"
+            >
+              更多
+              <v-icon right>
+                fas fa-angle-double-down
+              </v-icon>
+            </v-btn>
+          </div>
+          <div v-else>
+            <v-progress-circular
+              indeterminate
+              color="primary"
+            />
+          </div>
+        </v-flex>
+        <v-flex
+          xs12
+          md12
+          lg8
+          class="text-xs-left"
+        >
+          <div class="pl-5">
+            <h1 class="display-1">
+              所有结果
+            </h1>
+            <h4 class="body-2 mt-1">
+              部分价格在某一时间进行过永久降价,搜索出来的结果可能与选项不匹配 <br>
+              每个游戏可能具有多种类型,当前页面只显示最新的一种<br>
+              当启用 "包含免费游戏" 时,价格筛选将失效
+            </h4>
+            <div class="mt-3">
+              <v-chip
+                v-if="searchInputValue"
+                class="mx-0"
               >
-                <div>
+                {{ searchInputValue }}
+              </v-chip>
+              <span
+                v-for="(item, i) in typeCheckbox"
+                :key="i"
+              >
+                <v-chip
+                  v-if="typeCheckbox[0]"
+                  class="mx-0"
+                >
+                  {{ item }}
+                </v-chip>
+              </span>
+              <span v-if="priceCheckbox[0]">
+                <v-chip class="mx-0">
+                  {{ parseArray(priceCheckbox) }}
+                </v-chip>
+              </span>
+            </div>
+            <div class="mt-5">
+              <v-dialog
+                v-model="listsLoading"
+                persistent
+                width="300"
+              >
+                <v-card
+                  color="primary"
+                  dark
+                >
+                  <v-cardText>
+                    载入中,首次加载可能会有延迟...
+                    <v-progress-linear
+                      indeterminate
+                      color="white"
+                      class="mb-0"
+                    />
+                  </v-cardText>
+                </v-card>
+              </v-dialog>
+              <div v-if="lists">
+                <div
+                  v-for="(dataItem, dataIndex) in lists.data"
+                  :key="dataIndex"
+                >
                   <div>
-                    <v-layout
-                      row
-                      wrap
-                      fill-height
-                    >
-                      <v-flex
-                        xs1
-                        md2
-                        class="pt-1 hidden-sm-and-down"
+                    <div>
+                      <v-layout
+                        row
+                        wrap
+                        fill-height
                       >
-                        <img :src="`https://steamcdn-a.opskins.media/steam/apps/${dataItem.AppID}/capsule_sm_120.jpg?t=1542333066`">
-                      </v-flex>
-                      <v-flex
-                        xs9
-                        md8
-                      >
-                        <div>
-                          <h2 
-                            v-if="dataItem.AppID" 
-                            class="text-truncate subheading">
-                            <nuxt-link 
-                              :to="`/${dataItem.AppID}`" 
-                              class="white--text">
-                              {{ dataItem.Name }}
-                            </nuxt-link>
-                            <v-chip
-                              v-if="dataItem.app_price[0]"
-                              small
-                            >
-                              <span
-                                v-if="dataItem.app_price[0].PriceDiscount > 0"
-                                class="mr-2"
-                              >
-                                <del>￥ {{ dataItem.app_price[0].PriceInitial / 100 }}</del>
-                              </span>
-                              ￥ {{ dataItem.app_price[0].PriceFinal / 100 }}
-                            </v-chip>
-                            <v-chip
-                              v-if="dataItem.app_tag[0]"
-                              small
-                            >
-                              {{ dataItem.app_tag[0].Tag }}
-                            </v-chip>
-                          </h2>
-                          <h3 class="text-truncate body-2">
-                            {{ dataItem.ShortDescription }}
-                          </h3>
-                        </div>
-                      </v-flex>
-                      <v-flex xs2>
-                        <v-btn
-                           
-                          small
-                          color="red-gradient"
-                          disabled
-                          outline 
+                        <v-flex
+                          xs1
+                          md2
+                          class="pt-1 hidden-sm-and-down"
                         >
-                          关注
-                        </v-btn>
-                      </v-flex>
-                    </v-layout>
+                          <img :src="`https://steamcdn-a.opskins.media/steam/apps/${dataItem.AppID}/capsule_sm_120.jpg?t=1542333066`">
+                        </v-flex>
+                        <v-flex
+                          xs9
+                          md8
+                        >
+                          <div>
+                            <h2 
+                              v-if="dataItem.AppID" 
+                              class="text-truncate subheading">
+                              <nuxt-link 
+                                :to="`/${dataItem.AppID}`" 
+                                class="white--text">
+                                {{ dataItem.Name }}
+                              </nuxt-link>
+                              <v-chip
+                                v-if="dataItem.app_price[0]"
+                                small
+                              >
+                                <span
+                                  v-if="dataItem.app_price[0].PriceDiscount > 0"
+                                  class="mr-2"
+                                >
+                                  <del>￥ {{ dataItem.app_price[0].PriceInitial / 100 }}</del>
+                                </span>
+                                ￥ {{ dataItem.app_price[0].PriceFinal / 100 }}
+                              </v-chip>
+                              <v-chip
+                                v-if="dataItem.app_tag[0]"
+                                small
+                              >
+                                {{ dataItem.app_tag[0].Tag }}
+                              </v-chip>
+                            </h2>
+                            <h3 class="text-truncate body-2">
+                              {{ dataItem.ShortDescription }}
+                            </h3>
+                          </div>
+                        </v-flex>
+                        <v-flex xs2>
+                          <v-btn
+                           
+                            small
+                            color="red-gradient"
+                            disabled
+                            outline 
+                          >
+                            关注
+                          </v-btn>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </v-flex>
-    </v-layout>
+        </v-flex>
+      </v-layout>
+    </div>
   </div>
 </template>
 
