@@ -188,8 +188,14 @@
                         md8
                       >
                         <div>
-                          <h2 class="text-truncate subheading">
-                            {{ dataItem.Name }}
+                          <h2 
+                            v-if="dataItem.AppID" 
+                            class="text-truncate subheading">
+                            <nuxt-link 
+                              :to="`/${dataItem.AppID}`" 
+                              class="white--text">
+                              {{ dataItem.Name }}
+                            </nuxt-link>
                             <v-chip
                               v-if="dataItem.app_price[0]"
                               small

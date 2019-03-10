@@ -2,7 +2,7 @@
   <div>
     <div v-if="review">
       <v-layout
-        v-for="k in review.data.length / 4"
+        v-for="k in review.data.length / 5"
         :key="k"
         align-start
         justify-center
@@ -10,13 +10,13 @@
         wrap
       >
         <v-flex
-          v-for="(reviewItem,reviewIndex) in review.data.slice((k-1)*4,(k) * 4)"
+          v-for="(reviewItem,reviewIndex) in review.data.slice((k-1)*5,(k) * 5)"
           :key="reviewIndex"
           xs12
           sm6
           md3
           xl2
-          class="px-3 my-5"
+          class="px-3 my-3"
         >
           <reviewWithSmallCard
             v-if="reviewItem"
@@ -44,7 +44,7 @@
     </div>
     <div v-if="loading === true">
       <v-layout
-        v-for="n in 4"
+        v-for="n in 5"
         :key="n"
         align-start
         justify-center
@@ -52,13 +52,13 @@
         wrap
       >
         <v-flex
-          v-for="i in 4"
+          v-for="i in 5"
           :key="i"
           xs12
           sm6
           md3
           xl2
-          class="px-3 my-5"
+          class="px-3 my-3"
         >
           <loading />
         </v-flex>
@@ -83,7 +83,7 @@ export default {
     }
   },
   async mounted() {
-    let length_param = 'length=16&simple_paginate=1'
+    let length_param = 'length=15&simple_paginate=1'
     let api_domain = 'https://v3.steamhub.cn/api/v3/game/'
     this.review = await this.fetchSomething(
       `${api_domain}list?steam_user_review_score=80,100&order=desc&order_field=updated_at&${length_param}`
@@ -98,7 +98,7 @@ export default {
       this.loading = true
       this.page++
       let fecth_review = await this.fetchSomething(
-        `https://v3.steamhub.cn/api/v3/game/list?steam_user_review_score=80,100&order=desc&order_field=updated_at&length=16&simple_paginate=1&page=${
+        `https://v3.steamhub.cn/api/v3/game/list?steam_user_review_score=80,100&order=desc&order_field=updated_at&length=15&simple_paginate=1&page=${
           this.page
         }`
       )

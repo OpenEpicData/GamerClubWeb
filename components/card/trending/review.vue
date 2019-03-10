@@ -85,52 +85,19 @@
           v-if="price.length > 0" 
           xs3 
           class="text-xs-right">
-          <v-menu
-            v-model="priceMenu"
-            :close-on-content-click="false"
-            :nudge-width="700"
-            :offset-overflow="true"
-            lazy
-            left
-            top
-            open-on-hover
+          <v-chip
+            small
           >
-            <v-chip
-              slot="activator"
-              small
-              @mouseover="chipPriceHover(price, data.appid)"
-              @mouseleave="chipPriceLeave(price, data.appid)"
-            >
-              <span v-if="price.length === 0 && data.free === 1">
-                免费
-              </span>
-              <span v-else-if="price[0]">
-                ￥ {{ price[0].final }}
-              </span>
-              <span v-else>
-                未知
-              </span>
-            </v-chip>
-            <v-card color="primary">
-              <v-alert
-                :value="true"
-                color="accent"
-                icon="info"
-                outlined
-              >
-                游戏名: {{ data.name }}
-              </v-alert>
-              <ve-line
-                :ref="`chart${data.appid}`"
-                :colors="chartColors"
-                :legend-visible="false"
-                :extend="chartExtend"
-                :settings="chartSettings"
-                :data="chartData"
-                :mark-point="markPoint"
-              />
-            </v-card>
-          </v-menu>
+            <span v-if="price.length === 0 && data.free === 1">
+              免费
+            </span>
+            <span v-else-if="price[0]">
+              ￥ {{ price[0].final }}
+            </span>
+            <span v-else>
+              未知
+            </span>
+          </v-chip>
         </v-flex>
         <v-flex 
           v-else 
@@ -173,76 +140,8 @@ export default {
     }
   },
   data() {
-    this.chartSettings = {
-      labelMap: {
-        final: '价格'
-      }
-    }
-    this.markPoint = {
-      data: [
-        {
-          name: '最小值',
-          type: 'min'
-        }
-      ]
-    }
     return {
-      rating: null,
-      appidPrice: false,
-      priceMenu: false,
-      chartColors: null,
-      chartData: {
-        columns: ['created_at', 'final'],
-        rows: null
-      },
-      chartExtend: {
-        series: {
-          type: 'line',
-          smooth: true,
-          lineStyle: {
-            width: 7,
-            shadowColor: 'rgba(0, 0, 0, 0.2)',
-            shadowBlur: 3,
-            shadowOffsetY: 5,
-            shadowOffsetX: 5,
-            borderRadius: 50
-          }
-        },
-        yAxis: {
-          scale: true
-        },
-        xAxis: {
-          inverse: true
-        }
-      }
-    }
-  },
-  mounted() {
-    this.chartColors = [
-      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#84FFFF' },
-        { offset: 0.5, color: '#84FFFF' },
-        { offset: 1, color: '#84FFFF' }
-      ])
-    ]
-    if (this.price.length > 0) {
-      const parse_price = this.price
-      const last_price = parse_price[parse_price.length - 1]
-      const chunk = {
-        final: last_price.final,
-        created_at: dayjs().format('YYYY-MM-DD HH:mm:ss')
-      }
-      this.price.push(chunk)
-      this.price.reverse()
-    }
-  },
-  methods: {
-    chipPriceHover: function(val, appid) {
-      this.chartData.rows = val
-      this.$refs[`chart${appid}`].echarts.resize()
-    },
-    chipPriceLeave: function(val, appid) {
-      this.$refs[`chart${appid}`].echarts.resize()
+      rating: null
     }
   }
 }

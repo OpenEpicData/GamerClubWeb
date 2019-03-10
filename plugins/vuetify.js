@@ -1,11 +1,25 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 
-Vue.use(Vuetify, {
-  iconfont: 'fa',
+const opts = {
   theme: {
-    primary: '#263238',
-    secondary: '#37474F',
-    accent: '#84FFFF'
+    dark: true,
+    themes: {
+      dark: true,
+      dark: {
+        primary: '#263238',
+        secondary: '#37474F',
+        accent: '#84FFFF'
+      }
+    }
+  },
+  icons: {
+    iconfont: 'fa'
   }
-})
+}
+
+Vue.use(Vuetify)
+
+export default ({ app }) => {
+  app.vuetify = new Vuetify(opts)
+}

@@ -88,61 +88,24 @@
           v-if="popular.game_prices.length > 0" 
           xs3 
           class="text-xs-right">
-          <v-menu
-            v-model="priceMenu"
-            :close-on-content-click="false"
-            :nudge-width="700"
-            :offset-overflow="true"
-            lazy
-            left
-            top
-            open-on-hover
+          <v-chip
+            small
           >
-            <v-chip
-              slot="activator"
-              small
-              
-              @mouseover="chipPriceHover(popular.game_prices, popular.appid)"
-              @mouseleave="chipPriceLeave(popular.game_prices, popular.appid)"
-            >
-              <span v-if="popular.game_prices.length === 0 && popular.game_list.free === 1">
-                免费
-              </span>
-              <span v-else-if="popular.game_prices.length > 2 && popular.game_prices[2].final > popular.game_prices[1].final">
-                <span class="accent--text body-2">
-                  ￥ {{ popular.game_prices[0].final }}
-                </span>
-                <del>
-                  {{ popular.game_prices[2].final }}
-                </del>
-              </span>
-              <span v-else-if="popular.game_prices[0] ">
+            <span v-if="popular.game_prices.length === 0 && popular.game_list.free === 1">
+              免费
+            </span>
+            <span v-else-if="popular.game_prices.length > 2 && popular.game_prices[2].final > popular.game_prices[1].final">
+              <span class="accent--text body-2">
                 ￥ {{ popular.game_prices[0].final }}
               </span>
-              <span v-else>
-                未知
-              </span>
-            </v-chip>
-            <v-card color="primary">
-              <v-alert
-                :value="true"
-                color="accent"
-                icon="info"
-                outlined
-              >
-                游戏名: {{ popular.name }}
-              </v-alert>
-              <ve-line
-                :ref="`chart${popular.appid}`"
-                :colors="chartColors"
-                :legend-visible="false"
-                :extend="chartExtend"
-                :settings="chartSettings"
-                :data="chartData"
-                :mark-point="markPoint"
-              />
-            </v-card>
-          </v-menu>
+            </span>
+            <span v-else-if="popular.game_prices[0] ">
+              ￥ {{ popular.game_prices[0].final }}
+            </span>
+            <span v-else>
+              未知
+            </span>
+          </v-chip>
         </v-flex>
         <v-flex 
           v-else 
@@ -171,98 +134,12 @@ export default {
     },
     truncate: {
       type: null,
-      default: null,
-      required: true
+      default: null
     }
   },
   data() {
-    this.chartSettings = {
-      labelMap: {
-        final: '价格'
-      }
-    }
-    this.markPoint = {
-      data: [
-        {
-          name: '最小值',
-          type: 'min'
-        }
-      ]
-    }
-    this.grid = {
-      show: true,
-      borderWidth: 0
-    }
     return {
-      rating: null,
-      priceMenu: false,
-      chartColors: null,
-      chartData: {
-        columns: ['created_at', 'final'],
-        rows: null
-      },
-      chartExtend: {
-        series: {
-          type: 'line',
-          smooth: true,
-          lineStyle: {
-            width: 7,
-            shadowColor: 'rgba(0, 0, 0, 0.2)',
-            shadowBlur: 3,
-            shadowOffsetY: 5,
-            shadowOffsetX: 5,
-            borderRadius: 50
-          }
-        },
-        yAxis: {
-          scale: true,
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: '#fff',
-              width: 1
-            }
-          }
-        },
-        xAxis: {
-          inverse: true,
-          axisLine: {
-            show: true,
-            lineStyle: {
-              color: '#fff',
-              width: 1
-            }
-          }
-        }
-      }
-    }
-  },
-  mounted() {
-    this.chartColors = [
-      new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-        { offset: 0, color: '#84FFFF' },
-        { offset: 0.5, color: '#84FFFF' },
-        { offset: 1, color: '#84FFFF' }
-      ])
-    ]
-    if (this.popular.game_prices.length > 0) {
-      const parse_price = this.popular.game_prices
-      const last_price = parse_price[parse_price.length - 1]
-      const chunk = {
-        final: last_price.final,
-        created_at: dayjs().format('YYYY-MM-DD HH:mm:ss')
-      }
-      this.popular.game_prices.push(chunk)
-      this.popular.game_prices.reverse()
-    }
-  },
-  methods: {
-    chipPriceHover: function(val, appid) {
-      this.chartData.rows = val
-      this.$refs[`chart${appid}`].echarts.resize()
-    },
-    chipPriceLeave: function(val, appid) {
-      this.$refs[`chart${appid}`].echarts.resize()
+      rating: null
     }
   }
 }

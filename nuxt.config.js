@@ -32,7 +32,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://cdn.jsdelivr.net/npm/vuetify@2.0.0-alpha.3/dist/vuetify.min.css'
+          'https://cdn.jsdelivr.net/npm/vuetify@2.0.0-alpha.7/dist/vuetify.min.css'
       },
       {
         rel: 'stylesheet',
@@ -47,12 +47,6 @@ module.exports = {
       {
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/swiper@4/dist/css/swiper.min.css'
-      }
-    ],
-    script: [
-      {
-        src:
-          'https://cdn.jsdelivr.net/npm/echarts@4.2.0-rc.2/dist/echarts.min.js'
       }
     ]
   },

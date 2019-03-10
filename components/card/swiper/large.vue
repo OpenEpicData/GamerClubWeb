@@ -154,9 +154,9 @@ export default {
           prevEl: '.swiper-prev',
           nextEl: '.swiper-next'
         },
-        breakpoints: { 
-        //当宽度小于等于480
-          640: { 
+        breakpoints: {
+          //当宽度小于等于480
+          640: {
             slidesPerView: 1,
             spaceBetween: 20
           },

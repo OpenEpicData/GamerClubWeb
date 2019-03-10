@@ -20,13 +20,13 @@
           wrap
         >
           <v-flex
-            v-for="(popularItem,popularIndex) in popular.data.slice(0, 4)"
+            v-for="(popularItem,popularIndex) in popular.data.slice(0, 5)"
             :key="popularIndex"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-3"
           >
             <popularWithSmallCard
               v-if="popularItem"
@@ -59,13 +59,13 @@
           wrap
         >
           <v-flex
-            v-for="i in 4"
+            v-for="i in 5"
             :key="i"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-3"
           >
             <loading />
           </v-flex>
@@ -82,13 +82,13 @@
           wrap
         >
           <v-flex
-            v-for="(latestItem,latestIndex) in latest.data.slice((k-1)*4,(k) * 4)"
+            v-for="(latestItem,latestIndex) in latest.data.slice((k-1)*5,(k) * 5)"
             :key="latestIndex"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-3"
           >
             <reviewtWithSmallCard
               :review.sync="latestItem.game_reviews"
@@ -124,13 +124,13 @@
           wrap
         >
           <v-flex
-            v-for="i in 4"
+            v-for="i in 5"
             :key="i"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-3"
           >
             <loading />
           </v-flex>
@@ -147,13 +147,13 @@
           wrap
         >
           <v-flex
-            v-for="(reviewItem, reviewIndex) in top_review.data.slice((k-1)*4,(k) * 4)"
+            v-for="(reviewItem, reviewIndex) in top_review.data.slice((k-1)*5,(k) * 5)"
             :key="reviewIndex"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-3"
           >
             <reviewtWithSmallCard
               :review.sync="reviewItem.game_reviews"
@@ -189,13 +189,13 @@
           wrap
         >
           <v-flex
-            v-for="i in 4"
+            v-for="i in 5"
             :key="i"
             xs12
             sm6
             md3
             xl2
-            class="px-3 my-5"
+            class="px-3 my-3"
           >
             <loading />
           </v-flex>
@@ -240,7 +240,7 @@ export default {
     }
   },
   async mounted() {
-    let length_param = 'length=8&simple_paginate=1'
+    let length_param = 'length=10&simple_paginate=1'
     let api_domain = 'https://v3.steamhub.cn/api/v3/game/'
     this.latest = await this.fetchSomething(
       `${api_domain}list?order=desc&order_field=updated_at&${length_param}`
