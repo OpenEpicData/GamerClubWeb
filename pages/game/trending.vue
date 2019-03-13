@@ -115,15 +115,13 @@
 
       <div v-else-if="item.type === 'latest'">
         <v-layout
-          v-for="n in 2"
-          :key="n"
           align-start
           justify-center
           row
           wrap
         >
           <v-flex
-            v-for="i in 6"
+            v-for="i in 12"
             :key="i"
             xs12
             sm6
@@ -177,15 +175,13 @@
 
       <div v-else-if="item.type === 'top_review'">
         <v-layout
-          v-for="n in 2"
-          :key="n"
           align-start
           justify-center
           row
           wrap
         >
           <v-flex
-            v-for="i in 6"
+            v-for="i in 12"
             :key="i"
             xs12
             sm6
