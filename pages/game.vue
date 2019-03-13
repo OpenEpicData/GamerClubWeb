@@ -2,16 +2,25 @@
   <div>
     <div
       class="secondary"
-      style="height:20vh"
-    />
-    <tabDefault
-      :tab="tab"
+      style="height:15vh"
     />
     <v-container
       fluid
       class="text-xs-center"
     >
-      <nuxt-child />
+      <v-layout 
+        row 
+        wrap>
+        <v-flex xs11>
+          <nuxt-child />
+        </v-flex>
+        <v-flex xs1>
+          <tabDefault
+            :tab="tab"
+            style="position:sticky; top: 15vh;"
+          />
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>

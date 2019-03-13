@@ -2,15 +2,13 @@
   <div>
     <div v-if="popular">
       <v-layout
-        v-for="k in popular.data.length / 5"
-        :key="k"
         align-start
         justify-center
         row
         wrap
       >
         <v-flex
-          v-for="(popularItem,popularIndex) in popular.data.slice((k-1)*5,(k) * 5)"
+          v-for="(popularItem,popularIndex) in popular.data"
           :key="popularIndex"
           xs12
           sm6
@@ -50,7 +48,7 @@
         wrap
       >
         <v-flex
-          v-for="i in 5"
+          v-for="i in 6"
           :key="i"
           xs12
           sm6
@@ -82,7 +80,7 @@ export default {
     }
   },
   async mounted() {
-    let length_param = 'length=15&simple_paginate=1'
+    let length_param = 'length=30&simple_paginate=1'
     let api_domain = 'https://v3.steamhub.cn/api/v3/game/'
     this.popular = await this.fetchSomething(
       `${api_domain}hot?order=desc&order_field=created_at&${length_param}`
@@ -97,7 +95,7 @@ export default {
       this.loading = true
       this.page++
       let fecth_popular = await this.fetchSomething(
-        `https://v3.steamhub.cn/api/v3/game/hot?order=desc&order_field=created_at&length=15&simple_paginate=1&page=${
+        `https://v3.steamhub.cn/api/v3/game/hot?order=desc&order_field=created_at&length=30&simple_paginate=1&page=${
           this.page
         }`
       )

@@ -3,16 +3,19 @@
     <div
       v-for="(item, i) in text"
       :key="i"
-      class="mt-5"
     >
-      <h1 class="display-1">
-        {{ item.title }}
-      </h1>
-      <h2 class="subheading mt-2">
-        {{ item.description }}
-      </h2>
+      <div class="my-3">
+        <h1 class="display-1">
+          {{ item.title }}
+        </h1>
+        <h2 class="subheading mt-2">
+          {{ item.description }}
+        </h2>
+      </div>
 
-      <div v-if="popular && item.type === 'popular'">
+      <div 
+        v-if="popular && item.type === 'popular'" 
+      >
         <v-layout
           align-start
           justify-center
@@ -20,7 +23,7 @@
           wrap
         >
           <v-flex
-            v-for="(popularItem,popularIndex) in popular.data.slice(0, 5)"
+            v-for="(popularItem,popularIndex) in popular.data.slice(0, 6)"
             :key="popularIndex"
             xs12
             sm6
@@ -35,10 +38,9 @@
           </v-flex>
         </v-layout>
 
-        <div>
+        <div class="mb-5">
           <v-btn
             dark
-             
             large
             color="red"
             to="/trending/hot"
@@ -59,7 +61,7 @@
           wrap
         >
           <v-flex
-            v-for="i in 5"
+            v-for="i in 6"
             :key="i"
             xs12
             sm6
@@ -74,15 +76,13 @@
 
       <div v-if="latest && item.type === 'latest'">
         <v-layout
-          v-for="k in 2"
-          :key="k"
           align-start
           justify-center
           row
           wrap
         >
           <v-flex
-            v-for="(latestItem,latestIndex) in latest.data.slice((k-1)*5,(k) * 5)"
+            v-for="(latestItem,latestIndex) in latest.data"
             :key="latestIndex"
             xs12
             sm6
@@ -98,10 +98,9 @@
             />
           </v-flex>
         </v-layout>
-        <div>
+        <div class="mb-5">
           <v-btn
             dark
-             
             large
             color="blue"
             to="/trending/latest"
@@ -124,7 +123,7 @@
           wrap
         >
           <v-flex
-            v-for="i in 5"
+            v-for="i in 6"
             :key="i"
             xs12
             sm6
@@ -139,15 +138,13 @@
 
       <div v-if="top_review && item.type === 'top_review'">
         <v-layout
-          v-for="k in 2"
-          :key="k"
           align-start
           justify-center
           row
           wrap
         >
           <v-flex
-            v-for="(reviewItem, reviewIndex) in top_review.data.slice((k-1)*5,(k) * 5)"
+            v-for="(reviewItem, reviewIndex) in top_review.data"
             :key="reviewIndex"
             xs12
             sm6
@@ -163,10 +160,9 @@
             />
           </v-flex>
         </v-layout>
-        <div>
+        <div class="mb-5">
           <v-btn
             dark
-             
             large
             color="purple"
             to="/trending/review"
@@ -189,7 +185,7 @@
           wrap
         >
           <v-flex
-            v-for="i in 5"
+            v-for="i in 6"
             :key="i"
             xs12
             sm6
@@ -240,7 +236,7 @@ export default {
     }
   },
   async mounted() {
-    let length_param = 'length=10&simple_paginate=1'
+    let length_param = 'length=12&simple_paginate=1'
     let api_domain = 'https://v3.steamhub.cn/api/v3/game/'
     this.latest = await this.fetchSomething(
       `${api_domain}list?order=desc&order_field=updated_at&${length_param}`

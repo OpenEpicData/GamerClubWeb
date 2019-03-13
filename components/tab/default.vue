@@ -1,23 +1,19 @@
 <template>
-  <v-tabs
+  <v-tabs 
     v-model="tab.model"
-    :color="tab.color"
+    :color="tab.color" 
     :slider-color="tab.slider.color"
     :centered="tab.centered"
     :fixed-tabs="tab.fixed"
     :dark="tab.dark"
-    height="60vh"
-    active-class=""
-  >
-    <v-tab
+    vertical
+    active-class="">
+    <v-tab 
       v-for="(item, i) in tab.item"
       :key="i"
       :to="item.link"
-      ripple
     >
-      <h2 class="title font-weight-bold">
-        {{ item.title }}
-      </h2>
+      {{ item.title }}
     </v-tab>
   </v-tabs>
 </template>
