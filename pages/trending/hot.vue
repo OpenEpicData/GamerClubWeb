@@ -12,7 +12,7 @@
           :key="popularIndex"
           xs12
           sm6
-          md3
+          md4
           xl2
           class="px-3 my-3"
         >
@@ -52,7 +52,7 @@
           :key="i"
           xs12
           sm6
-          md3
+          md4
           xl2
           class="px-3 my-3"
         >
