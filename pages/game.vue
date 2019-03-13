@@ -11,7 +11,8 @@
       <v-layout 
         row 
         wrap>
-        <v-flex xs11>
+        <v-flex 
+          :class="{ xs11: this.$vuetify.breakpoint.smAndUp, xs12: this.$vuetify.breakpoint.smAndDown }" >
           <nuxt-child />
         </v-flex>
         <v-flex xs1>

@@ -7,6 +7,7 @@
     :fixed-tabs="tab.fixed"
     :dark="tab.dark"
     vertical
+    class="hidden-sm-and-down"
     active-class="">
     <v-tab 
       v-for="(item, i) in tab.item"
