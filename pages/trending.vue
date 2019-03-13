@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="primary"
+      class="secondary"
       style="height:20vh"
     />
     <tabDefault

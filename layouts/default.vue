@@ -2,11 +2,11 @@
   <v-app 
     dark 
     class="secondary">
-    <v-toolbar
+    <v-app-bar
       fixed
       color="primary"
       dark
-      prominent
+      tabs
     >
       <v-toolbar-title>
         <v-btn 
@@ -44,7 +44,7 @@
           </v-tab>
         </v-tabs>
       </template>
-    </v-toolbar>
+    </v-app-bar>
     <v-content>
       <nuxt />
     </v-content>
