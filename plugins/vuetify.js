@@ -7,9 +7,9 @@ const opts = {
     themes: {
       dark: true,
       dark: {
-        primary: '#263238',
-        secondary: '#37474F',
-        accent: '#84FFFF'
+        primary: '#131418',
+        secondary: '#2d303a',
+        accent: '#0ebeff'
       }
     }
   },
