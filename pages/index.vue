@@ -170,7 +170,7 @@ export default {
       tagWithSmall: [
         {
           title: '动作',
-          color: 'cyan darken-1',
+          color: 'cyan',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed6062dce47.png',
           knownGame: {
@@ -183,7 +183,7 @@ export default {
         },
         {
           title: '开放世界',
-          color: 'cyan darken-1',
+          color: 'cyan',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed6061120a7.png',
           knownGame: {
@@ -195,7 +195,7 @@ export default {
         },
         {
           title: '角色扮演',
-          color: 'cyan darken-1',
+          color: 'cyan',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed60661504e.png',
           knownGame: {
@@ -207,7 +207,7 @@ export default {
         },
         {
           title: '模拟',
-          color: 'cyan darken-1',
+          color: 'cyan',
           dark: true,
           img: 'https://i.loli.net/2018/11/15/5bed60612e917.png',
           knownGame: {

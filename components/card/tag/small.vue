@@ -7,8 +7,8 @@
     <v-card
       :color="tagWithSmall.color"
       :dark="tagWithSmall.dark"
+      :class="tagWithSmall.color"
       height="180px"
-      class="elevation-10"
     >
       <v-layout
         align-center
