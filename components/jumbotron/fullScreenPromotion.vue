@@ -39,7 +39,7 @@
                       :to="game[n - 1].appid"
                       class="d-flex align-center"
                       dark
-                      height="350"
+                      height="300"
                       @click="toggle"
                     >
                       <v-scroll-y-transition>
@@ -47,7 +47,7 @@
                           :aspect-ratio="16/9"
                           :src="game[n - 1].img"
                           gradient="to top right, rgba(0,0,0,.5), rgba(67,67,67,.5)"
-                          height="350"
+                          height="300"
                         >
                           <v-layout 
                             wrap 
