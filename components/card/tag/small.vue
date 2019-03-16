@@ -2,7 +2,8 @@
   <v-card
     height="240px"
     flat
-    class="elevation-0"
+    class="elevation-3"
+    color="secondary"
   >
     <v-card
       :color="tagWithSmall.color"

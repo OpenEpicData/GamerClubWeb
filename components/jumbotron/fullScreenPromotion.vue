@@ -1,42 +1,36 @@
 <template>
-  <v-layout
-    align-center
-    justify-center
-    class="white--text"
-  >
+  <v-layout 
+    align-center 
+    justify-center 
+    class="white--text">
     <v-img
       :aspect-ratio="16/9"
       src="https://i.loli.net/2018/11/15/5bed603019f22.png"
       height="100vh"
       gradient="to top left, rgba(0,0,0,.7), rgba(67,67,67,.7)"
     >
-      <v-layout
-        align-space-between
-        justify-space-between
-        fill-height
-        column
-      >
-        <div />
+      <v-layout 
+        align-space-between 
+        justify-space-between 
+        fill-height 
+        column>
+        <div/>
         <div>
           <v-item-group>
             <v-container grid-list-md>
               <h2 class="text-xs-left headline">
                 <v-icon 
                   large 
-                  color="accent">
-                  fas fa-glass-cheers
-                </v-icon>
-                特别推荐
+                  color="accent">fas fa-glass-cheers</v-icon>特别推荐
               </h2>
               <v-layout 
                 wrap 
                 class="mt-3">
-                <v-flex
-                  v-for="n in 3"
-                  :key="n"
-                  xs12
-                  md4
-                >
+                <v-flex 
+                  v-for="n in 3" 
+                  :key="n" 
+                  xs12 
+                  md4>
                   <v-item>
                     <v-card
                       slot-scope="{ active, toggle }"
@@ -49,11 +43,12 @@
                       @click="toggle"
                     >
                       <v-scroll-y-transition>
-                        <v-img 
-                          :aspect-ratio="16/9" 
+                        <v-img
+                          :aspect-ratio="16/9"
                           :src="game[n - 1].img"
                           gradient="to top right, rgba(0,0,0,.5), rgba(67,67,67,.5)"
-                          height="350">
+                          height="350"
+                        >
                           <v-layout 
                             wrap 
                             column 
@@ -61,15 +56,11 @@
                             justify-center 
                             align-center>
                             <div class="gradient-border pa-3">
-                              <span :class="{ 'display-2': n === 2 }">
-                                {{ game[n - 1].name }}
-                              </span>
+                              <span :class="{ 'display-2': n === 2 }">{{ game[n - 1].name }}</span>
                             </div>
                             <div 
                               v-if="n === 2" 
-                              class="py-2">
-                              EPICDATA: 不玩吃亏
-                            </div>
+                              class="py-2">EPICDATA: 不玩吃亏</div>
                           </v-layout>
                         </v-img>
                       </v-scroll-y-transition>
@@ -81,29 +72,25 @@
           </v-item-group>
         </div>
         <div>
-          <v-sheet
-            v-if="hot_games"
-            class="mx-auto hidden-md-and-down"
-            max-width="1400"
-          >
+          <v-sheet 
+            v-if="hot_games" 
+            class="mx-auto hidden-md-and-down secondary" 
+            max-width="1400">
             <v-slide-group multiple>
-              <v-slide-item
-                v-for="(item, n) in hot_games.data"
-                :key="n"
-              >
-                <v-flex
-                  slot-scope="{ active }"
-                  :input-value="active"
-                  xs12
-                  sm6
-                  md3
-                  xl2
-                >
-                  <popularWithSmallCard
-                    v-if="item"
-                    :popular.sync="item"
-                    :truncate="true"
-                  />
+              <v-slide-item 
+                v-for="(item, n) in hot_games.data" 
+                :key="n">
+                <v-flex 
+                  slot-scope="{ active }" 
+                  :input-value="active" 
+                  xs12 
+                  sm6 
+                  md3 
+                  xl2>
+                  <popularWithSmallCard 
+                    v-if="item" 
+                    :popular.sync="item" 
+                    :truncate="true"/>
                 </v-flex>
               </v-slide-item>
             </v-slide-group>
