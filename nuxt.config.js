@@ -62,7 +62,6 @@ module.exports = {
   plugins: [
     { src: '~/plugins/vuetify' },
     { src: '~/plugins/swiper.js', ssr: false },
-    { src: '~/plugins/v-charts.js', ssr: false }
   ],
 
   /*
