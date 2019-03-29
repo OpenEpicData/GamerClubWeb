@@ -58,7 +58,7 @@
           xl2
           class="px-3 my-3"
         >
-          <loading />
+          <loading :loading="loading" />
         </v-flex>
       </v-layout>
     </div>

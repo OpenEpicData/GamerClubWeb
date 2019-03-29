@@ -1,27 +1,19 @@
 <template>
   <div>
-    <div
-      v-for="(item, i) in text"
-      :key="i"
-    >
+    <div 
+      v-for="(item, i) in text" 
+      :key="i">
       <div class="my-3">
-        <h1 class="display-1">
-          {{ item.title }}
-        </h1>
-        <h2 class="subheading mt-2">
-          {{ item.description }}
-        </h2>
+        <h1 class="display-1">{{ item.title }}</h1>
+        <h2 class="subheading mt-2">{{ item.description }}</h2>
       </div>
 
-      <div 
-        v-if="popular && item.type === 'popular'" 
-      >
-        <v-layout
-          align-start
-          justify-center
-          row
-          wrap
-        >
+      <div v-if="popular && item.type === 'popular'">
+        <v-layout 
+          align-start 
+          justify-center 
+          row 
+          wrap>
           <v-flex
             v-for="(popularItem,popularIndex) in popular.data.slice(0, 6)"
             :key="popularIndex"
@@ -31,56 +23,49 @@
             xl2
             class="px-3 my-3"
           >
-            <popularWithSmallCard
-              v-if="popularItem"
-              :popular.sync="popularItem"
-            />
+            <popularWithSmallCard 
+              v-if="popularItem" 
+              :popular.sync="popularItem"/>
           </v-flex>
         </v-layout>
 
         <div class="mb-5">
-          <v-btn
-            dark
-            large
-            color="red"
-            to="/trending/hot"
-          >
+          <v-btn 
+            dark 
+            large 
+            color="red" 
+            to="/trending/hot">
             浏览全部热门游戏
-            <v-icon right>
-              fab fa-hotjar
-            </v-icon>
+            <v-icon right>fab fa-hotjar</v-icon>
           </v-btn>
         </div>
       </div>
 
       <div v-else-if="item.type === 'popular'">
-        <v-layout
-          align-start
-          justify-center
-          row
-          wrap
-        >
-          <v-flex
-            v-for="i in 6"
-            :key="i"
-            xs12
-            sm6
-            md4
-            xl2
-            class="px-3 my-3"
-          >
-            <loading />
+        <v-layout 
+          align-start 
+          justify-center 
+          row 
+          wrap>
+          <v-flex 
+            v-for="i in 6" 
+            :key="i" 
+            xs12 
+            sm6 
+            md4 
+            xl2 
+            class="px-3 my-3">
+            <loading :loading="loading" />
           </v-flex>
         </v-layout>
       </div>
 
       <div v-if="latest && item.type === 'latest'">
-        <v-layout
-          align-start
-          justify-center
-          row
-          wrap
-        >
+        <v-layout 
+          align-start 
+          justify-center 
+          row 
+          wrap>
           <v-flex
             v-for="(latestItem,latestIndex) in latest.data"
             :key="latestIndex"
@@ -99,48 +84,42 @@
           </v-flex>
         </v-layout>
         <div class="mb-5">
-          <v-btn
-            dark
-            large
-            color="blue"
-            to="/trending/latest"
-          >
+          <v-btn 
+            dark 
+            large 
+            color="blue" 
+            to="/trending/latest">
             浏览最近更新游戏
-            <v-icon right>
-              fas fa-file-medical-alt
-            </v-icon>
+            <v-icon right>fas fa-file-medical-alt</v-icon>
           </v-btn>
         </div>
       </div>
 
       <div v-else-if="item.type === 'latest'">
-        <v-layout
-          align-start
-          justify-center
-          row
-          wrap
-        >
-          <v-flex
-            v-for="i in 12"
-            :key="i"
-            xs12
-            sm6
-            md4
-            xl2
-            class="px-3 my-3"
-          >
-            <loading />
+        <v-layout 
+          align-start 
+          justify-center 
+          row 
+          wrap>
+          <v-flex 
+            v-for="i in 12" 
+            :key="i" 
+            xs12 
+            sm6 
+            md4 
+            xl2 
+            class="px-3 my-3">
+            <loading :loading="loading"/>
           </v-flex>
         </v-layout>
       </div>
 
       <div v-if="top_review && item.type === 'top_review'">
-        <v-layout
-          align-start
-          justify-center
-          row
-          wrap
-        >
+        <v-layout 
+          align-start 
+          justify-center 
+          row 
+          wrap>
           <v-flex
             v-for="(reviewItem, reviewIndex) in top_review.data"
             :key="reviewIndex"
@@ -159,37 +138,32 @@
           </v-flex>
         </v-layout>
         <div class="mb-5">
-          <v-btn
-            dark
-            large
-            color="purple"
-            to="/trending/review"
-          >
+          <v-btn 
+            dark 
+            large 
+            color="purple" 
+            to="/trending/review">
             浏览全部好评游戏
-            <v-icon right>
-              far fa-thumbs-up
-            </v-icon>
+            <v-icon right>far fa-thumbs-up</v-icon>
           </v-btn>
         </div>
       </div>
 
       <div v-else-if="item.type === 'top_review'">
-        <v-layout
-          align-start
-          justify-center
-          row
-          wrap
-        >
-          <v-flex
-            v-for="i in 12"
-            :key="i"
-            xs12
-            sm6
-            md4
-            xl2
-            class="px-3 my-3"
-          >
-            <loading />
+        <v-layout 
+          align-start 
+          justify-center 
+          row 
+          wrap>
+          <v-flex 
+            v-for="i in 12" 
+            :key="i" 
+            xs12 
+            sm6 
+            md4 
+            xl2 
+            class="px-3 my-3">
+            <loading :loading="loading"/>
           </v-flex>
         </v-layout>
       </div>
@@ -212,6 +186,7 @@ export default {
       popular: null,
       latest: null,
       top_review: null,
+      loading: true,
       text: [
         {
           title: '时下热门',

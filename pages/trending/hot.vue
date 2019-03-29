@@ -1,12 +1,11 @@
 <template>
   <div>
     <div v-if="popular">
-      <v-layout
-        align-start
-        justify-center
-        row
-        wrap
-      >
+      <v-layout 
+        align-start 
+        justify-center 
+        row 
+        wrap>
         <v-flex
           v-for="(popularItem,popularIndex) in popular.data"
           :key="popularIndex"
@@ -16,51 +15,41 @@
           xl2
           class="px-3 my-3"
         >
-          <popularWithSmallCard
-            v-if="popularItem"
-            :popular.sync="popularItem"
-          />
+          <popularWithSmallCard 
+            v-if="popularItem" 
+            :popular.sync="popularItem"/>
         </v-flex>
       </v-layout>
-      <div
-        v-if="loading === false && popular.data.length <= 100"
-      >
-        <v-btn
-          :color="'primary'"
-          large
-          @click="load_more(page)"
-        >
+      <div v-if="loading === false && popular.data.length <= 100">
+        <v-btn 
+          :color="'primary'" 
+          large 
+          @click="load_more(page)">
           加载更多
-          <v-icon right>
-            fas fa-level-down-alt
-          </v-icon>
+          <v-icon right>fas fa-level-down-alt</v-icon>
         </v-btn>
       </div>
     </div>
 
-    <div v-if="loading === true">
-      <v-layout
-        v-for="n in 5"
-        :key="n"
-        align-start
-        justify-center
-        row
-        wrap
-      >
-        <v-flex
-          v-for="i in 6"
-          :key="i"
-          xs12
-          sm6
-          md4
-          xl2
-          class="px-3 my-3"
-        >
-          <loading />
-        </v-flex>
+    <div v-if="loading">
+      <v-layout 
+        v-for="n in 5" 
+        :key="n" 
+        align-start 
+        justify-center 
+        row 
+        wrap>
+        <v-flex 
+          v-for="i in 6" 
+          :key="i" 
+          xs12 
+          sm6 
+          md4 
+          xl2 
+          class="px-3 my-3">
+        <loading :loading="loading"/></v-flex>
       </v-layout>
     </div>
-
   </div>
 </template>
 
