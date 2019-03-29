@@ -150,76 +150,38 @@
                 md6 
                 xl3 
                 class="px-3">
-                <v-card 
-                  class="mx-auto elevation-3" 
-                  color="secondary">
-                  <v-card-title>
-                    <v-icon 
-                      large 
-                      left>fas fa-info-circle</v-icon>
-                    <span class="title font-weight-light">游戏信息</span>
-                  </v-card-title>
+                <v-card
+                  class="mx-auto elevation-3"
+                  color="secondary"
+                >
+                  <v-list-item two-line>
+                    <v-list-item-content>
+                      <v-list-item-title class="headline" >{{ game.name }}</v-list-item-title>
+                      <v-list-item-subtitle>{{ game.short_description }}</v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
 
-                  <v-card-text class="headline text-xs-left">
-                    <v-layout 
-                      align-start 
-                      justify-start 
-                      fill-height 
-                      column 
-                      wrap>
-                      <div>游戏名: {{ game.name }}</div>
-                      <div>游戏类型: {{ game.type }}</div>
-                      <div>
-                        支持语言:
-                        <span v-html="game.languages"/>
-                      </div>
-                      <div>支持系统: {{ game.platforms }}</div>
-                      <div>发行商: {{ game.publishers }}</div>
-                      <div>发行日期: {{ game.released_at }}</div>
-                      <div>最后更新于: {{ game.updated_at }}</div>
-                      <div v-if="game.game_tags">游戏标签:
-                        <br>
-                        <v-chip 
-                          v-for="(item, i) in game.game_tags" 
-                          :key="i">{{ item.tag }}</v-chip>
-                      </div>
+                  <v-card-text v-if="game.steam_user_review_score">
+                    <v-layout align-center>
+                      <v-flex 
+                        xs6 
+                        display-3>
+                        {{ game.steam_user_review_summary }}
+                      </v-flex>
+                      <v-flex xs6>
+                        <v-progress-circular
+                          :rotate="-90"
+                          :size="150"
+                          :width="15"
+                          :value="game.steam_user_review_score"
+                          color="cyan darken-1"
+                      ><h2 class="title">{{ game.steam_user_review_score }}</h2></v-progress-circular></v-flex>
                     </v-layout>
                   </v-card-text>
 
-                  <v-card-actions>
-                    <v-list-tile class="grow">
-                      <v-list-tile-avatar color="grey darken-3">
-                        <v-img 
-                          class="elevation-6" 
-                          src="/logo.png"/>
-                      </v-list-tile-avatar>
-
-                      <v-btn
-                        :href="`https://store.steampowered.com/app/${game.appid}`"
-                        dark
-                        small
-                        target="_black"
-                      >
-                        购买
-                        <span
-                          v-if="game.game_prices.length > 0"
-                          class="ml-2"
-                        >￥ {{ game.game_prices[game.game_prices.length -1].final }}</span>
-                      </v-btn>
-
-                      <v-layout 
-                        align-center 
-                        justify-end>
-                        <span
-                          v-if="game.game_reviews.length > 0"
-                          class="subheading ml-2"
-                        >{{ game.game_reviews[0].score }}% 的 Steam 用户推荐</span>
-                        <span 
-                          v-else 
-                          class="subheading ml-2">用户评分未知</span>
-                      </v-layout>
-                    </v-list-tile>
-                  </v-card-actions>
+                  <v-list-item>
+                    <v-list-item-subtitle v-html="game.languages"/>
+                  </v-list-item>
                 </v-card>
               </v-flex>
               <v-flex 
