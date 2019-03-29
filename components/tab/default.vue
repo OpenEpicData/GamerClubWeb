@@ -18,7 +18,7 @@
         {{ item.title }}
       </v-tab>
     </v-tabs>
-    <v-bottom-nav
+    <v-bottom-navigation
       :value="true"
       class="hidden-md-and-up primary"
       fixed
@@ -33,7 +33,7 @@
       >
         <span>{{ item.title }} </span>
       </v-btn>
-    </v-bottom-nav>
+    </v-bottom-navigation>
 
   </div>
 </template>
