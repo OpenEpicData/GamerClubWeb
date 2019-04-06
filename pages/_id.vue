@@ -1,21 +1,23 @@
 <template>
-  <div>
-    <div 
-      class="secondary" 
-      style="height:15vh"/>
-    <v-alert
-      type="info"
-      colored-border
-      border="left"
-      icon="new_releases"
-      class="primary"
-    >SteamHub 后端出现中断问题,开发团队正在尝试复现并修复.{{ x / 100 }}</v-alert>
+  <div @mousemove="zoom_img">
+    <div style="height:15vh"/>
     <v-container class="text-xs-center">
       <div 
         v-if="media && media.success === true && media.data" 
-        class="text-xs-left">
-        <v-img :src="media.data.screenshots[0].path_full"/>
-        <h1 class="display-4 img-view-title font-weight-black">{{ game.name }}</h1>
+        class="text-xs-left "
+      >
+        <v-img 
+          id="zoom-img" 
+          :src="media.data.screenshots[0].path_full"
+          gradient="to top right, rgba(117,117,117,.33), rgba(117,117,117, .33)"
+          class="zoom"
+          height="80vh"
+        />
+        <h1 
+          id="zoom-title" 
+          class="display-4 img-view-title font-weight-black"
+        >{{ game.name }}</h1>
+
       </div>
 
       <v-layout 
@@ -37,7 +39,7 @@
                 md6 
                 class="px-3">
                 <v-card 
-                  class="mt-5 elevation-3" 
+                  class="elevation-3" 
                   color="secondary">
                   <v-sheet
                     class="v-sheet--offset mx-auto"
@@ -95,7 +97,7 @@
                 md6 
                 class="px-3">
                 <v-card 
-                  class="mt-5 elevation-3" 
+                  class="elevation-3" 
                   color="secondary">
                   <v-sheet
                     class="v-sheet--offset mx-auto"
@@ -399,6 +401,19 @@ export default {
         array_label.push([review[0].final][0])
       }
       return array_label.reverse()
+    },
+    zoom_img: function(e) {
+      let zoomer = e.currentTarget
+      let x = (e.x / zoomer.offsetWidth) * 30
+      let y = (e.y / zoomer.offsetHeight) * 30
+      let img = document.getElementById('zoom-img')
+      if (img) {
+        img.style.transform = `translate(${x}px ,${y}px)`
+      }
+      let title = document.getElementById('zoom-title')
+      if (title) {
+        title.style.transform = `translate(${y}px ,${x}px)`
+      }
     }
   },
   head() {
@@ -422,8 +437,27 @@ export default {
   position: relative;
 }
 .img-view-title {
-  top: -70px;
-  left: -40px;
+  top: -25vh;
+  left: -5vw;
   position: relative;
+  font: bold calc(60px + 90 * ((100vw - 400px) / 1200)) /
+      calc(60px + 90 * ((100vw - 400px) / 1200)) 'Eczar',
+    serif !important;
+}
+</style>
+
+<style lang="scss" scoped>
+.zoom {
+  & img:hover {
+    opacity: 0.3;
+  }
+  img {
+    transition: opacity 0.5s;
+    display: block;
+    width: 100%;
+  }
+  background-position: 50% 50%;
+  position: relative;
+  overflow: hidden;
 }
 </style>
