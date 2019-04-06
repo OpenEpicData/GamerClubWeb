@@ -6,7 +6,7 @@
       :slider-color="tab.slider.color"
       :centered="tab.centered"
       :fixed-tabs="tab.fixed"
-      :dark="tab.dark"
+      dark
       vertical
       class="hidden-sm-and-down"
       active-class="">
@@ -14,6 +14,7 @@
         v-for="(item, i) in tab.item"
         :key="i"
         :to="item.link"
+        class=" white--text"
       >
         {{ item.title }}
       </v-tab>

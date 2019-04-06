@@ -39,6 +39,7 @@
             v-for="(item, i) in toolbar.tab.item"
             :key="i"
             :to="item.path"
+            class=" white--text"
           >
             {{ item.name }}
           </v-tab>
