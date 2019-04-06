@@ -1015,7 +1015,7 @@
     webpack-node-externals "^1.7.2"
     webpackbar "^3.1.5"
 
-"@nuxtjs/axios@^5.0.0":
+"@nuxtjs/axios@^5.4.x":
   version "5.4.1"
   resolved "http://registry.npm.taobao.org/@nuxtjs/axios/download/@nuxtjs/axios-5.4.1.tgz#8dbc841e939c082271f7053edc1180bf5a441ee3"
   integrity sha1-jbyEHpOcCCJx9wU+3BGAv1pEHuM=
@@ -1025,7 +1025,7 @@
     axios-retry "^3.1.2"
     consola "^2.5.6"
 
-"@nuxtjs/google-analytics@^2.0.2":
+"@nuxtjs/google-analytics@^2.2.x":
   version "2.2.0"
   resolved "http://registry.npm.taobao.org/@nuxtjs/google-analytics/download/@nuxtjs/google-analytics-2.2.0.tgz#4b2072824961974109eb0bff6a95591fea92c6d9"
   integrity sha1-SyBygklhl0EJ6wv/apVZH+qSxtk=
