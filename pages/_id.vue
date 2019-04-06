@@ -166,12 +166,12 @@
                 color="secondary">
                 <v-list-item two-line>
                   <v-list-item-content>
-                    <v-list-item-title class="headline">{{ game.name }}</v-list-item-title>
+                    <v-list-item-title class="display-2">{{ game.name }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
                 <div :style="`height: 5px;width:${scrollY / 100}%;background-color:#0ebeff`"/>
                 <div class="mt-5">
-                  <p class="rich-text mx-3">{{ game.short_description }}</p>
+                  <p class="mx-3 title">{{ game.short_description }}</p>
                 </div>
                 <v-card-text v-if="game.steam_user_review_score">
                   <v-layout align-center>
@@ -193,7 +193,9 @@
                 </v-card-text>
 
                 <v-list-item>
-                  <v-list-item-subtitle v-html="game.languages"/>
+                  <v-list-item-subtitle 
+                    class="title" 
+                    v-html="game.languages"/>
                 </v-list-item>
               </v-card>
             </v-flex>
