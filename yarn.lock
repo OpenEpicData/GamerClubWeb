@@ -5459,7 +5459,7 @@ number-is-nan@^1.0.0:
   resolved "http://registry.npm.taobao.org/number-is-nan/download/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
 
-nuxt@^2.4.0:
+nuxt@^2.6.x:
   version "2.6.1"
   resolved "http://registry.npm.taobao.org/nuxt/download/nuxt-2.6.1.tgz#9542bd7cab42ba41b4260172eab79fb3b1d30d86"
   integrity sha1-lUK9fKtCukG0JgFy6refs7HTDYY=
