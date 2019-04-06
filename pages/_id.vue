@@ -14,6 +14,7 @@
           height="80vh"
         />
         <h1 
+          v-if="game"
           id="zoom-title" 
           class="display-4 img-view-title font-weight-black"
         >{{ game.name }}</h1>
