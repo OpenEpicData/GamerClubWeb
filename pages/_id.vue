@@ -9,10 +9,15 @@
       border="left"
       icon="new_releases"
       class="primary"
-    >SteamHub 后端出现中断问题,开发团队正在尝试复现并修复.</v-alert>
-    <v-container 
-      fluid 
-      class="text-xs-center">
+    >SteamHub 后端出现中断问题,开发团队正在尝试复现并修复.{{ x / 100 }}</v-alert>
+    <v-container class="text-xs-center">
+      <div 
+        v-if="media && media.success === true && media.data" 
+        class="text-xs-left">
+        <v-img :src="media.data.screenshots[0].path_full"/>
+        <h1 class="display-4 img-view-title font-weight-black">{{ game.name }}</h1>
+      </div>
+
       <v-layout 
         row 
         wrap>
@@ -30,7 +35,6 @@
                 v-if="game.game_reviews.length > 0" 
                 xs12 
                 md6 
-                xl3 
                 class="px-3">
                 <v-card 
                   class="mt-5 elevation-3" 
@@ -89,7 +93,6 @@
                 v-if="game.game_prices.length > 0" 
                 xs12 
                 md6 
-                xl3 
                 class="px-3">
                 <v-card 
                   class="mt-5 elevation-3" 
@@ -111,7 +114,8 @@
                   </v-sheet>
 
                   <v-card-text class="pt-0">
-                    <div class="title font-weight-light mb-2">价格走势
+                    <div class="title font-weight-light mb-2">
+                      价格走势
                       <v-chip
                         color="green"
                         dark
@@ -148,15 +152,13 @@
               <v-flex 
                 xs12 
                 md6 
-                xl3 
                 class="px-3">
-                <v-card
-                  class="mx-auto elevation-3"
-                  color="secondary"
-                >
+                <v-card 
+                  class="mx-auto elevation-3" 
+                  color="secondary">
                   <v-list-item two-line>
                     <v-list-item-content>
-                      <v-list-item-title class="headline" >{{ game.name }}</v-list-item-title>
+                      <v-list-item-title class="headline">{{ game.name }}</v-list-item-title>
                       <v-list-item-subtitle>{{ game.short_description }}</v-list-item-subtitle>
                     </v-list-item-content>
                   </v-list-item>
@@ -165,9 +167,7 @@
                     <v-layout align-center>
                       <v-flex 
                         xs6 
-                        display-3>
-                        {{ game.steam_user_review_summary }}
-                      </v-flex>
+                        display-3>{{ game.steam_user_review_summary }}</v-flex>
                       <v-flex xs6>
                         <v-progress-circular
                           :rotate="-90"
@@ -175,7 +175,10 @@
                           :width="15"
                           :value="game.steam_user_review_score"
                           color="cyan darken-1"
-                      ><h2 class="title">{{ game.steam_user_review_score }}</h2></v-progress-circular></v-flex>
+                        >
+                          <h2 class="title">{{ game.steam_user_review_score }}</h2>
+                        </v-progress-circular>
+                      </v-flex>
                     </v-layout>
                   </v-card-text>
 
@@ -187,7 +190,6 @@
               <v-flex 
                 xs12 
                 md6 
-                xl3 
                 class="px-3">
                 <v-card 
                   class="mx-auto elevation-3" 
@@ -243,10 +245,11 @@
                   </v-card-actions>
                 </v-card>
 
-                <v-card 
-                  v-if="typeof media !== 'undefined'" 
-                  class="mx-auto mt-5 elevation-3" 
-                  color="secondary">
+                <v-card
+                  v-if="typeof media !== 'undefined'"
+                  class="mx-auto mt-5 elevation-3"
+                  color="secondary"
+                >
                   <v-card-title>
                     <v-icon 
                       large 
@@ -416,6 +419,11 @@ export default {
 <style>
 .v-sheet--offset {
   top: -24px;
+  position: relative;
+}
+.img-view-title {
+  top: -70px;
+  left: -40px;
   position: relative;
 }
 </style>
