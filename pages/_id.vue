@@ -7,7 +7,20 @@
       <div 
         v-if="media && media.success === true && media.data" 
         class="text-xs-left">
+        <video 
+          v-if="media.data.movies[0].webm.max"
+          id="zoom-img" 
+          :src="media.data.movies[0].webm.max"
+          :style="{opacity: opacity - 0.2}"
+          class="zoom elevation-3"
+          width="100%"
+          autoplay
+          loop
+          muted
+          style="height:80vh; object-fit: fill"
+        />
         <v-img
+          v-else
           id="zoom-img"
           :style="{opacity: opacity}"
           :src="media.data.screenshots[0].path_full"
