@@ -180,6 +180,15 @@
                 <v-list-item two-line>
                   <v-list-item-content>
                     <v-list-item-title class="display-2">{{ game.name }}</v-list-item-title>
+                    <v-list-item-subtitle class="title">
+                      <span v-if="is_support_simplified_chinese">
+                        支持简体中文
+                      </span>
+                      <span v-if="is_support_traditional_chinese">/繁体中文</span>
+                      <span v-if="!is_support_simplified_chinese && !is_support_traditional_chinese">
+                        不支持中文
+                      </span>
+                    </v-list-item-subtitle>
                   </v-list-item-content>
                 </v-list-item>
                 <div :style="`height: 5px;width:${scrollY / 100}%;background-color:#0ebeff`"/>
@@ -295,6 +304,8 @@ export default {
   },
   data() {
     return {
+      is_support_simplified_chinese: null,
+      is_support_traditional_chinese: null,
       title_opacity: 1,
       scrollY: null,
       totalOffset: null,
@@ -339,6 +350,18 @@ export default {
     const title = data.name
     this.tab.item[0].title = title
     this.head.title = `${title} 的详细数据 -- SteamHub`
+    let is_support_simplified_chinese = data.languages.indexOf('简体中文')
+    let is_support_traditional_chinese = data.languages.indexOf('繁体中文')
+    if (is_support_simplified_chinese === -1) {
+      this.is_support_simplified_chinese = false
+    } else {
+      this.is_support_simplified_chinese = true
+    }
+    if (is_support_traditional_chinese === -1) {
+      this.is_support_traditional_chinese = false
+    } else {
+      this.is_support_traditional_chinese = true
+    }
   },
   destroyed() {
     window.removeEventListener('scroll', this.handleScroll)
