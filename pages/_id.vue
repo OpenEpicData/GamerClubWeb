@@ -8,7 +8,7 @@
         v-if="media && media.success === true && media.data" 
         class="text-xs-left">
         <video 
-          v-if="media.data.movies[0].webm.max"
+          v-if="'movies' in media.data"
           id="zoom-img" 
           :src="media.data.movies[0].webm.max"
           :style="{opacity: opacity - 0.2}"
@@ -20,7 +20,7 @@
           style="height:80vh; object-fit: fill"
         />
         <v-img
-          v-else
+          v-else-if="'screenshots' in media.data"
           id="zoom-img"
           :style="{opacity: opacity}"
           :src="media.data.screenshots[0].path_full"
