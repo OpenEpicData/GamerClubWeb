@@ -142,6 +142,12 @@
           v-else
           class="primary--text"
         />
+        <v-btn 
+          v-if="news" 
+          dark 
+          class="my-3"
+          to="news"
+          large>了解更多</v-btn>
       </div>
     </div>
   </v-container>

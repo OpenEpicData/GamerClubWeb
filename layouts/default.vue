@@ -109,6 +109,10 @@ export default {
               path: '/trending/hot'
             },
             {
+              name: '新闻',
+              path: '/news'
+            },
+            {
               name: '趋势',
               path: '/game/trending'
             }
