@@ -219,6 +219,16 @@
                     class="title" 
                     v-html="game.languages"/>
                 </v-list-item>
+                <v-btn 
+                  :href="`https://store.steampowered.com/app/${game.appid}`" 
+                  target="_black"
+                  outline 
+                  block
+                  large
+                  class="my-3"
+                  color="accent">
+                  立即购买 ￥{{ game.game_prices[game.game_prices.length -1].final }}
+                </v-btn>
               </v-card>
             </v-flex>
 
