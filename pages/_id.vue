@@ -227,7 +227,10 @@
                   large
                   class="my-3"
                   color="accent">
-                  立即购买 ￥{{ game.game_prices[game.game_prices.length -1].final }}
+                  立即购买 
+                  <span v-if="game.game_prices[game.game_prices.length -1]">
+                    {{ game.game_prices[game.game_prices.length -1].final }} ￥
+                  </span>
                 </v-btn>
               </v-card>
             </v-flex>
