@@ -2,7 +2,6 @@
   <div 
     @mousemove="zoom_img" 
     @scroll.native="handleScroll">
-    <div style="height:15vh"/>
     <v-container class="text-xs-center">
       <div 
         v-if="media && media.success === true && media.data" 
@@ -443,7 +442,7 @@ export default {
         this.title_opacity = 1
       }
       if (totalOffset > 200 && totalOffset < 1000) {
-        this.opacity = totalOffset / 2000
+        this.opacity = totalOffset / 1800
         this.title_opacity = totalOffset / 1500
       }
     }

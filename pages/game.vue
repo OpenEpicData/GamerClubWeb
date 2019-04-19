@@ -1,29 +1,5 @@
 <template>
-  <div>
-    <div 
-      class="secondary" 
-      style="height:15vh"/>
-    <v-container 
-      fluid 
-      class="text-xs-center">
-      <v-layout 
-        row 
-        wrap>
-        <v-flex
-          :class="{ xs11: this.$vuetify.breakpoint.smAndUp, xs12: this.$vuetify.breakpoint.smAndDown }"
-          md11
-          xs12
-        >
-          <nuxt-child/>
-        </v-flex>
-        <v-flex xs1>
-          <tabDefault 
-            :tab="tab" 
-            style="position:sticky; top: 15vh;"/>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+  <nuxt-child/>
 </template>
 
 <script>

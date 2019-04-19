@@ -1,86 +1,37 @@
 <template>
-  <v-app 
-    dark 
-    class="secondary">
-    <v-app-bar
-      fixed
-      color="primary"
-      dark
-      tabs
-    >
-      <v-toolbar-title>
-        <v-btn 
-          text 
-          large 
-          to="/"
-          color="transparent">
-          <logo style="width:150px;height:54px"/>
-        </v-btn>
-      </v-toolbar-title>
-      <v-spacer />
-      <div class="hidden-sm-and-down">
-        <v-btn
-          text
-          outline 
-          color="accent"
-        >
-          立即开始
-        </v-btn>
-      </div>
+  <v-app class="primary px-5">
+    <div class="hidden-sm-and-down">
+      <v-toolbar tabs>
+        <v-toolbar-title>
+          <h1 class="display-1">SteamHub</h1>
+        </v-toolbar-title>
+        <v-spacer/>
+        <div class="hidden-sm-and-down">
+          <v-btn color="accent">立即开始</v-btn>
+        </div>
 
-      <template v-slot:extension>
-        <v-tabs
-          v-model="toolbar.tab.active"
-          class="secondary"
-          fixed-tabs
-          slider-color="accent"
-        >
-          <v-tab
-            v-for="(item, i) in toolbar.tab.item"
-            :key="i"
-            :to="item.path"
-            class=" white--text"
-          >
-            {{ item.name }}
-          </v-tab>
-        </v-tabs>
-      </template>
-    </v-app-bar>
-    <v-content>
-      <nuxt />
-    </v-content>
-    <div
-      class="mt-5 pt-5 text-xs-center primary"
-    >
-      <loading />
-      <div class="mt-3">
-        <h4 class="display-1">
-          立即开启你的新旅程
-        </h4>
-        <h6 class="subheading mt-2">
-          加入需要不到一分钟,这将是你一整天中做出的最佳决定.
-          <br>SteamHub 是一个非盈利的开源项目,我们也提供开发者付费计划用以支持每月的服务器建设支出.
-        </h6>
-      </div>
-      <div class="py-5">
-        <v-layout
-          align-center
-          justify-center
-          fill-height
-        >
-          <div>
-            <v-btn
-              slot="append-outer"
-               
-              large
-              dark
-              style="top: -12px"
-            >
-              使用 Steam 登录
-            </v-btn>
-          </div>
-        </v-layout>
-      </div>
+        <template v-slot:extension>
+          <v-tabs 
+            v-model="toolbar.tab.active" 
+            class="secondary" 
+            slider-color="accent">
+            <v-tab
+              v-for="(item, i) in toolbar.tab.item"
+              :key="i"
+              :to="item.path"
+              class="accent--text"
+            >{{ item.name }}</v-tab>
+          </v-tabs>
+        </template>
+      </v-toolbar>
+      <v-content>
+        <nuxt/>
+      </v-content>
+    </div>
+    <div class="hidden-md-and-up">
+      <h1 class="display-3">
+        请使用电脑浏览器访问
+      </h1>
     </div>
   </v-app>
 </template>
@@ -125,10 +76,10 @@ export default {
 </script>
 
 <style>
-.v-tabs-slider {
-  border-bottom: 5px solid #fff;
-  border-radius: 9999px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+a {
+  text-decoration: #f44336 underline;
+}
+.container {
+  padding: 0;
 }
 </style>

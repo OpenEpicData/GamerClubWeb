@@ -13,17 +13,21 @@
           sm6
           md4
           xl2
-          class="px-3 my-3"
+          class="my-3"
         >
           <popularWithSmallCard 
             v-if="popularItem" 
             :popular.sync="popularItem"/>
         </v-flex>
       </v-layout>
-      <div v-if="loading === false && popular.data.length <= 100">
+      <div 
+        v-if="loading === false && popular.data.length <= 100" 
+        class="text-xs-center my-3">
         <v-btn 
-          :color="'primary'" 
-          large 
+          dark
+          color="accent"
+          x-large 
+          block
           @click="load_more(page)">
           加载更多
           <v-icon right>fas fa-level-down-alt</v-icon>
@@ -46,7 +50,7 @@
           sm6 
           md4 
           xl2 
-          class="px-3 my-3">
+          class="my-3">
         <loading :loading="loading"/></v-flex>
       </v-layout>
     </div>

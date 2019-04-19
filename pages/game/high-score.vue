@@ -1,12 +1,13 @@
 <template>
   <div v-if="high_score">
-    <div class="primary py-5">
+    <div class="">
       <v-layout
         justify-center
         align-center
         fill-height
         row
         wrap
+        class="secondary"
       >
         <v-flex
           xs12
@@ -14,7 +15,7 @@
           lg6
           xl4
           align-center
-          class="text-xs-left pt-5 mx-2"
+          class="text-xs-left py-5 mx-2"
         >
           <div>
             <h1 class="display-3 text-truncate">
@@ -31,12 +32,11 @@
               {{ high_score[0].short_description }}
             </h2>
           </div>
-          <div class="pt-5">
+          <div class="py-2">
             <v-chip
               v-if="high_score[0].age >= 16"
-              dark
-              color="transparent"
-              class="white--text mx-0"
+              
+              class="mx-0"
             >
               <v-avatar>
                 <v-icon>
@@ -48,9 +48,9 @@
             <v-chip
               v-for="(platformItem, platformIndex) in splitPlatforms(high_score[0].platforms)"
               :key="platformIndex"
-              dark
-              color="transparent"
-              class="white--text mx-0"
+              
+              
+              class="mx-0"
             >
               <v-avatar>
                 <v-icon v-if="platformItem === 'windows'">
@@ -69,9 +69,9 @@
           <div class="pt-2">
             <v-btn
               :to="`/${high_score[0].appid}`"
-               
+              
               large
-              class="mx-0"
+              class="mx-0 accent"
             >
               查看游戏
               <span v-if="high_score[0].game_prices.length > 0">
@@ -82,7 +82,7 @@
                
               large
               outline 
-              dark
+              
               disabled
             >
               关注
@@ -93,7 +93,7 @@
           xs12
           sm6
           md4
-          class="pt-5 mt-4"
+          class="pt-5 mt-4 text-xs-center"
         >
           <v-progress-circular
             :rotate="-90"

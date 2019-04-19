@@ -1,50 +1,45 @@
 <template>
-  <div>
+  <v-container 
+    fluid 
+    grid-list-xs>
     <div 
       v-for="(item, i) in text" 
       :key="i">
-      <div class="my-3">
-        <h1 class="display-1">{{ item.title }}</h1>
-        <h2 class="subheading mt-2">{{ item.description }}</h2>
+      <div class="mt-5">
+        <h2 class="display-3 font-weight-black ">
+          <nuxt-link 
+            :to="item.link" 
+            class="accent--text">{{ item.title }}</nuxt-link>
+        </h2>
       </div>
 
       <div v-if="popular && item.type === 'popular'">
         <v-layout 
           align-start 
-          justify-center 
+          justify-start 
           row 
           wrap>
           <v-flex
-            v-for="(popularItem,popularIndex) in popular.data.slice(0, 6)"
+            v-for="(popularItem,popularIndex) in popular.data.slice(0, 12)"
             :key="popularIndex"
             xs12
             sm6
             md4
+            lg3
             xl2
-            class="px-3 my-3"
+            class="mt-3"
           >
             <popularWithSmallCard 
               v-if="popularItem" 
               :popular.sync="popularItem"/>
           </v-flex>
         </v-layout>
-
-        <div class="mb-5">
-          <v-btn 
-            dark 
-            large 
-            color="red" 
-            to="/trending/hot">
-            浏览全部热门游戏
-            <v-icon right>fab fa-hotjar</v-icon>
-          </v-btn>
-        </div>
       </div>
 
       <div v-else-if="item.type === 'popular'">
         <v-layout 
           align-start 
-          justify-center 
+          justify-start 
           row 
           wrap>
           <v-flex 
@@ -53,8 +48,9 @@
             xs12 
             sm6 
             md4 
+            lg3
             xl2 
-            class="px-3 my-3">
+            class=" my-3">
             <loading :loading="loading" />
           </v-flex>
         </v-layout>
@@ -63,7 +59,7 @@
       <div v-if="latest && item.type === 'latest'">
         <v-layout 
           align-start 
-          justify-center 
+          justify-start 
           row 
           wrap>
           <v-flex
@@ -72,8 +68,9 @@
             xs12
             sm6
             md4
+            lg3
             xl2
-            class="px-3 my-3"
+            class=" my-3"
           >
             <reviewtWithSmallCard
               :review.sync="latestItem.game_reviews"
@@ -83,22 +80,12 @@
             />
           </v-flex>
         </v-layout>
-        <div class="mb-5">
-          <v-btn 
-            dark 
-            large 
-            color="blue" 
-            to="/trending/latest">
-            浏览最近更新游戏
-            <v-icon right>fas fa-file-medical-alt</v-icon>
-          </v-btn>
-        </div>
       </div>
 
       <div v-else-if="item.type === 'latest'">
         <v-layout 
           align-start 
-          justify-center 
+          justify-start 
           row 
           wrap>
           <v-flex 
@@ -107,8 +94,9 @@
             xs12 
             sm6 
             md4 
+            lg3
             xl2 
-            class="px-3 my-3">
+            class=" my-3">
             <loading :loading="loading"/>
           </v-flex>
         </v-layout>
@@ -117,7 +105,7 @@
       <div v-if="top_review && item.type === 'top_review'">
         <v-layout 
           align-start 
-          justify-center 
+          justify-start 
           row 
           wrap>
           <v-flex
@@ -126,8 +114,9 @@
             xs12
             sm6
             md4
+            lg3
             xl2
-            class="px-3 my-3"
+            class=" my-3"
           >
             <reviewtWithSmallCard
               :review.sync="reviewItem.game_reviews"
@@ -137,22 +126,12 @@
             />
           </v-flex>
         </v-layout>
-        <div class="mb-5">
-          <v-btn 
-            dark 
-            large 
-            color="purple" 
-            to="/trending/review">
-            浏览全部好评游戏
-            <v-icon right>far fa-thumbs-up</v-icon>
-          </v-btn>
-        </div>
       </div>
 
       <div v-else-if="item.type === 'top_review'">
         <v-layout 
           align-start 
-          justify-center 
+          justify-start 
           row 
           wrap>
           <v-flex 
@@ -161,14 +140,15 @@
             xs12 
             sm6 
             md4 
+            lg3
             xl2 
-            class="px-3 my-3">
+            class=" my-3">
             <loading :loading="loading"/>
           </v-flex>
         </v-layout>
       </div>
     </div>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -191,17 +171,20 @@ export default {
         {
           title: '时下热门',
           description: '你身边的大多数朋友都可能在玩',
-          type: 'popular'
+          type: 'popular',
+          link: '/trending/hot'
         },
         {
           title: '好评如潮',
           description: '来自每一位真实用户的评测,他们可不会说假话',
-          type: 'top_review'
+          type: 'top_review',
+          link: '/trending/review'
         },
         {
           title: '最近更新',
           description: '我们的后端数据程序正源源不断的拉取最新内容',
-          type: 'latest'
+          type: 'latest',
+          link: '/trending/latest'
         }
       ]
     }

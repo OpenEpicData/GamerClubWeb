@@ -1,154 +1,25 @@
 <template>
-  <v-container
-    fluid
-    class="text-xs-center"
-  >
-    <fullScreenPromotion />
+  <v-container fluid>
     <div class="mt-5">
-      <h4 class="display-1">
-        为开发人员/游戏爱好者提供全量数据
-      </h4>
+      <h2 class="display-3 font-weight-black ">
+        <nuxt-link 
+          to="/trending/hot" 
+          class="accent--text">时下热门</nuxt-link>
+      </h2>
+      <fullScreenPromotion class="mt-3"/>
     </div>
-    <div>
-      <v-layout
-        wrap
-        row
-        justify-center
-        fill-height
-        class="mt-5"
-      >
-        <v-flex
-          v-for="i in 3"
-          :key="i"
-          xs4
-          md3
-          lg2
-          class="px-3"
-          style="border: 1px solid #fff;border-image: url(/border.svg) 1 rounded"
-        >
-          <div class="my-3">
-            <h5 v-if="i === 1">
-              <v-badge>
-                <span slot="badge">V3</span>
-                <span
-                  v-if="game"
-                  class="headline"
-                >
-                  {{ game.meta.total.toLocaleString() }}
-                </span>
-                <span v-else>
-                  <v-progress-circular
-                    indeterminate
-                    color="primary"
-                  />
-                </span>
-              </v-badge>
-              <br>
-              <span class="subheading grey--text mt-2">
-                已知游戏
-              </span>
-            </h5>
-            <h5 v-if="i === 2">
-              <v-badge>
-                <span slot="badge">V3</span>
-                <span
-                  v-if="price"
-                  class="headline"
-                >
-                  {{ price.meta.total.toLocaleString() }}
-                </span>
-                <span v-else>
-                  <v-progress-circular
-                    indeterminate
-                    color="primary"
-                  />
-                </span>
-              </v-badge>
-              <br>
-              <span class="subheading grey--text mt-2">
-                归档价格
-              </span>
-            </h5>
-            <h5 v-if="i === 3">
-              <v-badge>
-                <span slot="badge">V3</span>
-                <span
-                  v-if="review"
-                  class="headline"
-                >
-                  {{ review.meta.total.toLocaleString() }}
-                </span>
-                <span v-else>
-                  <v-progress-circular
-                    indeterminate
-                    color="primary"
-                  />
-                </span>
-              </v-badge>
-              <br>
-              <span class="subheading grey--text mt-2">
-                用户评测
-              </span>
-            </h5>
-          </div>
-        </v-flex>
-      </v-layout>
-      <v-layout
-        align-start
-        justify-center
-        row
-        wrap
-        class="mt-5"
-      >
-        <v-flex
-          v-for="(item,i) in tagWithSmall"
-          :key="i"
-          xs6
-          md3
-          lg2
-          class="px-3 my-3"
-        >
-          <tagWithSmallCard
-            :tag-with-small="item"
-            :tag-total.sync="tagTotal"
-            :tag-review-total.sync="tagReviewTotal"
-          />
-        </v-flex>
-      </v-layout>
-      <div class="my-3 pb-5">
-        <v-btn
-          outline 
-          large
-          to="/game/trending"
-        >
-          浏览趋势
-        </v-btn>
-      </div>
-      <div class="mt-5">
-        <h4 class="display-1">
-          接下来您将了解到什么?
-        </h4>
-        <h6 class="subheading grey--text mt-2">
-          SteamHub 的内容并不匮乏,浏览大多数报道，发现您喜爱的拓展知识。
-        </h6>
-      </div>
+    <div class="mt-5">
+      <h2 class="display-3 font-weight-black">
+        <nuxt-link 
+          to="/news" 
+          class="accent--text">业界新闻</nuxt-link>
+      </h2>
+    </div>
 
-      <div class="my-5">
-        <swiperWitchLargeCard
-          v-if="news"
-          :news.sync="news.data"
-        />
-        <loading
-          v-else
-          class="primary--text"
-        />
-        <v-btn 
-          v-if="news" 
-          dark 
-          class="my-3"
-          to="news"
-          large>了解更多</v-btn>
-      </div>
+    <div class="mt-3">
+      <swiperWitchLargeCard 
+        v-if="news" 
+        :news.sync="news.data"/>
     </div>
   </v-container>
 </template>
@@ -168,79 +39,12 @@ export default {
   data() {
     return {
       game: null,
-      price: null,
-      review: null,
-      tagTotal: null,
-      tagReviewTotal: null,
-      news: null,
-      tagWithSmall: [
-        {
-          title: '动作',
-          color: 'cyan',
-          dark: true,
-          img: 'https://i.loli.net/2018/11/15/5bed6062dce47.png',
-          knownGame: {
-            title: '已知游戏'
-          },
-          knownReview: {
-            title: '收录评测',
-            total: this.actionGameReview
-          }
-        },
-        {
-          title: '开放世界',
-          color: 'cyan',
-          dark: true,
-          img: 'https://i.loli.net/2018/11/15/5bed6061120a7.png',
-          knownGame: {
-            title: '已知游戏'
-          },
-          knownReview: {
-            title: '收录评测'
-          }
-        },
-        {
-          title: '角色扮演',
-          color: 'cyan',
-          dark: true,
-          img: 'https://i.loli.net/2018/11/15/5bed60661504e.png',
-          knownGame: {
-            title: '已知游戏'
-          },
-          knownReview: {
-            title: '收录评测'
-          }
-        },
-        {
-          title: '模拟',
-          color: 'cyan',
-          dark: true,
-          img: 'https://i.loli.net/2018/11/15/5bed60612e917.png',
-          knownGame: {
-            title: '已知游戏'
-          },
-          knownReview: {
-            title: '收录评测'
-          }
-        }
-      ]
+      news: null
     }
   },
   async mounted() {
     this.game = await this.fetchSomething(
       'https://v3.steamhub.cn/api/v3/game/list'
-    )
-    this.price = await this.fetchSomething(
-      'https://v3.steamhub.cn/api/v3/game/price'
-    )
-    this.review = await this.fetchSomething(
-      'https://v3.steamhub.cn/api/v3/game/review'
-    )
-    this.tagTotal = await this.fetchSomething(
-      'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&math=count'
-    )
-    this.tagReviewTotal = await this.fetchSomething(
-      'https://rest.steamhub.cn/api/v2/apps/tags?name[]=动作&name[]=开放世界&name[]=角色扮演&name[]=模拟&type=reviews&math=count'
     )
     this.news = await this.fetchSomething(
       'https://rest.steamhub.cn/api/v2/news/lists?size=16'
@@ -266,9 +70,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.container {
-  padding: 0;
-}
-</style>

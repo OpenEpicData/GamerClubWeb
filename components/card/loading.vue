@@ -3,12 +3,13 @@
     <v-card 
       :loading="loading" 
       class="mx-auto" 
+      color="secondary" 
     />
     <v-img
       :src="`https://s2.ax1x.com/2019/01/23/kE9MQ0.png`"
       :lazy-src="`https://s2.ax1x.com/2019/01/23/kE9MQ0.png`"
-      height="160px"
-      class="elevation-5"
+      height="260px"
+      class="elevation-5 secondary"
     >
       <v-layout 
         align-start 
@@ -19,20 +20,14 @@
           <v-chip 
             slot="activator" 
             class="elevation-10" 
-            small 
-            label 
             color="primary">
-            <v-rating
-              v-model="rating"
-              color="accent"
-              background-color="secondary"
-              half-increments
-              dense
-              small
-            />
+            <v-rating 
+              v-model="rating" 
+              half-increments 
+              dense/>
             <v-avatar 
               right 
-              class="secondary--text">0</v-avatar>
+            >0</v-avatar>
           </v-chip>
         </div>
       </v-layout>
@@ -47,9 +42,10 @@
     >
       <v-flex xs12>
         <v-progress-linear 
-          v-for="i in 3" 
-          :indeterminate="true" 
+          v-for="i in 2" 
+          :indeterminate="true"
           :key="i" 
+          color="accent" 
           height="3"/>
               
       </v-flex>

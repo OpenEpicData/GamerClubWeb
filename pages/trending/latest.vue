@@ -14,7 +14,7 @@
           sm6
           md4
           xl2
-          class="px-3 my-3"
+          class="my-3"
         >
           <reviewWithSmallCard
             v-if="reviewItem"
@@ -27,10 +27,12 @@
       </v-layout>
       <div
         v-if="loading === false && review.data.length <= 100"
-      >
-        <v-btn
-          :color="'primary'"
-          large
+        class="text-xs-center my-3">
+        <v-btn 
+          dark
+          color="accent"
+          x-large 
+          block
           @click="load_more(page)"
         >
           加载更多
@@ -56,7 +58,7 @@
           sm6
           md4
           xl2
-          class="px-3 my-3"
+          class="my-3"
         >
           <loading :loading="loading" />
         </v-flex>

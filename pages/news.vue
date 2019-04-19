@@ -1,20 +1,23 @@
 <template>
   <div id="top">
-    <div 
-      class="secondary" 
-      style="height:15vh"/>
-    <v-container>
+    <v-container 
+      fluid 
+      grid-list-xs>
       <v-layout 
         v-if="news && !loading" 
         row 
         wrap>
         <v-flex 
-          v-for="(item, i) in news.data" 
-          :key="i">
+          v-for="(item, i) in news.data"
+          :key="i"
+          xs6 
+          md6
+          lg4
+          xl3>
           <v-card 
             class="mx-3 my-3" 
             color="secondary" 
-            dark 
+            height="450px"
             hover 
             @click="target(item.Link)">
             <v-img 
@@ -24,40 +27,21 @@
               <v-icon 
                 large 
                 left>far fa-newspaper</v-icon>
-              <span class="title font-weight-light">{{ item.Site }}</span>
+              <h4 class="title">
+                {{ item.Site }}
+              </h4>
             </v-card-title>
 
             <v-card-text>
               <div class="headline font-weight-bold">
                 <a 
                   :href="item.Link" 
-                  class="white--text" 
+                  class="accent--text" 
                   target="_black">{{ item.Title }}</a>
               </div>
 
               <div class="my-3 subtitle-1">{{ item.Description }}</div>
             </v-card-text>
-
-            <v-card-actions>
-              <v-list-item class="grow">
-                <v-list-item-avatar color="grey darken-3">
-                  <v-img
-                    class="elevation-6"
-                    src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                  />
-                </v-list-item-avatar>
-
-                <v-list-item-content>
-                  <v-list-item-title>{{ item.Author }}</v-list-item-title>
-                </v-list-item-content>
-
-                <v-layout 
-                  align-center 
-                  justify-end>
-                  <span class="subheading">{{ item.Type }}</span>
-                </v-layout>
-              </v-list-item>
-            </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
@@ -72,6 +56,7 @@
             :key="i" 
             xs12 
             md6 
+            xl3
             class="px-3 my-3">
             <loading :loading="loading"/>
           </v-flex>
@@ -86,6 +71,7 @@
           v-if="news && !loading" 
           v-model="page" 
           :length="news.last_page" 
+          color="accent"
           circle/>
       </v-layout>
     </v-container>
