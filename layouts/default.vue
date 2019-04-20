@@ -37,12 +37,10 @@
 </template>
 
 <script>
-import logo from '~/components/logo'
 import loading from '~/components/loading'
 
 export default {
   components: {
-    logo,
     loading
   },
   data() {
