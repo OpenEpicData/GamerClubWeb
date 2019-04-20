@@ -24,6 +24,20 @@
           </v-tabs>
         </template>
       </v-toolbar>
+      <v-banner single-line>
+        因为侦测到 SteamHub 爬取程序数据一致性出现较大故障,开发团队正在尝试重写服务.
+        <template #actions>
+          <v-btn
+            text
+            outline
+            color="accent"
+            href="https://github.com/InGaming/Steamhub.Crawler"
+            target="_black"
+          >
+            GitHub 上查看最新进度
+          </v-btn>
+        </template>
+      </v-banner>
       <v-content>
         <nuxt/>
       </v-content>
