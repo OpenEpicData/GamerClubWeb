@@ -31,7 +31,7 @@
             text
             outline
             color="accent"
-            href="https://github.com/InGaming/Steamhub.Crawler"
+            href="https://github.com/InGaming/Steamhub.Spider"
             target="_black"
           >
             GitHub 上查看最新进度
