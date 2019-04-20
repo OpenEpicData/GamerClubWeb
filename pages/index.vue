@@ -47,7 +47,7 @@ export default {
       'https://v3.steamhub.cn/api/v3/game/list'
     )
     this.news = await this.fetchSomething(
-      'https://rest.steamhub.cn/api/v2/news/lists?size=16'
+      'https://v3.steamhub.cn/api/v3/game/news?length=16'
     )
   },
   methods: {

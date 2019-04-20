@@ -103,7 +103,7 @@ export default {
       this.loading = true
       this.page = e
       const news = await this.$axios.$get(
-        `https://rest.steamhub.cn/api/v2/news/lists?size=${this.size}&page=${
+        `https://v3.steamhub.cn/api/v3/game/news?length=${this.size}&page=${
           this.page
         }`
       )
@@ -114,7 +114,7 @@ export default {
   },
   async mounted() {
     const news = await this.$axios.$get(
-      `https://rest.steamhub.cn/api/v2/news/lists?size=${this.size}&page=${
+      `https://v3.steamhub.cn/api/v3/game/news?length=${this.size}&page=${
         this.page
       }`
     )
