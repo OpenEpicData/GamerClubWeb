@@ -19,13 +19,13 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.4.x",
+    "@nuxtjs/axios": "^5.5.x",
     "@nuxtjs/google-analytics": "^2.2.x",
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.x",
-    "nuxt": "^2.6.x",
+    "nuxt": "^2.8.x",
     "vue-awesome-swiper": "^3.1.3",
-    "vuetify": "^2.0.0-alpha"
+    "vuetify": "^2.0.0-beta"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
