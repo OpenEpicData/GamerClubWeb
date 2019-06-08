@@ -29,7 +29,7 @@
         <template #actions>
           <v-btn
             text
-            outline
+            outlined
             color="accent"
             href="https://github.com/InGaming/Steamhub.Spider"
             target="_black"

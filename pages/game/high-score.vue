@@ -81,7 +81,7 @@
             <v-btn
                
               large
-              outline 
+              outlined 
               
               disabled
             >

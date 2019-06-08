@@ -24,7 +24,7 @@
         >
           <v-text-field
             v-model="searchInputValue"
-            outline
+            outlined
             label="回车搜索"
             single-line
             append-icon="search"
@@ -237,7 +237,7 @@
                             small
                             color="red-gradient"
                             disabled
-                            outline 
+                            outlined 
                           >
                             关注
                           </v-btn>

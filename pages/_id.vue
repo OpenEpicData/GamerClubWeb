@@ -221,7 +221,7 @@
                 <v-btn 
                   :href="`https://store.steampowered.com/app/${game.appid}`" 
                   target="_black"
-                  outline 
+                  outlined 
                   block
                   large
                   class="my-3"
