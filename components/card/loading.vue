@@ -3,13 +3,13 @@
     <v-card 
       :loading="loading" 
       class="mx-auto" 
-      color="secondary" 
+      color="primary" 
     />
     <v-img
       :src="`https://s2.ax1x.com/2019/01/23/kE9MQ0.png`"
       :lazy-src="`https://s2.ax1x.com/2019/01/23/kE9MQ0.png`"
       height="260px"
-      class="elevation-5 secondary"
+      class="elevation-5 primary"
     >
       <v-layout 
         align-start 
@@ -45,7 +45,7 @@
           v-for="i in 2" 
           :indeterminate="true"
           :key="i" 
-          color="accent" 
+          color="primary" 
           height="3"/>
               
       </v-flex>

@@ -16,7 +16,7 @@
           xl3>
           <v-card 
             class="mx-3 my-3" 
-            color="secondary" 
+            color="primary" 
             height="450px"
             hover 
             @click="target(item.Link)">
@@ -36,7 +36,7 @@
               <div class="headline font-weight-bold">
                 <a 
                   :href="item.Link" 
-                  class="accent--text" 
+                  class="primary--text" 
                   target="_black">{{ item.Title }}</a>
               </div>
 
@@ -71,7 +71,7 @@
           v-if="news && !loading" 
           v-model="page" 
           :length="news.last_page" 
-          color="accent"
+          color="primary"
           circle/>
       </v-layout>
     </v-container>

@@ -30,7 +30,7 @@
         class="text-xs-center my-3">
         <v-btn 
           dark
-          color="accent"
+          color="primary"
           x-large 
           block
           @click="load_more(page)"

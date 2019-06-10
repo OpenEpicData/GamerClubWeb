@@ -4,14 +4,14 @@
       <v-card 
         :to="`/${data.appid}`" 
         class="text-xs-left" 
-        color="secondary" 
+        color="primary" 
         exact 
         outlined>
         <div>
           <v-img
             :src="`https://cdn.steamstatic.com.8686c.com/steam/apps/${data.appid}/header.jpg`"
             height="260px"
-            class="elevation-5 secondary"
+            class="elevation-5 primary"
           >
             <v-layout 
               align-start 
@@ -24,7 +24,7 @@
                     v-if="rating = review.length > 0 ? review[0].score / 20 : null"
                     slot="activator"
                     class="elevation-10"
-                    color="accent"
+                    color="primary"
                   >
                     <v-rating 
                       v-model="rating" 
@@ -36,7 +36,7 @@
                 <div v-else>
                   <v-chip 
                     class="elevation-10" 
-                    color="accent">
+                    color="primary">
                     暂无评分
                     <v-avatar right>?</v-avatar>
                   </v-chip>

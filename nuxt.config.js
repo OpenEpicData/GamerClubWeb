@@ -27,22 +27,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      },
-      {
-        rel: 'stylesheet',
-        href:
           'https://cdn.jsdelivr.net/npm/vuetify@2.0.0-beta.1/dist/vuetify.min.css'
-      },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css'
-      },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://cdn.jsdelivr.net/npm/font-awesome-animation@0.2.1/dist/font-awesome-animation.min.css'
       },
       {
         rel: 'stylesheet',
@@ -51,6 +36,11 @@ module.exports = {
     ]
   },
 
+  css: [
+    // 项目里要使用的 SCSS 文件
+    '@/assets/css/app.scss'
+  ],
+  
   /*
   ** Customize the progress-bar color
   */

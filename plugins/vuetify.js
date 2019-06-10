@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
+import '@mdi/font/css/materialdesignicons.css'
 
 const opts = {
   theme: {
-    dark: false,
+    dark: true,
     themes: {
       light: {
         primary: '#F5F5F5',
@@ -15,14 +16,14 @@ const opts = {
         success: '#4CAF50'
       },
       dark: {
-        primary: '#131418',
-        secondary: '#2d303a',
-        accent: '#0ebeff'
+        primary: '#000',
+        secondary: '#fff',
+        background: '#131319'
       }
     }
   },
   icons: {
-    iconfont: 'fa'
+    iconfont: 'mdi'
   }
 }
 

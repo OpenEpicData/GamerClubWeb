@@ -1,68 +1,35 @@
 <template>
-  <v-app class="primary px-5">
-    <div class="hidden-sm-and-down">
-      <v-toolbar tabs>
-        <v-toolbar-title>
-          <h1 class="display-1">SteamHub</h1>
-        </v-toolbar-title>
-        <v-spacer/>
-        <div class="hidden-sm-and-down">
-          <v-btn color="accent">立即开始</v-btn>
-        </div>
-
-        <template v-slot:extension>
-          <v-tabs 
-            v-model="toolbar.tab.active" 
-            class="secondary" 
-            slider-color="accent">
-            <v-tab
-              v-for="(item, i) in toolbar.tab.item"
-              :key="i"
-              :to="item.path"
-              class="accent--text"
-            >{{ item.name }}</v-tab>
-          </v-tabs>
-        </template>
-      </v-toolbar>
-      <v-banner single-line>
-        因为侦测到 SteamHub 爬取程序数据一致性出现较大故障,开发团队正在尝试重写服务.
-        <template #actions>
-          <v-btn
-            text
-            outlined
-            color="accent"
-            href="https://github.com/InGaming/Steamhub.Spider"
-            target="_black"
-          >
-            GitHub 上查看最新进度
-          </v-btn>
-        </template>
-      </v-banner>
+  <v-app 
+    class="background" 
+    dark>
+    <div>
+      <appbar :appbar="appbar"/>
+      <banner :banner="banner"/>
       <v-content>
-        <nuxt/>
+        <v-container grid-list-md>
+          <nuxt/>
+        </v-container>
       </v-content>
-    </div>
-    <div class="hidden-md-and-up">
-      <h1 class="display-3">
-        请使用电脑浏览器访问
-      </h1>
     </div>
   </v-app>
 </template>
 
 <script>
-import loading from '~/components/loading'
+import banner from '~/components/layout/banner'
+import appbar from '~/components/layout/appbar'
 
 export default {
   components: {
-    loading
+    banner,
+    appbar
   },
   data() {
     return {
-      toolbar: {
-        tab: {
-          active: this.$route.fullPath,
-          item: [
+      appbar: {
+        title: 'SteamHub',
+        background: 'background',
+        left: {
+          items: [
             {
               name: '浏览',
               path: '/'
@@ -80,18 +47,30 @@ export default {
               path: '/game/trending'
             }
           ]
+        },
+        right: {
+          items: [
+            {
+              icon: 'mdi-magnify'
+            },
+            {
+              icon: 'mdi-bell-outline'
+            },
+            {
+              icon: 'mdi-account-circle-outline'
+            }
+          ]
+        }
+      },
+      banner: {
+        class: 'mt-64px background',
+        content: 'SteamHub 团队正在逐步重构服务，部分页面可能出现样式丢失。',
+        action: {
+          href: 'https://github.com/InGaming/Steamhub.Web',
+          content: 'GitHub 上查看最新进度'
         }
       }
     }
   }
 }
 </script>
-
-<style>
-a {
-  text-decoration: #f44336 underline;
-}
-.container {
-  padding: 0;
-}
-</style>

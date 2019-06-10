@@ -9,7 +9,7 @@
         <h2 class="display-3 font-weight-black ">
           <nuxt-link 
             :to="item.link" 
-            class="accent--text">{{ item.title }}</nuxt-link>
+            class="primary--text">{{ item.title }}</nuxt-link>
         </h2>
       </div>
 

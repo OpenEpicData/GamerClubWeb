@@ -7,7 +7,7 @@
         fill-height
         row
         wrap
-        class="secondary"
+        class="primary"
       >
         <v-flex
           xs12
@@ -21,7 +21,7 @@
             <h1 class="display-3 text-truncate">
               <a
                 :to="`/${high_score[0].appid}`"
-                class="accent--text"
+                class="primary--text"
               >
                 {{ high_score[0].name }}
               </a>
@@ -71,7 +71,7 @@
               :to="`/${high_score[0].appid}`"
               
               large
-              class="mx-0 accent"
+              class="mx-0 primary"
             >
               查看游戏
               <span v-if="high_score[0].game_prices.length > 0">
@@ -157,7 +157,7 @@
                   <h2 class="title text-truncate">
                     <nuxt-link
                       :to="`/${highScoreItem.appid}`"
-                      class="accent--text"
+                      class="primary--text"
                     >
                       {{ highScoreItem.name }}
                     </nuxt-link>

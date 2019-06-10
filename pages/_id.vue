@@ -61,7 +61,7 @@
                     class="px-3">
                     <v-card 
                       class="elevation-3" 
-                      color="secondary">
+                      color="primary">
                       <v-sheet
                         class="v-sheet--offset mx-auto"
                         color="cyan darken-1"
@@ -123,7 +123,7 @@
                     class="px-3 pt-5">
                     <v-card 
                       class="elevation-3" 
-                      color="secondary">
+                      color="primary">
                       <v-sheet
                         class="v-sheet--offset mx-auto"
                         color="cyan darken-1"
@@ -149,7 +149,7 @@
                         <div class="subheading font-weight-light grey--text">
                           <h2 class="display-1">
                             当前价格: <del>￥{{ game.game_prices[game.game_prices.length -1].initial }}</del>
-                            <span class="accent--text">
+                            <span class="primary--text">
                               ￥{{ game.game_prices[game.game_prices.length -1].final }}
                             </span>
                           </h2>
@@ -175,7 +175,7 @@
               class="mt-5">
               <v-card 
                 class="elevation-3" 
-                color="secondary">
+                color="primary">
                 <v-list-item two-line>
                   <v-list-item-content>
                     <v-list-item-title class="display-2">{{ game.name }}</v-list-item-title>
@@ -225,7 +225,7 @@
                   block
                   large
                   class="my-3"
-                  color="accent">
+                  color="primary">
                   立即购买 
                   <span v-if="game.game_prices[game.game_prices.length -1]">
                     {{ game.game_prices[game.game_prices.length -1].final }} ￥
@@ -254,7 +254,7 @@
                   <v-card 
                     flat 
                     tile 
-                    color="secondary">
+                    color="primary">
                     <a 
                       :href="item.webm.max" 
                       target="_black">
