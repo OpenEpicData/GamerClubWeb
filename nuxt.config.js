@@ -27,11 +27,7 @@ module.exports = {
       {
         rel: 'stylesheet',
         href:
-          'https://cdn.jsdelivr.net/npm/vuetify@2.0.0-beta.1/dist/vuetify.min.css'
-      },
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/swiper@4/dist/css/swiper.min.css'
+          'https://cdn.jsdelivr.net/npm/vuetify@2.0.0-beta.2/dist/vuetify.min.css'
       }
     ]
   },
@@ -40,7 +36,7 @@ module.exports = {
     // 项目里要使用的 SCSS 文件
     '@/assets/css/app.scss'
   ],
-  
+
   /*
   ** Customize the progress-bar color
   */
@@ -51,7 +47,6 @@ module.exports = {
   */
   plugins: [
     { src: '~/plugins/vuetify' },
-    { src: '~/plugins/swiper.js', ssr: false },
   ],
 
   /*

@@ -6,9 +6,7 @@
       <appbar :appbar="appbar"/>
       <banner :banner="banner"/>
       <v-content>
-        <v-container grid-list-md>
-          <nuxt/>
-        </v-container>
+        <nuxt/>
       </v-content>
     </div>
   </v-app>

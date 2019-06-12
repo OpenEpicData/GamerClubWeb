@@ -3,12 +3,40 @@
 }
 
 a {
-  text-decoration-line: none
+  text-decoration-line: none;
+  &:hover {
+    text-decoration-line: underline
+  }
 }
 
 .zoom:hover {
   transform: scale(1.05);
   z-index: 2;
+}
+
+.v-slide-group__prev, .v-slide-group__next {
+  background: transparent;
+  position: relative;
+  min-width:40px;
+  z-index: 2;
+  i {
+    color: #fff !important;
+    background: #000;
+    font-size: 48px;
+    border-radius: 50%;
+  }
+  .v-icon--disabled {
+    display: none;
+  }
+}
+.v-slide-group__prev {
+  left: 20px;
+}
+.v-slide-group__next {
+  right: 20px;
+}
+.v-slide-group__wrapper {
+  margin: 0 -40px 0 -40px
 }
 
 @media (min-width: 1264px) and (max-width: 1903px) {

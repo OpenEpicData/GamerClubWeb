@@ -18,6 +18,7 @@ const opts = {
       dark: {
         primary: '#000',
         secondary: '#fff',
+        accent: '#2196F3',
         background: '#131319'
       }
     }
