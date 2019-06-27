@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +14,12 @@ import {
   NbSearchModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NzCarouselModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import {
+  NzCarouselModule,
+  NZ_I18N,
+  zh_CN,
+  NzGridModule
+} from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
@@ -34,7 +38,6 @@ registerLocaleData(zh);
     IndexComponent
   ],
   imports: [
-    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -48,7 +51,8 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     NbActionsModule,
-    NbSearchModule
+    NbSearchModule,
+    NzGridModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

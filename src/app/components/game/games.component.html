@@ -1,9 +1,7 @@
 <nb-tabset>
   <nb-tab tabTitle="新进游戏" style="padding: 1rem 0">
-    <div *ngIf="games" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px"
-      fxLayoutGap.xs="0">
-      <div fxFlex="0 1 calc(20%)" fxFlex.lt-md="0 1 calc(50%)" fxFlex.lt-sm="100%" fxFlexFill
-        *ngFor="let hero of games.data">
+    <div *ngIf="games" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
+      <div nz-col nzXs="12" nzLg="8" nzXl="4" *ngFor="let hero of games.data">
         <nb-card>
           <nb-card-header style="padding: 0">
             <img [src]="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + hero.appid + '/header.jpg'" alt=""
