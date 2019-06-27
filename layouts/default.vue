@@ -64,8 +64,8 @@ export default {
         class: 'mt-64px background',
         content: 'SteamHub 团队正在逐步重构服务，部分页面可能出现样式丢失。',
         action: {
-          href: 'https://github.com/InGaming/Steamhub.Web',
-          content: 'GitHub 上查看最新进度'
+          href: 'https://next.steamhub.cn/',
+          content: '访问全新的 SteamHub Beta 版本'
         }
       }
     }
