@@ -1,5 +1,5 @@
 <nb-layout-header fixed>
-  <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+  <div style="width: 100%" nz-row nzType="flex" nzJustify="space-between" nzAlign="middle">
     <div>
       <nb-actions size="medium">
         <nb-action *ngFor="let item of header.leftItems">
@@ -8,14 +8,12 @@
       </nb-actions>
     </div>
 
-    <div>
-      <div fxLayout="row">
-        <nb-search type="rotate-layout" placeholder="搜索..." hint="暂不可用" class="header-search-botton"></nb-search>
-        <nb-actions>
-          <nb-action *ngFor="let item of header.rightItems" [icon]="item" disabled>
-          </nb-action>
-        </nb-actions>
-      </div>
+    <div nz-row nzType="flex" nzJustify="space-between" nzAlign="middle">
+      <nb-search type="rotate-layout" placeholder="搜索..." hint="暂不可用" class="header-search-botton"></nb-search>
+      <nb-actions size="medium">
+        <nb-action *ngFor="let item of header.rightItems" [icon]="item" disabled>
+        </nb-action>
+      </nb-actions>
     </div>
   </div>
 </nb-layout-header>
