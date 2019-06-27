@@ -1,0 +1,18 @@
+<nz-carousel [nzEffect]="'fade'" nzAutoPlay nzEnableSwipe class="intro-carousel nb-theme-default">
+  <div nz-carousel-content *ngFor="let item of carouselItems">
+    <div class="img" style="background-position: center center;background-repeat:no-repeat;background-size:cover;"
+      [style.background-image]="'url(' + item.image + ')'">
+      <div fxLayout="row" fxLayout="wrap" fxLayoutAlign="center end" fxFlexFill>
+        <div>
+          <nb-alert status="primary" class="text-center">
+            {{ item.title }}
+            <br>
+            {{ item.description }}
+          </nb-alert>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-carousel>
+
+<app-games></app-games>

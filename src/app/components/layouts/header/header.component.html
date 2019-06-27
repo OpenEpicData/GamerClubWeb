@@ -1,0 +1,21 @@
+<nb-layout-header fixed>
+  <div fxLayout="row" fxLayoutAlign="space-between center" fxFlexFill>
+    <div>
+      <nb-actions size="medium">
+        <nb-action *ngFor="let item of header.leftItems">
+          <a [routerLink]="item.href" routerLinkActive="route-active">{{ item.title }}</a>
+        </nb-action>
+      </nb-actions>
+    </div>
+
+    <div>
+      <div fxLayout="row">
+        <nb-search type="rotate-layout" placeholder="搜索..." hint="暂不可用" class="header-search-botton"></nb-search>
+        <nb-actions>
+          <nb-action *ngFor="let item of header.rightItems" [icon]="item" disabled>
+          </nb-action>
+        </nb-actions>
+      </div>
+    </div>
+  </div>
+</nb-layout-header>
