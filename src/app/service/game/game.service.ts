@@ -15,7 +15,7 @@ const httpOptions = {
 export class GameService {
 
   private gamesUrl
-    = 'https://v3.steamhub.cn/api/v3/game/list?length=6&order_field=updated_at&order=desc&simple_paginate=1';  // URL to web api
+    = 'https://api.steamhub.cn/api/game/details?page=1&length=6&orderDesc=true';  // URL to web api
 
   constructor(
     private http: HttpClient,

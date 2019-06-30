@@ -1,14 +1,14 @@
 <nb-tabset>
   <nb-tab tabTitle="新进游戏" style="padding: 1rem 0">
     <div *ngIf="games" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
-      <div nz-col nzXs="12" nzLg="8" nzXl="4" *ngFor="let hero of games.data">
+      <div nz-col nzXs="12" nzLg="8" nzXl="4" *ngFor="let item of games">
         <nb-card>
           <nb-card-header style="padding: 0">
-            <img [src]="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + hero.appid + '/header.jpg'" alt=""
+            <img [src]="'https://cdn.steamstatic.com.8686c.com/steam/apps/' + item.appID + '/header.jpg'" alt=""
               width="100%" height="200px">
           </nb-card-header>
           <nb-card-header style="text-overflow: ellipsis;white-space:nowrap;overflow: hidden;">
-            {{ hero.name }}
+            {{ item.name }}
           </nb-card-header>
         </nb-card>
       </div>
