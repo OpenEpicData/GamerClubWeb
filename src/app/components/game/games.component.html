@@ -1,5 +1,5 @@
 <nb-tabset>
-  <nb-tab tabTitle="新进游戏" style="padding: 1rem 0">
+  <nb-tab tabTitle="新进游戏" style="padding: 1rem 0;overflow-x: hidden">
     <div *ngIf="games" nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
       <div nz-col nzXs="12" nzLg="8" nzXl="4" *ngFor="let item of games">
         <nb-card>
