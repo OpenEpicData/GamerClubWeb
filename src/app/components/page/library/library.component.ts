@@ -21,6 +21,6 @@ export class LibraryComponent implements OnInit {
 
   announce() {
     this.gameService.announceMission(this.parameter);
-    this.gameService.pageMission(this.pagination)
+    this.gameService.pageMission(this.pagination);
   }
 }

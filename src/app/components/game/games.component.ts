@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 import { Game } from '../../service/game/game';
 import { GameService } from '../../service/game/game.service';
@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs';
   templateUrl: './games.component.html'
 })
 export class GamesComponent<T> implements OnInit {
+  @Input() isSpinning: boolean;
+  @Output() spinningChange = new EventEmitter<boolean>();
+
   games: Game<T>;
   missionSubscription: Subscription;
   paginationSubscription: Subscription;
@@ -30,20 +33,32 @@ export class GamesComponent<T> implements OnInit {
   }
 
   ngOnInit() {
+    this.isSpinning = true;
     this.getGames();
   }
 
   getGames(): void {
     this.gameService.getGames<T>(this.parameter)
-      .subscribe(games => this.games = games[0]);
+      .subscribe(
+        games => {
+          this.games = games[0];
+          this.isSpinning = false;
+        },
+      );
   }
 
   gamesPageChange(page: number, parameter: string): void {
     this.gameService.getGames<T>(`${parameter}&page=${page}`)
-      .subscribe(games => this.games = games[0]);
+      .subscribe(
+        games => {
+          this.games = games[0];
+          this.isSpinning = false;
+        },
+      );
   }
 
   scrollTop(): void {
+    this.isSpinning = true;
     window.scroll(0, 0);
   }
 }
