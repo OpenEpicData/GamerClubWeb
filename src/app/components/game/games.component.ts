@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './games.component.html'
 })
 export class GamesComponent<T> implements OnInit {
-  @Input() isSpinning: boolean;
+  @Input() skeleton: boolean;
   @Output() spinningChange = new EventEmitter<boolean>();
 
   games: Game<T>;
@@ -33,7 +33,7 @@ export class GamesComponent<T> implements OnInit {
   }
 
   ngOnInit() {
-    this.isSpinning = true;
+    this.skeleton = true;
     this.getGames();
   }
 
@@ -42,7 +42,7 @@ export class GamesComponent<T> implements OnInit {
       .subscribe(
         games => {
           this.games = games[0];
-          this.isSpinning = false;
+          this.skeleton = false;
         },
       );
   }
@@ -52,13 +52,13 @@ export class GamesComponent<T> implements OnInit {
       .subscribe(
         games => {
           this.games = games[0];
-          this.isSpinning = false;
+          this.skeleton = false;
         },
       );
   }
 
   scrollTop(): void {
-    this.isSpinning = true;
+    this.skeleton = true;
     window.scroll(0, 0);
   }
 }

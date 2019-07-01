@@ -20,7 +20,8 @@ import {
   NZ_I18N,
   zh_CN,
   NzGridModule,
-  NzSpinModule
+  NzSpinModule,
+  NzSkeletonModule
 } from 'ng-zorro-antd';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -58,7 +59,8 @@ registerLocaleData(zh);
     NbSearchModule,
     NzGridModule,
     NzPaginationModule,
-    NzSpinModule
+    NzSpinModule,
+    NzSkeletonModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

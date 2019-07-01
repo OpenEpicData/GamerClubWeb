@@ -1,7 +1,9 @@
-<nz-spin nz-row nzType="flex" nzJustify="center" nzAlign="middle" nzSimple [nzSize]="'large'"
-  [(nzSpinning)]="isSpinning"></nz-spin>
+<div *ngFor="let item of [0,1,2,3,4]">
+  <nz-skeleton *ngIf="skeleton" [nzActive]="true"></nz-skeleton>
+</div>
+
 <nb-tabset>
-  <nb-tab active *ngIf="games && !isSpinning" tabTitle="新进游戏" style="padding: 1rem 0;overflow-x: hidden">
+  <nb-tab active *ngIf="games && !skeleton" tabTitle="新进游戏" style="padding: 1rem 0;overflow-x: hidden">
     <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
       <div nz-col nzXs="12" nzLg="8" nzXl="4" *ngFor="let item of games.data">
         <nb-card>
