@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Game } from '../../service/game/game';
 import { GameService } from '../../service/game/game.service';
@@ -9,14 +9,22 @@ import { Subscription } from 'rxjs';
   templateUrl: './games.component.html'
 })
 export class GamesComponent<T> implements OnInit {
-  games: Game<T>[];
-  subscription: Subscription;
-  url = 'https://api.steamhub.cn/api/game/details?page=1&length=6&orderDesc=true';
+  games: Game<T>;
+  missionSubscription: Subscription;
+  paginationSubscription: Subscription;
+  page = 1;
+  parameter = 'page=1&length=6&orderDesc=true';
+  pagination: boolean;
 
   constructor(private gameService: GameService) {
-    this.subscription = gameService.missionAnnounced$.subscribe(
+    this.missionSubscription = gameService.missionAnnounced$.subscribe(
       mission => {
-        this.url = mission;
+        this.parameter = mission;
+      }
+    );
+    this.paginationSubscription = gameService.pageAnnounced$.subscribe(
+      pagination => {
+        this.pagination = pagination;
       }
     );
   }
@@ -26,7 +34,16 @@ export class GamesComponent<T> implements OnInit {
   }
 
   getGames(): void {
-    this.gameService.getGames<T>(this.url)
-      .subscribe(games => this.games = games);
+    this.gameService.getGames<T>(this.parameter)
+      .subscribe(games => this.games = games[0]);
+  }
+
+  gamesPageChange(page: number, parameter: string): void {
+    this.gameService.getGames<T>(`${parameter}&page=${page}`)
+      .subscribe(games => this.games = games[0]);
+  }
+
+  scrollTop(): void {
+    window.scroll(0, 0);
   }
 }

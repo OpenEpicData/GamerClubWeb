@@ -14,11 +14,14 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class GameService {
 
+  private api = 'https://api.steamhub.cn/api/game/details?';
   // Observable string source
   private missionAnnouncedSource = new Subject<string>();
+  private pageAnnouncedSource = new Subject<boolean>();
 
   // Observable string stream
   missionAnnounced$ = this.missionAnnouncedSource.asObservable();
+  pageAnnounced$ = this.pageAnnouncedSource.asObservable();
 
   constructor(
     private http: HttpClient,
@@ -29,9 +32,13 @@ export class GameService {
     this.missionAnnouncedSource.next(mission);
   }
 
+  pageMission(pagination: boolean) {
+    this.pageAnnouncedSource.next(pagination);
+  }
+
   /** GET games from the server */
-  getGames<T>(url: string): Observable<Game<T>[]> {
-    return this.http.get<Game<T>[]>(url)
+  getGames<T>(parameter: string): Observable<Game<T>[]> {
+    return this.http.get<Game<T>[]>(this.api + parameter)
       .pipe(
         tap(_ => this.log('fetched games')),
         catchError(this.handleError<Game<T>[]>('getGames', []))

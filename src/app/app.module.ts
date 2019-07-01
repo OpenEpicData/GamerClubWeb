@@ -16,6 +16,7 @@ import {
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
   NzCarouselModule,
+  NzPaginationModule,
   NZ_I18N,
   zh_CN,
   NzGridModule
@@ -54,7 +55,8 @@ registerLocaleData(zh);
     HttpClientModule,
     NbActionsModule,
     NbSearchModule,
-    NzGridModule
+    NzGridModule,
+    NzPaginationModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

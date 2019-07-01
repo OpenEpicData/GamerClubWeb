@@ -1,1 +1,3 @@
 <app-games></app-games>
+<nz-pagination *ngIf="games" (nzPageIndexChange)="gamesPageChange(games.page, 'length=24&orderDesc=true')"
+  [nzPageIndex]="games.page" [nzTotal]="games.total"></nz-pagination>

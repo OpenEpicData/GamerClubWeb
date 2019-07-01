@@ -9,7 +9,10 @@ import { GameService } from '../../../service/game/game.service';
 })
 
 export class LibraryComponent implements OnInit {
-  api = 'https://api.steamhub.cn/api/game/details?page=1&length=24&orderDesc=true';
+  page = 1;
+  length = 24;
+  pagination = true;
+  parameter = `&page=${this.page}&length=${this.length}&orderDesc=true`;
   constructor(private gameService: GameService) { }
 
   ngOnInit() {
@@ -17,6 +20,7 @@ export class LibraryComponent implements OnInit {
   }
 
   announce() {
-    this.gameService.announceMission(this.api);
+    this.gameService.announceMission(this.parameter);
+    this.gameService.pageMission(this.pagination)
   }
 }
