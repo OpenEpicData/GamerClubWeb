@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../../service/game/game.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-library',
@@ -9,18 +10,33 @@ import { GameService } from '../../../service/game/game.service';
 })
 
 export class LibraryComponent implements OnInit {
+  query: string;
   page = 1;
   length = 24;
   pagination = true;
-  parameter = `&page=${this.page}&length=${this.length}&orderDesc=true`;
-  constructor(private gameService: GameService) { }
+  text = '';
+  parameter = `&page=${this.page}&length=${this.length}&text=${this.text}&orderDesc=true`;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private gameService: GameService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.announce();
+    this.activatedRoute.queryParams.subscribe(
+      params => console.log('queryParams', params.query));
   }
 
-  announce() {
+  announce(): void {
     this.gameService.announceMission(this.parameter);
     this.gameService.pageMission(this.pagination);
+  }
+
+  search(value: string): void {
+    console.log(this.parameter);
+    this.text = value;
+    this.gameService.announceMission(this.parameter);
   }
 }

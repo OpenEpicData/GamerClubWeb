@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NbSearchService } from '@nebular/theme';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -31,4 +33,15 @@ export class HeaderComponent {
       'person-add-outline'
     ]
   };
+
+  searchValue: string;
+
+  constructor(private searchService: NbSearchService, private router: Router) {
+
+    this.searchService.onSearchSubmit()
+      .subscribe((data: any) => {
+        this.searchValue = data.term;
+        this.router.navigate(['library'], { queryParams: {query: this.searchValue} });
+      });
+  }
 }
