@@ -6,9 +6,17 @@
 
   <nb-layout-column>
     <nb-alert status="warning">
-      {{ globalNotice }}
+      <div nz-row nzType="flex" nzJustify="start" nzAlign="middle" nzGutter="16">
+        <div nz-col>
+          {{ globalNotice.text }}
+        </div>
+        <div nz-col *ngIf="globalNotice.button.enable">
+          <a [href]="globalNotice.button.href" target="_black">
+            <button nbButton>{{ globalNotice.button.text }}</button>
+          </a>
+        </div>
+      </div>
     </nb-alert>
-
     <router-outlet></router-outlet>
 
   </nb-layout-column>

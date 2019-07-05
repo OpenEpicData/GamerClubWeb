@@ -11,7 +11,9 @@ import {
   NbAlertModule,
   NbCardModule,
   NbActionsModule,
-  NbSearchModule
+  NbSearchModule,
+  NbInputModule,
+  NbButtonModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import {
@@ -60,7 +62,9 @@ registerLocaleData(zh);
     NzGridModule,
     NzPaginationModule,
     NzSpinModule,
-    NzSkeletonModule
+    NzSkeletonModule,
+    NbInputModule,
+    NbButtonModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

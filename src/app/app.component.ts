@@ -12,5 +12,12 @@ import { Component, NgModule } from '@angular/core';
 
 export class AppComponent {
   title = 'SteamHub';
-  globalNotice = 'SteamHub 所有服务正在重构中，预计七月中旬完全可用';
+  globalNotice = {
+    text: 'SteamHub 所有服务正在重构中，预计七月中旬完全可用',
+    button: {
+      enable: true,
+      text: '查看我们的路线图',
+      href: 'https://github.com/InGaming/SteamHub.Web#roadmap'
+    }
+  };
 }
