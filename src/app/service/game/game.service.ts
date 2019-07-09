@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs'
 import { catchError, map, tap } from 'rxjs/operators'
 
-import { Game } from './game'
 import { MessageService } from './message.service'
 
 const httpOptions = {
@@ -37,11 +36,11 @@ export class GameService {
   }
 
   /** GET games from the server */
-  getGames<T>(parameter: string): Observable<Array<Game<T>>> {
-    return this.http.get<Array<Game<T>>>(this.api + parameter)
+  getGames<T>(parameter: string): Observable<Array<IGame<T>>> {
+    return this.http.get<Array<IGame<T>>>(this.api + parameter)
       .pipe(
         tap(_ => this.log('fetched games')),
-        catchError(this.handleError<Array<Game<T>>>('getGames', []))
+        catchError(this.handleError<Array<IGame<T>>>('getGames', []))
       )
   }
 
@@ -52,7 +51,7 @@ export class GameService {
    * @param result - optional value to return as the observable result
    */
   private handleError<T>(operation = 'operation', result?: T) {
-  // tslint:disable-next-line: no-any
+    // tslint:disable-next-line: no-any
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure

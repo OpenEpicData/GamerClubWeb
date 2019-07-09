@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core'
 
-import { Game } from '../../service/game/game'
 import { GameService } from '../../service/game/game.service'
 import { Subscription } from 'rxjs'
 
@@ -12,7 +11,7 @@ export class GamesComponent<T> implements OnInit {
   @Input() skeleton: boolean
   @Output() spinningChange = new EventEmitter<boolean>()
 
-  games: Game<T>
+  games: IGame<T>
   missionSubscription: Subscription
   paginationSubscription: Subscription
   page: number

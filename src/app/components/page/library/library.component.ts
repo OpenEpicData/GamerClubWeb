@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { GameService } from '../../../service/game/game.service'
-import { Router, ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-library',
