@@ -1,3 +1,3 @@
 export class Game<T> {
-  data: Game<T>[];
+  data: Array<Game<T>>
 }

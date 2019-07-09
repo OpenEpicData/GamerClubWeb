@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NbSearchService } from '@nebular/theme';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core'
+import { NbSearchService } from '@nebular/theme'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -32,16 +32,17 @@ export class HeaderComponent {
       'bell-outline',
       'person-add-outline'
     ]
-  };
+  }
 
-  searchValue: string;
+  searchValue: string
 
-  constructor(private searchService: NbSearchService, private router: Router) {
+  constructor(private readonly searchService: NbSearchService, private readonly router: Router) {
 
     this.searchService.onSearchSubmit()
+      // tslint:disable-next-line: no-any
       .subscribe((data: any) => {
-        this.searchValue = data.term;
-        this.router.navigate(['library'], { queryParams: {query: this.searchValue} });
-      });
+        this.searchValue = data.term
+        this.router.navigate(['library'], { queryParams: { query: this.searchValue } })
+      })
   }
 }

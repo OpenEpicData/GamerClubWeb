@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { Component, NgModule } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'SteamHub';
+  title = 'SteamHub'
   globalNotice = {
     text: 'SteamHub 所有服务正在重构中，预计七月中旬完全可用',
     button: {
@@ -19,5 +19,5 @@ export class AppComponent {
       text: '查看我们的路线图',
       href: 'https://github.com/InGaming/SteamHub.Web#roadmap'
     }
-  };
+  }
 }

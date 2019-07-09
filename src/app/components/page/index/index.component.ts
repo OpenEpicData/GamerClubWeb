@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-index',
@@ -18,5 +18,5 @@ export class IndexComponent {
       title: '神界：原罪 2',
       description: '召集你的团队，探讨战术，左右战局。你最多可以和其他三名玩家合作——但是，最终只有其中一人有机会成为神'
     }
-  ];
+  ]
 }

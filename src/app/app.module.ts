@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {
   NbThemeModule,
   NbLayoutModule,
@@ -14,8 +14,8 @@ import {
   NbSearchModule,
   NbInputModule,
   NbButtonModule
-} from '@nebular/theme';
-import { NbEvaIconsModule } from '@nebular/eva-icons';
+} from '@nebular/theme'
+import { NbEvaIconsModule } from '@nebular/eva-icons'
 import {
   NzCarouselModule,
   NzPaginationModule,
@@ -24,17 +24,17 @@ import {
   NzGridModule,
   NzSpinModule,
   NzSkeletonModule
-} from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { registerLocaleData } from '@angular/common';
-import { HeaderComponent } from './components/layouts/header/header.component';
-import { GamesComponent } from './components/game/games.component';
-import { IndexComponent } from './components/page/index/index.component';
-import { LibraryComponent } from './components/page/library/library.component';
-import zh from '@angular/common/locales/zh';
+} from 'ng-zorro-antd'
+import { FormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
+import { registerLocaleData } from '@angular/common'
+import { HeaderComponent } from './components/layouts/header/header.component'
+import { GamesComponent } from './components/game/games.component'
+import { IndexComponent } from './components/page/index/index.component'
+import { LibraryComponent } from './components/page/library/library.component'
+import zh from '@angular/common/locales/zh'
 
-registerLocaleData(zh);
+registerLocaleData(zh)
 
 @NgModule({
   declarations: [
