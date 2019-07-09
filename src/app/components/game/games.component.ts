@@ -15,11 +15,12 @@ export class GamesComponent<T> implements OnInit {
   games: Game<T>;
   missionSubscription: Subscription;
   paginationSubscription: Subscription;
-  page = 1;
-  parameter = 'page=1&length=6&orderDesc=true';
+  page: number;
+  parameter: string;
   pagination: boolean;
 
   constructor(private gameService: GameService) {
+    this.parameter = 'page=1&length=6&orderDesc=true';
     this.missionSubscription = gameService.missionAnnounced$.subscribe(
       mission => {
         this.parameter = mission;

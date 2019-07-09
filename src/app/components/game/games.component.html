@@ -1,15 +1,36 @@
 <div *ngFor="let item of [0,1,2,3,4]">
-  <nz-skeleton *ngIf="skeleton" [nzActive]="true"></nz-skeleton>
+  <nz-skeleton
+    *ngIf="skeleton"
+    [nzActive]="true"
+  ></nz-skeleton>
 </div>
 
 <nb-tabset>
-  <nb-tab active *ngIf="games && !skeleton" tabTitle="新进游戏" style="padding: 1rem 0;overflow-x: hidden">
-    <div nz-row [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }">
-      <div nz-col nzXs="12" nzLg="8" nzXl="4" *ngFor="let item of games.data">
+  <nb-tab
+    active
+    *ngIf="games && !skeleton"
+    tabTitle="新进游戏"
+    style="padding: 1rem 0;overflow-x: hidden"
+  >
+    <div
+      nz-row
+      [nzGutter]="{ xs: 8, sm: 16, md: 24, lg: 32, xl: 32, xxl: 32 }"
+    >
+      <div
+        nz-col
+        nzXs="12"
+        nzLg="8"
+        nzXl="4"
+        *ngFor="let item of games.data"
+      >
         <nb-card>
           <nb-card-header style="padding: 0">
-            <img [src]="'https://steamcdn-a.akamaihd.net/steam/apps/' + item.appID + '/capsule_616x353.jpg'" alt=""
-              width="100%" height="200px">
+            <img
+              [src]="'https://steamcdn-a.akamaihd.net/steam/apps/' + item.appID + '/capsule_616x353.jpg'"
+              alt=""
+              width="100%"
+              height="200px"
+            >
           </nb-card-header>
           <nb-card-header style="text-overflow: ellipsis;white-space:nowrap;overflow: hidden;">
             {{ item.name }}
@@ -17,8 +38,13 @@
         </nb-card>
       </div>
     </div>
-    <nz-pagination (click)="scrollTop()" *ngIf="pagination"
-      (nzPageIndexChange)="gamesPageChange($event, 'length=24&orderDesc=true')" [nzPageIndex]="games.page"
-      [nzTotal]="games.total" [nzPageSize]="games.length"></nz-pagination>
+    <nz-pagination
+      (click)="scrollTop()"
+      *ngIf="pagination"
+      (nzPageIndexChange)="gamesPageChange($event, 'length=24&orderDesc=true')"
+      [nzPageIndex]="games.page"
+      [nzTotal]="games.total"
+      [nzPageSize]="games.length"
+    ></nz-pagination>
   </nb-tab>
 </nb-tabset>

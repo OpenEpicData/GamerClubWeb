@@ -6,12 +6,24 @@
 
   <nb-layout-column>
     <nb-alert status="warning">
-      <div nz-row nzType="flex" nzJustify="start" nzAlign="middle" nzGutter="16">
+      <div
+        nz-row
+        nzType="flex"
+        nzJustify="start"
+        nzAlign="middle"
+        nzGutter="16"
+      >
         <div nz-col>
           {{ globalNotice.text }}
         </div>
-        <div nz-col *ngIf="globalNotice.button.enable">
-          <a [href]="globalNotice.button.href" target="_black">
+        <div
+          nz-col
+          *ngIf="globalNotice.button.enable"
+        >
+          <a
+            [href]="globalNotice.button.href"
+            target="_black"
+          >
             <button nbButton>{{ globalNotice.button.text }}</button>
           </a>
         </div>
@@ -23,7 +35,11 @@
 
   <nb-layout-footer fixed>
     @2019 SteamHub
-    <a href="http://www.miitbeian.gov.cn/" target="_black" style="margin-left: 5px">蜀ICP备17029427号-2</a>
+    <a
+      href="http://www.miitbeian.gov.cn/"
+      target="_black"
+      style="margin-left: 5px"
+    >蜀ICP备17029427号-2</a>
   </nb-layout-footer>
 
 </nb-layout>
