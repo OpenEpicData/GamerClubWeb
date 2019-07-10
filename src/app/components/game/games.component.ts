@@ -2,6 +2,9 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core'
 
 import { GameService } from '../../service/game/game.service'
 import { Subscription } from 'rxjs'
+import { IGame } from 'src/app/model/igame'
+import { IParameter } from 'src/app/model/iparameter'
+import { IPagination } from 'src/app/model/ipagination'
 
 @Component({
   selector: 'app-games',
@@ -9,25 +12,27 @@ import { Subscription } from 'rxjs'
 })
 export class GamesComponent<T> implements OnInit {
   @Input() skeleton: boolean
-  @Output() spinningChange = new EventEmitter<boolean>()
 
-  games: IGame<T>
-  missionSubscription: Subscription
-  paginationSubscription: Subscription
-  page: number
-  parameter: string
-  pagination: boolean
+  public games: IGame<T>
+  public missionSubscription: Subscription
+  public paginationSubscription: Subscription
+  public pagination: IPagination = {
+    display: false
+  }
+  public parameter: IParameter
 
   constructor(private readonly gameService: GameService) {
-    this.parameter = 'page=1&length=6&orderDesc=true'
     this.missionSubscription = gameService.missionAnnounced$.subscribe(
       mission => {
-        this.parameter = mission
+        this.parameter = {
+          page: mission.page,
+          length: mission.length
+        }
       }
     )
     this.paginationSubscription = gameService.pageAnnounced$.subscribe(
       pagination => {
-        this.pagination = pagination
+        this.pagination.display = pagination.display
       }
     )
   }
@@ -47,8 +52,9 @@ export class GamesComponent<T> implements OnInit {
       )
   }
 
-  gamesPageChange(page: number, parameter: string): void {
-    this.gameService.getGames<T>(`${parameter}&page=${page}`)
+  gamesPageChange(page: number): void {
+    this.parameter.page = page
+    this.gameService.getGames<T>(this.parameter)
       .subscribe(
         games => {
           this.games = games[0]

@@ -9,7 +9,7 @@
   <nb-tab
     active
     *ngIf="games && !skeleton"
-    tabTitle="新进游戏"
+    tabTitle="新进游戝"
     style="padding: 1rem 0;overflow-x: hidden"
   >
     <div
@@ -40,8 +40,8 @@
     </div>
     <nz-pagination
       (click)="scrollTop()"
-      *ngIf="pagination"
-      (nzPageIndexChange)="gamesPageChange($event, 'length=24&orderDesc=true')"
+      *ngIf="pagination.display"
+      (nzPageIndexChange)="gamesPageChange($event)"
       [nzPageIndex]="games.page"
       [nzTotal]="games.total"
       [nzPageSize]="games.length"

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { IPagination } from 'src/app/model/ipagination'
+import { IParameter } from 'src/app/model/iparameter'
+import { GameService } from 'src/app/service/game/game.service'
 
 @Component({
   selector: 'app-index',
@@ -6,8 +9,8 @@ import { Component } from '@angular/core'
   styleUrls: ['./index.component.scss']
 })
 
-export class IndexComponent {
-  carouselItems = [
+export class IndexComponent implements OnInit {
+  public carouselItems = [
     {
       image: 'https://s2.ax1x.com/2019/06/27/ZnSXKf.jpg',
       title: '巫师 3：狂猎',
@@ -19,4 +22,24 @@ export class IndexComponent {
       description: '召集你的团队，探讨战术，左右战局。你最多可以和其他三名玩家合作——但是，最终只有其中一人有机会成为神'
     }
   ]
+
+  private readonly pagination: IPagination = {
+    display: false
+  }
+  public parameter: IParameter = {
+    page: 1,
+    length: 6
+  }
+  constructor(
+    private readonly gameService: GameService) {
+  }
+
+  ngOnInit(): void {
+    this.announce()
+  }
+
+  announce(): void {
+    this.gameService.announceMission(this.parameter)
+    this.gameService.pageMission(this.pagination)
+  }
 }

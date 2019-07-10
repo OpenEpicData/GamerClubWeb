@@ -11,8 +11,8 @@ import { Component, NgModule } from '@angular/core'
 })
 
 export class AppComponent {
-  title = 'SteamHub'
-  globalNotice = {
+  public title = 'SteamHub'
+  public globalNotice = {
     text: 'SteamHub 所有服务正在重构中，预计七月中旬完全可用',
     button: {
       enable: true,
