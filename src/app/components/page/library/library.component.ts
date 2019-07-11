@@ -26,19 +26,19 @@ export class LibraryComponent implements OnInit {
     private readonly gameService: GameService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.pagination.display = true
     this.announce()
     this.activatedRoute.queryParams.subscribe(
       params => console.log('queryParams', params.query))
   }
 
-  announce(): void {
+  public announce(): void {
     this.gameService.announceMission(this.parameter)
     this.gameService.pageMission(this.pagination)
   }
 
-  search(value: string): void {
+  public search(value: string): void {
     console.log(this.parameter)
     this.gameService.announceMission(this.parameter)
   }

@@ -34,11 +34,11 @@ export class IndexComponent implements OnInit {
     private readonly gameService: GameService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.announce()
   }
 
-  announce(): void {
+  public announce(): void {
     this.gameService.announceMission(this.parameter)
     this.gameService.pageMission(this.pagination)
   }

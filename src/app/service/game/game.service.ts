@@ -26,16 +26,16 @@ export class GameService {
     private readonly http: HttpClient) { }
 
   // Service message commands
-  announceMission(mission: IParameter) {
+  public announceMission(mission: IParameter) {
     this.missionAnnouncedSource.next(mission)
   }
 
-  pageMission(pagination: IPagination) {
+  public pageMission(pagination: IPagination) {
     this.pageAnnouncedSource.next(pagination)
   }
 
   /** GET games from the server */
-  getGames<T>(parameter: IParameter): Observable<Array<IGame<T>>> {
+  public getGames<T>(parameter: IParameter): Observable<Array<IGame<T>>> {
     const body = new HttpParams({
       fromObject: {
         page: parameter.page.toString(),

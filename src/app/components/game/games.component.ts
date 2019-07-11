@@ -37,12 +37,12 @@ export class GamesComponent<T> implements OnInit {
     )
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.skeleton = true
     this.getGames()
   }
 
-  getGames(): void {
+  public getGames(): void {
     this.gameService.getGames<T>(this.parameter)
       .subscribe(
         games => {
@@ -52,18 +52,12 @@ export class GamesComponent<T> implements OnInit {
       )
   }
 
-  gamesPageChange(page: number): void {
+  public gamesPageChange(page: number): void {
     this.parameter.page = page
-    this.gameService.getGames<T>(this.parameter)
-      .subscribe(
-        games => {
-          this.games = games[0]
-          this.skeleton = false
-        },
-      )
+    this.getGames()
   }
 
-  scrollTop(): void {
+  public scrollTop(): void {
     this.skeleton = true
     window.scroll(0, 0)
   }
