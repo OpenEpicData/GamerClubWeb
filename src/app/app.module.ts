@@ -23,8 +23,10 @@ import {
   zh_CN,
   NzGridModule,
   NzSpinModule,
-  NzSkeletonModule
+  NzSkeletonModule,
+  NzButtonModule,
 } from 'ng-zorro-antd'
+import { NzIconModule } from 'ng-zorro-antd/icon'
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { registerLocaleData } from '@angular/common'
@@ -64,7 +66,9 @@ registerLocaleData(zh)
     NzSpinModule,
     NzSkeletonModule,
     NbInputModule,
-    NbButtonModule
+    NbButtonModule,
+    NzButtonModule,
+    NzIconModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]

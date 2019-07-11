@@ -15,11 +15,11 @@ export class GameService {
 
   private readonly api = 'https://api.steamhub.cn/api/game/details?'
   // Observable string source
-  private readonly missionAnnouncedSource = new Subject<IParameter>()
+  private readonly parameterMissionAnnouncedSource = new Subject<IParameter>()
   private readonly pageAnnouncedSource = new Subject<IPagination>()
 
   // Observable string stream
-  public missionAnnounced$ = this.missionAnnouncedSource.asObservable()
+  public missionAnnounced$ = this.parameterMissionAnnouncedSource.asObservable()
   public pageAnnounced$ = this.pageAnnouncedSource.asObservable()
 
   constructor(
@@ -27,7 +27,7 @@ export class GameService {
 
   // Service message commands
   public parameterMission(mission: IParameter) {
-    this.missionAnnouncedSource.next(mission)
+    this.parameterMissionAnnouncedSource.next(mission)
   }
 
   public paginationMission(pagination: IPagination) {
@@ -36,10 +36,14 @@ export class GameService {
 
   /** GET games from the server */
   public getGames<T>(parameter: IParameter): Observable<Array<IGame<T>>> {
+    const text = parameter.text
+    const orderDesc = parameter.orderDesc
     const body = new HttpParams({
       fromObject: {
         page: parameter.page.toString(),
-        length: parameter.length.toString()
+        length: parameter.length.toString(),
+        text: text ? text.toString() : '',
+        orderDesc: orderDesc ? 'true' : 'false'
       }
     })
     return this.http.get<Array<IGame<T>>>(this.api + body)

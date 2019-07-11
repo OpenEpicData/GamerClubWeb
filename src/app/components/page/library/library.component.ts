@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { GameService } from '../../../service/game/game.service'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { IParameter } from 'src/app/model/iparameter'
 import { IPagination } from 'src/app/model/ipagination'
-import { HttpParams } from '@angular/common/http'
-import { query } from '@angular/animations'
 
 @Component({
   selector: 'app-library',
@@ -19,10 +17,12 @@ export class LibraryComponent implements OnInit {
   }
   public parameter: IParameter = {
     page: 1,
-    length: 24
+    length: 24,
+    orderDesc: true
   }
   constructor(
     private readonly activatedRoute: ActivatedRoute,
+    private readonly router: Router,
     private readonly gameService: GameService) {
   }
 
@@ -30,16 +30,24 @@ export class LibraryComponent implements OnInit {
     this.pagination.display = true
     this.announce()
     this.activatedRoute.queryParams.subscribe(
-      params => console.log('queryParams', params.query))
+      params => {
+        const query = params.query
+        this.parameter.text = query ? query : ''
+        this.gameService.parameterMission(this.parameter)
+      })
   }
 
   public announce(): void {
-    this.gameService.parameterMission(this.parameter)
     this.gameService.paginationMission(this.pagination)
   }
 
   public search(value: string): void {
-    console.log(this.parameter)
-    this.gameService.parameterMission(this.parameter)
+    this.router.navigate(['library'], { queryParams: { query: value } })
+    this.parameter.text = value
+  }
+
+  public clearInput(): void {
+    this.parameter.text = ''
+    this.router.navigate(['library'], { queryParams: { query: this.parameter.text } })
   }
 }

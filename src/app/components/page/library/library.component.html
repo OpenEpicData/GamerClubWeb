@@ -1,11 +1,27 @@
-<input
-  nbInput
-  #box
-  (keyup.enter)="search(box.value)"
-  status="primary"
-  fieldSize="medium"
-  shape="round"
-  placeholder="暂不可用"
-  autofocus
-/>
+<div style="background: #edf1f7">
+  <input
+    nbInput
+    #box
+    (keyup.enter)="search(box.value)"
+    status="primary"
+    fieldSize="medium"
+    shape="round"
+    placeholder="回车搜索"
+    [value]="parameter.text"
+  />
+  <button
+    style="position: relative;right: 35px;"
+    *ngIf="parameter.text"
+    nz-button
+    nzType="primary"
+    nzShape="circle"
+    nzGhost
+    (click)="clearInput()"
+  >
+    <i
+      nz-icon
+      nzType="close"
+    ></i>
+  </button>
+</div>
 <app-games></app-games>

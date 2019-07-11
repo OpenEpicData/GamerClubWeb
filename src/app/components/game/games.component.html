@@ -9,7 +9,7 @@
   <nb-tab
     active
     *ngIf="games && !skeleton"
-    tabTitle="新进游戝"
+    [tabTitle]="'游戏库('+ games.total +')'"
     style="padding: 1rem 0;overflow-x: hidden"
   >
     <div

@@ -28,7 +28,8 @@ export class IndexComponent implements OnInit {
   }
   public parameter: IParameter = {
     page: 1,
-    length: 6
+    length: 6,
+    orderDesc: true
   }
   constructor(
     private readonly gameService: GameService) {

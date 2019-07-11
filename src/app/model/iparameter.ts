@@ -1,6 +1,6 @@
 export interface IParameter {
-  query?: string
+  text?: string
   page?: number
   length?: number,
-  mission?: object
+  orderDesc?: boolean
 }

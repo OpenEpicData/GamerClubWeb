@@ -10,7 +10,7 @@ import { IPagination } from 'src/app/model/ipagination'
   selector: 'app-games',
   templateUrl: './games.component.html'
 })
-export class GamesComponent<T> implements OnInit {
+export class GamesComponent<T> {
   @Input() skeleton: boolean
 
   public games: IGame<T>
@@ -26,8 +26,11 @@ export class GamesComponent<T> implements OnInit {
       mission => {
         this.parameter = {
           page: mission.page,
-          length: mission.length
+          length: mission.length,
+          text: mission.text,
+          orderDesc: mission.orderDesc
         }
+        this.getGames()
       }
     )
     this.paginationSubscription = gameService.pageAnnounced$.subscribe(
@@ -37,12 +40,8 @@ export class GamesComponent<T> implements OnInit {
     )
   }
 
-  public ngOnInit() {
-    this.skeleton = true
-    this.getGames()
-  }
-
   public getGames(): void {
+    this.skeleton = true
     this.gameService.getGames<T>(this.parameter)
       .subscribe(
         games => {

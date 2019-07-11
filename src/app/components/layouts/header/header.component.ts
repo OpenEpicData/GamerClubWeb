@@ -1,6 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { NbSearchService } from '@nebular/theme'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   header = {
     leftItems: [
       {
@@ -34,15 +34,26 @@ export class HeaderComponent {
     ]
   }
 
-  searchValue: string
+  public searchValue: string
 
-  constructor(private readonly searchService: NbSearchService, private readonly router: Router) {
+  constructor(
+    private readonly searchService: NbSearchService,
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute) {
 
     this.searchService.onSearchSubmit()
       // tslint:disable-next-line: no-any
       .subscribe((data: any) => {
         this.searchValue = data.term
         this.router.navigate(['library'], { queryParams: { query: this.searchValue } })
+      })
+  }
+
+  public ngOnInit(): void {
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        const query = params.query
+        this.searchValue = query
       })
   }
 }
