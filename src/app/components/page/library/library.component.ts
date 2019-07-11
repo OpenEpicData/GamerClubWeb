@@ -34,12 +34,12 @@ export class LibraryComponent implements OnInit {
   }
 
   public announce(): void {
-    this.gameService.announceMission(this.parameter)
-    this.gameService.pageMission(this.pagination)
+    this.gameService.parameterMission(this.parameter)
+    this.gameService.paginationMission(this.pagination)
   }
 
   public search(value: string): void {
     console.log(this.parameter)
-    this.gameService.announceMission(this.parameter)
+    this.gameService.parameterMission(this.parameter)
   }
 }

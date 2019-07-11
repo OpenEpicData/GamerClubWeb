@@ -26,11 +26,11 @@ export class GameService {
     private readonly http: HttpClient) { }
 
   // Service message commands
-  public announceMission(mission: IParameter) {
+  public parameterMission(mission: IParameter) {
     this.missionAnnouncedSource.next(mission)
   }
 
-  public pageMission(pagination: IPagination) {
+  public paginationMission(pagination: IPagination) {
     this.pageAnnouncedSource.next(pagination)
   }
 
