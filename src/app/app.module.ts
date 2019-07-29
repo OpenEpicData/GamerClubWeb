@@ -35,6 +35,7 @@ import { GamesComponent } from './components/game/games.component'
 import { IndexComponent } from './components/page/index/index.component'
 import { LibraryComponent } from './components/page/library/library.component'
 import zh from '@angular/common/locales/zh'
+import { NewsComponent } from './components/page/news/news.component'
 
 registerLocaleData(zh)
 
@@ -45,6 +46,7 @@ registerLocaleData(zh)
     HeaderComponent,
     IndexComponent,
     LibraryComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,
