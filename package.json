@@ -22,6 +22,7 @@
     "@angular/router": "^8.0.3",
     "@nebular/eva-icons": "4.1.0",
     "@nebular/theme": "^4.1.0",
+    "@zeit/ng-deploy": "^0.3.0",
     "eva-icons": "^1.1.1",
     "ng-zorro-antd": "^8.0.2",
     "rxjs": "~6.5.2",

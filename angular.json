@@ -123,6 +123,9 @@
               "devServerTarget": "SteamHubWeb:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@zeit/ng-deploy:deploy"
         }
       }
     }
