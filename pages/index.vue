@@ -61,7 +61,7 @@ export default {
     }
   },
   async mounted() {
-    const fetchNews = await this.$axios.get(`/api/article/news`)
+    const fetchNews = await this.$axios.get(`/api/article/news?length=16`)
     this.news = fetchNews.data.data
   }
 }
