@@ -1,0 +1,28 @@
+{
+  "name": "GamerClubWeb",
+  "version": 2,
+  "builds": [
+    {
+      "src": "nuxt.config.js",
+      "use": "@nuxtjs/now-builder",
+      "config": {
+        "serverFiles": [
+          "middleware/**",
+          "plugins/**",
+          "lib/**",
+          "package.json",
+          "vuetify.options.js"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/_nuxt/.+",
+      "headers": {
+        "cache-control": "s-maxage=31536000"
+      }
+    },
+    { "src": "^/(.*)", "dest": "/" }
+  ]
+}
