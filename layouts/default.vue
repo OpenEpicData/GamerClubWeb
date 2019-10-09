@@ -7,13 +7,14 @@
           <span class="font-weight-light">Gamer</span>
         </span>
         <v-text-field
-          disabled
+          v-model="search"
           solo-inverted
           flat
           hide-details
           label="搜索"
           prepend-inner-icon="mdi-magnify"
           class="d-none d-md-flex"
+          @keyup.enter="searching()"
         ></v-text-field>
         <v-spacer></v-spacer>
 
@@ -25,6 +26,22 @@
     </v-content>
   </v-app>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      search: null
+    }
+  },
+  methods: {
+    searching() {
+      this.$store.commit('set_search_query', this.search)
+      this.$store.dispatch('fetch_news')
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 .secondary-primary {

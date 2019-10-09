@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <div v-if="news">
+    <div v-if="this.$store.state.news">
       <v-row>
         <v-col
-          v-for="(item, i) in news.data"
+          v-for="(item, i) in this.$store.state.news.data"
           :key="i"
           xs="6"
           sm="6"
@@ -48,7 +48,7 @@
       <v-pagination
         v-model="page"
         class="news-pagination"
-        :length="news.last_page"
+        :length="this.$store.state.news.last_page"
         color="primary"
         circle
       ></v-pagination>
@@ -87,30 +87,19 @@
 export default {
   data() {
     return {
-      news: null,
       dialog: false,
       url: null,
-      page: null
+      page: 1
     }
   },
   watch: {
-    async page(oldVal, newVal) {
-      await this.fecth_news()
+    page(oldVal, newVal) {
+      this.$store.commit('set_search_page', this.page)
+      this.$store.dispatch('fetch_news')
     }
   },
   async mounted() {
-    await this.fecth_news()
-  },
-  methods: {
-    async fecth_news() {
-      this.news = null
-      const fetchNews = await this.$axios.get(
-        `/api/article/news?length=16&page=${this.page}`
-      )
-      const data = fetchNews.data
-      this.page = data.current_page
-      this.news = data
-    }
+    await this.$store.dispatch('fetch_news')
   }
 }
 </script>
