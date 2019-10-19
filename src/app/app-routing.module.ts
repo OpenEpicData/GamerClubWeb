@@ -5,7 +5,7 @@ import { LibraryComponent } from './components/page/library/library.component'
 import { NewsComponent } from './components/page/news/news.component'
 
 const routes: Routes = [
-  { path: '', component: IndexComponent },
+  { path: '', component: NewsComponent },
   { path: 'library', component: LibraryComponent },
   { path: 'news', component: NewsComponent }
 ]

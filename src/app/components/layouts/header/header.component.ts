@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   header = {
     leftItems: [
       {
-        title: 'SteamHub',
+        title: 'GamerClub',
         href: '/'
       },
       {

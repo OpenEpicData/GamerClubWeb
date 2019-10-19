@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable({ providedIn: 'root' })
 export class GameService {
 
-  private readonly api = 'https://api.steamhub.cn/api/game/details?'
+  private readonly api = 'https://api.steamhub.cn/api/article/news?'
   // Observable string source
   private readonly parameterMissionAnnouncedSource = new Subject<IParameter>()
   private readonly pageAnnouncedSource = new Subject<IPagination>()

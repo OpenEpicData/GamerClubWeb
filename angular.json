@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SteamHubWeb": {
+    "GamerClubWeb": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/SteamHubWeb",
+            "outputPath": "dist/GamerClubWeb",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SteamHubWeb:build"
+            "browserTarget": "GamerClubWeb:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "SteamHubWeb:build:production"
+              "browserTarget": "GamerClubWeb:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SteamHubWeb:build"
+            "browserTarget": "GamerClubWeb:build"
           }
         },
         "test": {
@@ -116,11 +116,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "SteamHubWeb:serve"
+            "devServerTarget": "GamerClubWeb:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "SteamHubWeb:serve:production"
+              "devServerTarget": "GamerClubWeb:serve:production"
             }
           }
         },
@@ -130,5 +130,5 @@
       }
     }
   },
-  "defaultProject": "SteamHubWeb"
+  "defaultProject": "GamerClubWeb"
 }

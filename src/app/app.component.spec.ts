@@ -22,11 +22,11 @@ describe('AppComponent', () => {
       .toBeTruthy()
   })
 
-  it(`should have as title 'SteamHubWeb'`, () => {
+  it(`should have as title 'GamerClubWeb'`, () => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.debugElement.componentInstance
     expect(app.title)
-      .toEqual('SteamHubWeb')
+      .toEqual('GamerClubWeb')
   })
 
   it('should render title in a h1 tag', () => {
@@ -34,6 +34,6 @@ describe('AppComponent', () => {
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
     expect(compiled.querySelector('h1').textContent)
-      .toContain('Welcome to SteamHubWeb!')
+      .toContain('Welcome to GamerClubWeb!')
   })
 })

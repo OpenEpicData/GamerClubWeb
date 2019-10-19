@@ -11,13 +11,13 @@ import { Component, NgModule } from '@angular/core'
 })
 
 export class AppComponent {
-  public title = 'SteamHub'
+  public title = 'GamerClub'
   public globalNotice = {
-    text: 'SteamHub 所有服务正在重构中，预计七月中旬完全可用',
+    text: 'GamerClub 后端服务正在更新，数据可能会中断',
     button: {
-      enable: true,
-      text: '查看我们的路线图',
-      href: 'https://github.com/InGaming/SteamHub.Web#roadmap'
+      enable: false,
+      text: '',
+      href: ''
     }
   }
 }

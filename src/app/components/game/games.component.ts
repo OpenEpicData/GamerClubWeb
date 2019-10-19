@@ -13,7 +13,7 @@ import { IPagination } from 'src/app/model/ipagination'
 export class GamesComponent<T> {
   @Input() skeleton: boolean
 
-  public games: IGame<T>
+  public games: IGame<T>[]
   public missionSubscription: Subscription
   public paginationSubscription: Subscription
   public pagination: IPagination = {
@@ -45,7 +45,7 @@ export class GamesComponent<T> {
     this.gameService.getGames<T>(this.parameter)
       .subscribe(
         games => {
-          this.games = games[0]
+          this.games = games
           this.skeleton = false
         },
       )
