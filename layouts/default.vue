@@ -22,6 +22,16 @@
       </v-app-bar>
     </div>
     <v-content class="secondary">
+      <v-alert
+        border="left"
+        colored-border
+        color="accent"
+        elevation="1"
+        class="secondary"
+      >
+        我们正在迁移数据库，可能会存在抖动现象
+      </v-alert>
+
       <nuxt />
     </v-content>
   </v-app>
