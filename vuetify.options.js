@@ -1,5 +1,4 @@
 import zhHans from 'vuetify/es5/locale/zh-Hans'
-import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
 export default {
   // breakpoint: {},
