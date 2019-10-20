@@ -45,7 +45,7 @@ export default {
 
 <style lang="scss">
 .theme--dark.v-list {
-  background: #3d4a5c;
+  background: #3d4a5c !important;
 }
 .secondary-primary {
   background: linear-gradient(90deg, #3d4a5c, #243042);
