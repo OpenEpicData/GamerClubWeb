@@ -44,12 +44,14 @@ export default {
 </script>
 
 <style lang="scss">
+.theme--dark.v-list {
+  background: #3d4a5c;
+}
 .secondary-primary {
   background: linear-gradient(90deg, #3d4a5c, #243042);
 }
 .v-card {
   $height: 34px;
-  .v-sheet,
   .v-toolbar__content {
     height: $height !important;
   }

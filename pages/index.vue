@@ -1,16 +1,80 @@
 <template>
   <v-container>
-    <div v-if="this.$store.state.news">
+    <div>
+      <v-row>
+        <v-col v-if="$store.state.tags" cols="12" sm="6">
+          <v-select
+            v-model="$store.state.search.tagName"
+            :items="$store.state.tags"
+            label="标签"
+            outlined
+            @input="change_tag"
+          ></v-select>
+        </v-col>
+
+        <v-col v-if="$store.state.refs" cols="12" sm="6">
+          <v-select
+            v-model="$store.state.search.refName"
+            :items="$store.state.refs"
+            label="来源"
+            outlined
+            @input="change_ref"
+          ></v-select>
+        </v-col>
+      </v-row>
+
+      <div>
+        <v-chip
+          v-if="$store.state.search.query"
+          close
+          label
+          class="primary elevation-2"
+          @click:close="
+            $store.commit('set_search_query', '')
+            $store.dispatch('fetch_news')
+          "
+        >
+          {{ $store.state.search.query }}
+        </v-chip>
+
+        <v-chip
+          v-if="$store.state.search.tagName"
+          close
+          label
+          class="secondary elevation-2"
+          @click:close="
+            $store.commit('set_search_tag_name', '')
+            $store.dispatch('fetch_news')
+          "
+        >
+          {{ $store.state.search.tagName }}
+        </v-chip>
+
+        <v-chip
+          v-if="$store.state.search.refName"
+          close
+          label
+          class="secondary elevation-2"
+          @click:close="
+            $store.commit('set_search_ref_name', '')
+            $store.dispatch('fetch_news')
+          "
+        >
+          {{ $store.state.search.refName }}
+        </v-chip>
+      </div>
+    </div>
+
+    <div v-if="$store.state.news">
       <v-row>
         <v-col
-          v-for="(item, i) in this.$store.state.news.data"
+          v-for="(item, i) in $store.state.news.data"
           :key="i"
           xs="6"
           sm="6"
           md="4"
           xl="3"
           cols="12"
-          class="pa-5"
         >
           <v-card
             class="mx-auto secondary-primary"
@@ -24,22 +88,22 @@
             </v-card-title>
 
             <v-card-text class="text-truncate">
-              <span class="tertiary--text subtitle-2">
-                {{ item.description }}
-              </span>
+              <span class="tertiary--text subtitle-2">{{
+                item.description
+              }}</span>
             </v-card-text>
 
             <v-toolbar dense color="secondary-primary">
-              <v-btn color="primary tertiary--text" x-small>
-                {{ item.ref.name }}
-              </v-btn>
+              <v-btn color="primary tertiary--text" x-small>{{
+                item.ref.name
+              }}</v-btn>
               <v-btn color="success" x-small>{{ item.tag.name }}</v-btn>
 
               <v-spacer></v-spacer>
 
-              <v-btn color="secondary tertiary--text" x-small>
-                {{ item.author }}
-              </v-btn>
+              <v-btn color="secondary tertiary--text" x-small>{{
+                item.author
+              }}</v-btn>
             </v-toolbar>
           </v-card>
         </v-col>
@@ -48,7 +112,7 @@
       <v-pagination
         v-model="page"
         class="news-pagination"
-        :length="this.$store.state.news.last_page"
+        :length="$store.state.news.last_page"
         color="primary"
         circle
       ></v-pagination>
@@ -66,16 +130,7 @@
     </div>
     <div v-else>
       <v-row>
-        <v-col
-          v-for="i in 8"
-          :key="i"
-          xs="6"
-          sm="6"
-          md="4"
-          xl="3"
-          cols="12"
-          class="pa-5"
-        >
+        <v-col v-for="i in 8" :key="i" xs="6" sm="6" md="4" xl="3" cols="12">
           <v-skeleton-loader class="mx-auto" type="card"></v-skeleton-loader>
         </v-col>
       </v-row>
@@ -100,6 +155,19 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('fetch_news')
+    await this.$store.dispatch('fetch_tags')
+    await this.$store.dispatch('fetch_refs')
+  },
+  methods: {
+    async change_tag(data) {
+      this.$store.commit('set_search_tag_name', data)
+      await this.$store.dispatch('fetch_news')
+    },
+
+    async change_ref(data) {
+      this.$store.commit('set_search_ref_name', data)
+      await this.$store.dispatch('fetch_news')
+    }
   }
 }
 </script>
