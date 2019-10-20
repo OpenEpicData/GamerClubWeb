@@ -28,7 +28,7 @@
           v-if="$store.state.search.query"
           close
           label
-          class="primary elevation-2"
+          class="secondary elevation-2"
           @click:close="
             $store.commit('set_search_query', '')
             $store.dispatch('fetch_news')
