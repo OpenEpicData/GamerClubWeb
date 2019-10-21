@@ -23,46 +23,72 @@
         </v-col>
       </v-row>
 
-      <div>
-        <v-chip
-          v-if="$store.state.search.query"
-          close
-          label
-          class="secondary elevation-2"
-          @click:close="
-            $store.commit('set_search_query', '')
-            $store.dispatch('fetch_news')
-          "
-        >
-          {{ $store.state.search.query }}
-        </v-chip>
+      <v-row>
+        <v-col cols="12" sm="12" md="8" lg="8" xl="6">
+          <v-banner
+            v-if="
+              $store.state.search.query ||
+                $store.state.search.tagName ||
+                $store.state.search.refName
+            "
+            single-line
+            class="secondary search-chip"
+          >
+            <v-chip
+              v-if="$store.state.search.query"
+              close
+              label
+              class="primary elevation-2"
+              @click:close="
+                $store.commit('set_search_query', '')
+                $store.dispatch('fetch_news')
+              "
+            >
+              {{ $store.state.search.query }}
+            </v-chip>
 
-        <v-chip
-          v-if="$store.state.search.tagName"
-          close
-          label
-          class="secondary elevation-2"
-          @click:close="
-            $store.commit('set_search_tag_name', '')
-            $store.dispatch('fetch_news')
-          "
-        >
-          {{ $store.state.search.tagName }}
-        </v-chip>
+            <v-chip
+              v-if="$store.state.search.tagName"
+              close
+              label
+              class="primary elevation-2"
+              @click:close="
+                $store.commit('set_search_tag_name', '')
+                $store.dispatch('fetch_news')
+              "
+            >
+              {{ $store.state.search.tagName }}
+            </v-chip>
 
-        <v-chip
-          v-if="$store.state.search.refName"
-          close
-          label
-          class="secondary elevation-2"
-          @click:close="
-            $store.commit('set_search_ref_name', '')
-            $store.dispatch('fetch_news')
-          "
-        >
-          {{ $store.state.search.refName }}
-        </v-chip>
-      </div>
+            <v-chip
+              v-if="$store.state.search.refName"
+              close
+              label
+              class="primary elevation-2"
+              @click:close="
+                $store.commit('set_search_ref_name', '')
+                $store.dispatch('fetch_news')
+              "
+            >
+              {{ $store.state.search.refName }}
+            </v-chip>
+
+            <template v-slot:actions>
+              <v-btn
+                color="secondary"
+                @click="
+                  ;($store.state.search.query = ''),
+                    ($store.state.search.tagName = ''),
+                    ($store.state.search.refName = ''),
+                    $store.dispatch('fetch_news')
+                "
+              >
+                清除所有
+              </v-btn>
+            </template>
+          </v-banner>
+        </v-col>
+      </v-row>
     </div>
 
     <div v-if="$store.state.news">
@@ -178,6 +204,12 @@ export default {
   i {
     background: #3d4a5c !important;
     color: #cccccc !important;
+  }
+}
+.search-chip {
+  .v-banner__wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 </style>
