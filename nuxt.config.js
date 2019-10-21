@@ -63,7 +63,7 @@ export default {
     proxy: true
   },
   proxy: {
-    '/api': 'https://api.steamhub.cn/'
+    '/api': 'http://api.epicdata.net:1234/'
   },
   /*
    ** Build configuration
