@@ -1,3 +1,5 @@
+export const strict = false
+
 export const state = () => ({
   news: null,
   tags: null,
