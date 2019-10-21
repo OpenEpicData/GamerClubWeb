@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <v-row>
-        <v-col v-if="$store.state.tags" cols="12" sm="6">
+        <v-col v-if="$store.state.tags" cols="12" xs="6" md="3">
           <v-select
             v-model="$store.state.search.tagName"
             :items="$store.state.tags"
@@ -12,7 +12,7 @@
           ></v-select>
         </v-col>
 
-        <v-col v-if="$store.state.refs" cols="12" sm="6">
+        <v-col v-if="$store.state.refs" cols="12" xs="6" md="3">
           <v-select
             v-model="$store.state.search.refName"
             :items="$store.state.refs"
