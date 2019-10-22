@@ -15,7 +15,13 @@ export default {
           '阅览业内新闻，追踪实时报道，在 EpicData Gamer 发现不一样的世界'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/png', href: 'https://s2.ax1x.com/2019/06/26/ZmY8vq.png' }]
+    link: [
+      {
+        rel: 'icon',
+        type: 'image/png',
+        href: 'https://s2.ax1x.com/2019/06/26/ZmY8vq.png'
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
