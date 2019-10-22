@@ -102,15 +102,18 @@
           xl="3"
           cols="12"
         >
-          <v-card
-            class="mx-auto secondary-primary"
-            elevation="6"
-            @click=";(dialog = true), (url = item.ref_link)"
-          >
-            <v-img :src="item.image" height="200px"></v-img>
+          <v-card class="mx-auto secondary-primary" elevation="6">
+            <v-img
+              :src="item.image"
+              height="200px"
+              class="pointer"
+              @click=";(dialog = true), (url = item.ref_link)"
+            ></v-img>
 
-            <v-card-title>
-              <span class="subtitle-1 text-truncate">{{ item.title }}</span>
+            <v-card-title @click=";(dialog = true), (url = item.ref_link)">
+              <span class="subtitle-1 text-truncate link pointer">{{
+                item.title
+              }}</span>
             </v-card-title>
 
             <v-card-text class="text-truncate">
@@ -120,10 +123,18 @@
             </v-card-text>
 
             <v-toolbar dense color="secondary-primary" class="ref">
-              <v-btn color="primary tertiary--text" x-small>{{
-                item.ref.name
-              }}</v-btn>
-              <v-btn color="success" x-small>{{ item.tag.name }}</v-btn>
+              <v-btn
+                color="primary tertiary--text"
+                x-small
+                @click="change_ref(item.ref.name)"
+                >{{ item.ref.name }}</v-btn
+              >
+              <v-btn
+                color="success"
+                x-small
+                @click="change_tag(item.tag.name)"
+                >{{ item.tag.name }}</v-btn
+              >
 
               <v-spacer></v-spacer>
 
@@ -131,6 +142,10 @@
                 v-if="item.author"
                 color="secondary tertiary--text"
                 x-small
+                @click="
+                  $store.commit('set_search_query', item.author)
+                  $store.dispatch('fetch_news')
+                "
                 >{{ item.author }}</v-btn
               >
             </v-toolbar>

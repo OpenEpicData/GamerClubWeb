@@ -59,4 +59,27 @@ export default {
     padding: 0px 14px;
   }
 }
+.link {
+  text-transform: uppercase;
+}
+.link:hover::after {
+  width: 100%;
+  left: 0;
+}
+.link::after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 2px;
+  left: 0%;
+  position: relative;
+  background: #fff;
+  transition: width 0.5s ease 0s, left 0.5s ease 0s;
+  width: 0;
+}
+
+.pointer:hover {
+  cursor: pointer;
+}
 </style>
