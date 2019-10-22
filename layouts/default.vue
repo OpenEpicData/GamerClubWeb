@@ -31,7 +31,7 @@
       </v-app-bar>
     </div>
 
-    <v-dialog v-model="dialog" width="40vw" height="80vh">
+    <v-dialog v-model="dialog" width="1000px" height="80vh">
       <v-card class="secondary-primary">
         <v-card-text>
           <div v-if="!$store.state.updateLog">
@@ -55,12 +55,18 @@
                 </v-avatar>
               </template>
               <v-row justify="space-between">
-                <v-col cols="6">
-                  {{ item.commit.message }}
-                  <br />
+                <v-col cols="12" xs="12" md="4">
+                  <a
+                    :href="item.html_url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="link accent--text"
+                  >
+                    {{ item.commit.message }}
+                  </a>
                   Author: {{ item.commit.author.name }}
                 </v-col>
-                <v-col class="text-right" cols="3">
+                <v-col class="text-right" cols="12" md="4">
                   {{ item.commit.author.date }}
                 </v-col>
               </v-row>
@@ -110,6 +116,7 @@ export default {
 }
 .link {
   text-transform: uppercase;
+  text-decoration-line: none;
 }
 .link:hover::after {
   width: 100%;

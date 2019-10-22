@@ -161,7 +161,7 @@
         circle
       ></v-pagination>
 
-      <v-dialog v-model="dialog" max-width="80vw">
+      <v-dialog v-model="dialog" width="1400px">
         <v-card height="80vh">
           <iframe
             :src="url"
