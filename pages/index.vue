@@ -161,7 +161,7 @@
         circle
       ></v-pagination>
 
-      <v-dialog v-model="dialog" max-width="60vw">
+      <v-dialog v-model="dialog" max-width="80vw">
         <v-card height="80vh">
           <iframe
             :src="url"
@@ -207,6 +207,11 @@ export default {
     page(oldVal, newVal) {
       this.$store.commit('set_search_page', this.page)
       this.$store.dispatch('fetch_news')
+    },
+    dialog(oldVal, newVal) {
+      if (newVal) {
+        this.url = null
+      }
     }
   },
   async mounted() {
