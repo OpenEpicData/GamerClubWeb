@@ -161,6 +161,18 @@
         </v-col>
       </v-row>
     </div>
+
+    <v-btn
+      color="parimary"
+      dark
+      fixed
+      bottom
+      right
+      fab
+      @click="$store.dispatch('fetch_news')"
+    >
+      <v-icon>mdi-refresh</v-icon>
+    </v-btn>
   </v-container>
 </template>
 
