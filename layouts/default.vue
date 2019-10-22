@@ -36,7 +36,7 @@
         <v-card-text>
           <div v-if="!$store.state.updateLog">
             <v-skeleton-loader
-              v-for="k in 6"
+              v-for="k in 12"
               :key="k"
               class="mx-auto"
               type="list-item-avatar-three-line"
