@@ -119,7 +119,7 @@
               }}</span>
             </v-card-text>
 
-            <v-toolbar dense color="secondary-primary">
+            <v-toolbar dense color="secondary-primary" class="ref">
               <v-btn color="primary tertiary--text" x-small>{{
                 item.ref.name
               }}</v-btn>
@@ -127,9 +127,12 @@
 
               <v-spacer></v-spacer>
 
-              <v-btn color="secondary tertiary--text" x-small>{{
-                item.author
-              }}</v-btn>
+              <v-btn
+                v-if="item.author"
+                color="secondary tertiary--text"
+                x-small
+                >{{ item.author }}</v-btn
+              >
             </v-toolbar>
           </v-card>
         </v-col>
@@ -223,5 +226,8 @@ export default {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
+}
+.ref {
+  height: auto !important;
 }
 </style>
