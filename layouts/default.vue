@@ -150,4 +150,14 @@ export default {
 .theme--dark.v-skeleton-loader .v-skeleton-loader__table-tfoot {
   background: transparent !important;
 }
+::-webkit-scrollbar {
+  background-color: #3d4a5c;
+  width: 12px;
+  background-clip: padding-box;
+}
+
+/*滚动条中间滑动部分*/
+::-webkit-scrollbar-thumb {
+  background-color: #243042;
+}
 </style>
