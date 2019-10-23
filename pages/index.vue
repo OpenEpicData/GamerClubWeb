@@ -111,9 +111,11 @@
             ></v-img>
 
             <v-card-title @click=";(dialog = true), (url = item.ref_link)">
-              <span class="subtitle-1 text-truncate link pointer">{{
-                item.title
-              }}</span>
+              <v-sheet class="link text-truncate transparent">
+                <span class="subtitle-1 underline pointer">{{
+                  item.title
+                }}</span>
+              </v-sheet>
             </v-card-title>
 
             <v-card-text class="text-truncate">

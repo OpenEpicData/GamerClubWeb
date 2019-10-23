@@ -62,8 +62,11 @@
                     rel="noopener noreferrer"
                     class="link accent--text"
                   >
-                    {{ item.commit.message }}
+                    <span class="underline">
+                      {{ item.commit.message }}
+                    </span>
                   </a>
+                  <br />
                   Author: {{ item.commit.author.name }}
                 </v-col>
                 <v-col class="text-right" cols="12" md="4">
@@ -114,25 +117,24 @@ export default {
     padding: 0px 14px;
   }
 }
+
 .link {
-  text-transform: uppercase;
   text-decoration-line: none;
 }
-.link:hover::after {
-  width: 100%;
-  left: 0;
+.underline {
+  text-decoration-line: none;
+  width: calc(100%);
+  background-image: linear-gradient(
+    transparent calc(100% - 10px),
+    #33993d 10px
+  );
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 1s;
 }
-.link::after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: '';
-  display: block;
-  height: 2px;
-  left: 0%;
-  position: relative;
-  background: #fff;
-  transition: width 0.5s ease 0s, left 0.5s ease 0s;
-  width: 0;
+
+.link:hover .underline {
+  background-size: 100% 100%;
 }
 
 .pointer:hover {

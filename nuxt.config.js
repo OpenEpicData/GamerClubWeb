@@ -6,7 +6,7 @@ export default {
   head: {
     title: 'EpicData Gamer | 游戏玩家俱乐部',
     htmlAttrs: {
-      lang: 'zh-CN',
+      lang: 'zh-CN'
     },
     meta: [
       { charset: 'utf-8' },
