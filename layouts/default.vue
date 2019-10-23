@@ -159,6 +159,7 @@ export default {
 .theme--dark.v-skeleton-loader .v-skeleton-loader__table-tfoot {
   background: transparent !important;
 }
+
 ::-webkit-scrollbar {
   background-color: #3d4a5c;
   width: 12px;
