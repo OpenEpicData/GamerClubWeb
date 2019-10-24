@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div v-if="$store.state.news">
-      <v-row justify="center">
+    <div>
+      <v-row v-if="$store.state.news" justify="center">
         <v-col md="6">
           <div>
             <v-row>
@@ -149,17 +149,29 @@
               </v-card>
             </v-col>
           </v-row>
+
+          <v-pagination
+            v-model="page"
+            class="news-pagination"
+            :length="$store.state.news.last_page"
+            color="primary"
+            circle
+          ></v-pagination>
         </v-col>
         <v-col md="4"> </v-col>
       </v-row>
 
-      <v-pagination
-        v-model="page"
-        class="news-pagination"
-        :length="$store.state.news.last_page"
-        color="primary"
-        circle
-      ></v-pagination>
+      <v-row v-else>
+        <v-col md="6">
+          <v-skeleton-loader
+            v-for="i in 16"
+            :key="i"
+            class="mx-auto"
+            type="list-item-avatar-three-line"
+          ></v-skeleton-loader>
+        </v-col>
+        <v-col md="4"></v-col>
+      </v-row>
 
       <v-dialog v-model="dialog">
         <v-card height="90vh" color="secondary-primary">
@@ -241,17 +253,6 @@
           </v-row>
         </v-card>
       </v-dialog>
-    </div>
-
-    <div v-else>
-      <v-row justify="center">
-        <v-col v-for="i in 8" :key="i" cols="12">
-          <v-skeleton-loader
-            class="mx-auto"
-            type="list-item-avatar-three-line"
-          ></v-skeleton-loader>
-        </v-col>
-      </v-row>
     </div>
 
     <v-btn
