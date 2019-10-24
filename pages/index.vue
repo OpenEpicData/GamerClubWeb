@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <v-row v-if="$store.state.news" justify="center">
-        <v-col md="6">
+        <v-col cols="12" xl="8">
           <div>
             <v-row>
               <v-col v-if="$store.state.tags" cols="6">
@@ -97,7 +97,7 @@
             >
               <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
-                  <v-col cols="10">
+                  <v-col cols="9">
                     <div>
                       <v-card-title
                         @click="
@@ -133,7 +133,7 @@
                       </v-card-subtitle>
                     </div>
                   </v-col>
-                  <v-col align="end">
+                  <v-col align="end" cols="3">
                     <v-avatar
                       class="pointer"
                       size="125"
