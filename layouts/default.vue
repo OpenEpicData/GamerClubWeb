@@ -178,13 +178,6 @@ export default {
 .news_card {
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
-.news_card:hover {
-  .news_subtitle {
-    span {
-      color: rgba(255, 255, 255, 0.7) !important;
-    }
-  }
-}
 
 .theme--dark.v-skeleton-loader .v-skeleton-loader__actions,
 .theme--dark.v-skeleton-loader .v-skeleton-loader__article,

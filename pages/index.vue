@@ -2,7 +2,7 @@
   <v-container>
     <div>
       <v-row v-if="$store.state.news" justify="center">
-        <v-col cols="12" xl="8">
+        <v-col cols="12" md="10" lg="8" xl="6">
           <div>
             <v-row>
               <v-col v-if="$store.state.tags" cols="6">
@@ -118,18 +118,13 @@
                           {{ item.description }}
                         </span>
                         <br />
-                        <span
-                          class="primary--text link"
-                          @click="change_ref(item.ref.name)"
-                        >
+                        <span class="link" @click="change_ref(item.ref.name)">
                           <span class=" pointer underline">
                             {{ item.ref.name }}
                           </span>
                         </span>
 
-                        <span class="primary--text">
-                          · {{ item.updated_at }} UTC
-                        </span>
+                        <span> · {{ $dayjs(item.updated_at).fromNow() }} </span>
                       </v-card-subtitle>
                     </div>
                   </v-col>
