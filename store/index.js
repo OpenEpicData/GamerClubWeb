@@ -2,7 +2,7 @@ export const strict = false
 
 export const state = () => ({
   changelog: {
-    dialog: false,
+    dialog: null,
     data: null
   },
   news: null,
@@ -18,12 +18,9 @@ export const state = () => ({
 })
 
 export const mutations = {
-  set_changelog_dialog(state, data) {
-    state.changelog.dialog = data
-  },
-
-  set_changelog_data(state, data) {
-    state.changelog.data = data
+  setChangelog(state, changelog) {
+    state.changelog.dialog = changelog.dialog
+    state.changelog.data = changelog.data
   },
 
   set_news(state, data) {
@@ -90,11 +87,15 @@ export const actions = {
   },
 
   async fetch_changelog({ commit }) {
-    commit('set_changelog_data', null)
-    const refs = await this.$axios.get(
+    const changelog = {
+      dialog: true,
+      data: null
+    }
+    commit('setChangelog', changelog)
+    const githubApi = await this.$axios.get(
       `https://api.github.com/repos/OpenEpicData/GamerClubWeb/commits`
     )
-    const data = refs.data
-    commit('set_changelog_data', data)
+    changelog.data = githubApi.data
+    commit('setChangelog', changelog)
   }
 }

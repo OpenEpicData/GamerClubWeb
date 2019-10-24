@@ -19,11 +19,6 @@ export default {
   components: {
     appbar,
     changelog
-  },
-  data() {
-    return {
-      dialog: false
-    }
   }
 }
 </script>

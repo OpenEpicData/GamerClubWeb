@@ -15,17 +15,13 @@
       @keyup.enter="searching()"
     ></v-text-field>
     <v-spacer></v-spacer>
-
     <v-btn
       rounded
       large
       color="secondary"
-      @click="
-        $store.commit('set_changelog_dialog', true)
-        $store.dispatch('fetch_changelog')
-      "
-      >更新日志</v-btn
-    >
+      @click="$store.dispatch('fetch_changelog')"
+      >更新日志
+    </v-btn>
   </v-app-bar>
 </template>
 
