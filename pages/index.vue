@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <div>
-      <v-row v-if="$store.state.news" justify="center">
-        <v-col cols="12" md="10" lg="8" xl="6">
+      <v-row justify="center">
+        <v-col cols="12" md="8" lg="8" xl="6">
           <div>
             <v-row>
               <v-col v-if="$store.state.tags" cols="6">
@@ -89,22 +89,23 @@
               </v-col>
             </v-row>
           </div>
-          <v-row>
+          <v-row v-if="$store.state.news">
             <v-col
               v-for="(item, i) in $store.state.news.data"
               :key="i"
               cols="12"
             >
-              <v-card
-                class="mx-auto secondary-primary news_card"
-                outlined
-                :href="`http://${item.ref_link}`"
-                target="_black"
-              >
+              <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
                   <v-col cols="9">
                     <div>
-                      <v-card-title>
+                      <v-card-title
+                        @click="
+                          ;(dialog = true),
+                            (url = item.ref_link),
+                            (open_news = i)
+                        "
+                      >
                         <v-sheet class="link text-truncate transparent">
                           <span class="underline pointer">
                             {{ item.title }}
@@ -147,7 +148,20 @@
             </v-col>
           </v-row>
 
+          <v-row v-else>
+            <v-col md="6">
+              <v-skeleton-loader
+                v-for="i in 16"
+                :key="i"
+                class="mx-auto"
+                type="list-item-avatar-three-line"
+              ></v-skeleton-loader>
+            </v-col>
+            <v-col md="4"></v-col>
+          </v-row>
+
           <v-pagination
+            v-if="$store.state.news"
             v-model="page"
             class="news-pagination"
             :length="$store.state.news.last_page"
@@ -155,19 +169,36 @@
             circle
           ></v-pagination>
         </v-col>
-        <v-col md="4"> </v-col>
-      </v-row>
 
-      <v-row v-else>
-        <v-col md="6">
-          <v-skeleton-loader
-            v-for="i in 16"
-            :key="i"
-            class="mx-auto"
-            type="list-item-avatar-three-line"
-          ></v-skeleton-loader>
+        <v-col cols="12" md="4" lg="4" xl="4">
+          <v-card outlined color="secondary-primary" class="news_card">
+            <v-card-title class="ml-1">
+              热点趋势
+            </v-card-title>
+            <v-card-text v-if="$store.state.analysis.news">
+              <v-btn
+                v-for="(item, i) in $store.state.analysis.news"
+                :key="i"
+                class="ma-1"
+                small
+                outlined
+                @click="
+                  $store.commit('set_search_query', item.title)
+                  $store.dispatch('fetch_news')
+                "
+                >{{ item.title }}</v-btn
+              >
+            </v-card-text>
+
+            <v-card-text v-else>
+              <v-row>
+                <v-col v-for="i in 16" :key="i" cols="2">
+                  <v-skeleton-loader type="button"></v-skeleton-loader>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
         </v-col>
-        <v-col md="4"></v-col>
       </v-row>
 
       <v-dialog v-model="dialog">
@@ -291,6 +322,7 @@ export default {
     await this.$store.dispatch('fetch_news')
     await this.$store.dispatch('fetch_tags')
     await this.$store.dispatch('fetch_refs')
+    await this.$store.dispatch('fetch_analysis_news')
   },
   methods: {
     async change_tag(data) {

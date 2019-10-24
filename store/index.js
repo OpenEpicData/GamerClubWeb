@@ -18,10 +18,17 @@ export const state = () => ({
   },
   user: {
     login: false
+  },
+  analysis: {
+    news: null
   }
 })
 
 export const mutations = {
+  setAnalysisNews(state, analysisNews) {
+    state.analysis.news = analysisNews
+  },
+
   setDrawer(state, drawer) {
     state.drawer = drawer
   },
@@ -105,5 +112,12 @@ export const actions = {
     )
     changelog.data = githubApi.data
     commit('setChangelog', changelog)
+  },
+
+  async fetch_analysis_news({ commit }) {
+    commit('setAnalysisNews', null)
+    const analysisNews = await this.$axios.get(`/api/analysis/news`)
+    const data = analysisNews.data
+    commit('setAnalysisNews', data)
   }
 }
