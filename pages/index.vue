@@ -244,9 +244,12 @@
     </div>
 
     <div v-else>
-      <v-row>
-        <v-col v-for="i in 8" :key="i" xs="6" sm="6" md="4" xl="3" cols="12">
-          <v-skeleton-loader class="mx-auto" type="card"></v-skeleton-loader>
+      <v-row justify="center">
+        <v-col v-for="i in 8" :key="i" cols="12">
+          <v-skeleton-loader
+            class="mx-auto"
+            type="list-item-avatar-three-line"
+          ></v-skeleton-loader>
         </v-col>
       </v-row>
     </div>
