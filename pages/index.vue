@@ -95,17 +95,16 @@
               :key="i"
               cols="12"
             >
-              <v-card class="mx-auto secondary-primary news_card" outlined>
+              <v-card
+                class="mx-auto secondary-primary news_card"
+                outlined
+                :href="`http://${item.ref_link}`"
+                target="_black"
+              >
                 <v-row no-gutters>
                   <v-col cols="9">
                     <div>
-                      <v-card-title
-                        @click="
-                          ;(dialog = true),
-                            (url = `http://${item.ref_link}`),
-                            (open_news = i)
-                        "
-                      >
+                      <v-card-title>
                         <v-sheet class="link text-truncate transparent">
                           <span class="underline pointer">
                             {{ item.title }}
