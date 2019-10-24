@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar color="primary tertiary--text">
+  <v-app-bar color="primary tertiary--text" app fixed clipped-left>
     <span class="title ml-3 mr-5">
       EpicData&nbsp;|
       <span class="font-weight-light">Gamer</span>

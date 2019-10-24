@@ -2,6 +2,77 @@
   <v-app>
     <div>
       <appbar />
+
+      <v-navigation-drawer
+        v-model="drawer.display"
+        app
+        left
+        flat
+        clipped
+        color="secondary"
+      >
+        <v-sheet>
+          <v-list two-line>
+            <v-list-item
+              disabled
+              link
+              @click="$store.commit('set_login_display', true)"
+            >
+              <v-list-item-content>
+                <v-list-item-title class="title"
+                  >{{ $store.state.user.login ? '' : '登入' }}
+                </v-list-item-title>
+                <v-list-item-subtitle v-if="$store.state.user.login">
+                  email.com
+                </v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-action>
+                <v-icon>mdi-menu-down</v-icon>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+
+          <v-divider dark></v-divider>
+
+          <v-list nav dense>
+            <template v-for="(item, i) in drawer.list">
+              <v-layout v-if="item.heading" :key="i">
+                <v-flex xs6>
+                  <v-subheader v-if="item.heading">{{
+                    item.heading
+                  }}</v-subheader>
+                </v-flex>
+              </v-layout>
+
+              <v-divider
+                v-else-if="item.divider"
+                :key="i"
+                dark
+                class="my-4"
+              ></v-divider>
+
+              <v-list-item
+                v-else
+                :key="i"
+                :disabled="!item.link"
+                link
+                :to="item.target ? '' : item.link"
+                :href="item.target ? item.link : ''"
+                :target="item.target ? '_black' : ''"
+              >
+                <v-list-item-action>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-action>
+
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.text }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </template>
+          </v-list>
+        </v-sheet>
+      </v-navigation-drawer>
     </div>
 
     <changelog />
@@ -19,7 +90,48 @@ export default {
   components: {
     appbar,
     changelog
-  }
+  },
+  data: () => ({
+    drawer: {
+      display: null,
+      list: [
+        { heading: '菜单' },
+        {
+          icon: 'mdi-newspaper',
+          text: '焦点资讯',
+          link: '/'
+        },
+        {
+          icon: 'mdi-account-outline',
+          text: '为您推荐'
+        },
+        {
+          icon: 'mdi-star-outline',
+          text: '收藏夹'
+        },
+        {
+          icon: 'mdi-account-group-outline',
+          text: '社群'
+        },
+        {
+          icon: 'mdi-calendar-text-outline',
+          text: '事件'
+        },
+        { divider: true },
+        { heading: '导航' },
+        {
+          icon: 'mdi-github-circle',
+          text: 'GitHub',
+          link: 'https://github.com/OpenEpicData/FlamingoWeb',
+          target: true
+        },
+        {
+          icon: 'mdi-message-alert-outline',
+          text: '发送反馈'
+        }
+      ]
+    }
+  })
 }
 </script>
 
@@ -61,6 +173,14 @@ export default {
 
 .pointer:hover {
   cursor: pointer;
+}
+
+.news_card:hover {
+  .news_subtitle {
+    span {
+      color: rgba(255, 255, 255, 0.7) !important;
+    }
+  }
 }
 
 .theme--dark.v-skeleton-loader .v-skeleton-loader__actions,
