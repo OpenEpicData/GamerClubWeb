@@ -124,7 +124,10 @@
                           </span>
                         </span>
 
-                        <span> · {{ $dayjs(item.updated_at).fromNow() }} </span>
+                        <span>
+                          ·
+                          {{ $dayjs.utc(item.updated_at).toNow() }}
+                        </span>
                       </v-card-subtitle>
                     </div>
                   </v-col>
