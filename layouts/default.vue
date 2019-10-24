@@ -122,7 +122,7 @@ export default {
         {
           icon: 'mdi-github-circle',
           text: 'GitHub',
-          link: 'https://github.com/OpenEpicData/FlamingoWeb',
+          link: 'https://github.com/OpenEpicData/GamerClubWeb',
           target: true
         },
         {
