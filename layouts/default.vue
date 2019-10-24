@@ -33,6 +33,13 @@
 
     <v-dialog v-model="dialog" width="1000px" height="80vh">
       <v-card class="secondary-primary">
+        <v-app-bar color="secondary-primary" height="auto">
+          <v-btn icon @click="$store.dispatch('fetch_update_log')">
+            <v-icon>mdi-refresh</v-icon>
+          </v-btn>
+
+          <v-toolbar-title>更新日志</v-toolbar-title>
+        </v-app-bar>
         <v-card-text>
           <div v-if="!$store.state.updateLog">
             <v-skeleton-loader
