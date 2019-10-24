@@ -14,6 +14,9 @@ export const state = () => ({
     refName: '',
     page: 1,
     length: 16
+  },
+  user: {
+    login: false
   }
 })
 

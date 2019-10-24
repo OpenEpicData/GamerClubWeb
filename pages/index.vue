@@ -1,154 +1,156 @@
 <template>
   <v-container>
-    <div>
-      <v-row>
-        <v-col v-if="$store.state.tags" cols="6" sm="6" xs="6" md="4" xl="3">
-          <v-select
-            v-model="$store.state.search.tagName"
-            :items="$store.state.tags"
-            label="标签"
-            outlined
-            @input="change_tag"
-          ></v-select>
-        </v-col>
-
-        <v-col v-if="$store.state.refs" cols="6" sm="6" xs="6" md="4" xl="3">
-          <v-select
-            v-model="$store.state.search.refName"
-            :items="$store.state.refs"
-            label="来源"
-            outlined
-            @input="change_ref"
-          ></v-select>
-        </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12" sm="12" md="8" lg="8" xl="6">
-          <v-banner
-            v-if="
-              $store.state.search.query ||
-                $store.state.search.tagName ||
-                $store.state.search.refName
-            "
-            single-line
-            class="secondary search-chip"
-          >
-            <v-chip
-              v-if="$store.state.search.query"
-              close
-              label
-              class="primary elevation-2"
-              @click:close="
-                $store.commit('set_search_query', '')
-                $store.dispatch('fetch_news')
-              "
-              >{{ $store.state.search.query }}</v-chip
-            >
-
-            <v-chip
-              v-if="$store.state.search.tagName"
-              close
-              label
-              class="primary elevation-2"
-              @click:close="
-                $store.commit('set_search_tag_name', '')
-                $store.dispatch('fetch_news')
-              "
-              >{{ $store.state.search.tagName }}</v-chip
-            >
-
-            <v-chip
-              v-if="$store.state.search.refName"
-              close
-              label
-              class="primary elevation-2"
-              @click:close="
-                $store.commit('set_search_ref_name', '')
-                $store.dispatch('fetch_news')
-              "
-              >{{ $store.state.search.refName }}</v-chip
-            >
-
-            <template v-slot:actions>
-              <v-btn
-                color="secondary"
-                @click="
-                  ;($store.state.search.query = ''),
-                    ($store.state.search.tagName = ''),
-                    ($store.state.search.refName = ''),
-                    $store.dispatch('fetch_news')
-                "
-                >清除所有</v-btn
-              >
-            </template>
-          </v-banner>
-        </v-col>
-      </v-row>
-    </div>
-
     <div v-if="$store.state.news">
-      <v-row>
-        <v-col
-          v-for="(item, i) in $store.state.news.data"
-          :key="i"
-          xs="6"
-          sm="6"
-          md="4"
-          xl="3"
-          cols="12"
-        >
-          <v-card class="mx-auto secondary-primary" elevation="6">
-            <v-img
-              :src="item.image"
-              height="200px"
-              class="pointer"
-              @click=";(dialog = true), (url = item.ref_link), (open_news = i)"
-            ></v-img>
+      <v-row justify="center">
+        <v-col md="6">
+          <div>
+            <v-row>
+              <v-col v-if="$store.state.tags" cols="6">
+                <v-select
+                  v-model="$store.state.search.tagName"
+                  :items="$store.state.tags"
+                  label="标签"
+                  outlined
+                  @input="change_tag"
+                ></v-select>
+              </v-col>
 
-            <v-card-title @click=";(dialog = true), (url = item.ref_link)">
-              <v-sheet class="link text-truncate transparent">
-                <span class="subtitle-1 underline pointer">
-                  {{ item.title }}
-                </span>
-              </v-sheet>
-            </v-card-title>
+              <v-col v-if="$store.state.refs" cols="6">
+                <v-select
+                  v-model="$store.state.search.refName"
+                  :items="$store.state.refs"
+                  label="来源"
+                  outlined
+                  @input="change_ref"
+                ></v-select>
+              </v-col>
+            </v-row>
 
-            <v-card-text class="text-truncate">
-              <span class="tertiary--text subtitle-2">
-                {{ item.description }}
-              </span>
-            </v-card-text>
+            <v-row>
+              <v-col cols="12" sm="12" md="8" lg="8" xl="6">
+                <v-banner
+                  v-if="
+                    $store.state.search.query ||
+                      $store.state.search.tagName ||
+                      $store.state.search.refName
+                  "
+                  single-line
+                  class="secondary search-chip"
+                >
+                  <v-chip
+                    v-if="$store.state.search.query"
+                    close
+                    label
+                    class="primary elevation-2"
+                    @click:close="
+                      $store.commit('set_search_query', '')
+                      $store.dispatch('fetch_news')
+                    "
+                    >{{ $store.state.search.query }}</v-chip
+                  >
 
-            <v-toolbar dense color="secondary-primary" class="ref">
-              <v-btn
-                color="primary tertiary--text"
-                x-small
-                @click="change_ref(item.ref.name)"
-                >{{ item.ref.name }}</v-btn
-              >
-              <v-btn
-                color="success"
-                x-small
-                @click="change_tag(item.tag.name)"
-                >{{ item.tag.name }}</v-btn
-              >
+                  <v-chip
+                    v-if="$store.state.search.tagName"
+                    close
+                    label
+                    class="primary elevation-2"
+                    @click:close="
+                      $store.commit('set_search_tag_name', '')
+                      $store.dispatch('fetch_news')
+                    "
+                    >{{ $store.state.search.tagName }}</v-chip
+                  >
 
-              <v-spacer></v-spacer>
+                  <v-chip
+                    v-if="$store.state.search.refName"
+                    close
+                    label
+                    class="primary elevation-2"
+                    @click:close="
+                      $store.commit('set_search_ref_name', '')
+                      $store.dispatch('fetch_news')
+                    "
+                    >{{ $store.state.search.refName }}</v-chip
+                  >
 
-              <v-btn
-                v-if="item.author"
-                color="secondary tertiary--text"
-                x-small
-                @click="
-                  $store.commit('set_search_query', item.author)
-                  $store.dispatch('fetch_news')
-                "
-                >{{ item.author }}</v-btn
-              >
-            </v-toolbar>
-          </v-card>
+                  <template v-slot:actions>
+                    <v-btn
+                      color="secondary"
+                      @click="
+                        ;($store.state.search.query = ''),
+                          ($store.state.search.tagName = ''),
+                          ($store.state.search.refName = ''),
+                          $store.dispatch('fetch_news')
+                      "
+                      >清除所有</v-btn
+                    >
+                  </template>
+                </v-banner>
+              </v-col>
+            </v-row>
+          </div>
+          <v-row>
+            <v-col
+              v-for="(item, i) in $store.state.news.data"
+              :key="i"
+              cols="12"
+            >
+              <v-card class="mx-auto secondary-primary news_card" elevation="6">
+                <v-row no-gutters>
+                  <v-col cols="10">
+                    <div>
+                      <v-card-title
+                        @click="
+                          ;(dialog = true),
+                            (url = item.ref_link),
+                            (open_news = i)
+                        "
+                      >
+                        <v-sheet class="link text-truncate transparent">
+                          <span class="underline pointer">
+                            {{ item.title }}
+                          </span>
+                        </v-sheet>
+                      </v-card-title>
+
+                      <v-card-subtitle class="news_subtitle">
+                        <span>
+                          {{ item.description }}
+                        </span>
+                        <br />
+                        <span
+                          class="primary--text link"
+                          @click="change_ref(item.ref.name)"
+                        >
+                          <span class=" pointer underline">
+                            {{ item.ref.name }}
+                          </span>
+                        </span>
+
+                        <span class="primary--text">
+                          · {{ item.updated_at }} UTC
+                        </span>
+                      </v-card-subtitle>
+                    </div>
+                  </v-col>
+                  <v-col align="end">
+                    <v-avatar
+                      class="pointer"
+                      size="125"
+                      tile
+                      @click="
+                        ;(dialog = true), (url = item.ref_link), (open_news = i)
+                      "
+                    >
+                      <v-img :src="item.image"></v-img>
+                    </v-avatar>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-col>
+        <v-col md="4"> </v-col>
       </v-row>
 
       <v-pagination
@@ -240,6 +242,7 @@
         </v-card>
       </v-dialog>
     </div>
+
     <div v-else>
       <v-row>
         <v-col v-for="i in 8" :key="i" xs="6" sm="6" md="4" xl="3" cols="12">
