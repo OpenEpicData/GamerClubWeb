@@ -95,7 +95,7 @@
               :key="i"
               cols="12"
             >
-              <v-card class="mx-auto secondary-primary news_card" elevation="6">
+              <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
                   <v-col cols="10">
                     <div>

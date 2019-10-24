@@ -175,6 +175,9 @@ export default {
   cursor: pointer;
 }
 
+.news_card {
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
 .news_card:hover {
   .news_subtitle {
     span {
