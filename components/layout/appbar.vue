@@ -21,8 +21,8 @@
       large
       color="secondary"
       @click="
-        dialog = true
-        $store.dispatch('fetch_update_log')
+        $store.commit('set_changelog_dialog', true)
+        $store.dispatch('fetch_changelog')
       "
       >更新日志</v-btn
     >
@@ -31,11 +31,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      search: null
-    }
-  },
+  data: () => ({
+    search: null
+  }),
   methods: {
     searching() {
       this.$store.commit('set_search_query', this.search)
