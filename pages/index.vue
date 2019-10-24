@@ -102,7 +102,7 @@
                       <v-card-title
                         @click="
                           ;(dialog = true),
-                            (url = item.ref_link),
+                            (url = `http://${item.ref_link}`),
                             (open_news = i)
                         "
                       >
