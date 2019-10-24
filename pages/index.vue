@@ -149,7 +149,7 @@
           </v-row>
 
           <v-row v-else>
-            <v-col md="6">
+            <v-col cols="12">
               <v-skeleton-loader
                 v-for="i in 16"
                 :key="i"
