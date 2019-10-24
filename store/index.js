@@ -1,6 +1,7 @@
 export const strict = false
 
 export const state = () => ({
+  drawer: true,
   changelog: {
     dialog: null,
     data: null
@@ -21,6 +22,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setDrawer(state, drawer) {
+    state.drawer = drawer
+  },
+
   setChangelog(state, changelog) {
     state.changelog.dialog = changelog.dialog
     state.changelog.data = changelog.data

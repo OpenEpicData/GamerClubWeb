@@ -4,7 +4,7 @@
       <appbar />
 
       <v-navigation-drawer
-        v-model="drawer.display"
+        v-model="$store.state.drawer"
         app
         left
         flat
