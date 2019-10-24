@@ -93,7 +93,6 @@
           v-for="(item, i) in $store.state.news.data"
           :key="i"
           xs="6"
-          @
           sm="6"
           md="4"
           xl="3"
@@ -104,9 +103,7 @@
               :src="item.image"
               height="200px"
               class="pointer"
-              @click="
-                ;(dialog = true), (url = item.ref_link), (open_news = item)
-              "
+              @click=";(dialog = true), (url = item.ref_link), (open_news = i)"
             ></v-img>
 
             <v-card-title @click=";(dialog = true), (url = item.ref_link)">
@@ -178,10 +175,10 @@
               <v-card-title>
                 <v-row justify="space-between">
                   <v-col cols="9">
-                    {{ open_news.title }}
+                    {{ $store.state.news.data[open_news].title }}
                     <br />
                     <span class="tertiary--text  subtitle-2">
-                      By {{ open_news.author }}
+                      By {{ $store.state.news.data[open_news].author }}
                     </span>
                   </v-col>
                   <v-col align="right" cols="3">
@@ -213,7 +210,8 @@
                       </span>
                     </a>
                     <span class="tertiary--text subtitle-2">
-                      最后抓取于 {{ open_news.created_at }} UTC
+                      最后抓取于
+                      {{ $store.state.news.data[open_news].created_at }} UTC
                     </span>
                   </v-col>
                   <v-col cols="12" xs="6" sm="6" md="7" xl="6" align="right">
