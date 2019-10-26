@@ -111,7 +111,6 @@
                         <span
                           class="link"
                           :class="{ 'subtitle-2 top': i !== 0 }"
-                          @click="change_ref(item.ref.name)"
                         >
                           <span class="underline pointer">
                             {{ item.title }}
