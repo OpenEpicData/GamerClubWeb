@@ -177,7 +177,7 @@
             </v-card-title>
             <v-card-text v-if="$store.state.analysis.news">
               <v-btn
-                v-for="(item, i) in $store.state.analysis.news"
+                v-for="(item, i) in $store.state.analysis.news.data"
                 :key="i"
                 class="ma-1"
                 small
@@ -186,8 +186,9 @@
                   $store.commit('set_search_query', item.title)
                   $store.dispatch('fetch_news')
                 "
-                >{{ item.title }}</v-btn
               >
+                {{ item.title }} {{ item.hit }}
+              </v-btn>
             </v-card-text>
 
             <v-card-text v-else>
