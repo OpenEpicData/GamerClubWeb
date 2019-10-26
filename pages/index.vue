@@ -91,7 +91,7 @@
           </div>
           <v-row v-if="$store.state.news">
             <v-col
-              v-for="(item, i) in $store.state.news.data"
+              v-for="(item, i) in $store.state.news.latest.data"
               :key="i"
               cols="12"
             >
@@ -164,7 +164,7 @@
             v-if="$store.state.news"
             v-model="page"
             class="news-pagination"
-            :length="$store.state.news.last_page"
+            :length="$store.state.news.latest.last_page"
             color="primary"
             circle
           ></v-pagination>
@@ -218,10 +218,10 @@
               <v-card-title>
                 <v-row justify="space-between">
                   <v-col cols="9">
-                    {{ $store.state.news.data[open_news].title }}
+                    {{ $store.state.news.latest.data[open_news].title }}
                     <br />
                     <span class="tertiary--text  subtitle-2">
-                      By {{ $store.state.news.data[open_news].author }}
+                      By {{ $store.state.news.latest.data[open_news].author }}
                     </span>
                   </v-col>
                   <v-col align="right" cols="3">
@@ -254,7 +254,8 @@
                     </a>
                     <span class="tertiary--text subtitle-2">
                       最后抓取于
-                      {{ $store.state.news.data[open_news].created_at }} UTC
+                      {{ $store.state.news.latest.data[open_news].created_at }}
+                      UTC
                     </span>
                   </v-col>
                   <v-col cols="12" xs="6" sm="6" md="7" xl="6" align="right">
