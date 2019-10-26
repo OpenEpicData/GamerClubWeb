@@ -179,6 +179,11 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
+.top::before {
+  content: '·';
+  padding-left: 20px;
+}
+
 .theme--dark.v-skeleton-loader .v-skeleton-loader__actions,
 .theme--dark.v-skeleton-loader .v-skeleton-loader__article,
 .theme--dark.v-skeleton-loader .v-skeleton-loader__card-heading,

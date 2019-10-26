@@ -5,7 +5,7 @@
         <v-col cols="12" md="8" lg="8" xl="6">
           <div>
             <v-row>
-              <v-col v-if="$store.state.tags" cols="6">
+              <v-col v-if="$store.state.tags" cols="6" class="py-0">
                 <v-select
                   v-model="$store.state.search.tagName"
                   :items="$store.state.tags"
@@ -15,7 +15,7 @@
                 ></v-select>
               </v-col>
 
-              <v-col v-if="$store.state.refs" cols="6">
+              <v-col v-if="$store.state.refs" cols="6" class="py-0">
                 <v-select
                   v-model="$store.state.search.refName"
                   :items="$store.state.refs"
@@ -26,17 +26,15 @@
               </v-col>
             </v-row>
 
-            <v-row>
+            <v-row
+              v-if="
+                $store.state.search.query ||
+                  $store.state.search.tagName ||
+                  $store.state.search.refName
+              "
+            >
               <v-col cols="12" sm="12">
-                <v-banner
-                  v-if="
-                    $store.state.search.query ||
-                      $store.state.search.tagName ||
-                      $store.state.search.refName
-                  "
-                  single-line
-                  class="secondary search-chip"
-                >
+                <v-banner single-line class="secondary search-chip">
                   <v-chip
                     v-if="$store.state.search.query"
                     close
@@ -89,7 +87,61 @@
               </v-col>
             </v-row>
           </div>
+
           <v-row v-if="$store.state.news">
+            <v-col cols="12">
+              <v-card class="mx-auto secondary-primary news_card" outlined>
+                <v-row no-gutters>
+                  <v-col cols="8" md="9">
+                    <div>
+                      <v-card-title
+                        v-for="(item, i) in $store.state.news.top"
+                        :key="i"
+                        class="d-block text-truncate"
+                        :class="{
+                          'pt-0': i !== 0,
+                          'pb-0': i !== $store.state.news.top.length - 1
+                        }"
+                        @click="
+                          ;(dialog = true),
+                            (url = item.ref_link),
+                            (open_news = i)
+                        "
+                      >
+                        <span
+                          class="link"
+                          :class="{ 'subtitle-2 top': i !== 0 }"
+                          @click="change_ref(item.ref.name)"
+                        >
+                          <span class="underline pointer">
+                            {{ item.title }}
+                          </span>
+                        </span>
+                      </v-card-title>
+                    </div>
+                  </v-col>
+
+                  <v-col
+                    v-if="$store.state.news.top[0]"
+                    align="end"
+                    cols="4"
+                    md="3"
+                  >
+                    <v-avatar
+                      class="pointer"
+                      size="125"
+                      tile
+                      @click="
+                        ;(dialog = true), (url = item.ref_link), (open_news = i)
+                      "
+                    >
+                      <v-img :src="$store.state.news.top[0].image"></v-img>
+                    </v-avatar>
+                  </v-col>
+                </v-row>
+              </v-card>
+            </v-col>
+
             <v-col
               v-for="(item, i) in $store.state.news.latest.data"
               :key="i"
@@ -97,7 +149,7 @@
             >
               <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
-                  <v-col cols="9">
+                  <v-col cols="8" md="9">
                     <div>
                       <v-card-title
                         @click="
@@ -131,7 +183,7 @@
                       </v-card-subtitle>
                     </div>
                   </v-col>
-                  <v-col align="end" cols="3">
+                  <v-col align="end" cols="4" md="3">
                     <v-avatar
                       class="pointer"
                       size="125"
