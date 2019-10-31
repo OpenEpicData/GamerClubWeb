@@ -89,7 +89,7 @@
           </div>
 
           <v-row v-if="$store.state.news">
-            <v-col cols="12">
+            <v-col v-if="$store.state.news.top.length > 0" cols="12">
               <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
                   <v-col cols="8" md="9">
