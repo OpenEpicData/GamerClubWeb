@@ -4,8 +4,8 @@
     width="1000px"
     height="80vh"
   >
-    <v-card class="secondary-primary">
-      <v-app-bar color="secondary-primary" height="auto">
+    <v-card>
+      <v-app-bar height="auto">
         <v-btn icon @click="$store.dispatch('fetch_changelog')">
           <v-icon>mdi-refresh</v-icon>
         </v-btn>

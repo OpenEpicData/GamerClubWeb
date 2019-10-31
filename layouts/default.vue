@@ -84,7 +84,7 @@
 
     <changelog />
 
-    <v-content class="secondary" style="margin-top:24px">
+    <v-content style="margin-top:24px">
       <nuxt />
     </v-content>
   </v-app>
@@ -143,12 +143,6 @@ export default {
 </script>
 
 <style lang="scss">
-.theme--dark.v-list {
-  background: #3d4a5c !important;
-}
-.secondary-primary {
-  background: linear-gradient(90deg, #3d4a5c, #243042);
-}
 .v-card {
   $height: 34px;
   .v-toolbar__content {

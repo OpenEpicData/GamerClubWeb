@@ -1,3 +1,5 @@
+import zhHans from 'vuetify/es5/locale/zh-Hans'
+
 export default {
   mode: 'universal',
   /*
@@ -62,7 +64,32 @@ export default {
    ** See https://github.com/nuxt-community/vuetify-module#optionspath
    */
   vuetify: {
-    optionsPath: './vuetify.options.js'
+    customVariables: ['~/assets/variables.scss'],
+    icons: {
+      iconfont: 'mdi'
+    },
+    lang: {
+      locales: { zhHans },
+      current: 'zhHans'
+    },
+    rtl: false,
+    theme: {
+      dark: true,
+      themes: {
+        dark: {
+          primary: '#243042',
+          secondary: '#3D4A5C',
+          tertiary: '#CCCCCC',
+          accent: '#FFFAFB',
+          error: '#B83737',
+          warning: '#B83737',
+          info: '#376BBB',
+          success: '#33993D',
+          white: '#FFFFFF'
+        }
+      }
+    },
+    treeShake: true
   },
   /*
    ** Axios module configuration

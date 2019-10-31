@@ -90,7 +90,7 @@
 
           <v-row v-if="$store.state.news">
             <v-col v-if="$store.state.news.top.length > 0" cols="12">
-              <v-card class="mx-auto secondary-primary news_card" outlined>
+              <v-card class="mx-auto news_card" outlined>
                 <v-row no-gutters>
                   <v-col cols="auto" md="9" class="mr-auto">
                     <div>
@@ -141,7 +141,7 @@
               :key="i"
               cols="12"
             >
-              <v-card class="mx-auto secondary-primary news_card" outlined>
+              <v-card class="mx-auto news_card" outlined>
                 <v-row no-gutters>
                   <v-col md="9" class="mr-auto">
                     <div>
@@ -217,7 +217,7 @@
         </v-col>
 
         <v-col cols="12" md="4" lg="4" xl="4">
-          <v-card outlined color="secondary-primary" class="news_card">
+          <v-card outlined class="news_card">
             <v-card-title class="ml-1">
               热点趋势
             </v-card-title>
@@ -249,7 +249,7 @@
       </v-row>
 
       <v-dialog v-model="dialog">
-        <v-card height="90vh" color="secondary-primary">
+        <v-card height="90vh">
           <v-row class="fill-height" no-gutters>
             <v-col cols="12" xs="12" md="8" xl="9">
               <iframe
