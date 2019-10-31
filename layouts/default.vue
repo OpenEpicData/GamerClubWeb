@@ -1,7 +1,13 @@
 <template>
   <v-app>
     <div>
-      <appbar />
+      <v-system-bar fixed>
+        <span class="mx-auto">
+          我们监测到页面性能问题，开发团队正在修复。
+        </span>
+      </v-system-bar>
+
+      <appbar style="margin-top:24px" />
 
       <v-navigation-drawer
         v-model="$store.state.drawer"
@@ -10,6 +16,7 @@
         flat
         clipped
         color="secondary"
+        style="margin-top:24px"
       >
         <v-sheet>
           <v-list two-line>
@@ -77,7 +84,7 @@
 
     <changelog />
 
-    <v-content class="secondary">
+    <v-content class="secondary" style="margin-top:24px">
       <nuxt />
     </v-content>
   </v-app>
