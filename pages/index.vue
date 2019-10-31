@@ -92,7 +92,7 @@
             <v-col v-if="$store.state.news.top.length > 0" cols="12">
               <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
-                  <v-col cols="8" md="9">
+                  <v-col cols="auto" md="9" class="mr-auto">
                     <div>
                       <v-card-title
                         v-for="(item, i) in $store.state.news.top"
@@ -120,12 +120,7 @@
                     </div>
                   </v-col>
 
-                  <v-col
-                    v-if="$store.state.news.top[0]"
-                    align="end"
-                    cols="4"
-                    md="3"
-                  >
+                  <v-col v-if="$store.state.news.top[0]" cols="auto">
                     <v-avatar
                       class="pointer"
                       size="125"
@@ -148,7 +143,7 @@
             >
               <v-card class="mx-auto secondary-primary news_card" outlined>
                 <v-row no-gutters>
-                  <v-col cols="8" md="9">
+                  <v-col md="9" class="mr-auto">
                     <div>
                       <v-card-title
                         @click="
@@ -182,7 +177,7 @@
                       </v-card-subtitle>
                     </div>
                   </v-col>
-                  <v-col align="end" cols="4" md="3">
+                  <v-col cols="auto">
                     <v-avatar
                       class="pointer"
                       size="125"
