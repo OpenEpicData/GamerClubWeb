@@ -1,5 +1,3 @@
-import zhHans from 'vuetify/es5/locale/zh-Hans'
-
 export default {
   mode: 'universal',
   /*
@@ -67,10 +65,6 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     icons: {
       iconfont: 'mdi'
-    },
-    lang: {
-      locales: { zhHans },
-      current: 'zhHans'
     },
     rtl: false,
     theme: {
