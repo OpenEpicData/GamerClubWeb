@@ -1,47 +1,15 @@
 <template>
   <v-app>
-    <div>
-      <v-system-bar fixed>
-        <span class="mx-auto">
-          我们监测到页面性能问题，开发团队正在修复。
-        </span>
-      </v-system-bar>
-
-      <appbar style="margin-top:24px" />
-
+    <div @mouseover="drawer.mini = false" @mouseleave="drawer.mini = true">
       <v-navigation-drawer
         v-model="$store.state.drawer"
+        color="transparent"
         app
         left
         flat
-        clipped
-        color="secondary"
-        style="margin-top:24px"
+        :mini-variant.sync="drawer.mini"
       >
         <v-sheet>
-          <v-list two-line>
-            <v-list-item
-              disabled
-              link
-              @click="$store.commit('set_login_display', true)"
-            >
-              <v-list-item-content>
-                <v-list-item-title class="title"
-                  >{{ $store.state.user.login ? '' : '登入' }}
-                </v-list-item-title>
-                <v-list-item-subtitle v-if="$store.state.user.login">
-                  email.com
-                </v-list-item-subtitle>
-              </v-list-item-content>
-
-              <v-list-item-action>
-                <v-icon>mdi-menu-down</v-icon>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-
-          <v-divider dark></v-divider>
-
           <v-list nav dense>
             <template v-for="(item, i) in drawer.list">
               <v-layout v-if="item.heading" :key="i">
@@ -84,7 +52,8 @@
 
     <changelog />
 
-    <v-content style="margin-top:24px">
+    <v-content>
+      <appbar />
       <nuxt />
     </v-content>
   </v-app>
@@ -101,8 +70,8 @@ export default {
   data: () => ({
     drawer: {
       display: null,
+      mini: true,
       list: [
-        { heading: '菜单' },
         {
           icon: 'mdi-newspaper',
           text: '焦点资讯',
@@ -125,7 +94,6 @@ export default {
           text: '事件'
         },
         { divider: true },
-        { heading: '导航' },
         {
           icon: 'mdi-github-circle',
           text: 'GitHub',
@@ -161,7 +129,7 @@ export default {
   width: calc(100%);
   background-image: linear-gradient(
     transparent calc(100% - 10px),
-    #33993d 10px
+    #28355c 10px
   );
   background-repeat: no-repeat;
   background-size: 0% 100%;

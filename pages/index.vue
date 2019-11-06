@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <div>
-      <v-row justify="center">
-        <v-col cols="12" md="8" lg="8" xl="6">
+      <v-row>
+        <v-col cols="12" md="8" lg="8">
           <div>
             <v-row>
               <v-col v-if="$store.state.tags" cols="6" class="py-0">
@@ -34,7 +34,7 @@
               "
             >
               <v-col cols="12" sm="12">
-                <v-banner single-line class="secondary search-chip">
+                <v-banner single-line class="search-chip">
                   <v-chip
                     v-if="$store.state.search.query"
                     close
@@ -90,49 +90,79 @@
 
           <v-row v-if="$store.state.news">
             <v-col v-if="$store.state.news.top.length > 0" cols="12">
-              <v-card class="mx-auto news_card" outlined>
-                <v-row no-gutters>
-                  <v-col cols="auto" md="9" class="mr-auto">
-                    <div>
-                      <v-card-title
-                        v-for="(item, i) in $store.state.news.top"
-                        :key="i"
-                        class="d-block text-truncate"
-                        :class="{
-                          'pt-0': i !== 0,
-                          'pb-0': i !== $store.state.news.top.length - 1
-                        }"
+              <v-card class="mx-auto" shaped elevation="24" max-height="300px">
+                <v-img
+                  :src="$store.state.news.top[0].image"
+                  :aspect-ratio="16 / 9"
+                  gradient="to top right, rgba(100,115,201,.7), rgba(25,32,72,.7)"
+                  max-height="300px"
+                >
+                  <v-row class="fill-height mx-5">
+                    <v-col
+                      class="d-flex align-start flex-column"
+                      cols="12"
+                      md="7"
+                    >
+                      <v-rating
+                        v-model="$store.state.news.top.length"
+                        class="mb-auto"
+                        readonly
+                        color="amber"
+                        dense
+                        background-color="lime darken-4"
+                      ></v-rating>
+
+                      <v-sheet
+                        class="link text-truncate transparent"
+                        style="width:100%"
                         @click="
                           ;(dialog = true),
-                            (url = item.ref_link),
+                            (url = $store.state.news.top[0].ref_link),
                             (open_news = i)
                         "
                       >
-                        <span
-                          class="link"
-                          :class="{ 'subtitle-2 top': i !== 0 }"
-                        >
-                          <span class="underline pointer">
-                            {{ item.title }}
-                          </span>
+                        <span class="underline pointer title">
+                          {{ $store.state.news.top[0].title }}
                         </span>
-                      </v-card-title>
-                    </div>
-                  </v-col>
+                      </v-sheet>
+                    </v-col>
 
-                  <v-col v-if="$store.state.news.top[0]" cols="auto">
-                    <v-avatar
-                      class="pointer"
-                      size="125"
-                      tile
-                      @click="
-                        ;(dialog = true), (url = item.ref_link), (open_news = i)
-                      "
-                    >
-                      <v-img :src="$store.state.news.top[0].image"></v-img>
-                    </v-avatar>
-                  </v-col>
-                </v-row>
+                    <v-col class="d-flex align-end flex-column">
+                      <v-btn icon class="mb-auto">
+                        <v-icon>mdi-share-outline</v-icon>
+                      </v-btn>
+
+                      <div>
+                        <span class="mr-2">
+                          <v-icon color="teal accent-2">
+                            mdi-newspaper-variant-outline
+                          </v-icon>
+                          {{ $store.state.news.top[0].tag.name }}
+                        </span>
+                        <span>
+                          <v-icon color="teal accent-2">
+                            mdi-fire
+                          </v-icon>
+                          本周热门
+                        </span>
+                      </div>
+
+                      <div class="mt-5">
+                        <v-btn
+                          color="secondary"
+                          x-large
+                          @click="
+                            ;(dialog = true),
+                              (url = $store.state.news.top[0].ref_link),
+                              (open_news = i)
+                          "
+                        >
+                          阅读更多
+                        </v-btn>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-img>
               </v-card>
             </v-col>
 
@@ -177,7 +207,7 @@
                       </v-card-subtitle>
                     </div>
                   </v-col>
-                  <v-col cols="auto">
+                  <v-col v-if="item.image" cols="auto">
                     <v-avatar
                       class="pointer"
                       size="125"
@@ -216,7 +246,7 @@
           ></v-pagination>
         </v-col>
 
-        <v-col cols="12" md="4" lg="4" xl="4">
+        <v-col cols="12" md="4" lg="4">
           <v-card outlined class="news_card">
             <v-card-title class="ml-1">
               热点趋势
@@ -248,85 +278,14 @@
         </v-col>
       </v-row>
 
-      <v-dialog v-model="dialog">
-        <v-card height="90vh">
-          <v-row class="fill-height" no-gutters>
-            <v-col cols="12" xs="12" md="8" xl="9">
-              <iframe
-                :src="url"
-                frameborder="0"
-                width="100%"
-                height="100%"
-              ></iframe>
-            </v-col>
-
-            <v-col v-if="open_news" cols="12" md="4" xl="3">
-              <v-card-title>
-                <v-row justify="space-between">
-                  <v-col cols="9">
-                    {{ $store.state.news.latest.data[open_news].title }}
-                    <br />
-                    <span class="tertiary--text  subtitle-2">
-                      By {{ $store.state.news.latest.data[open_news].author }}
-                    </span>
-                  </v-col>
-                  <v-col align="right" cols="3">
-                    <v-btn
-                      icon
-                      color="secondary"
-                      depressed
-                      @click="dialog = false"
-                    >
-                      <v-icon color="tertiary">
-                        mdi-close-circle-outline
-                      </v-icon>
-                    </v-btn>
-                  </v-col>
-                </v-row>
-              </v-card-title>
-
-              <v-card-text>
-                <v-row>
-                  <v-col cols="12" xs="6" sm="6" md="5" xl="6">
-                    <a
-                      class="link white--text"
-                      href="https://github.com/OpenEpicData/GamerClubAPI"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span class="underline">
-                        EpicData Gamer Bot
-                      </span>
-                    </a>
-                    <span class="tertiary--text subtitle-2">
-                      最后抓取于
-                      {{ $store.state.news.latest.data[open_news].created_at }}
-                      UTC
-                    </span>
-                  </v-col>
-                  <v-col cols="12" xs="6" sm="6" md="7" xl="6" align="right">
-                    <v-btn large color="secondary" disabled>
-                      收藏
-                    </v-btn>
-                    <v-btn large color="secondary" disabled>
-                      <v-icon left>
-                        mdi-thumb-up-outline
-                      </v-icon>
-                      0
-                    </v-btn>
-                  </v-col>
-                </v-row>
-                <v-text-field
-                  disabled
-                  color="tertiary"
-                  class="mt-5"
-                  label="说点什么？"
-                  outlined
-                  dense
-                ></v-text-field>
-              </v-card-text>
-            </v-col>
-          </v-row>
+      <v-dialog v-model="dialog" max-width="1300px" scrollable>
+        <v-card height="80vh">
+          <iframe
+            :src="url"
+            frameborder="0"
+            width="100%"
+            height="100%"
+          ></iframe>
         </v-card>
       </v-dialog>
     </div>
@@ -402,5 +361,8 @@ export default {
 }
 .ref {
   height: auto !important;
+}
+.top-learn-more {
+  margin: 0 calc(50% - 50vw);
 }
 </style>

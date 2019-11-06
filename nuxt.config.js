@@ -29,7 +29,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#9575CD' },
   /*
    ** Global CSS
    */
@@ -71,10 +71,10 @@ export default {
       dark: true,
       themes: {
         dark: {
-          primary: '#243042',
-          secondary: '#3D4A5C',
-          tertiary: '#CCCCCC',
-          accent: '#FFFAFB',
+          primary: '#6990ff',
+          secondary: '#0681ff',
+          tertiary: '#28355c',
+          accent: '#49b3ad',
           error: '#B83737',
           warning: '#B83737',
           info: '#376BBB',

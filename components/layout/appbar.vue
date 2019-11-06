@@ -1,31 +1,35 @@
 <template>
-  <v-app-bar color="primary tertiary--text" app fixed clipped-left>
-    <v-app-bar-nav-icon
-      @click="$store.commit('setDrawer', !$store.state.drawer)"
-    ></v-app-bar-nav-icon>
-    <span class="title ml-3 mr-5">
-      EpicData&nbsp;|
-      <span class="font-weight-light">Gamer</span>
-    </span>
-    <v-text-field
-      v-model="search"
-      solo-inverted
-      flat
-      hide-details
-      label="搜索"
-      prepend-inner-icon="mdi-magnify"
-      class="d-none d-md-flex"
-      @keyup.enter="searching()"
-    ></v-text-field>
-    <v-spacer></v-spacer>
-    <v-btn
-      rounded
-      large
-      color="secondary"
-      @click="$store.dispatch('fetch_changelog')"
-      >更新日志
-    </v-btn>
-  </v-app-bar>
+  <v-row>
+    <v-col class="bar">
+      <v-toolbar flat>
+        <v-spacer></v-spacer>
+
+        <v-text-field
+          v-model="search"
+          flat
+          hide-details
+          label="搜索"
+          prepend-inner-icon="mdi-magnify"
+          @keyup.enter="searching()"
+        ></v-text-field>
+      </v-toolbar>
+    </v-col>
+
+    <v-col>
+      <v-toolbar flat>
+        <v-btn v-if="$store.state.news" color="tertiary">
+          <v-icon left>mdi-newspaper-variant-multiple-outline</v-icon>
+          {{ $store.state.news.latest.total }}
+        </v-btn>
+        <v-spacer></v-spacer>
+
+        <v-btn text>
+          <v-icon left>mdi-account-circle-outline</v-icon>
+          登录
+        </v-btn>
+      </v-toolbar>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -41,3 +45,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.bar {
+  .v-toolbar__content {
+    padding: 0 !important;
+  }
+}
+</style>
