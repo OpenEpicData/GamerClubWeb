@@ -3,11 +3,11 @@
     <div @mouseover="drawer.mini = false" @mouseleave="drawer.mini = true">
       <v-navigation-drawer
         v-model="$store.state.drawer"
+        :mini-variant.sync="drawer.mini"
         color="transparent"
         app
         left
         flat
-        :mini-variant.sync="drawer.mini"
       >
         <v-sheet>
           <v-list nav dense>
@@ -31,10 +31,10 @@
                 v-else
                 :key="i"
                 :disabled="!item.link"
-                link
                 :to="item.target ? '' : item.link"
                 :href="item.target ? item.link : ''"
                 :target="item.target ? '_black' : ''"
+                link
               >
                 <v-list-item-action>
                   <v-icon>{{ item.icon }}</v-icon>

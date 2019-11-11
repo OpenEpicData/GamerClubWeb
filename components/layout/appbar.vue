@@ -6,11 +6,11 @@
 
         <v-text-field
           v-model="search"
+          @keyup.enter="searching()"
           flat
           hide-details
           label="搜索"
           prepend-inner-icon="mdi-magnify"
-          @keyup.enter="searching()"
         ></v-text-field>
       </v-toolbar>
     </v-col>

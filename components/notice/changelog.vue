@@ -6,7 +6,7 @@
   >
     <v-card>
       <v-app-bar height="auto">
-        <v-btn icon @click="$store.dispatch('fetch_changelog')">
+        <v-btn @click="$store.dispatch('fetch_changelog')" icon>
           <v-icon>mdi-refresh</v-icon>
         </v-btn>
 

@@ -9,9 +9,9 @@
                 <v-select
                   v-model="$store.state.search.tagName"
                   :items="$store.state.tags"
+                  @input="change_tag"
                   label="标签"
                   outlined
-                  @input="change_tag"
                 ></v-select>
               </v-col>
 
@@ -19,9 +19,9 @@
                 <v-select
                   v-model="$store.state.search.refName"
                   :items="$store.state.refs"
+                  @input="change_ref"
                   label="来源"
                   outlined
-                  @input="change_ref"
                 ></v-select>
               </v-col>
             </v-row>
@@ -37,49 +37,49 @@
                 <v-banner single-line class="search-chip">
                   <v-chip
                     v-if="$store.state.search.query"
-                    close
-                    label
-                    class="primary elevation-2"
                     @click:close="
                       $store.commit('set_search_query', '')
                       $store.dispatch('fetch_news')
                     "
+                    close
+                    label
+                    class="primary elevation-2"
                     >{{ $store.state.search.query }}</v-chip
                   >
 
                   <v-chip
                     v-if="$store.state.search.tagName"
-                    close
-                    label
-                    class="primary elevation-2"
                     @click:close="
                       $store.commit('set_search_tag_name', '')
                       $store.dispatch('fetch_news')
                     "
+                    close
+                    label
+                    class="primary elevation-2"
                     >{{ $store.state.search.tagName }}</v-chip
                   >
 
                   <v-chip
                     v-if="$store.state.search.refName"
-                    close
-                    label
-                    class="primary elevation-2"
                     @click:close="
                       $store.commit('set_search_ref_name', '')
                       $store.dispatch('fetch_news')
                     "
+                    close
+                    label
+                    class="primary elevation-2"
                     >{{ $store.state.search.refName }}</v-chip
                   >
 
                   <template v-slot:actions>
                     <v-btn
-                      color="secondary"
                       @click="
                         ;($store.state.search.query = ''),
                           ($store.state.search.tagName = ''),
                           ($store.state.search.refName = ''),
                           $store.dispatch('fetch_news')
                       "
+                      color="secondary"
                       >清除所有</v-btn
                     >
                   </template>
@@ -113,13 +113,13 @@
                       ></v-rating>
 
                       <v-sheet
-                        class="link text-truncate transparent"
-                        style="width:100%"
                         @click="
                           ;(dialog = true),
                             (url = $store.state.news.top[0].ref_link),
                             (open_news = i)
                         "
+                        class="link text-truncate transparent"
+                        style="width:100%"
                       >
                         <span class="underline pointer title">
                           {{ $store.state.news.top[0].title }}
@@ -149,13 +149,13 @@
 
                       <div class="mt-5">
                         <v-btn
-                          color="secondary"
-                          x-large
                           @click="
                             ;(dialog = true),
                               (url = $store.state.news.top[0].ref_link),
                               (open_news = i)
                           "
+                          color="secondary"
+                          x-large
                         >
                           阅读更多
                         </v-btn>
@@ -194,7 +194,7 @@
                           {{ item.description }}
                         </span>
                         <br />
-                        <span class="link" @click="change_ref(item.ref.name)">
+                        <span @click="change_ref(item.ref.name)" class="link">
                           <span class=" pointer underline">
                             {{ item.ref.name }}
                           </span>
@@ -209,12 +209,12 @@
                   </v-col>
                   <v-col v-if="item.image" cols="auto">
                     <v-avatar
-                      class="pointer"
-                      size="125"
-                      tile
                       @click="
                         ;(dialog = true), (url = item.ref_link), (open_news = i)
                       "
+                      class="pointer"
+                      size="125"
+                      tile
                     >
                       <v-img :src="item.image"></v-img>
                     </v-avatar>
@@ -239,8 +239,8 @@
           <v-pagination
             v-if="$store.state.news"
             v-model="page"
-            class="news-pagination"
             :length="$store.state.news.latest.last_page"
+            class="news-pagination"
             color="primary"
             circle
           ></v-pagination>
@@ -255,13 +255,13 @@
               <v-btn
                 v-for="(item, i) in $store.state.analysis.news.data"
                 :key="i"
-                class="ma-1"
-                small
-                outlined
                 @click="
                   $store.commit('set_search_query', item.title)
                   $store.dispatch('fetch_news')
                 "
+                class="ma-1"
+                small
+                outlined
               >
                 {{ item.title }} {{ item.hit }}
               </v-btn>
@@ -291,13 +291,13 @@
     </div>
 
     <v-btn
+      @click="$store.dispatch('fetch_news')"
       color="parimary"
       dark
       fixed
       bottom
       right
       fab
-      @click="$store.dispatch('fetch_news')"
     >
       <v-icon>mdi-refresh</v-icon>
     </v-btn>
