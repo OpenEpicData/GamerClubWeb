@@ -42,14 +42,11 @@
 </template>
 
 <script>
-import Header from '~/components/layout/Header'
-import Drawer from '~/components/layout/Drawer'
-import List from '~/components/layout/List'
 export default {
   components: {
-    Header,
-    Drawer,
-    List
+    Header: () => import('~/components/news/Header'),
+    Drawer: () => import('~/components/news/Drawer'),
+    List: () => import('~/components/news/List')
   },
   async mounted() {
     await this.$store.dispatch('fetch_news')

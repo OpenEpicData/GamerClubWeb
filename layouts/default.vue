@@ -11,10 +11,9 @@
 </template>
 
 <script>
-import AppBar from '~/components/layout/AppBar'
 export default {
   components: {
-    AppBar
+    AppBar: () => import('~/components/layout/AppBar')
   }
 }
 </script>
