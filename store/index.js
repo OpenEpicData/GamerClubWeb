@@ -72,33 +72,36 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetch_news({ commit }) {
+  fetch_news({ commit }) {
     commit('set_news', null)
-    const fetchNews = await this.$axios.get(
-      `/api/article/news
+    return this.$axios
+      .get(
+        `/api/article/news
 ?length=${this.state.search.length}
 &page=${this.state.search.page}
 &q=${this.state.search.query}
 &tagName=${this.state.search.tagName}
 &refName=${this.state.search.refName}`
-    )
-    const data = fetchNews.data
-    commit('set_search_page', data.current_page)
-    commit('set_news', data)
+      )
+      .then((res) => {
+        const data = res.data
+        commit('set_search_page', data.current_page)
+        commit('set_news', data)
+      })
   },
 
-  async fetch_tags({ commit }) {
+  fetch_tags({ commit }) {
     commit('set_tags', null)
-    const tags = await this.$axios.get(`/api/article/tags`)
-    const data = tags.data
-    commit('set_tags', data)
+    return this.$axios.get(`/api/article/tags`).then((res) => {
+      commit('set_tags', res.data)
+    })
   },
 
-  async fetch_refs({ commit }) {
+  fetch_refs({ commit }) {
     commit('set_refs', null)
-    const refs = await this.$axios.get(`/api/article/refs`)
-    const data = refs.data
-    commit('set_refs', data)
+    return this.$axios.get(`/api/article/refs`).then((res) => {
+      commit('set_refs', res.data)
+    })
   },
 
   async fetch_changelog({ commit }) {
@@ -114,10 +117,10 @@ export const actions = {
     commit('setChangelog', changelog)
   },
 
-  async fetch_analysis_news({ commit }) {
+  fetch_analysis_news({ commit }) {
     commit('setAnalysisNews', null)
-    const analysisNews = await this.$axios.get(`/api/analysis/news`)
-    const data = analysisNews.data
-    commit('setAnalysisNews', data)
+    return this.$axios.get(`/api/analysis/news`).then((res) => {
+      commit('setAnalysisNews', res.data)
+    })
   }
 }

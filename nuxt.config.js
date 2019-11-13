@@ -22,7 +22,7 @@ export default {
       {
         rel: 'icon',
         type: 'image/png',
-        href: 'https://s2.ax1x.com/2019/06/26/ZmY8vq.png'
+        href: '/static/icon.png'
       }
     ]
   },
@@ -62,24 +62,20 @@ export default {
    ** See https://github.com/nuxt-community/vuetify-module#optionspath
    */
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
     icons: {
       iconfont: 'mdi'
     },
     rtl: false,
     theme: {
-      dark: true,
+      light: true,
       themes: {
-        dark: {
-          primary: '#6990ff',
-          secondary: '#0681ff',
-          tertiary: '#28355c',
-          accent: '#49b3ad',
-          error: '#B83737',
-          warning: '#B83737',
-          info: '#376BBB',
-          success: '#33993D',
-          white: '#FFFFFF'
+        light: {
+          primary: '#085FF4',
+          secondary: '#0938FC',
+          tertiary: '#0F88EE',
+          accent: '#A5C6D3',
+          error: '#609CDA',
+          warning: '#8F4439'
         }
       }
     },
