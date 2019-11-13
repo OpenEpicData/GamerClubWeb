@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <AppBar />
+      <ToolBar />
     </v-container>
 
     <v-content>
@@ -13,7 +13,7 @@
 <script>
 export default {
   components: {
-    AppBar: () => import('~/components/layout/AppBar')
+    ToolBar: () => import('~/components/layout/ToolBar')
   }
 }
 </script>
