@@ -13,12 +13,9 @@
             <v-row no-gutters class="d-flex justify-center my-4">
               <v-col cols="12" md="10">
                 <v-row>
-                  <v-col
-                    v-if="item.image"
-                    cols="2"
-                    class="mr-auto d-none d-md-flex"
-                  >
+                  <v-col cols="2" class="mr-auto d-none d-md-flex">
                     <v-img
+                      v-if="item.image"
                       @click="
                         ;(dialog = true), (url = item.ref_link), (open_news = i)
                       "
@@ -28,6 +25,14 @@
                       height="100%"
                       max-height="60"
                     ></v-img>
+                    <v-skeleton-loader
+                      v-else
+                      boilerplate="false"
+                      class="mx-auto"
+                      type="card"
+                      max-height="60"
+                      width="100%"
+                    ></v-skeleton-loader>
                   </v-col>
 
                   <v-col col="auto" md="10">
@@ -126,7 +131,7 @@
 export default {
   props: {
     news: {
-      type: Object,
+      type: Array,
       default: null
     },
     title: {
