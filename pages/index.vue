@@ -59,7 +59,7 @@ export default {
 
 <style lang="scss">
 .sticky {
-  position: sticky;
-  top: 20px;
+  position: sticky !important;
+  top: 20px !important;
 }
 </style>
