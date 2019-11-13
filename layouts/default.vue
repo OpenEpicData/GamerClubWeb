@@ -13,7 +13,7 @@
 <script>
 export default {
   components: {
-    AppBar: () => import('~/components/layout/AppBar')
+    AppBar: () => import('@/components/layout/AppBar')
   }
 }
 </script>
