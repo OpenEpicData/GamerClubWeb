@@ -2,7 +2,7 @@
   <v-card flat color="transparent">
     <v-card-text>
       <h2 class="subtitle-2 mb-2">
-        近期搜索
+        搜索条件
       </h2>
 
       <div
@@ -15,7 +15,7 @@
         <v-chip
           v-if="$store.state.search.query"
           @click:close="
-            $store.commit('set_search_query', '')
+            $store.commit('setSearch', { query: '' })
             $store.dispatch('fetch_news')
           "
           close
@@ -26,7 +26,7 @@
         <v-chip
           v-if="$store.state.search.tagName"
           @click:close="
-            $store.commit('set_search_tag_name', '')
+            $store.commit('setSearch', { tagName: '' })
             $store.dispatch('fetch_news')
           "
           close
@@ -37,7 +37,7 @@
         <v-chip
           v-if="$store.state.search.refName"
           @click:close="
-            $store.commit('set_search_ref_name', '')
+            $store.commit('setSearch', { refName: '' })
             $store.dispatch('fetch_news')
           "
           close
@@ -56,7 +56,7 @@
         v-for="(item, i) in $store.state.analysis.news.data.slice(0, 3)"
         :key="i"
         @click="
-          $store.commit('set_search_query', item.title)
+          $store.commit('setSearch', { query: item.title })
           $store.dispatch('fetch_news')
         "
         class="mr-1 mb-1"
@@ -104,7 +104,7 @@ export default {
   },
   watch: {
     refName(newVal, oldVal) {
-      this.$store.commit('set_search_ref_name', newVal)
+      this.$store.commit('setSearch', { refName: newVal })
       this.$store.dispatch('fetch_news')
     }
   }

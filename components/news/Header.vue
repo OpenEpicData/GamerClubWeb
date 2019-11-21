@@ -7,8 +7,8 @@
             <div class="text-center">
               <h3 class="mt-5 display-1">
                 查询到
-                <span v-if="$store.state.news">
-                  {{ $store.state.news.latest.total }}
+                <span v-if="$store.state.data.news">
+                  {{ $store.state.data.news.latest.total }}
                 </span>
                 条新闻
               </h3>

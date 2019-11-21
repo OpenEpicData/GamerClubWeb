@@ -27,7 +27,7 @@
                     ></v-img>
                     <v-skeleton-loader
                       v-else
-                      boilerplate="false"
+                      :boilerplate="false"
                       class="mx-auto"
                       type="card"
                       max-height="60"
@@ -60,7 +60,7 @@
                 <div>
                   <v-chip
                     @click="
-                      $store.commit('set_search_ref_name', item.ref.name)
+                      $store.commit('setSearch', { refName: item.ref.name })
                       $store.dispatch('fetch_news')
                     "
                     small
@@ -87,7 +87,7 @@
           <v-pagination
             v-if="pagination"
             v-model="page"
-            :length="$store.state.news.latest.last_page"
+            :length="$store.state.data.news.latest.last_page"
             class="news-pagination"
             color="primary"
             circle
@@ -148,12 +148,12 @@ export default {
       dialog: false,
       url: null,
       open_news: null,
-      page: this.$store.state.news.latest.current_page
+      page: this.$store.state.data.news.latest.current_page
     }
   },
   watch: {
     page(newVal, oldVal) {
-      this.$store.commit('set_search_page', this.page)
+      this.$store.commit('setSearch', { page: this.page })
       this.$store.dispatch('fetch_news')
     },
     dialog(newVal, oldVal) {
