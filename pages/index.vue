@@ -11,7 +11,12 @@
 
           <v-col v-if="$store.state.news" cols="12" md="8" lg="8">
             <List
-              v-if="$store.state.news.top.length > 0"
+              v-if="
+                $store.state.news.top.length > 0 &&
+                  !$store.state.search.query &&
+                  !$store.state.search.tagName &&
+                  !$store.state.search.refName
+              "
               :news.sync="$store.state.news.top.slice(0, 3)"
               :title="`热门新闻`"
               class="mb-5"

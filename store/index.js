@@ -25,6 +25,10 @@ export const state = () => ({
 })
 
 export const mutations = {
+  setSearch(state, data) {
+    state.search = Object.assign(state.search, data)
+  },
+
   setAnalysisNews(state, analysisNews) {
     state.analysis.news = analysisNews
   },

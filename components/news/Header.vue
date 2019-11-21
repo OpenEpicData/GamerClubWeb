@@ -27,12 +27,12 @@
                 <v-text-field
                   v-model="search"
                   @keyup.enter="
-                    $store.commit('set_search_query', search)
+                    $store.commit('setSearch', { query: search })
                     $store.dispatch('fetch_news')
                   "
                   :placeholder="$store.state.search.query"
                   @click:clear="
-                    $store.commit('set_search_query', '')
+                    $store.commit('setSearch', { query: '' })
                     $store.dispatch('fetch_news')
                   "
                   flat
@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     change_tag(data) {
-      this.$store.commit('set_search_tag_name', data)
+      this.$store.commit('setSearch', { tagName: data })
       this.$store.dispatch('fetch_news')
     }
   }
