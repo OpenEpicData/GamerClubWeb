@@ -1,11 +1,8 @@
 export const strict = false
 
 export const state = () => ({
-  drawer: true,
-  changelog: {
-    dialog: null,
-    data: null
-  },
+  title: 'EpicGamer',
+  breadcrumbs: [{ text: 'EpicGamer', to: '/' }, { text: '新闻' }],
   data: {
     news: null,
     tags: null,

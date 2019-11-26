@@ -46,10 +46,10 @@
                 ></v-text-field>
               </v-col>
 
-              <v-col v-if="$store.state.tags" cols="6">
+              <v-col v-if="$store.state.data.tags" cols="6">
                 <v-select
                   v-model="$store.state.search.tagName"
-                  :items="$store.state.tags"
+                  :items="$store.state.data.tags"
                   @input="change_tag"
                   label="标签"
                   outlined

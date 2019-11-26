@@ -1,9 +1,15 @@
 <template>
   <v-card flat color="transparent">
     <v-card-text>
-      <h2 class="subtitle-2 mb-2">
-        搜索条件
-      </h2>
+      <v-breadcrumbs
+        :items="breadcrumbs"
+        divider=">"
+        class="breadcrumbsClass"
+      ></v-breadcrumbs>
+    </v-card-text>
+
+    <v-card-text>
+      <h2 class="subtitle-2 mb-2">搜索条件</h2>
 
       <div
         v-if="
@@ -48,9 +54,7 @@
     </v-card-text>
 
     <v-card-text v-if="$store.state.analysis.news">
-      <h2 class="subtitle-2 mb-2">
-        热门趋势
-      </h2>
+      <h2 class="subtitle-2 mb-2">热门趋势</h2>
 
       <v-btn
         v-for="(item, i) in $store.state.analysis.news.data.slice(0, 3)"
@@ -62,9 +66,8 @@
         class="mr-1 mb-1"
         small
         outlined
+        >{{ item.title }}</v-btn
       >
-        {{ item.title }}
-      </v-btn>
     </v-card-text>
 
     <v-card-text v-else>
@@ -78,13 +81,11 @@
     <v-card-text class="redio">
       <v-radio-group v-model="refName" hide-details>
         <template v-slot:label>
-          <h2 class="subtitle-2">
-            按来源筛选
-          </h2>
+          <h2 class="subtitle-2">按来源筛选</h2>
         </template>
 
         <v-radio
-          v-for="(item, i) in $store.state.refs"
+          v-for="(item, i) in $store.state.data.refs"
           :key="i"
           :label="item"
           :value="item"
@@ -99,7 +100,8 @@
 export default {
   data() {
     return {
-      refName: this.$store.state.search.refName
+      refName: this.$store.state.search.refName,
+      breadcrumbs: this.$store.state.breadcrumbs
     }
   },
   watch: {
@@ -117,5 +119,9 @@ export default {
     margin-top: 0;
     padding-top: 0;
   }
+}
+
+.breadcrumbsClass {
+  padding: 0 !important;
 }
 </style>
