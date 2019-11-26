@@ -1,14 +1,6 @@
 <template>
   <v-card flat color="transparent">
     <v-card-text>
-      <v-breadcrumbs
-        :items="breadcrumbs"
-        divider=">"
-        class="breadcrumbsClass"
-      ></v-breadcrumbs>
-    </v-card-text>
-
-    <v-card-text>
       <h2 class="subtitle-2 mb-2">搜索条件</h2>
 
       <div
@@ -100,8 +92,7 @@
 export default {
   data() {
     return {
-      refName: this.$store.state.search.refName,
-      breadcrumbs: this.$store.state.breadcrumbs
+      refName: this.$store.state.search.refName
     }
   },
   watch: {

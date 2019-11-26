@@ -1,12 +1,14 @@
 <template>
   <v-app-bar flat color="transparent">
     <v-toolbar-title class="app-title">
-      <v-avatar>
-        <v-icon size="48" color="primary">
-          mdi-gamepad-variant-outline
-        </v-icon>
-      </v-avatar>
-      EpicGamer
+      <nuxt-link to="/" exact class="link">
+        <v-avatar>
+          <v-icon size="48" color="primary">
+            mdi-gamepad-variant-outline
+          </v-icon>
+        </v-avatar>
+        EpicGamer
+      </nuxt-link>
     </v-toolbar-title>
 
     <v-spacer></v-spacer>
@@ -42,3 +44,9 @@ export default {
   })
 }
 </script>
+
+<style lang="scss" scoped>
+.link {
+  text-decoration-line: none !important;
+}
+</style>
