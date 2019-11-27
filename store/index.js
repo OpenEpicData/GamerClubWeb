@@ -5,7 +5,15 @@ export const state = () => ({
   data: {
     news: null,
     tags: null,
-    refs: null
+    refs: null,
+    steam: {
+      user: {
+        count: {
+          user: null,
+          created_at: null
+        }
+      }
+    }
   },
   search: {
     query: '',
@@ -33,6 +41,13 @@ export const mutations = {
 
   setAnalysisNews(state, analysisNews) {
     state.analysis.news = analysisNews
+  },
+
+  setSteamUserCount(state, data) {
+    state.data.steam.user.count = Object.assign(
+      state.data.steam.user.count,
+      data
+    )
   }
 }
 
@@ -70,6 +85,14 @@ export const actions = {
     commit('setAnalysisNews', null)
     return this.$axios.get(`/api/analysis/news`).then((res) => {
       commit('setAnalysisNews', res.data)
+    })
+  },
+
+  async fetch_steam_user_count({ commit }) {
+    const res = await this.$axios.get('/api/game/steam/user_count')
+    commit('setSteamUserCount', {
+      user: res.data.user,
+      created_at: res.data.created_at
     })
   }
 }

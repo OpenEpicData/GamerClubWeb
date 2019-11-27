@@ -2,9 +2,13 @@
   <div>
     <Header />
 
-    <v-container>
+    <v-container style="position: relative;top: -50px;">
       <div>
         <v-row>
+          <v-col v-if="options" cols="12">
+            <Chart :options.sync="options" :series.sync="series" />
+          </v-col>
+
           <v-col cols="12" md="4" lg="4">
             <Drawer class="sticky" />
           </v-col>
@@ -51,13 +55,36 @@ export default {
   components: {
     Header: () => import('~/components/news/Header'),
     Drawer: () => import('~/components/news/Drawer'),
-    List: () => import('~/components/news/List')
+    List: () => import('~/components/news/List'),
+    Chart: () => import('~/components/steam/user/Chart')
+  },
+  data() {
+    return {}
+  },
+  async asyncData({ $axios }) {
+    const { data } = await $axios.get(`/api/game/steam/user_count`)
+    return {
+      series: [{ name: '在线人数', data: data.user }],
+      options: {
+        xaxis: {
+          type: 'datetime',
+          categories: data.created_at
+        },
+        theme: {
+          monochrome: {
+            enabled: true,
+            color: '#085FF4'
+          }
+        }
+      }
+    }
   },
   async mounted() {
     await this.$store.dispatch('fetch_news')
     await this.$store.dispatch('fetch_tags')
     await this.$store.dispatch('fetch_refs')
     await this.$store.dispatch('fetch_analysis_news')
+    await this.$store.dispatch('fetch_steam_user_count')
   }
 }
 </script>

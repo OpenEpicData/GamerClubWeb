@@ -37,7 +37,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/dayjs'],
+  plugins: [
+    { src: '~/plugins/dayjs' },
+    { src: '~/plugins/vue-apexchart.js', ssr: false }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
