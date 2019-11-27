@@ -86,7 +86,6 @@ export default {
     await this.$store.dispatch('fetch_tags')
     await this.$store.dispatch('fetch_refs')
     await this.$store.dispatch('fetch_analysis_news')
-    await this.$store.dispatch('fetch_steam_user_count')
   }
 }
 </script>
