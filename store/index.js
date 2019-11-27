@@ -38,6 +38,7 @@ export const mutations = {
 
 export const actions = {
   fetch_news({ commit }) {
+    commit('setData', { news: null })
     return this.$axios
       .get(
         `/api/article/news
@@ -48,19 +49,8 @@ export const actions = {
 &refName=${this.state.search.refName}`
       )
       .then((res) => {
-        const result = res.data
-        if (
-          this.state.data.news &&
-          result.latest.data[0].id !== this.state.data.news.latest.data[0].id
-        ) {
-          commit('setSearch', { page: result.latest.current_page })
-          commit('setData', { news: result })
-        }
-
-        if (!this.state.data.news) {
-          commit('setSearch', { page: result.current_page })
-          commit('setData', { news: result })
-        }
+        commit('setSearch', { page: res.data.current_page })
+        commit('setData', { news: res.data })
       })
   },
 
