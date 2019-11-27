@@ -62,7 +62,9 @@ export default {
     return {}
   },
   async asyncData({ $axios }) {
-    const { data } = await $axios.get(`/api/game/steam/user_count`)
+    const { data } = await $axios.get(
+      `http://api.epicdata.net:1234/api/game/steam/user_count`
+    )
     return {
       series: [{ name: '在线人数', data: data.user }],
       options: {
