@@ -9,8 +9,8 @@
         </v-col>
 
         <v-col v-for="(item, i) in news" :key="i" cols="12">
-          <v-card flat color="transparent">
-            <v-row no-gutters class="d-flex justify-center my-4">
+          <v-card flat color="transparent" hover class="py-4">
+            <v-row no-gutters class="d-flex justify-center">
               <v-col cols="12" md="10">
                 <v-row>
                   <v-col cols="2" class="mr-auto d-none d-md-flex">
@@ -25,14 +25,6 @@
                       height="100%"
                       max-height="60"
                     ></v-img>
-                    <v-skeleton-loader
-                      v-else
-                      :boilerplate="false"
-                      class="mx-auto"
-                      type="card"
-                      max-height="60"
-                      width="100%"
-                    ></v-skeleton-loader>
                   </v-col>
 
                   <v-col col="auto" md="10">
