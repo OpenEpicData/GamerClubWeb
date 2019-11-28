@@ -39,6 +39,10 @@ export default {
 </style>
 
 <style lang="scss">
+a {
+  text-decoration-line: none;
+}
+
 h1,
 h2,
 h3,

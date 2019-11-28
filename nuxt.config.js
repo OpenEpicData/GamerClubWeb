@@ -75,7 +75,7 @@ export default {
         light: {
           primary: '#085FF4',
           secondary: '#0938FC',
-          tertiary: '#0F88EE',
+          tertiary: '#E1F5FE',
           accent: '#A5C6D3',
           error: '#609CDA',
           warning: '#8F4439'

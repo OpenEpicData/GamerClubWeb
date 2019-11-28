@@ -1,18 +1,36 @@
 <template>
   <div>
+    <div class="mx-5">
+      <v-card class="tertiary  py-12">
+        <v-container>
+          <v-row class="align-center">
+            <v-col cols="12" md="6" lg="5">
+              <Status :data.sync="user_status" />
+            </v-col>
+
+            <v-col v-if="options" cols="12" md="6" lg="7">
+              <Chart :options.sync="options" :series.sync="series" />
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+
+      <v-card flat class="py-12">
+        <v-container>
+          <v-row>
+            <v-col>
+              <Weekly />
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+    </div>
+
     <Header />
 
-    <v-container style="position: relative;top: -50px;">
+    <v-container>
       <div>
         <v-row>
-          <v-col cols="12" md="6">
-            <Status :data.sync="user_status" />
-          </v-col>
-
-          <v-col v-if="options" cols="12" md="6">
-            <Chart :options.sync="options" :series.sync="series" />
-          </v-col>
-
           <v-col cols="12" md="4" lg="4">
             <Drawer class="sticky" />
           </v-col>
@@ -61,7 +79,8 @@ export default {
     Drawer: () => import('~/components/news/Drawer'),
     List: () => import('~/components/news/List'),
     Chart: () => import('~/components/steam/user/Chart'),
-    Status: () => import('~/components/steam/user/Status')
+    Status: () => import('~/components/steam/user/Status'),
+    Weekly: () => import('~/components/steam/seller/Weekly')
   },
   data() {
     return {}

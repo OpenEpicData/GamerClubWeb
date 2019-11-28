@@ -13,7 +13,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-btn v-for="(item, i) in appBar.data" :key="i" text>
+    <v-btn v-for="(item, i) in appBar.data" :key="i" :to="item.link" text exact>
       {{ item.text }}
     </v-btn>
   </v-app-bar>
@@ -31,13 +31,12 @@ export default {
     appBar: {
       data: [
         {
-          text: '数据分析'
+          text: '主页',
+          link: '/'
         },
         {
-          text: '关于我们'
-        },
-        {
-          text: '中文'
+          text: '业界新闻',
+          link: '/news'
         }
       ]
     }

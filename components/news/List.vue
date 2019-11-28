@@ -11,7 +11,7 @@
         <v-col v-for="(item, i) in news" :key="i" cols="12">
           <v-card flat color="transparent" hover class="py-4">
             <v-row no-gutters class="d-flex align-center">
-              <v-col cols="12" md="11">
+              <v-col cols="12" md="10">
                 <v-row>
                   <v-col cols="2" class="mr-auto d-none d-md-flex">
                     <v-img
@@ -52,7 +52,7 @@
 
               <v-col
                 cols="auto"
-                md="1"
+                md="2"
                 class="ml-auto d-none d-md-flex float-right"
               >
                 <div>

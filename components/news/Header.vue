@@ -1,6 +1,6 @@
 <template>
   <div class="mx-5">
-    <v-card class="header tertiary" dark height="200px">
+    <v-card class="header primary" dark height="200px">
       <v-container class="fill-height">
         <v-row class="d-flex justify-center">
           <v-col cols="12" lg="10" xl="8">

@@ -12,6 +12,9 @@ export const state = () => ({
           user: null,
           created_at: null
         }
+      },
+      weekly: {
+        sellers: null
       }
     }
   },
@@ -48,6 +51,10 @@ export const mutations = {
       state.data.steam.user.count,
       data
     )
+  },
+
+  setSteamWeekly(state, data) {
+    state.data.steam.weekly = Object.assign(state.data.steam.weekly, data)
   }
 }
 
@@ -93,6 +100,13 @@ export const actions = {
     commit('setSteamUserCount', {
       user: res.data.user,
       created_at: res.data.created_at
+    })
+  },
+
+  async fetch_steam_weekly_sellers({ commit }) {
+    const res = await this.$axios.get('/api/game/steam/weekly_top_sellers')
+    commit('setSteamWeekly', {
+      sellers: res.data
     })
   }
 }
