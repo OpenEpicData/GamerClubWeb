@@ -1,23 +1,17 @@
 <template>
   <div>
-    <v-card flat color="transparent">
-      <v-card-text>
-        <h2 class="subtitle-2 text-center">Steam 在线人数</h2>
-
-        <client-only>
-          <!-- eslint-disable vue/require-component-is -->
-          <component
-            :is="apexchart"
-            :options="options"
-            :series="series"
-            class="mt-5"
-            height="300px"
-            width="100%"
-            type="area"
-          />
-        </client-only>
-      </v-card-text>
-    </v-card>
+    <client-only>
+      <!-- eslint-disable vue/require-component-is -->
+      <component
+        :is="apexchart"
+        :options="options"
+        :series="series"
+        class="mt-5"
+        height="300px"
+        width="100%"
+        type="area"
+      />
+    </client-only>
   </div>
 </template>
 

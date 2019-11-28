@@ -5,7 +5,11 @@
     <v-container style="position: relative;top: -50px;">
       <div>
         <v-row>
-          <v-col v-if="options" cols="12">
+          <v-col cols="12" md="6">
+            <Status :data.sync="user_status" />
+          </v-col>
+
+          <v-col v-if="options" cols="12" md="6">
             <Chart :options.sync="options" :series.sync="series" />
           </v-col>
 
@@ -56,7 +60,8 @@ export default {
     Header: () => import('~/components/news/Header'),
     Drawer: () => import('~/components/news/Drawer'),
     List: () => import('~/components/news/List'),
-    Chart: () => import('~/components/steam/user/Chart')
+    Chart: () => import('~/components/steam/user/Chart'),
+    Status: () => import('~/components/steam/user/Status')
   },
   data() {
     return {}
@@ -66,6 +71,7 @@ export default {
       `http://api.epicdata.net:1234/api/game/steam/user_count`
     )
     return {
+      user_status: data.today,
       series: [{ name: '在线人数', data: data.user }],
       options: {
         xaxis: {
