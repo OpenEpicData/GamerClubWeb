@@ -58,6 +58,18 @@ export default {
     await this.$store.dispatch('fetch_tags')
     await this.$store.dispatch('fetch_refs')
     await this.$store.dispatch('fetch_analysis_news')
+  },
+  head() {
+    return {
+      title: '业内新闻',
+      meta: [
+        {
+          hid: 'news',
+          name: 'description',
+          content: '在 EpicGamer 里浏览最新的业界资讯。'
+        }
+      ]
+    }
   }
 }
 </script>

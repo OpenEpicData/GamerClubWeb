@@ -16,7 +16,7 @@
       }})
     </h2>
 
-    <v-simple-table class="mt-10" fixed-header height="400px">
+    <v-simple-table class="mt-10" fixed-header>
       <template v-slot:default>
         <thead>
           <tr>

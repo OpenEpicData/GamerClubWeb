@@ -4,7 +4,7 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: 'EpicData Gamer | 游戏玩家俱乐部',
+    titleTemplate: '%s | EpicGamer',
     htmlAttrs: {
       lang: 'zh-CN'
     },
@@ -14,8 +14,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content:
-          '阅览业内新闻，追踪实时报道，在 EpicData Gamer 发现不一样的世界'
+        content: 'EpicGamer 提供行业内专业资讯，数据以及分析报告'
       }
     ],
     link: [

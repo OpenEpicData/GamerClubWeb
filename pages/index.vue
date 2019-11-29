@@ -25,59 +25,12 @@
         </v-container>
       </v-card>
     </div>
-
-    <Header />
-
-    <v-container>
-      <div>
-        <v-row>
-          <v-col cols="12" md="4" lg="4">
-            <Drawer class="sticky" />
-          </v-col>
-
-          <v-col v-if="$store.state.data.news" cols="12" md="8" lg="8">
-            <List
-              v-if="
-                $store.state.data.news.top.length > 0 &&
-                  !$store.state.search.query &&
-                  !$store.state.search.tagName &&
-                  !$store.state.search.refName
-              "
-              :news.sync="$store.state.data.news.top.slice(0, 3)"
-              :title="`热门新闻`"
-              class="mb-5"
-            />
-
-            <List
-              :news.sync="$store.state.data.news.latest.data"
-              :title="`刚刚发生`"
-              :pagination="true"
-            />
-          </v-col>
-        </v-row>
-      </div>
-    </v-container>
-
-    <v-btn
-      @click="$store.dispatch('fetch_news')"
-      color="primary"
-      dark
-      fixed
-      bottom
-      right
-      fab
-    >
-      <v-icon>mdi-refresh</v-icon>
-    </v-btn>
   </div>
 </template>
 
 <script>
 export default {
   components: {
-    Header: () => import('~/components/news/Header'),
-    Drawer: () => import('~/components/news/Drawer'),
-    List: () => import('~/components/news/List'),
     Chart: () => import('~/components/steam/user/Chart'),
     Status: () => import('~/components/steam/user/Status'),
     Weekly: () => import('~/components/steam/seller/Weekly')
@@ -111,6 +64,11 @@ export default {
     await this.$store.dispatch('fetch_tags')
     await this.$store.dispatch('fetch_refs')
     await this.$store.dispatch('fetch_analysis_news')
+  },
+  head() {
+    return {
+      title: '游戏玩家俱乐部'
+    }
   }
 }
 </script>
