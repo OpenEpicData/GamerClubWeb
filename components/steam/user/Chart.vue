@@ -6,7 +6,6 @@
         :is="apexchart"
         :options="options"
         :series="series"
-        class="mt-5"
         height="300px"
         width="100%"
         type="area"

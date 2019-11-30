@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h2 class="display-2 secondary--text">Steam 在线人数</h2>
+    <v-badge>
+      <template v-slot:badge>
+        <v-icon dark>mdi-camera-timer</v-icon>
+        UTC
+      </template>
+      <h2 class="display-2 secondary--text">
+        Steam 在线人数
+      </h2>
+    </v-badge>
 
     <v-row class="my-5">
       <v-col cols="12" sm="6" class="mt-10">

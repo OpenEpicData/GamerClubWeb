@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mx-5">
-      <v-card class="tertiary  py-12">
+      <v-card class="tertiary py-12">
         <v-container>
           <v-row class="align-center">
             <v-col cols="12" md="6" lg="5">
@@ -42,10 +42,14 @@ export default {
     const { data } = await $axios.get(
       `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count`
     )
+
     return {
       user_status: data.today,
-      series: [{ name: '在线人数', data: data.user }],
+      series: [{ name: '在线人数(PRC)', data: data.user }],
       options: {
+        stroke: {
+          show: true
+        },
         xaxis: {
           type: 'datetime',
           categories: data.created_at
@@ -58,32 +62,6 @@ export default {
         }
       }
     }
-  },
-  beforeMount() {
-    const self = this
-    setInterval(fetchUserCount, 30000)
-    async function fetchUserCount() {
-      const { data } = await self.$axios.get(
-        `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count`
-      )
-      return {
-        user_status: data.today,
-        series: [{ name: '在线人数', data: data.user }],
-        options: {
-          xaxis: {
-            type: 'datetime',
-            categories: data.created_at
-          },
-          theme: {
-            monochrome: {
-              enabled: true,
-              color: '#085FF4'
-            }
-          }
-        }
-      }
-    }
-    fetchUserCount()
   },
   head() {
     return {
