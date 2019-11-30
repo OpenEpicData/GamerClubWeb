@@ -59,7 +59,7 @@
                     "
                     small
                     label
-                    color="accent"
+                    color="tertiary"
                   >
                     <v-icon left small>mdi-map-marker</v-icon>
                     {{ item.ref.name }}
