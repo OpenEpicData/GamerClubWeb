@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <ToolBar />
+      <ToolBar class="layout-toolbar" />
     </v-container>
 
     <v-content>
@@ -39,6 +39,12 @@ export default {
 </style>
 
 <style lang="scss">
+.layout-toolbar {
+  .v-toolbar__content {
+    padding: 0;
+  }
+}
+
 a {
   text-decoration-line: none;
 }

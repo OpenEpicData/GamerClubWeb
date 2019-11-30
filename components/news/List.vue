@@ -105,19 +105,6 @@
         </v-card>
       </v-dialog>
     </div>
-    <div v-else>
-      <v-row>
-        <v-col cols="12">
-          <v-skeleton-loader
-            v-for="i in 16"
-            :key="i"
-            class="mx-auto"
-            type="list-item-avatar-three-line"
-          ></v-skeleton-loader>
-        </v-col>
-        <v-col md="4"></v-col>
-      </v-row>
-    </div>
   </div>
 </template>
 
