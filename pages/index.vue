@@ -59,11 +59,31 @@ export default {
       }
     }
   },
-  async mounted() {
-    await this.$store.dispatch('fetch_news')
-    await this.$store.dispatch('fetch_tags')
-    await this.$store.dispatch('fetch_refs')
-    await this.$store.dispatch('fetch_analysis_news')
+  beforeMount() {
+    const self = this
+    setInterval(fetchUserCount, 30000)
+    async function fetchUserCount() {
+      const { data } = await self.$axios.get(
+        `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count`
+      )
+      return {
+        user_status: data.today,
+        series: [{ name: '在线人数', data: data.user }],
+        options: {
+          xaxis: {
+            type: 'datetime',
+            categories: data.created_at
+          },
+          theme: {
+            monochrome: {
+              enabled: true,
+              color: '#085FF4'
+            }
+          }
+        }
+      }
+    }
+    fetchUserCount()
   },
   head() {
     return {
