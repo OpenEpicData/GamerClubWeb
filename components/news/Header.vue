@@ -1,29 +1,51 @@
 <template>
-  <div class="mx-5">
-    <v-card class="header primary" dark height="200px">
-      <v-container class="fill-height">
-        <v-row class="d-flex justify-center">
-          <v-col cols="12" lg="10" xl="8">
-            <div class="text-center">
-              <h3 class="mt-5 display-1">
-                查询到
-                <span v-if="$store.state.data.news">
-                  {{ $store.state.data.news.latest.total }}
-                </span>
-                条新闻
-              </h3>
-            </div>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
+  <div>
+    <v-container>
+      <div class="py-5">
+        <v-badge>
+          <template v-slot:badge v-if="$store.state.data.news">
+            <v-icon dark>mdi-magnify</v-icon>
+            {{ $store.state.data.news.latest.total }}
+          </template>
+          <h2 class="display-2 secondary--text">
+            业内新闻
+          </h2>
+        </v-badge>
+      </div>
 
-    <v-container class="search">
-      <v-row justify="center">
-        <v-col cols="12" xs="8" md="8">
-          <v-card raised>
-            <v-row no-gutters>
-              <v-col cols="6">
+      <v-divider />
+
+      <div>
+        <v-row class="align-center">
+          <v-col cols="12" md="9">
+            <v-row>
+              <v-col v-if="$store.state.data.tags" cols="6" md="3">
+                <v-select
+                  v-model="$store.state.search.tagName"
+                  :items="$store.state.data.tags"
+                  @input="change_tag"
+                  @click:clear="change_tag('')"
+                  clearable
+                  label="标签"
+                  outlined
+                  hide-details
+                ></v-select>
+              </v-col>
+
+              <v-col v-if="$store.state.data.refs" cols="6" md="3">
+                <v-select
+                  v-model="$store.state.search.refName"
+                  :items="$store.state.data.refs"
+                  @input="change_ref"
+                  @click:clear="change_tag('')"
+                  label="来源"
+                  outlined
+                  hide-details
+                  clearable
+                ></v-select>
+              </v-col>
+
+              <v-col cols="12" md="6">
                 <v-text-field
                   v-model="search"
                   @keyup.enter="
@@ -45,21 +67,34 @@
                   clearable
                 ></v-text-field>
               </v-col>
+            </v-row>
+          </v-col>
 
-              <v-col v-if="$store.state.data.tags" cols="6">
-                <v-select
-                  v-model="$store.state.search.tagName"
-                  :items="$store.state.data.tags"
-                  @input="change_tag"
-                  label="标签"
-                  outlined
-                  hide-details
-                ></v-select>
+          <v-col cols="12" md="3">
+            <v-row
+              no-gutters
+              class="justify-md-end align-center justify-space-between"
+            >
+              <v-col cols="3">
+                排序：
+              </v-col>
+
+              <v-col cols="4">
+                <v-btn block x-large disabled>
+                  日期
+                </v-btn>
+              </v-col>
+              <v-col cols="4">
+                <v-btn block x-large disabled>
+                  热门
+                </v-btn>
               </v-col>
             </v-row>
-          </v-card>
-        </v-col>
-      </v-row>
+          </v-col>
+        </v-row>
+      </div>
+
+      <v-divider />
     </v-container>
   </div>
 </template>
@@ -71,31 +106,23 @@
   background-repeat: repeat;
   background-size: auto 20vh;
 }
-
-.search {
-  position: relative;
-  top: -50px;
-}
-</style>
-
-<style lang="scss">
-.search {
-  .v-input {
-    border-radius: 0;
-  }
-}
 </style>
 
 <script>
 export default {
   data() {
     return {
-      search: this.$store.state.search.query
+      search: this.$store.state.search.query,
+      sort: null
     }
   },
   methods: {
     change_tag(data) {
       this.$store.commit('setSearch', { tagName: data })
+      this.$store.dispatch('fetch_news')
+    },
+    change_ref(data) {
+      this.$store.commit('setSearch', { refName: data })
       this.$store.dispatch('fetch_news')
     }
   }

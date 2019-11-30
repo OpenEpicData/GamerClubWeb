@@ -10,10 +10,10 @@
 
         <v-col v-for="(item, i) in news" :key="i" cols="12">
           <v-card flat color="transparent" hover class="py-4">
-            <v-row no-gutters class="d-flex align-center">
-              <v-col cols="12" md="10">
+            <v-row no-gutters class="align-center justify-space-between">
+              <v-col cols="10">
                 <v-row>
-                  <v-col cols="2" class="mr-auto d-none d-md-flex">
+                  <v-col cols="2" class="d-none d-md-flex pl-1">
                     <v-img
                       v-if="item.image"
                       @click="
@@ -27,7 +27,7 @@
                     ></v-img>
                   </v-col>
 
-                  <v-col col="auto" md="10">
+                  <v-col col="12" md="10">
                     <div>
                       <h4
                         @click="
@@ -50,11 +50,7 @@
                 </v-row>
               </v-col>
 
-              <v-col
-                cols="auto"
-                md="2"
-                class="ml-auto d-none d-md-flex float-right"
-              >
+              <v-col cols="auto" class="d-none d-md-flex text-right pr-1">
                 <div>
                   <v-chip
                     @click="

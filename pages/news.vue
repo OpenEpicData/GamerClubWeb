@@ -1,15 +1,11 @@
 <template>
   <div>
-    <Header />
+    <Header class="mt-5" />
 
     <v-container>
       <div>
         <v-row>
-          <v-col cols="12" md="4" lg="4">
-            <Drawer class="sticky" />
-          </v-col>
-
-          <v-col v-if="$store.state.data.news" cols="12" md="8" lg="8">
+          <v-col v-if="$store.state.data.news" cols="12">
             <List
               v-if="
                 $store.state.data.news.top.length > 0 &&
@@ -50,8 +46,18 @@
 export default {
   components: {
     Header: () => import('~/components/news/Header'),
-    Drawer: () => import('~/components/news/Drawer'),
     List: () => import('~/components/news/List')
+  },
+  data() {
+    return {
+      breadcrumbs: [
+        {
+          text: '新闻',
+          to: this.$route.path,
+          exact: true
+        }
+      ]
+    }
   },
   async mounted() {
     await this.$store.dispatch('fetch_news')
