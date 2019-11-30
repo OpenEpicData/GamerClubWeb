@@ -35,7 +35,7 @@ export default {
           link: '/'
         },
         {
-          text: '业界新闻',
+          text: '业内新闻',
           link: '/news'
         }
       ]
