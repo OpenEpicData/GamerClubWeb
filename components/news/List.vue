@@ -3,9 +3,9 @@
     <div v-if="news">
       <v-row no-gutters>
         <v-col cols="12">
-          <h2 class="headline font-weight-medium">
+          <h3 class="display-1 secondary--text">
             <span class="rainbow"> {{ title }} </span>
-          </h2>
+          </h3>
         </v-col>
 
         <v-col v-for="(item, i) in news" :key="i" cols="12">
@@ -13,7 +13,7 @@
             <v-row no-gutters class="align-center justify-space-between">
               <v-col cols="10">
                 <v-row>
-                  <v-col cols="2" class="d-none d-md-flex pl-1">
+                  <v-col cols="2" class="d-none d-md-flex">
                     <v-img
                       v-if="item.image"
                       @click="
@@ -50,7 +50,7 @@
                 </v-row>
               </v-col>
 
-              <v-col cols="auto" class="d-none d-md-flex text-right pr-1">
+              <v-col cols="auto" class="d-none d-md-flex text-right">
                 <div>
                   <v-chip
                     @click="
