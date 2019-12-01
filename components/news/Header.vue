@@ -4,7 +4,7 @@
       <div class="py-5">
         <v-badge>
           <template v-slot:badge v-if="$store.state.data.news">
-            <v-icon dark>mdi-magnify</v-icon>
+            <v-icon dark small>mdi-magnify</v-icon>
             {{ $store.state.data.news.latest.total }}
           </template>
           <h2 class="display-2 secondary--text">
@@ -29,7 +29,7 @@
                   label="标签"
                   outlined
                   hide-details
-                ></v-select>
+                />
               </v-col>
 
               <v-col v-if="$store.state.data.refs" cols="6" md="3">
@@ -42,7 +42,7 @@
                   outlined
                   hide-details
                   clearable
-                ></v-select>
+                />
               </v-col>
 
               <v-col cols="12" md="6">
@@ -65,7 +65,7 @@
                   outlined
                   solo
                   clearable
-                ></v-text-field>
+                />
               </v-col>
             </v-row>
           </v-col>
