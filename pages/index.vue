@@ -40,12 +40,12 @@ export default {
   },
   async asyncData({ $axios }) {
     const { data } = await $axios.get(
-      `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count`
+      `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count?today_sub_hours=8`
     )
 
     return {
       user_status: data.today,
-      series: [{ name: '在线人数(PRC)', data: data.user }],
+      series: [{ name: '在线人数', data: data.user }],
       options: {
         stroke: {
           show: true

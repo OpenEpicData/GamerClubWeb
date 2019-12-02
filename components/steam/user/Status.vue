@@ -2,10 +2,6 @@
   <div>
     <div>
       <v-badge>
-        <template v-slot:badge>
-          <v-icon dark small>mdi-camera-timer</v-icon>
-          UTC
-        </template>
         <h2 class="display-2 secondary--text">
           Steam 在线人数
         </h2>
