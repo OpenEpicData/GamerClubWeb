@@ -14,7 +14,12 @@
           lg="4"
           xl="3"
         >
-          <v-card shaped hover>
+          <v-card
+            :href="`https://store.steampowered.com/app/${item.appid}`"
+            target="_black"
+            shaped
+            hover
+          >
             <v-img
               :src="
                 `https://steamcdn-a.akamaihd.net/steam/apps/${item.appid}/capsule_616x353.jpg`
