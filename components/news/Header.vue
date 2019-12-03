@@ -24,7 +24,7 @@
                   v-model="$store.state.search.tagName"
                   :items="$store.state.data.tags"
                   @input="change_tag"
-                  @click:clear="change_tag('')"
+                  @click:clear="change_tag"
                   clearable
                   label="标签"
                   outlined
@@ -37,7 +37,7 @@
                   v-model="$store.state.search.refName"
                   :items="$store.state.data.refs"
                   @input="change_ref"
-                  @click:clear="change_tag('')"
+                  @click:clear="change_ref"
                   label="来源"
                   outlined
                   hide-details
