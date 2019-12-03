@@ -15,6 +15,9 @@ export const state = () => ({
       },
       weekly: {
         sellers: null
+      },
+      apps: {
+        games: null
       }
     }
   },
@@ -55,6 +58,10 @@ export const mutations = {
 
   setSteamWeekly(state, data) {
     state.data.steam.weekly = Object.assign(state.data.steam.weekly, data)
+  },
+
+  setSteamApps(state, data) {
+    state.data.steam.apps = Object.assign(state.data.steam.apps, data)
   }
 }
 
@@ -107,6 +114,13 @@ export const actions = {
     const res = await this.$axios.get('/api/game/steam/weekly_top_sellers')
     commit('setSteamWeekly', {
       sellers: res.data
+    })
+  },
+
+  async fetch_steam_apps({ commit }) {
+    const res = await this.$axios.get('/api/game/steam/apps?length=16')
+    commit('setSteamApps', {
+      games: res.data
     })
   }
 }

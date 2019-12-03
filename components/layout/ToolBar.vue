@@ -68,6 +68,7 @@ export default {
         },
         {
           text: '游戏库',
+          link: '/game',
           icon: 'mdi-gamepad-square-outline'
         }
       ]
