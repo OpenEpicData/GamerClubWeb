@@ -1,21 +1,47 @@
 <template>
   <v-app-bar flat color="transparent">
-    <v-toolbar-title class="app-title">
-      <nuxt-link to="/" exact class="link">
-        <v-avatar>
-          <v-icon size="48" color="primary">
-            mdi-gamepad-variant-outline
-          </v-icon>
-        </v-avatar>
-        EpicGamer
-      </nuxt-link>
-    </v-toolbar-title>
-
-    <v-spacer></v-spacer>
-
-    <v-btn v-for="(item, i) in appBar.data" :key="i" :to="item.link" text exact>
-      {{ item.text }}
+    <v-btn class="app-title" to="/" x-large outlined tile exact color="primary">
+      <v-avatar>
+        <v-icon size="48" color="primary" left>
+          mdi-gamepad-variant-outline
+        </v-icon>
+      </v-avatar>
+      EpicGamer
     </v-btn>
+
+    <v-tabs
+      class="d-flex justify-center"
+      centered
+      grow
+      background-color="transparent"
+    >
+      <v-tab
+        v-for="(item, i) in appBar.data"
+        :key="i"
+        :to="item.link"
+        :disabled="!item.link"
+        text
+        exact
+      >
+        <h2 class="title font-weight-bold">
+          <v-icon left large>
+            {{ item.icon }}
+          </v-icon>
+          {{ item.text }}
+        </h2>
+      </v-tab>
+    </v-tabs>
+
+    <v-text-field
+      label="搜索"
+      disabled
+      hide-details
+      solo
+      rounded
+      outlined
+      dense
+      flat
+    />
   </v-app-bar>
 </template>
 
@@ -32,11 +58,17 @@ export default {
       data: [
         {
           text: '主页',
-          link: '/'
+          link: '/',
+          icon: 'mdi-home-outline'
         },
         {
           text: '业内新闻',
-          link: '/news'
+          link: '/news',
+          icon: 'mdi-newspaper-variant-outline'
+        },
+        {
+          text: '游戏库',
+          icon: 'mdi-gamepad-square-outline'
         }
       ]
     }
