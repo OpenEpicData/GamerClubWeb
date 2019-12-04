@@ -43,7 +43,7 @@ export default {
       title: '游戏库',
       meta: [
         {
-          hid: 'news',
+          hid: 'game',
           name: 'description',
           content:
             'EpicGamer 游戏库实时抓取各大平台的游戏资料，价格，在线人数以供查阅。'

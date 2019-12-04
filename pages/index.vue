@@ -1,67 +1,152 @@
 <template>
   <div>
-    <div class="mx-5">
-      <v-card class="tertiary py-12">
-        <v-container>
-          <v-row class="align-center">
-            <v-col cols="12" md="6" lg="5">
-              <Status :data.sync="user_status" />
-            </v-col>
+    <v-container>
+      <div class="py-5 mt-5">
+        <h2 class="display-2 secondary--text">
+          本周头条
+        </h2>
+      </div>
 
-            <v-col v-if="options" cols="12" md="6" lg="7">
-              <Chart :options.sync="options" :series.sync="series" />
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
+      <div v-if="$store.state.data.news">
+        <v-row>
+          <v-col cols="12" md="9" xl="10">
+            <v-row>
+              <v-col
+                v-for="(item, i) in $store.state.data.news.top.slice(0, 2)"
+                :key="i"
+                cols="12"
+                md="6"
+              >
+                <v-card
+                  @click=";(dialog = true), (url = item.ref_link)"
+                  hover
+                  shaped
+                  class="top_news"
+                >
+                  <v-img
+                    :src="item.image"
+                    :aspect-ratio="16 / 9"
+                    height="30vh"
+                    max-height="400px"
+                  >
+                  </v-img>
 
-      <v-card flat class="py-12">
-        <v-container>
-          <v-row>
-            <v-col>
-              <Weekly />
-            </v-col>
-          </v-row>
-        </v-container>
+                  <v-card-text>
+                    <v-btn rounded small text class="tertiary">
+                      {{ item.tag.name }}
+                      -
+                      {{ item.ref.name }}
+                    </v-btn>
+                  </v-card-text>
+
+                  <v-card-title>
+                    <h3 class="headline font-weight-bold text-truncate">
+                      {{ item.title }}
+                    </h3>
+                  </v-card-title>
+                </v-card>
+              </v-col>
+
+              <v-col cols="12">
+                <v-row>
+                  <v-col
+                    v-for="(item, i) in $store.state.data.news.top.slice(2, 6)"
+                    :key="i"
+                    cols="12"
+                    md="6"
+                    lg="3"
+                  >
+                    <v-card
+                      @click=";(dialog = true), (url = item.ref_link)"
+                      hover
+                      shaped
+                      class="top_news"
+                    >
+                      <v-img :src="item.image" height="20vh" max-height="200px">
+                      </v-img>
+
+                      <v-card-text>
+                        <v-btn rounded small text class="tertiary">
+                          {{ item.tag.name }}
+                          -
+                          {{ item.ref.name }}
+                        </v-btn>
+                      </v-card-text>
+
+                      <v-card-title>
+                        <h4 class="title font-weight-bold text-truncate">
+                          {{ item.title }}
+                        </h4>
+                      </v-card-title>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+
+          <v-col cols="12" md="3" xl="2">
+            <v-row>
+              <v-col v-if="$store.state.analysis.news" cols="12">
+                <v-card shaped flat>
+                  <v-list>
+                    <v-subheader>
+                      <h4 class="title secondary--text">
+                        热门话题
+                      </h4>
+                    </v-subheader>
+                    <v-list-item
+                      v-for="(item, i) in $store.state.analysis.news.data"
+                      :key="i"
+                      dense
+                    >
+                      <v-list-item-content>
+                        <v-list-item-title>
+                          {{ item.title }}
+                        </v-list-item-title>
+                      </v-list-item-content>
+                    </v-list-item>
+                  </v-list>
+
+                  <v-btn text small class="float-right" to="/news">
+                    浏览所有新闻
+                    <v-icon right>
+                      mdi-arrow-right
+                    </v-icon>
+                  </v-btn>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
+
+    <v-dialog
+      v-model="dialog"
+      max-width="1300px"
+      scrollable
+      transition="scroll-x-transition"
+    >
+      <v-card height="80vh">
+        <iframe :src="url" frameborder="0" width="100%" height="100%"></iframe>
       </v-card>
-    </div>
+    </v-dialog>
   </div>
 </template>
 
 <script>
 export default {
-  components: {
-    Chart: () => import('~/components/steam/user/Chart'),
-    Status: () => import('~/components/steam/user/Status'),
-    Weekly: () => import('~/components/steam/seller/Weekly')
-  },
+  components: {},
   data() {
-    return {}
-  },
-  async asyncData({ $axios }) {
-    const { data } = await $axios.get(
-      `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count?today_sub_hours=8`
-    )
-
     return {
-      user_status: data.today,
-      series: [{ name: '在线人数', data: data.user }],
-      options: {
-        stroke: {
-          show: true
-        },
-        xaxis: {
-          type: 'datetime',
-          categories: data.created_at
-        },
-        theme: {
-          monochrome: {
-            enabled: true,
-            color: '#085FF4'
-          }
-        }
-      }
+      dialog: false,
+      url: null
     }
+  },
+  async mounted() {
+    await this.$store.dispatch('fetch_news')
+    await this.$store.dispatch('fetch_analysis_news')
   },
   head() {
     return {
@@ -75,5 +160,11 @@ export default {
 .sticky {
   position: sticky !important;
   top: 20px !important;
+}
+
+.top_news {
+  .v-card__title {
+    padding-top: 0;
+  }
 }
 </style>

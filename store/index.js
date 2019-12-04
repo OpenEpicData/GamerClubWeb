@@ -75,7 +75,8 @@ export const actions = {
 &page=${this.state.search.page}
 &q=${this.state.search.query}
 &tagName=${this.state.search.tagName}
-&refName=${this.state.search.refName}`
+&refName=${this.state.search.refName}
+&top_length=6`
       )
       .then((res) => {
         commit('setSearch', { page: res.data.current_page })

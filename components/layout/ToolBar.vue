@@ -1,13 +1,24 @@
 <template>
   <v-app-bar flat color="transparent">
-    <v-btn class="app-title" to="/" x-large outlined tile exact color="primary">
-      <v-avatar>
-        <v-icon size="48" color="primary" left>
-          mdi-gamepad-variant-outline
-        </v-icon>
-      </v-avatar>
-      EpicGamer
-    </v-btn>
+    <v-badge>
+      <template v-slot:badge>Beta</template>
+      <v-btn
+        class="app-title"
+        to="/"
+        x-large
+        outlined
+        tile
+        exact
+        color="primary"
+      >
+        <v-avatar>
+          <v-icon size="48" color="primary" left>
+            mdi-gamepad-variant-outline
+          </v-icon>
+        </v-avatar>
+        EpicGamer
+      </v-btn>
+    </v-badge>
 
     <v-tabs
       class="d-flex justify-center"
@@ -65,6 +76,12 @@ export default {
           text: '业内新闻',
           link: '/news',
           icon: 'mdi-newspaper-variant-outline'
+        },
+
+        {
+          text: '数据报告',
+          link: '/data',
+          icon: 'mdi-chart-timeline'
         },
         {
           text: '游戏库',
