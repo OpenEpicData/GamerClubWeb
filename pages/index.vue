@@ -21,7 +21,7 @@
                   @click=";(dialog = true), (url = item.ref_link)"
                   hover
                   shaped
-                  class="top_news"
+                  class="top_news drop-shadow"
                 >
                   <v-img
                     :src="item.image"
@@ -60,7 +60,7 @@
                       @click=";(dialog = true), (url = item.ref_link)"
                       hover
                       shaped
-                      class="top_news"
+                      class="top_news drop-shadow"
                     >
                       <v-img :src="item.image" height="20vh" max-height="200px">
                       </v-img>

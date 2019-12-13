@@ -39,6 +39,12 @@ export default {
 </style>
 
 <style lang="scss">
+.drop-shadow {
+  &:hover {
+    filter: drop-shadow(0 0 16px #085ff4);
+  }
+}
+
 .layout-toolbar {
   .v-toolbar__content {
     padding: 0;

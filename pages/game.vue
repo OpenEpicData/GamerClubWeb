@@ -19,6 +19,7 @@
             target="_black"
             shaped
             hover
+            class="drop-shadow"
           >
             <v-img
               :src="
