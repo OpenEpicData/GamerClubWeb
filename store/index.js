@@ -76,7 +76,7 @@ export const actions = {
 &q=${this.state.search.query}
 &tagName=${this.state.search.tagName}
 &refName=${this.state.search.refName}
-&top_length=6`
+&topLength=6`
       )
       .then((res) => {
         commit('setSearch', { page: res.data.current_page })
@@ -104,7 +104,7 @@ export const actions = {
   },
 
   async fetch_steam_user_count({ commit }) {
-    const res = await this.$axios.get('/api/game/steam/user_count')
+    const res = await this.$axios.get('/api/game/steam/status')
     commit('setSteamUserCount', {
       user: res.data.user,
       created_at: res.data.created_at
@@ -112,7 +112,7 @@ export const actions = {
   },
 
   async fetch_steam_weekly_sellers({ commit }) {
-    const res = await this.$axios.get('/api/game/steam/weekly_top_sellers')
+    const res = await this.$axios.get('/api/game/steam/weeklyTopSellers')
     commit('setSteamWeekly', {
       sellers: res.data
     })

@@ -40,7 +40,7 @@ export default {
   },
   async asyncData({ $axios }) {
     const { data } = await $axios.get(
-      `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/user_count?today_sub_hours=8`
+      `https://bird.ioliu.cn/v1?url=http://api.epicdata.net:1234/api/game/steam/status?toDaySubHours=8`
     )
 
     return {
