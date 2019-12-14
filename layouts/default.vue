@@ -1,6 +1,22 @@
 <template>
   <v-app>
     <v-container>
+      <v-alert prominent type="info">
+        <v-row align="center">
+          <v-col class="grow">
+            网站后端升级中，部分内容暂不可用
+          </v-col>
+          <v-col class="shrink">
+            <v-btn
+              href="https://github.com/OpenEpicData/GamerClubAPI/pull/1"
+              target="_black"
+            >
+              查看升级内容
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-alert>
+
       <ToolBar class="layout-toolbar" />
     </v-container>
 
