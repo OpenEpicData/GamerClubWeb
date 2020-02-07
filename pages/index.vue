@@ -11,50 +11,14 @@
         <v-row>
           <v-col cols="12" md="9" xl="10">
             <v-row>
-              <v-col
-                v-for="(item, i) in $store.state.data.news.top.slice(0, 2)"
-                :key="i"
-                cols="12"
-                md="6"
-              >
-                <v-card
-                  @click=";(dialog = true), (url = item.ref_link)"
-                  hover
-                  shaped
-                  class="top_news drop-shadow"
-                >
-                  <v-img
-                    :src="item.image"
-                    :aspect-ratio="16 / 9"
-                    height="30vh"
-                    max-height="400px"
-                  >
-                  </v-img>
-
-                  <v-card-text>
-                    <v-btn rounded small text class="tertiary">
-                      {{ item.tag.name }}
-                      -
-                      {{ item.ref.name }}
-                    </v-btn>
-                  </v-card-text>
-
-                  <v-card-title>
-                    <h3 class="headline font-weight-bold text-truncate">
-                      {{ item.title }}
-                    </h3>
-                  </v-card-title>
-                </v-card>
-              </v-col>
-
               <v-col cols="12">
                 <v-row>
                   <v-col
-                    v-for="(item, i) in $store.state.data.news.top.slice(2, 6)"
+                    v-for="(item, i) in $store.state.data.news.top"
                     :key="i"
-                    cols="12"
+                    cols="6"
                     md="6"
-                    lg="3"
+                    xl="3"
                   >
                     <v-card
                       @click=";(dialog = true), (url = item.ref_link)"
@@ -62,7 +26,11 @@
                       shaped
                       class="top_news drop-shadow"
                     >
-                      <v-img :src="item.image" height="20vh" max-height="200px">
+                      <v-img
+                        :src="item.image ? item.image : '123'"
+                        height="20vh"
+                        max-height="200px"
+                      >
                       </v-img>
 
                       <v-card-text>
