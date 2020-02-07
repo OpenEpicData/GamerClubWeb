@@ -66,6 +66,11 @@
                     <v-list-item
                       v-for="(item, i) in $store.state.analysis.news.data"
                       :key="i"
+                      @click="
+                        $store.commit('setSearch', { query: item.title })
+                        $store.dispatch('fetch_news')
+                        $router.push('news')
+                      "
                       dense
                     >
                       <v-list-item-content>
