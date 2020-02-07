@@ -24,29 +24,31 @@
                       @click=";(dialog = true), (url = item.ref_link)"
                       hover
                       shaped
-                      class="top_news drop-shadow"
+                      class="drop-shadow"
                     >
                       <v-img
-                        :src="item.image ? item.image : '123'"
+                        :src="item.image ? item.image : ''"
                         height="20vh"
                         max-height="200px"
                       >
+                        <div class="text-right">
+                          <v-card-text>
+                            <v-btn rounded small class="tertiary">
+                              {{ item.tag.name }}
+                              -
+                              {{ item.ref.name }}
+                            </v-btn>
+                          </v-card-text>
+                        </div>
                       </v-img>
-
-                      <v-card-text>
-                        <v-btn rounded small text class="tertiary">
-                          {{ item.tag.name }}
-                          -
-                          {{ item.ref.name }}
-                        </v-btn>
-                      </v-card-text>
-
-                      <v-card-title>
-                        <h4 class="title font-weight-bold text-truncate">
-                          {{ item.title }}
-                        </h4>
-                      </v-card-title>
                     </v-card>
+                    <v-card-title
+                      @click=";(dialog = true), (url = item.ref_link)"
+                    >
+                      <h4 class="title font-weight-bold text-truncate">
+                        {{ item.title }}
+                      </h4>
+                    </v-card-title>
                   </v-col>
                 </v-row>
               </v-col>
@@ -133,11 +135,5 @@ export default {
 .sticky {
   position: sticky !important;
   top: 20px !important;
-}
-
-.top_news {
-  .v-card__title {
-    padding-top: 0;
-  }
 }
 </style>
