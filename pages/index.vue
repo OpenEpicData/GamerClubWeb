@@ -1,56 +1,98 @@
 <template>
   <div>
     <v-container>
-      <div class="py-5 mt-5">
-        <h2 class="display-2 secondary--text">
-          本周头条
-        </h2>
-      </div>
-
       <div v-if="$store.state.data.news">
+        <div class="pt-3">
+          <h2 class="display-1 secondary--text">
+            本周头条
+          </h2>
+        </div>
+
         <v-row>
+          <v-col cols="12">
+            <v-row>
+              <v-col
+                v-for="(item, i) in $store.state.data.news.top"
+                :key="i"
+                cols="6"
+                md="4"
+                lg="2"
+              >
+                <v-card
+                  @click=";(dialog = true), (url = item.ref_link)"
+                  hover
+                  shaped
+                  class="drop-shadow"
+                >
+                  <v-img
+                    :src="item.image ? item.image : ''"
+                    height="20vh"
+                    max-height="200px"
+                  >
+                    <div class="text-right">
+                      <v-card-text>
+                        <v-btn rounded small class="tertiary">
+                          {{ item.tag.name }}
+                          -
+                          {{ item.ref.name }}
+                        </v-btn>
+                      </v-card-text>
+                    </div>
+                  </v-img>
+                </v-card>
+                <v-card-title @click=";(dialog = true), (url = item.ref_link)">
+                  <h4 class="subtitle-1 font-weight-bold text-truncate">
+                    {{ item.title }}
+                  </h4>
+                </v-card-title>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+
+        <div>
+          <h2 class="display-1 secondary--text">
+            最新新闻
+          </h2>
+        </div>
+
+        <v-row v-if="$store.state.data.news">
           <v-col cols="12" md="9" xl="10">
             <v-row>
-              <v-col cols="12">
-                <v-row>
-                  <v-col
-                    v-for="(item, i) in $store.state.data.news.top"
-                    :key="i"
-                    cols="6"
-                    md="6"
-                    xl="3"
+              <v-col
+                v-for="(item, i) in $store.state.data.news.latest.data"
+                :key="i"
+                cols="6"
+                md="4"
+                lg="3"
+              >
+                <v-card
+                  @click=";(dialog = true), (url = item.ref_link)"
+                  hover
+                  shaped
+                  class="drop-shadow"
+                >
+                  <v-img
+                    :src="item.image ? item.image : ''"
+                    height="20vh"
+                    max-height="200px"
                   >
-                    <v-card
-                      @click=";(dialog = true), (url = item.ref_link)"
-                      hover
-                      shaped
-                      class="drop-shadow"
-                    >
-                      <v-img
-                        :src="item.image ? item.image : ''"
-                        height="20vh"
-                        max-height="200px"
-                      >
-                        <div class="text-right">
-                          <v-card-text>
-                            <v-btn rounded small class="tertiary">
-                              {{ item.tag.name }}
-                              -
-                              {{ item.ref.name }}
-                            </v-btn>
-                          </v-card-text>
-                        </div>
-                      </v-img>
-                    </v-card>
-                    <v-card-title
-                      @click=";(dialog = true), (url = item.ref_link)"
-                    >
-                      <h4 class="title font-weight-bold text-truncate">
-                        {{ item.title }}
-                      </h4>
-                    </v-card-title>
-                  </v-col>
-                </v-row>
+                    <div class="text-right">
+                      <v-card-text>
+                        <v-btn rounded small class="tertiary">
+                          {{ item.tag.name }}
+                          -
+                          {{ item.ref.name }}
+                        </v-btn>
+                      </v-card-text>
+                    </div>
+                  </v-img>
+                </v-card>
+                <v-card-title @click=";(dialog = true), (url = item.ref_link)">
+                  <h4 class="subtitle-1 font-weight-bold text-truncate">
+                    {{ item.title }}
+                  </h4>
+                </v-card-title>
               </v-col>
             </v-row>
           </v-col>
