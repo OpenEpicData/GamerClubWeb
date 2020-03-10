@@ -123,44 +123,6 @@
                 </a>
               </v-col>
             </v-row>
-
-            <v-row>
-              <v-col
-                v-for="(item, i) in $store.state.data.news.latest.data"
-                :key="i"
-                cols="6"
-                md="4"
-                lg="3"
-              >
-                <v-card
-                  @click=";(dialog = true), (url = item.ref_link)"
-                  hover
-                  shaped
-                  class="drop-shadow"
-                >
-                  <v-img
-                    :src="item.image ? item.image : ''"
-                    height="20vh"
-                    max-height="200px"
-                  >
-                    <div class="text-right">
-                      <v-card-text>
-                        <v-btn rounded small class="tertiary">
-                          {{ item.tag.name }}
-                          -
-                          {{ item.ref.name }}
-                        </v-btn>
-                      </v-card-text>
-                    </div>
-                  </v-img>
-                </v-card>
-                <v-card-title @click=";(dialog = true), (url = item.ref_link)">
-                  <h4 class="subtitle-1 font-weight-bold text-truncate">
-                    {{ item.title }}
-                  </h4>
-                </v-card-title>
-              </v-col>
-            </v-row>
           </v-col>
 
           <v-col cols="12" md="3" xl="2">
