@@ -166,10 +166,10 @@
           <v-col cols="12" md="3" xl="2">
             <v-row style="position: sticky;top: 0; ">
               <v-col v-if="$store.state.analysis.news" cols="12">
-                <v-card shaped flat>
+                <v-card flat>
                   <v-list>
                     <v-subheader>
-                      <h4 class="title secondary--text">
+                      <h4 class="title">
                         热门话题
                       </h4>
                     </v-subheader>
@@ -181,7 +181,6 @@
                         $store.dispatch('fetch_news')
                         $router.push('news')
                       "
-                      dense
                     >
                       <v-list-item-content>
                         <v-list-item-title>
@@ -191,7 +190,7 @@
                     </v-list-item>
                   </v-list>
 
-                  <v-btn text small class="float-right" to="/news">
+                  <v-btn text class="float-right" to="/news">
                     浏览所有新闻
                     <v-icon right>
                       mdi-arrow-right
