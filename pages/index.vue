@@ -12,7 +12,7 @@
               OpenEpicData · Curator: We are propulsion the project redesign
               check out:
               <a
-                href="https://t.co/NArFpwwaJ4"
+                href="https://github.com/OpenEpicData/GamerClubWeb"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="white--text"
