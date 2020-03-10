@@ -1,8 +1,10 @@
 <template>
   <v-app>
-    <v-container>
-      <ToolBar class="layout-toolbar" />
-    </v-container>
+    <v-sheet color="grey darken-3" dark>
+      <v-container>
+        <ToolBar class="layout-toolbar" />
+      </v-container>
+    </v-sheet>
 
     <v-content>
       <nuxt />
@@ -53,6 +55,9 @@ export default {
 
 a {
   text-decoration-line: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 h1,
