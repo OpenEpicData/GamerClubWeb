@@ -61,7 +61,7 @@
               </div>
             </v-col>
 
-            <v-col cols="12" md="6" class="pl-12">
+            <v-col cols="12" md="8" class="pl-12">
               <a @click=";(dialog = true), (url = item.ref_link)">
                 <v-img :src="item.image"></v-img>
               </a>
@@ -73,62 +73,57 @@
 
     <v-container>
       <div v-if="$store.state.data.news">
-        <div class="pt-3">
-          <h2 class="display-1 secondary--text">
-            本周头条
-          </h2>
-        </div>
-
         <v-row>
-          <v-col cols="12">
-            <v-row>
-              <v-col
-                v-for="(item, i) in $store.state.data.news.top"
-                :key="i"
-                cols="6"
-                md="4"
-                lg="2"
-              >
-                <v-card
-                  @click=";(dialog = true), (url = item.ref_link)"
-                  hover
-                  shaped
-                  class="drop-shadow"
-                >
-                  <v-img
-                    :src="item.image ? item.image : ''"
-                    height="20vh"
-                    max-height="200px"
+          <v-col cols="12" md="9" xl="10">
+            <v-row
+              v-for="(item, i) in $store.state.data.news.latest.data"
+              :key="i"
+              class="my-12"
+            >
+              <v-col cols="12" md="4">
+                <div class="subtitle-1">
+                  <a
+                    @click="
+                      $store.commit('setSearch', { refName: item.ref.name })
+                      $store.dispatch('fetch_news')
+                      $router.push('news')
+                    "
+                    class="text-uppercase black--text"
                   >
-                    <div class="text-right">
-                      <v-card-text>
-                        <v-btn rounded small class="tertiary">
-                          {{ item.tag.name }}
-                          -
-                          {{ item.ref.name }}
-                        </v-btn>
-                      </v-card-text>
-                    </div>
-                  </v-img>
-                </v-card>
-                <v-card-title @click=";(dialog = true), (url = item.ref_link)">
-                  <h4 class="subtitle-1 font-weight-bold text-truncate">
-                    {{ item.title }}
-                  </h4>
-                </v-card-title>
+                    {{ item.ref.name }}
+                  </a>
+
+                  <span class="font-weight-regular ml-5">
+                    {{
+                      $dayjs(item.updated_at).format('MMM DD, YYYY @ HH:mmA')
+                    }}
+                  </span>
+                </div>
+
+                <div class="display-1 mt-10" style="line-height: 1.2;">
+                  <a
+                    @click=";(dialog = true), (url = item.ref_link)"
+                    class="black--text"
+                  >
+                    <h3 class="font-weight-regular">
+                      {{ item.title }}
+                    </h3>
+
+                    <h3 class="font-weight-regular">
+                      {{ item.description }}
+                    </h3>
+                  </a>
+                </div>
+              </v-col>
+
+              <v-col md="1"></v-col>
+              <v-col cols="12" md="6">
+                <a @click=";(dialog = true), (url = item.ref_link)">
+                  <v-img :src="item.image"></v-img>
+                </a>
               </v-col>
             </v-row>
-          </v-col>
-        </v-row>
 
-        <div>
-          <h2 class="display-1 secondary--text">
-            最新新闻
-          </h2>
-        </div>
-
-        <v-row v-if="$store.state.data.news">
-          <v-col cols="12" md="9" xl="10">
             <v-row>
               <v-col
                 v-for="(item, i) in $store.state.data.news.latest.data"
@@ -169,7 +164,7 @@
           </v-col>
 
           <v-col cols="12" md="3" xl="2">
-            <v-row>
+            <v-row style="position: sticky;top: 0; ">
               <v-col v-if="$store.state.analysis.news" cols="12">
                 <v-card shaped flat>
                   <v-list>
