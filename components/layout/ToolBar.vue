@@ -2,7 +2,20 @@
   <v-app-bar flat color="transparent">
     <v-badge class="d-none d-sm-flex">
       <template v-slot:badge>Beta</template>
-      <v-btn class="app-title" to="/" x-large outlined tile exact dark text>
+      <v-btn
+        @click="
+          $store.commit('setSearch', { query: '' })
+          $store.dispatch('fetch_news')
+        "
+        class="app-title"
+        to="/"
+        x-large
+        outlined
+        tile
+        exact
+        dark
+        text
+      >
         <h2 class="display-1">
           EpicGamer
         </h2>
@@ -21,6 +34,12 @@
         :key="i"
         :to="item.link"
         :disabled="!item.link"
+        @click="
+          if (i <= 0) {
+            $store.commit('setSearch', { query: '' })
+            $store.dispatch('fetch_news')
+          }
+        "
         text
         exact
       >

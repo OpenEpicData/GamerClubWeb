@@ -1,6 +1,6 @@
 <template>
   <div v-if="$store.state.data.steam.weekly.sellers">
-    <h2 class="display-2 secondary--text">
+    <h2 class="display-2">
       销量周榜 (
       {{
         $dayjs
@@ -33,7 +33,7 @@
             <td>
               <h4 class="subtitle-1">
                 <a :href="item.link" target="_blank" rel="noopener noreferrer">
-                  <span class="rainbow black--text">
+                  <span class="black--text">
                     {{ item.title }}
                   </span>
                 </a>

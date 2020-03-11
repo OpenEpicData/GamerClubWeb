@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <v-card class="tertiary py-12" shaped>
+      <v-card class="py-12" shaped color="grey darken-4" dark>
         <v-container>
           <v-row class="align-center">
             <v-col cols="12" md="6" lg="5">
@@ -47,6 +47,9 @@ export default {
       user_status: data.today,
       series: [{ name: '在线人数', data: data.user }],
       options: {
+        chart: {
+          background: '#212121'
+        },
         stroke: {
           show: true
         },
@@ -55,9 +58,11 @@ export default {
           categories: data.created_at
         },
         theme: {
+          mode: 'dark',
+          palette: 'palette7',
           monochrome: {
             enabled: true,
-            color: '#085FF4'
+            color: '#000'
           }
         }
       }

@@ -1,16 +1,14 @@
 <template>
   <div>
     <div>
-      <v-badge>
-        <h2 class="display-2 secondary--text">
-          Steam 在线人数
-        </h2>
-      </v-badge>
+      <h2 class="display-2">
+        Steam 在线人数
+      </h2>
     </div>
 
     <v-row class="my-5">
       <v-col cols="12" sm="6" class="mt-10">
-        <h3 class="display-1 primary--text">
+        <h3 class="display-1">
           {{ parseInt(data.avg.toFixed(0)).toLocaleString() }}
         </h3>
         <h4 class="headline">
@@ -19,7 +17,7 @@
       </v-col>
 
       <v-col cols="12" sm="6" class="mt-10">
-        <h3 class="display-1 primary--text">
+        <h3 class="display-1">
           {{ data.max.toLocaleString() }}
         </h3>
         <h4 class="headline">
@@ -28,7 +26,7 @@
       </v-col>
 
       <v-col cols="12" sm="6" class="mt-10">
-        <h3 class="display-1 primary--text">
+        <h3 class="display-1">
           {{ data.min.toLocaleString() }}
         </h3>
         <h4 class="headline">
@@ -37,7 +35,7 @@
       </v-col>
 
       <v-col cols="12" sm="6" class="mt-10">
-        <h3 class="display-1 primary--text">
+        <h3 class="display-1">
           {{ data.now.toLocaleString() }}
         </h3>
         <h4 class="headline">
