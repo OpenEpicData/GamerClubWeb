@@ -1,6 +1,6 @@
 <template>
   <v-app-bar flat color="transparent">
-    <v-badge>
+    <v-badge class="d-none d-sm-flex">
       <template v-slot:badge>Beta</template>
       <v-btn class="app-title" to="/" x-large outlined tile exact dark text>
         <h2 class="display-1">
@@ -39,6 +39,7 @@
       outlined
       dense
       flat
+      class="d-none d-sm-flex"
     />
   </v-app-bar>
 </template>
