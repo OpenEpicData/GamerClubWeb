@@ -22,6 +22,11 @@ export default {
         rel: 'icon',
         type: 'image/png',
         href: '/static/icon.png'
+      },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css'
       }
     ]
   },
