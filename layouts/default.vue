@@ -60,6 +60,13 @@ a {
   }
 }
 
+.line-clamp-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 h1,
 h2,
 h3,

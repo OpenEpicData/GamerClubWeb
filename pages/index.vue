@@ -109,7 +109,7 @@
                       {{ item.title }}
                     </h3>
 
-                    <h3 class="font-weight-regular">
+                    <h3 class="font-weight-regular line-clamp-2">
                       {{ item.description }}
                     </h3>
                   </a>
