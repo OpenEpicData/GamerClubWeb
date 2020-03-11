@@ -3,7 +3,12 @@
     <v-sheet color="grey darken-3" dark>
       <v-container>
         <v-alert text>
-          <v-row justify="center" class="subtitle-1" align="center">
+          <v-row
+            justify="start"
+            justify-md="center"
+            class="subtitle-1"
+            align="center"
+          >
             <v-col cols="auto">
               2020/3/10
             </v-col>
@@ -27,7 +32,7 @@
             v-for="(item, i) in $store.state.data.news.top.slice(0, 1)"
             :key="i"
           >
-            <v-col cols="12" md="5" xl="4">
+            <v-col cols="12" lg="4">
               <div class="subtitle-1">
                 <a
                   @click="
@@ -61,7 +66,7 @@
               </div>
             </v-col>
 
-            <v-col cols="12" md="6" xl="7" offset-md="1">
+            <v-col cols="12" lg="6" xl="5" offset-lg="1">
               <a @click=";(dialog = true), (url = item.ref_link)">
                 <v-img :src="item.image"></v-img>
               </a>
@@ -80,7 +85,7 @@
               :key="i"
               class="my-12"
             >
-              <v-col cols="12" md="5" xl="4">
+              <v-col cols="12" md="5" xl="5">
                 <div class="subtitle-1">
                   <a
                     @click="
@@ -116,7 +121,7 @@
                 </div>
               </v-col>
 
-              <v-col cols="12" md="6" xl="7" offset-md="1">
+              <v-col cols="12" md="6" xl="5" offset-lg="1">
                 <a @click=";(dialog = true), (url = item.ref_link)">
                   <v-img :src="item.image"></v-img>
                 </a>
