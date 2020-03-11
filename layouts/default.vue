@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-sheet color="grey darken-3" dark>
+    <v-sheet color="grey darken-4" dark>
       <v-container>
         <ToolBar class="layout-toolbar" />
       </v-container>
