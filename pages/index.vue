@@ -3,7 +3,7 @@
     <v-sheet color="grey darken-3" dark>
       <v-container>
         <v-alert text>
-          <v-row justify="center" class="subtitle-1">
+          <v-row justify="center" class="subtitle-1" align="center">
             <v-col cols="auto">
               2020/3/10
             </v-col>
@@ -27,7 +27,7 @@
             v-for="(item, i) in $store.state.data.news.top.slice(0, 1)"
             :key="i"
           >
-            <v-col cols="12" md="4">
+            <v-col cols="12" md="5" xl="4">
               <div class="subtitle-1">
                 <a
                   @click="
@@ -61,7 +61,7 @@
               </div>
             </v-col>
 
-            <v-col cols="12" md="8" class="pl-12">
+            <v-col cols="12" md="6" xl="7" offset-md="1">
               <a @click=";(dialog = true), (url = item.ref_link)">
                 <v-img :src="item.image"></v-img>
               </a>
@@ -74,13 +74,13 @@
     <v-container>
       <div v-if="$store.state.data.news">
         <v-row>
-          <v-col cols="12" md="9" xl="10">
+          <v-col cols="12" lg="10">
             <v-row
               v-for="(item, i) in $store.state.data.news.latest.data"
               :key="i"
               class="my-12"
             >
-              <v-col cols="12" md="4">
+              <v-col cols="12" md="5" xl="4">
                 <div class="subtitle-1">
                   <a
                     @click="
@@ -116,8 +116,7 @@
                 </div>
               </v-col>
 
-              <v-col md="1"></v-col>
-              <v-col cols="12" md="6">
+              <v-col cols="12" md="6" xl="7" offset-md="1">
                 <a @click=";(dialog = true), (url = item.ref_link)">
                   <v-img :src="item.image"></v-img>
                 </a>
@@ -125,7 +124,7 @@
             </v-row>
           </v-col>
 
-          <v-col cols="12" md="3" xl="2">
+          <v-col cols="12" lg="2">
             <v-row style="position: sticky;top: 0; ">
               <v-col v-if="$store.state.analysis.news" cols="12">
                 <v-card flat>
