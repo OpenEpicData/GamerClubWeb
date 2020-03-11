@@ -31,8 +31,15 @@
     </v-tabs>
 
     <v-text-field
+      v-model="search"
+      @keyup.enter="
+        $router.push('news')
+        $store.commit('setSearch', { query: search })
+        $store.dispatch('fetch_news')
+      "
+      :placeholder="$store.state.search.query"
+      @click:clear="$store.commit('setSearch', { query: '' })"
       label="搜索"
-      disabled
       hide-details
       solo
       rounded
@@ -40,6 +47,7 @@
       dense
       flat
       class="d-none d-sm-flex"
+      clearable
     />
   </v-app-bar>
 </template>
@@ -53,6 +61,7 @@
 <script>
 export default {
   data: () => ({
+    search: '',
     appBar: {
       data: [
         {
