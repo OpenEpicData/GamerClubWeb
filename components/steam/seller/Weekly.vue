@@ -28,6 +28,7 @@
       <v-col cols="12" md="7">
         <v-date-picker
           v-model="picker"
+          :first-day-of-week="1"
           full-width
           locale="zh-cn"
         ></v-date-picker>
