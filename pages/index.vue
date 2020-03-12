@@ -68,7 +68,7 @@
 
             <v-col cols="12" lg="6" xl="5" offset-lg="1">
               <a @click=";(dialog = true), (url = item.ref_link)">
-                <v-img :src="item.image"></v-img>
+                <v-img :src="item.image ? item.image : ''"></v-img>
               </a>
             </v-col>
           </v-row>
@@ -123,7 +123,7 @@
 
               <v-col cols="12" md="6" xl="5" offset-lg="1">
                 <a @click=";(dialog = true), (url = item.ref_link)">
-                  <v-img :src="item.image"></v-img>
+                  <v-img :src="item.image ? item.image : ''"></v-img>
                 </a>
               </v-col>
             </v-row>

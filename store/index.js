@@ -14,6 +14,7 @@ export const state = () => ({
         }
       },
       weekly: {
+        subWeek: 0,
         sellers: null
       },
       apps: {
@@ -112,7 +113,9 @@ export const actions = {
   },
 
   async fetch_steam_weekly_sellers({ commit }) {
-    const res = await this.$axios.get('/api/game/steam/weeklyTopSellers')
+    const res = await this.$axios.get(
+      `/api/game/steam/weeklyTopSellers?subWeek=${this.state.data.steam.weekly.subWeek}`
+    )
     commit('setSteamWeekly', {
       sellers: res.data
     })
