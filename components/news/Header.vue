@@ -71,25 +71,21 @@
           </v-col>
 
           <v-col cols="12" md="3">
-            <v-row
-              no-gutters
-              class="justify-md-end align-center justify-space-between"
+            <v-btn-toggle
+              v-model="orderTime"
+              @change="change_order_time(orderTime)"
+              color="primary"
+              group
+              class="d-flex justify-end"
             >
-              <v-col cols="3">
-                排序：
-              </v-col>
+              <v-btn value="latest">
+                最新
+              </v-btn>
 
-              <v-col cols="4">
-                <v-btn block x-large disabled>
-                  日期
-                </v-btn>
-              </v-col>
-              <v-col cols="4">
-                <v-btn block x-large disabled>
-                  热门
-                </v-btn>
-              </v-col>
-            </v-row>
+              <v-btn value="oldest">
+                最老
+              </v-btn>
+            </v-btn-toggle>
           </v-col>
         </v-row>
       </div>
@@ -113,10 +109,15 @@ export default {
   data() {
     return {
       search: this.$store.state.search.query,
-      sort: null
+      sort: null,
+      orderTime: 'latest'
     }
   },
   methods: {
+    change_order_time(data) {
+      this.$store.commit('setSearch', { orderTime: data })
+      this.$store.dispatch('fetch_news')
+    },
     change_tag(data) {
       this.$store.commit('setSearch', { tagName: data })
       this.$store.dispatch('fetch_news')

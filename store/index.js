@@ -27,7 +27,8 @@ export const state = () => ({
     tagName: '',
     refName: '',
     page: 1,
-    length: 16
+    length: 16,
+    orderTime: 'latest'
   },
   user: {
     login: false
@@ -77,6 +78,7 @@ export const actions = {
 &q=${this.state.search.query}
 &tagName=${this.state.search.tagName}
 &refName=${this.state.search.refName}
+&orderTime=${this.state.search.orderTime}
 &topLength=6`
       )
       .then((res) => {
