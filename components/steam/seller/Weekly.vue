@@ -76,9 +76,11 @@ export default {
         new Date().toISOString().substr(0, 10),
         'week'
       )
-      const abs = Math.abs(subweek)
-      this.$store.commit('setSteamWeekly', { subWeek: abs })
-      this.$store.dispatch('fetch_steam_weekly_sellers')
+      if (subweek <= 0) {
+        const abs = Math.abs(subweek)
+        this.$store.commit('setSteamWeekly', { subWeek: abs })
+        this.$store.dispatch('fetch_steam_weekly_sellers')
+      }
     }
   },
   mounted() {
