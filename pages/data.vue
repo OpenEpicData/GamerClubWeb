@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <v-card class="py-12" shaped color="grey darken-4" dark>
+      <v-card class="py-12" color="grey darken-4" dark tile>
         <v-container>
           <v-row class="align-center">
             <v-col cols="12" md="6" lg="5">

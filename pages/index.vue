@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-sheet color="grey darken-4" dark>
+    <v-sheet color="grey darken-4" dark tile>
       <v-container>
         <v-alert text>
           <v-row
