@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <v-card class="py-12" color="grey darken-4" dark tile>
+      <v-card class="py-12" color="primary" dark tile>
         <v-container>
           <v-row class="align-center">
             <v-col cols="12" md="6" lg="5">
@@ -48,7 +48,7 @@ export default {
       series: [{ name: '在线人数', data: data.user }],
       options: {
         chart: {
-          background: '#212121'
+          background: '#161e2e'
         },
         stroke: {
           show: true

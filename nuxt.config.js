@@ -80,7 +80,6 @@ export default {
           primary: '#161e2e',
           secondary: '#0938FC',
           tertiary: '#E1F5FE',
-          accent: '#b2ebf2',
           error: '#609CDA',
           warning: '#8F4439'
         }

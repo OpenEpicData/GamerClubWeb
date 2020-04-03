@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat color="transparent">
+  <v-app-bar color="transparent" elevation="3">
     <v-badge class="d-none d-sm-flex">
       <template v-slot:badge>Beta</template>
       <v-btn
