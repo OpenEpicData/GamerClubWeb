@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-sheet color="grey darken-4" dark tile>
+    <v-sheet color="primary" dark tile>
       <v-container>
         <v-alert text>
           <v-row
@@ -40,12 +40,12 @@
                     $store.dispatch('fetch_news')
                     $router.push('news')
                   "
-                  class="text-uppercase white--text"
+                  class="text-uppercase accent--text"
                 >
                   {{ item.ref.name }}
                 </a>
 
-                <span class="font-weight-regular ml-5">
+                <span class="font-weight-regular ml-5 accent--text">
                   {{ $dayjs(item.updated_at).format('MMM DD, YYYY @ HH:mmA') }}
                 </span>
               </div>

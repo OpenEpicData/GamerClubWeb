@@ -67,6 +67,7 @@
       flat
       class="d-none d-sm-flex"
       clearable
+      background-color="primary"
     />
   </v-app-bar>
 </template>

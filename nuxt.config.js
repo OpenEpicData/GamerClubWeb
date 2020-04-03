@@ -77,10 +77,10 @@ export default {
       light: true,
       themes: {
         light: {
-          primary: '#085FF4',
+          primary: '#161e2e',
           secondary: '#0938FC',
           tertiary: '#E1F5FE',
-          accent: '#A5C6D3',
+          accent: '#b2ebf2',
           error: '#609CDA',
           warning: '#8F4439'
         }
