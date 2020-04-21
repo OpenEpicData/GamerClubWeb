@@ -4,7 +4,7 @@
       <v-row no-gutters>
         <v-col cols="12">
           <h3 class="display-1 secondary--text">
-            <span class="rainbow"> {{ title }} </span>
+            <span> {{ title }} </span>
           </h3>
         </v-col>
 
@@ -37,7 +37,7 @@
                         "
                         class="underline pointer title text-truncate mb-1"
                       >
-                        <span class="rainbow">
+                        <span>
                           {{ item.title }}
                         </span>
                       </h4>
