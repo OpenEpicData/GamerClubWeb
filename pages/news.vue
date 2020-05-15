@@ -7,6 +7,7 @@
         <v-row>
           <v-col v-if="$store.state.data.news" cols="12">
             <List
+              id="news"
               v-if="
                 $store.state.data.news.top.length > 0 &&
                   !$store.state.search.query &&
@@ -29,7 +30,7 @@
     </v-container>
 
     <v-btn
-      @click="$store.dispatch('fetch_news')"
+      @click="$vuetify.goTo('#news', 'easeInOutCubic')"
       color="primary"
       dark
       fixed
@@ -37,7 +38,7 @@
       right
       fab
     >
-      <v-icon>mdi-refresh</v-icon>
+      <v-icon>mdi-arrow-up</v-icon>
     </v-btn>
   </div>
 </template>
