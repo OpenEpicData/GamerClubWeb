@@ -1,6 +1,6 @@
 <template>
   <v-app-bar color="transparent" elevation="3">
-    <v-badge class="d-none d-sm-flex">
+    <v-badge class="d-none d-md-flex">
       <template v-slot:badge>Beta</template>
       <v-btn
         @click="
@@ -33,7 +33,10 @@
           $store.dispatch('fetch_news')
         }
       "
-      :class="{ 'ml-5': $vuetify.breakpoint.name !== 'xs' && i === 0 }"
+      :class="{
+        'ml-5': $vuetify.breakpoint.name !== 'xs' && i === 0,
+        'd-none d-sm-flex': $vuetify.breakpoint.name === 'xs' && i > 1
+      }"
       text
       exact
     >
@@ -41,6 +44,33 @@
         {{ item.text }}
       </h2>
     </v-btn>
+
+    <v-menu offset-y>
+      <template v-slot:activator="{ on }">
+        <v-btn v-on="on" text exact class="d-inline d-sm-none">
+          <h2 class="title font-weight-bold">
+            更多
+            <v-icon>
+              mdi-menu-down
+            </v-icon>
+          </h2>
+        </v-btn>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in appBar.data.slice(2, index)"
+          :key="index"
+          :to="item.link"
+          :disabled="!item.link"
+        >
+          <v-list-item-title>
+            <h2 class="title font-weight-bold">
+              {{ item.text }}
+            </h2>
+          </v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
 
     <v-spacer></v-spacer>
 
