@@ -11,7 +11,7 @@
         <v-col v-for="(item, i) in news" :key="i" cols="12">
           <v-card flat color="transparent" hover class="py-4">
             <v-row no-gutters class="align-center justify-space-between">
-              <v-col cols="12">
+              <v-col cols="12" md="10">
                 <v-row>
                   <v-col cols="2" class="d-none d-md-flex">
                     <v-img
