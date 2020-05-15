@@ -22,32 +22,27 @@
       </v-btn>
     </v-badge>
 
-    <v-tabs
-      class="d-flex justify-start pl-5"
-      centered
-      grow
-      background-color="transparent"
-      dark
+    <v-btn
+      v-for="(item, i) in appBar.data"
+      :key="i"
+      :to="item.link"
+      :disabled="!item.link"
+      @click="
+        if (i <= 0) {
+          $store.commit('setSearch', { query: '' })
+          $store.dispatch('fetch_news')
+        }
+      "
+      :class="{ 'ml-5': $vuetify.breakpoint.name !== 'xs' && i === 0 }"
+      text
+      exact
     >
-      <v-tab
-        v-for="(item, i) in appBar.data"
-        :key="i"
-        :to="item.link"
-        :disabled="!item.link"
-        @click="
-          if (i <= 0) {
-            $store.commit('setSearch', { query: '' })
-            $store.dispatch('fetch_news')
-          }
-        "
-        text
-        exact
-      >
-        <h2 class="title font-weight-bold">
-          {{ item.text }}
-        </h2>
-      </v-tab>
-    </v-tabs>
+      <h2 class="title font-weight-bold">
+        {{ item.text }}
+      </h2>
+    </v-btn>
+
+    <v-spacer></v-spacer>
 
     <v-text-field
       v-model="search"
@@ -68,6 +63,7 @@
       class="d-none d-sm-flex"
       clearable
       background-color="primary"
+      style="max-width: 300px"
     />
   </v-app-bar>
 </template>

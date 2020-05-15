@@ -180,6 +180,18 @@
         <iframe :src="url" frameborder="0" width="100%" height="100%"></iframe>
       </v-card>
     </v-dialog>
+
+    <v-btn
+      @click="$vuetify.goTo(0, 'easeInOutCubic')"
+      color="primary"
+      dark
+      fixed
+      bottom
+      right
+      fab
+    >
+      <v-icon>mdi-arrow-up</v-icon>
+    </v-btn>
   </div>
 </template>
 
