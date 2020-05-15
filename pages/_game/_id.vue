@@ -1,21 +1,11 @@
 <template>
   <v-sheet v-if="gameDetail" tile>
-    <v-alert
-      color="warning"
-      border="left"
-      elevation="2"
-      colored-border
-      icon="mdi-instrument-triangle"
-    >
-      IT IS WIP PAGE!
-    </v-alert>
-
     {{ gameDetail.data }}
     <v-parallax :src="gameDetail.background"></v-parallax>
     <v-container style="position: relative;top: -15vh">
       <v-row no-gutters>
         <v-col cols="12">
-          <v-card class="px-5" dark color="grey darken-4">
+          <v-card class="px-5" dark color="primary">
             <v-row>
               <v-col cols="12" md="auto">
                 <v-card flat>
@@ -67,8 +57,8 @@
 
         <v-row>
           <v-col cols="3">
-            <v-card dark>
-              <v-navigation-drawer permanent width="100%">
+            <v-card dark color="primary">
+              <v-navigation-drawer permanent width="100%" color="primary">
                 <v-list dense rounded dark>
                   <v-list-item
                     v-for="item in navs"

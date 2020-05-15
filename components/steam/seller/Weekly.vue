@@ -31,6 +31,7 @@
           :first-day-of-week="1"
           full-width
           locale="zh-cn"
+          color="primary"
         ></v-date-picker>
       </v-col>
     </v-row>
