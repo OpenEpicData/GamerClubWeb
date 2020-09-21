@@ -6,9 +6,9 @@
       </v-container>
     </v-sheet>
 
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
