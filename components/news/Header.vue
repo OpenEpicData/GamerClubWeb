@@ -7,9 +7,7 @@
             <v-icon dark small>mdi-magnify</v-icon>
             {{ $store.state.data.news.latest.total }}
           </template>
-          <h2 class="display-2 secondary--text">
-            业内新闻
-          </h2>
+          <h2 class="display-2 secondary--text">业内新闻</h2>
         </v-badge>
       </div>
 
@@ -78,13 +76,9 @@
               group
               class="d-flex justify-end"
             >
-              <v-btn value="latest">
-                最新
-              </v-btn>
+              <v-btn value="latest">最新</v-btn>
 
-              <v-btn value="oldest">
-                最老
-              </v-btn>
+              <v-btn value="oldest">最老</v-btn>
             </v-btn-toggle>
           </v-col>
         </v-row>
